@@ -113,6 +113,12 @@ section.footnotes ol {
   font-weight: var(--font-weight-4);
   background-color: var(--surface-1);
 }
+
+section.footnotes ol em {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-4);
+  padding-block: var(--size-fluid-1);
+}
 section.footnotes ol li {
   padding-left: var(--size-fluid-2);
   max-width: 90%;
