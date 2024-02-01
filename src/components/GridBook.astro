@@ -1,0 +1,29 @@
+<!-- ---
+import { css } from "../../styled-system/css";
+// import { container, grid, hstack, stack } from '../../styled-system/patterns'
+--- -->
+
+<!-- <div
+  class={css({
+    py: "auto",
+    px: "7vw",
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+    gap: "20px",
+    placeContent: "center",
+  })}
+> -->
+<div class="grid">
+  <slot />
+</div>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    place-content: center;
+    padding-left: 7vw;
+    padding-right: 7vw;
+  }
+</style>

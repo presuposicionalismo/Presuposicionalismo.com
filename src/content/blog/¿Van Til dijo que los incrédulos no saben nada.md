@@ -1,0 +1,58 @@
+---
+title: "¿Van Til dijo que los incrédulos no saben nada?"
+pubDate: "2020-07-31"
+description: "Según Anderson, Van Til argumentó que el conocimiento es imposible si las presuposiciones no cristianas del incrédulo fueran ciertas. Pero admitió que poseen conocimiento verdadero en la práctica, aunque mezclado con error. Según Van Til, el mero hecho de que el incrédulo sepa cosas prueba que sus supuestos son falsos."
+#heroImage: "/default.jpg"
+heroImage: "https://ik.imagekit.io/presuposicionalismo/blog/2020-07-31.webp"
+tags:
+  - "apologetica"
+---
+
+## ¿Van Til dijo que los incrédulos no saben nada?
+
+James N. Anderson.
+
+¿Podría haber hecho Van Til una afirmación tan claramente absurda? Seguramente esto sería razón suficiente para descartar su epistemología como fatalmente defectuosa! El hecho es que Van Til no tenía tal creencia - al menos, no en el sentido que muchos críticos le han atribuido. De hecho, negó explícitamente este malentendido de su posición:
+
+> La primera objeción que se sugiere puede expresarse en la pregunta retórica “¿Quieres decir que los no cristianos no descubren la verdad por los métodos que emplean?” La respuesta es que no queremos decir nada tan absurdo como eso. La implicación del método aquí defendido es simplemente que los no cristianos nunca son capaces y por lo tanto nunca emplean sus propios métodos consistentemente.[^1]
+
+Según Van Til, el incrédulo sí posee conocimiento:
+
+> Somos muy conscientes del hecho de que los no cristianos tienen un gran conocimiento de este mundo, lo cual es cierto hasta dónde llega. Es decir, hay un sentido en el que podemos y debemos tener en cuenta el valor del conocimiento de los no cristianos.[^2]
+
+Más significativamente, el incrédulo tiene conocimiento de Dios:
+
+> El apóstol Pablo habla del hombre natural como poseedor del conocimiento de Dios (Ro. 1:19-21).[^3]
+
+> No es bueno decir que el hombre natural no sabe nada de Dios, aunque sabe muchas otras cosas bien. El hombre tiene el sentido de la deidad indeleblemente grabado en él. Conoce a Dios y se conoce a sí mismo y al mundo como creación de Dios.[^4]
+
+Van Til argumentaba, sin embargo, que los incrédulos no podían saber nada _en principio_, dada su perspectiva filosófica. En otras palabras, si sus presuposiciones no cristianas _fueran_ ciertas, entonces el conocimiento sería imposible. Irónicamente, _sin_ embargo, el hecho de que sepan cosas es una prueba de que esas suposiciones son falsas:
+
+> Por lo tanto, hay una prueba absolutamente cierta de la existencia de Dios y de la verdad del teísmo cristiano. Incluso los no cristianos presuponen su verdad mientras la rechazan verbalmente. \_Necesitan presuponer la verdad del teísmo cristiano para dar cuenta de sus propios logros.[^5]
+
+Además, en la medida en que los incrédulos se esfuerzan por razonar de manera coherente con sus supuestos erróneos, se encuentran cayendo en el escepticismo y el absurdo.
+
+Debe reconocerse que Van Til no articuló su posición con respecto al conocimiento del incrédulo tan clara y sistemáticamente como muchos desearían. En sus propias palabras, este tema "siempre ha sido un punto difícil", de modo que "no podemos dar una respuesta totalmente satisfactoria a la situación \[del conocimiento del incrédulo\] tal y como se produce" - una situación que es "siempre una mezcla de verdad y error"[^6]. Aun así, debe ser evidente de lo anterior que la posición de Van Til es considerablemente más compleja y matizada de lo que muchos de sus críticos parecen dispuestos a reconocer.[^7]
+
+
+
+> [!bible]
+> <sup> 1 </sup>En el principio era el Verbo,  y el Verbo era con Dios,  y el Verbo era Dios.
+> 
+  [Juan 1:1 - RV1960](https://bolls.life/RV1960/43/1/)
+
+
+> [!quote] 
+> Hola
+>  
+
+
+---
+
+[^1]: _La defensa de la fe_, p. 103
+[^2]: _Introducción a la Teología Sistemática_, p. 26
+[^3]: _La defensa de la fe_, p. 92
+[^4]: _Introducción a la Teología Sistemática_, p. 27
+[^5]: _The Defense of the Faith_, p. 103, énfasis añadido
+[^6]: _Introducción a la Teología Sistemática_, pp. 26-27
+[^7]: Para más información, véase: Frame, págs. 187-213; Bahnsen, págs. 442-53

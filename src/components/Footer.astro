@@ -1,0 +1,47 @@
+---
+import DarkToogle from "./DarkToogle.astro";
+import Logo from "./Logo.astro";
+import SocialFooter from "./SocialFooter.astro";
+---
+
+<footer>
+  <a class="logo" aria-label="logo" href="/"><Logo /></a>
+
+  <nav>
+    <!-- <NavMenu />-->
+    <SocialFooter />
+    <DarkToogle />
+  </nav>
+</footer>
+
+<style>
+  .logo {
+    width: 150px;
+    min-width: 100px;
+  }
+
+  footer {
+    margin-top: var(--size-fluid-5);
+    margin: var(--size-fluid-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--size-fluid-1);
+    padding-inline: 5vw;
+    background-color: var(--surface-2);
+    box-shadow: var(--shadow-3);
+    border-radius: var(--radius-3);
+
+    @media (--md-n-below) {
+      margin-top: var(--size-fluid-5);
+      margin-inline: 0px;
+      border-radius: 0px;
+    }
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+</style>

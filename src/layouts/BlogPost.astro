@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import BlogHero from "../components/BlogHero.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+import "../styles/blog.css";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, pubDate, heroImage } = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body>
+    <Header />
+    <main>
+      <BlogHero
+        title={title}
+        heroImage={heroImage}
+        description={description}
+        pubDate={pubDate}
+      />
+      <article>
+        <slot />
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>
