@@ -25,8 +25,9 @@ const books = (await getCollection("libros")).sort(
             <article class="card">
               <img src={book.data.coverBook} alt={book.data.title} />
               <div class="content">
-                <h2>{book.data.title}</h2>
-                <a href={`/libros/${book.slug}/`}> Leer mas </a>
+                <a href={`/libros/${book.slug}/`}>
+                  <h2>{book.data.title}</h2>
+                </a>
               </div>
             </article>
           ))
@@ -37,12 +38,6 @@ const books = (await getCollection("libros")).sort(
 </MainLayout>
 
 <style>
-  /* .space-y-6 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 1;
-    margin-top: calc(var(--size-5) * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(var(--size-5) * var(--tw-space-y-reverse));
-  } */
-
   .content {
     position: absolute;
     right: var(--size-fluid-1);
@@ -118,11 +113,4 @@ const books = (await getCollection("libros")).sort(
     max-width: 100%;
     aspect-ratio: 1 / 1.414;
   }
-
-  /* @media (min-width: 601px) {
-
-    .card {
-      grid-template-columns: 5fr 8fr;
-    }
-  } */
 </style>
