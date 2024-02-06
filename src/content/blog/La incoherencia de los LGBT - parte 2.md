@@ -8,9 +8,9 @@ tags:
   - "apologetica"
 ---
 
-#### Por: Dr. James Anderson.
+## La incoherencia de los LGBT - parte 2
 
----
+<cite class="author">Por: Dr. James Anderson </cite>
 
 ## Los LGBs se están despidiendo de la T
 

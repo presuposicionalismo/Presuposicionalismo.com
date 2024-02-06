@@ -7,6 +7,8 @@ import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import "../styles/blog.css";
 
+// SpeedInsights of vercel
+import SpeedInsights from "@vercel/speed-insights/astro";
 type Props = CollectionEntry<"libros">["data"];
 
 const { title, description, pubDate, coverBook, downloadBook } = Astro.props;
@@ -68,5 +70,6 @@ const { title, description, pubDate, coverBook, downloadBook } = Astro.props;
         }
       }
     </style>
+    <SpeedInsights />
   </body>
 </html>

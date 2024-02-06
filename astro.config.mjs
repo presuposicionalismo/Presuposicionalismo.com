@@ -22,5 +22,8 @@ export default defineConfig({
     gfm: true,
   },
   output: "static",
-  adapter: vercel()
+  adapter: vercel(),
+      webAnalytics: {
+      enabled: true,
+    },
 });
