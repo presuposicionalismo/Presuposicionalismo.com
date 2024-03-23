@@ -91,54 +91,57 @@
   }
 </style>
 
-<script>
+<script is:inline data-astro-rerun>
   // theme toggle
-  const getColorPreference = () => {
-    if (localStorage.getItem("theme-preference"))
-      return localStorage.getItem("theme-preference");
-    else
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-  };
 
-  const setPreference = () => {
-    localStorage.setItem("theme-preference", theme.value ?? "light");
-    reflectPreference();
-  };
+  document.addEventListener("astro:page-load", () => {
+    const getColorPreference = () => {
+      if (localStorage.getItem("theme-preference"))
+        return localStorage.getItem("theme-preference");
+      else
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+    };
 
-  const reflectPreference = () => {
-    document.firstElementChild?.setAttribute(
-      "data-theme",
-      theme.value ?? "light",
-    );
-    document
-      .querySelector("#theme-toggle")
-      ?.setAttribute("aria-label", theme.value ?? "light");
-  };
+    const setPreference = () => {
+      localStorage.setItem("theme-preference", theme.value ?? "light");
+      reflectPreference();
+    };
 
-  const theme = {
-    value: getColorPreference(),
-  };
+    const reflectPreference = () => {
+      document.firstElementChild?.setAttribute(
+        "data-theme",
+        theme.value ?? "light"
+      );
+      document
+        .querySelector("#theme-toggle")
+        ?.setAttribute("aria-label", theme.value ?? "light");
+    };
 
-  // set early so no page flashes
-  reflectPreference();
+    const theme = {
+      value: getColorPreference(),
+    };
 
-  window.onload = () => {
-    // set on load so screen readers can see latest value on the button
+    // set early so no page flashes
     reflectPreference();
 
-    document.querySelector("#theme-toggle")?.addEventListener("click", () => {
-      theme.value = theme.value === "light" ? "dark" : "light";
+    window.onload = () => {
+      // set on load so screen readers can see latest value on the button
+      reflectPreference();
 
-      setPreference();
-    });
-  };
+      document.querySelector("#theme-toggle")?.addEventListener("click", () => {
+        theme.value = theme.value === "light" ? "dark" : "light";
 
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", ({ matches: isDark }) => {
-      theme.value = isDark ? "dark" : "light";
-      setPreference();
-    });
+        setPreference();
+      });
+    };
+
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", ({ matches: isDark }) => {
+        theme.value = isDark ? "dark" : "light";
+        setPreference();
+      });
+  });
 </script>
