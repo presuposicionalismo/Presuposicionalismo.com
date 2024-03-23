@@ -18,7 +18,7 @@
     "@fontsource-variable/jost": "^5.0.17",
     "@resvg/resvg-js": "^2.6.0",
     "@vercel/speed-insights": "^1.0.9",
-    "astro": "^4.2.1",
+    "astro": "^4.5.9",
     "open-props": "^1.6.17",
     "postcss": "^8.4.33",
     "postcss-custom-media": "^8.0.2",
