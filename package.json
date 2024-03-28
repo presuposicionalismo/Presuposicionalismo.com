@@ -18,7 +18,8 @@
     "@fontsource-variable/jost": "^5.0.17",
     "@resvg/resvg-js": "^2.6.0",
     "@vercel/speed-insights": "^1.0.9",
-    "astro": "^4.5.9",
+    "astro": "^4.5.10",
+    "astro-themes": "0.2.5",
     "open-props": "^1.6.17",
     "postcss": "^8.4.33",
     "postcss-custom-media": "^8.0.2",
@@ -26,8 +27,9 @@
     "postcss-nesting": "^10.2.0",
     "postcss-preset-env": "^7.8.3",
     "prettier": "^3.2.4",
-    "prettier-plugin-astro": "^0.12.3",
-    "remark-github-beta-blockquote-admonitions": "^3.1.0",
     "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "prettier-plugin-astro": "^0.12.3"
   }
 }
