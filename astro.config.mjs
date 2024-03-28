@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel/static";
-import remarkBlockquoteAdmonitions  from 'remark-github-beta-blockquote-admonitions';
+
 
 // remarkPlugins: [remarkToc],
 
@@ -18,7 +18,7 @@ export default defineConfig({
   sitemap()
 ],
   markdown: {
-    remarkPlugins: [remarkBlockquoteAdmonitions],
+    remarkPlugins: [],
     gfm: true,
   },
   output: "static",
