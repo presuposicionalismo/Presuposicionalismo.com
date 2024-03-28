@@ -1,6 +1,5 @@
 <button
   class="theme-toggle"
-  onclick="document.body.classList.toggle('dark-theme'); document.dispatchEvent(new CustomEvent('set-theme', { detail: document.body.classList.contains('dark-theme') ? 'dark' : 'light' }))"
   id="theme-toggle"
   title="Toggles light & dark"
   aria-label="theme-toggle"
@@ -93,9 +92,7 @@
 </style>
 
 <script is:inline data-astro-rerun>
-  // theme toggle
-
-  document.addEventListener("astro:page-load", () => {
+  // theme toggle data-astro-rerun
     const getColorPreference = () => {
       if (localStorage.getItem("theme-preference"))
         return localStorage.getItem("theme-preference");
@@ -133,16 +130,21 @@
 
       document.querySelector("#theme-toggle")?.addEventListener("click", () => {
         theme.value = theme.value === "light" ? "dark" : "light";
-
-        setPreference();
+        document.addEventListener("astro:after-swap", setPreference());
+        // setPreference();
       });
+
+      // document.addEventListener("astro:after-swap", setPreference());
     };
 
     window
       .matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", ({ matches: isDark }) => {
         theme.value = isDark ? "dark" : "light";
-        setPreference();
+        document.addEventListener("astro:after-swap", setPreference());
+        // setPreference();
       });
-  });
-</script>
+
+</script> 
+
+<!-- onclick="document.body.classList.toggle('dark-theme'); document.dispatchEvent(new CustomEvent('set-theme', { detail: document.body.classList.contains('dark-theme') ? 'dark' : 'light' }))" -->
