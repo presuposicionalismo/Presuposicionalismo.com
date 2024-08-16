@@ -2,6 +2,7 @@
 import Grid from "../../components/GridBook.astro";
 import MainLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import CoverBook from "@components/CoverBook.astro";
 
 const books = (await getCollection("libros")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -23,7 +24,11 @@ const books = (await getCollection("libros")).sort(
         {
           books.map((book) => (
             <article class="card">
-              <img src={book.data.coverBook} alt={book.data.title} />
+              <CoverBook
+                imagePath={String(book.data.coverBook)}
+                altText={book.data.title}
+                transition:name="coverbook"
+              />
               <div class="content">
                 <a href={`/libros/${book.slug}/`}>
                   <h2>{book.data.title}</h2>
@@ -55,10 +60,6 @@ const books = (await getCollection("libros")).sort(
     animation-duration: 0.5s;
   }
 
-  /* .card:hover .content {
-    visibility: visible;
-  } */
-
   .card {
     position: relative;
     box-shadow: var(--shadow-2);
@@ -78,6 +79,13 @@ const books = (await getCollection("libros")).sort(
     &:hover .content {
       visibility: visible;
       animation: var(--animation-slide-in-up) forwards;
+    }
+
+    img {
+      border-radius: var(--radius-2);
+      height: 350px;
+      max-width: 100%;
+      aspect-ratio: 1 / 1.414;
     }
   }
 
@@ -105,12 +113,5 @@ const books = (await getCollection("libros")).sort(
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;
-  }
-
-  img {
-    border-radius: var(--radius-2);
-    height: 350px;
-    max-width: 100%;
-    aspect-ratio: 1 / 1.414;
   }
 </style>

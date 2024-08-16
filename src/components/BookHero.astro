@@ -1,12 +1,14 @@
 ---
 import FormattedDate from "./FormattedDate.astro";
 const { title, description, pubDate, coverBook, author } = Astro.props;
+import CoverBook from "./CoverBook.astro";
 ---
 
 <section class="container">
   <article class="card">
     <div class="card__image">
-      <img src={coverBook} alt="Imagen" />
+      <CoverBook imagePath={coverBook} altText={title} />
+      <!-- <img src={coverBook} alt="Imagen" /> -->
     </div>
 
     <div>
@@ -48,13 +50,12 @@ const { title, description, pubDate, coverBook, author } = Astro.props;
     grid-column: 1;
     grid-gap: 20px;
     width: 65vw;
-  }
-
-  img {
-    max-width: 100%; /* Asegurarse de que la imagen se ajuste al ancho de la columna */
-    height: auto; /* Evitar que la imagen se estire */
-    object-fit: cover;
-    border-radius: var(--radius-3);
+    img {
+      max-width: 100%; /* Asegurarse de que la imagen se ajuste al ancho de la columna */
+      height: auto; /* Evitar que la imagen se estire */
+      object-fit: cover;
+      border-radius: var(--radius-3);
+    }
   }
 
   @media (min-width: 601px) {
