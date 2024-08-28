@@ -2,11 +2,11 @@
 import MainLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
+import CoverBlog from "@components/CoverBlog.astro";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
 );
-
 ---
 
 <MainLayout
@@ -24,7 +24,10 @@ const posts = (await getCollection("blog")).sort(
             <div class="warp">
               <div class="card">
                 <div class="card__image container">
-                  <img src={post.data.heroImage} alt="Imagen" />
+                  <CoverBlog
+                    imagePath={String(post.data.heroImage)}
+                    altText={post.data.title}
+                  />
                 </div>
 
                 <div>
@@ -92,6 +95,13 @@ const posts = (await getCollection("blog")).sort(
       background-color: var(--surface-1);
       box-shadow: var(--shadow-5);
     }
+    img {
+      max-width: 100%; /* Asegurarse de que la imagen se ajuste al ancho de la columna */
+      height: 14rem;
+      width: 18rem;
+      object-fit: cover;
+      border-radius: var(--radius-3);
+    }
   }
 
   .description {
@@ -117,14 +127,6 @@ const posts = (await getCollection("blog")).sort(
     grid-gap: 10px;
     margin-top: 0;
     line-height: --font-lineheight-1;
-  }
-
-  img {
-    max-width: 100%; /* Asegurarse de que la imagen se ajuste al ancho de la columna */
-    height: 14rem;
-    width: 18rem;
-    object-fit: cover;
-    border-radius: var(--radius-3);
   }
 
   @media (min-width: 601px) {

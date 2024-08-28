@@ -28,13 +28,12 @@ const { title, description, pubDate, coverBook, downloadBook } = Astro.props;
         description={description}
         pubDate={pubDate}
         downloadBook={downloadBook}
+        transition:name=`coverbook ${title} image`
       />
       <article>
         <slot />
         <h2>Descargar</h2>
-        <p>
-          Descarga externa via Google Drive
-        </p>
+        <p>Descarga externa via Google Drive</p>
         <a class="btn" href={downloadBook} target="_blank"> Descargar</a>
       </article>
     </main>

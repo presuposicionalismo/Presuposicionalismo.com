@@ -27,7 +27,7 @@ const books = (await getCollection("libros")).sort(
               <CoverBook
                 imagePath={String(book.data.coverBook)}
                 altText={book.data.title}
-                transition:name="coverbook"
+                transition:name=`coverbook ${book.data.title} image`
               />
               <div class="content">
                 <a href={`/libros/${book.slug}/`}>

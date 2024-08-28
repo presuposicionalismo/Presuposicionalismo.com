@@ -1,13 +1,14 @@
 ---
 import FormattedDate from "./FormattedDate.astro";
 import Separator from "./Separator.astro";
+import CoverBlog from "./CoverBlog.astro";
 const { title, description, pubDate, heroImage } = Astro.props;
 ---
 
 <section class="container">
   <article class="card">
     <div class="card__image rad-shadow">
-      <img src={heroImage} alt="Imagen" />
+      <CoverBlog imagePath={heroImage} altText={title} />
     </div>
 
     <div>
@@ -40,6 +41,13 @@ const { title, description, pubDate, heroImage } = Astro.props;
     place-content: center;
     grid-gap: 20px;
     border-radius: 8px;
+
+    img {
+      max-width: 100%; /* Asegurarse de que la imagen se ajuste al ancho de la columna */
+      height: auto; /* Evitar que la imagen se estire */
+      object-fit: cover;
+      border-radius: var(--radius-3);
+    }
   }
 
   .card__image {
@@ -49,13 +57,6 @@ const { title, description, pubDate, heroImage } = Astro.props;
     grid-column: 1;
     grid-gap: 20px;
     width: 65vw;
-  }
-
-  img {
-    max-width: 100%; /* Asegurarse de que la imagen se ajuste al ancho de la columna */
-    height: auto; /* Evitar que la imagen se estire */
-    object-fit: cover;
-    border-radius: var(--radius-3);
   }
 
   @media (min-width: 601px) {
