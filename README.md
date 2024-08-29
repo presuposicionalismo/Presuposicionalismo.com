@@ -1,3 +1,4 @@
+
 # **Presuposicionalismo.com**
 
 Presuposicionalismo.com es un sitio web dedicado a promover la literatura que sigue una filosofía cristiana. Se enfoca en la metodología apologetica del Dr. Cornelius Van Til y sus estudiantes. El sitio destaca a importantes "vantilianos" como James Anderson y Scott Oliphint. Su objetivo final es bendecir a los visitantes y promover la gloria de Dios.
@@ -34,10 +35,11 @@ Este repositorio contiene el código fuente del sitio web. Se trata de un sitio 
   - [ ] Agregar la pagina para para autores
 - [ ] Optimizar el rendimiento (comprimir archivos, lazy loading, caché, etc.)
   - [ ] Optimizar las imágenes.
-  - [ ] Implementar el componente `<Image />` de Astro.
+  - [x] Implementar el componente `<Image />` de Astro.
 - [ ] Implementar View Transition API.
 - [ ] Añadir scroll driven animation.
 - [ ] Refactorizar y organizar el CSS.
 - [ ] Añadir secciones a la página de inicio.
 - [ ] Rediseñar el componente `<Header />`.
-- [ ] Ajustar el comportamiento del Footer
+- [x] Rediseñar el componente `<Footer />`.
+- [x] Ajustar el comportamiento del Footer
