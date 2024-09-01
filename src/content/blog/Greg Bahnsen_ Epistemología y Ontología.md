@@ -1,0 +1,59 @@
+---
+title: "Greg Bahnsen: Epistemología y Ontología"
+pubDate: "2020-11-04"
+description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+#heroImage: "/default.jpg"
+#heroImage: "/src/assets/coverblog/2020-11-04.webp"
+heroImage: "/src/assets/coverblog/cambiar.webp"
+
+tags:
+  - "apologetica"
+---
+
+## Lo que es cierto depende de lo que existe
+
+_Y Dios le dijo a Moisés, "_**Yo soy el que soy**_". Y dijo: "Así dirás a los hijos de Israel: 'YO SOY me ha enviado a vosotros'_" (Éxodo 3:14).
+
+_En el principio era el Verbo, y el Verbo estaba con Dios, y el Verbo era Dios_ (Juan 1:1).
+
+_Pero el Dios cuya existencia se prueba a sí mismo de esta manera es siempre un Dios que es algo más que la Trinidad ontológica autónoma de la Escritura. Pero el apologeta católico romano no quiere probar la existencia de este tipo de Dios. Quiere probar la existencia de un Dios que dejará intacta la autonomía del hombre al menos hasta cierto punto. La teología de Roma no quiere un Dios cuyo consejo controle todo lo que suceda_ (Van Til).
+
+_En griego la palabra traducida como "Palabra" es Logos, que fue usada a menudo por los filósofos griegos para el principio racional que gobierna el universo. Aquí tenemos la explicación teológica de la inteligibilidad del universo - es un producto de una Mente, la del Logos divino_ (John Lennox).
+
+_La mayoría de los filósofos no quieren que los asuntos intelectuales se reduzcan a una cuestión de moralidad (obediencia o rebelión a la Palabra de Dios). Quieren mantener el intelecto o la razón por encima de las cuestiones de voluntad moral. Sostienen que la verdad es obtenible y comprobable sin importar la condición ética en la que se encuentre el pensador_ (Bahnsen).
+
+_Gran parte de la carrera de Bahnsen se dedicó a reafirmar los cimientos que Van Til había establecido tan cuidadosamente_ (Michael Butler).
+
+El legendario Cornelius Van Til, que dio a luz la Escuela Presuposicional de Apologética en el siglo XX, enfatizó la necesidad de iniciar la epistemología sobre la verdad óntica del Dios Trino, un mensaje influenciado por Bavinck con rastros derivados de Kuyper, así como del combatiente de la verdad Machen. Además, un dúo de protegidos, Greg L. Bahnsen y John Frame, refinaron (algunos dicen que Frame distorsionó importantes rasgos de Van Til) el énfasis epistémico de Van Til, comenzando con la Trinidad ontológica revelada en las escrituras. Sostengo que uno debe tener un terreno con la capacidad óntica de dar cuenta de la lógica, la ética, la ciencia, el conocimiento y otras características operativas necesarias de la experiencia humana. Sólo Dios tiene los atributos para dar cuenta de las verdades universales inmutables utilizadas en estas búsquedas; si se niega al Dios Trino, se carece de las condiciones previas necesarias para la inteligibilidad.
+
+Sostengo que lo que es verdad depende de lo que existe. Sostengo este punto de vista al tocar todas las variadas categorías ontológicas ya que todas las cosas finalmente subsisten en la mente de Dios. Dios es. Y Dios es ontológicamente necesario para la verdad. Sí, la realidad física existe realmente y existe porque Dios la creó, la mantiene y la conoce. Principalmente, la cosmovisión cristiana se requiere para dar cuenta de todas las cosas que existen, incluyendo diversas categorías ontológicas (el ser, la naturaleza de una cosa, lo que es, la existencia y la relación con la ontología).
+
+Parece que hay una gran cantidad de verdades ontológicas que el ateísmo materialista no puede explicar como verdades[\[i\]](#_edn1). Las verdades existenciales negativas (cosas que no existen), las verdades modales y las afirmaciones relativas a las verdades pasadas y futuras no se refieren a lo que es, sino a lo que no es, a lo que podría ser y a lo que fue y será.
+
+## La verdad depende del ser
+
+_Aunque no siempre estoy de acuerdo con él, Plantinga es un genio_ (Bahnsen).
+
+_La fe en el Cristo de las Escrituras es el principio, no el resultado final de la sabiduría_ (Bahnsen).
+
+Sostengo que el mejor relato de la verdad en todas sus variedades requiere que la verdad esté ontológicamente fundamentada y tenga su origen en Dios. Muchos ontólogos, filósofos y epistemólogos afirman que la verdad depende del ser (realidad óntica). Algunos ateos materialistas seleccionados rechazan la idea de que la verdad depende del ser. Sin embargo, los existenciales negativos, los modales y las afirmaciones sobre el pasado y el futuro no se refieren a lo que es, sino a lo que realmente no es, lo que realmente podría ser, y lo que realmente fue y realmente será. Por lo tanto, no existen físicamente en la actualidad.
+
+El ateo materialista consistente tendría que mantener que los existenciales negativos no existen. Sin embargo, el ateo materialista está atrapado utilizando tales verdades como si, de alguna manera, existieran. El teísta cristiano puede afirmar que estas cosas inmateriales no presentes de hecho existen, no materialmente, ya que están en la mente de Dios que es la fuente de toda verdad.
+
+"_Ahora bien, cuando Dios se atribuye esta aseidad a sí mismo en las escrituras, se da a conocer como el ser absoluto, como el que es en un sentido absoluto. Por esta perfección es a la vez esencial y absolutamente distinto de todas las criaturas. Las criaturas, después de todo, no derivan su existencia de sí mismas sino de otras y por lo tanto no tienen nada de sí mismas; tanto en sus orígenes y por lo tanto en su desarrollo y vida posteriores, son absolutamente dependientes. Pero como se desprende de la palabra "aseidad", Dios es exclusivamente de sí mismo, no en el sentido de ser auto-causado sino siendo desde la eternidad hasta la eternidad lo que es, no siendo el devenir. Dios es el ser absoluto, la plenitud del ser, y por lo tanto también eterna y absolutamente independiente en su existencia_" (Herman Bavinck).
+
+El ateo materialista parece estar ligado a la idea de que toda verdad es necesaria y se trata de la existencia material positiva de esto o aquello; esto no es así con el teísta cristiano ya que Dios es el auto-existente (Dios tiene aseidad: Éxodo 3:14). Dios tiene verdades que no están físicamente presentes. Parece un poco imprudente creer en una visión del mundo que, en principio, no puede dar cuenta de tanto - lo que no es, lo que podría ser, y lo que fue y será. Además, los ateos materialistas no pueden dar cuenta de los universales, las leyes de la razón o la ley moral.
+
+"_La trinidad ontológica será nuestro concepto interpretativo en todas partes. Dios es nuestro universal concreto; en Él el pensamiento y el ser son co-términos... Comenzamos así con la trinidad ontológica_..."(Cornelius Van Til).
+
+El ateísmo materialista no tiene en cuenta ontológicamente determinados aspectos de la verdad, principalmente porque los existenciales negativos, los conceptos modales y las afirmaciones sobre el pasado y el futuro no se refieren a lo que es y lo que está físicamente presente, sino a lo que no es, lo que podría ser y lo que fue y será. La mayoría de los hombres, al menos intuitivamente, sostienen que la verdad depende del ser. La verdad de <1+1=2> no depende de la manifestación física de dos objetos cualquiera en nuestro mundo o en otro mundo posible. Es verdad incluso si <1+1=2> nunca apareció físicamente. De la misma manera, la verdad de la ley de la identidad como una verdad universal no depende de nada con fisicalidad. Sí, todas las cosas físicas dependen y presuponen la ley de la identidad (A=A; Tom es Tom; el árbol es el árbol), pero esta ley existe independientemente de cualquier cosa física o temporal presente. Por lo tanto, el ateísmo materialista sigue siendo ontológicamente desesperado.
+
+(Para más, ver mi nuevo libro una Biografía de “Greg Bahnsen: El Hombre más Temido por los Ateos” en Amazon: https://www.amazon.com/Greg-Bahnsen-Atheists-Feared-Most-ebook/dp/B01KZ49AGA/ref=sr\_1\_1?ie=UTF8&qid=1472154398&sr=8-1&keywords=B01KZ49AGA#nav-subnav)
+
+### Por Mike Robinson
+
+Publicación tomada de: http://www.proofforgod.com/2016/09/greg-bahnsen-epistemology-and-ontology.html
+
+### Notas
+
+[\[i\]](#_ednref1) Los compromisos previos racionales ayudan a dirigir la investigación y el análisis de los datos (así como su interpretación y comunicación). Esta admisión es a menudo difícil de reconocer por parte de algunos investigadores ateos. ¿Qué visión del mundo puede proporcionar las necesidades a priori y las herramientas racionales para la ciencia, el análisis, la investigación y la prueba? El teísmo cristiano proporciona la base epistémica para los universales inmutables a priori utilizados en la investigación racional y la prueba; en principio, el ateísmo materialista no puede proporcionar la base mencionada. Lo que es obligatorio para dar cuenta del análisis y la prueba es un primer principio que tiene la dotación ontológica para no sólo fundamentarlo, sino para dar cuenta de la prueba y sus condiciones previas, todas las características operativas universales del conocimiento. La pérdida del punto de referencia inamovible, en principio, deja a los impíos desprovistos de un recurso necesario para construir la empresa analítica que se requiere para probar cualquier cosa. Sin Dios, uno no puede levantar las características operativas necesarias a priori del examen intelectual de evidencia y prueba. La cosmovisión cristiana suministra la plataforma óntica fija como la condición de verdad suficiente que puede justificar la inducción, los universales inmutables, los atributos, la identidad y la uniformidad del mundo físico. Pero el ateísmo materialista carece de tal plataforma óntica fija. Por consiguiente, no proporciona el suficiente terreno requerido para justificar la indagación, la investigación, la evidencia y las pruebas.

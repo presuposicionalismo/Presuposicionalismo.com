@@ -1,0 +1,23 @@
+---
+title: "Falacia de Petición de Principio en el Razonamiento Ateo"
+pubDate: "2020-02-03"
+description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+#heroImage: "/default.jpg"
+#heroImage: "/src/assets/coverblog/2020-02-03.webp"
+heroImage: "/src/assets/coverblog/cambiar.webp"
+
+tags:
+  - "apologetica"
+---
+
+### Greg L. Bahnsen
+
+En su debate contra Gordon Stein.
+
+Ahora bien, mi idea no es criticar el compromiso del Dr. Stein con la lógica y la razón, sino observar que de hecho tiene la naturaleza de un compromiso previo o una presuposición. No es algo que él haya probado por experiencia empírica o lógica, sino más bien es aquello por lo cual el procede a probar todo lo más. Él no es presuposicionalmente neutral en su enfoque sobre las cuestiones objetivas y las controversias. No evita la petición de principio en lugar de probar, en lo que podríamos llamar “variedad de jardín”, modo ordinario.
+
+Ahora bien, esta tendencia a la petición de principio es abiertamente expuesta por el Dr. Stein cuando el tema se convierte en la existencia de Dios, porque exige que el teísta le presente evidencias a favor de la existencia de Dios. Bien, pues teístas como yo, con sumo gusto y de buena gana lo haremos. Tenemos la evidencia del orden creado mismo, testificando a favor de una sabiduría, poder, plan y gloria de Dios. Uno no debería perderse el testimonio del sistema solar, la persuasión del mar, la asombrosa complejidad del cuerpo humano. Tenemos la evidencia de la historia. La liberación de Dios a su pueblo, los milagros en la noche de Pascua y en el Mar Rojo, las visiones de Isaías, La gloria del Shekinah que llenó el templo, el nacimiento virginal de Jesús, sus poderosos milagros, su resurrección de entre los muertos. Está la evidencia de la revelación especial, la maravilla de la Biblia como palabra de Dios, insuperada en su coherencia a través del tiempo, en su exactitud histórica y su poder de renovación de vida.
+
+En resumen, no hay escasez de indicadores empíricos o evidencias de la existencia de Dios, desde las miles de estrellas de los cielos hasta los 500 testigos de la resurrección de Cristo. Sin embargo el Dr. Stein se opone a la posibilidad misma de que ninguna de estas evidencias empíricas cuente como prueba para la existencia de Dios. El escribe: Las explicaciones sobrenaturales no son permitidas en ciencia. El teísta difícilmente puede documentar sus afirmaciones a favor de la existencia de lo sobrenatural si en efecto se le prohíbe evocar o sobrenatural como parte de su explicación. Por supuesto que esto es enteramente justo, pues sería petición de principio utilizar lo que ha de ser probado como parte de la explicación”.
+
+De antemano, ¿ves?, el Dr. Stein está comprometido con no permitir ninguna interpretación teísta de la naturaleza, historia o experiencia. Lo que parece pasar por alto es que esto es más una petición de principio por su parte que lo es de la parte del teísta que apela a tales evidencias. Él no ha probado en absoluto por observación empírica y lógica su compromiso previo con el naturalismo. Él lo ha asumido de antemano, aceptando y rechazando todas las afirmaciones objetivas en función de ese supuesto de control no probado.
