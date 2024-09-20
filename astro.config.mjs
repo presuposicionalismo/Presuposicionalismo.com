@@ -10,6 +10,9 @@ import vercel from "@astrojs/vercel/static";
 // https://astro.build/config
 export default defineConfig({
   site: "https://presuposicionalismo.com",
+  experimental: {
+    contentLayer: true,
+  },
   integrations: [
     mdx({
     gfm: true,
