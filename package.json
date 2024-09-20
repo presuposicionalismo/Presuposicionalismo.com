@@ -15,20 +15,28 @@
     "@astrojs/rss": "^4.0.7",
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/vercel": "^7.8.0",
-    "@fontsource-variable/jost": "^5.0.20",
+    "@fontsource-variable/jost": "^5.0.21",
     "@resvg/resvg-js": "^2.6.2",
     "@vercel/speed-insights": "^1.0.12",
-    "astro": "^4.14.6",
-    "open-props": "^1.7.5",
-    "postcss": "^8.4.41",
+    "astro": "^4.15.4",
+    "open-props": "^1.7.6",
+    "postcss": "^8.4.45",
     "postcss-custom-media": "^8.0.2",
     "postcss-jit-props": "^1.0.14",
     "postcss-nesting": "^10.2.0",
     "postcss-preset-env": "^7.8.3",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "lodash.kebabcase": "^4.1.1",
+    "remark-collapse": "^0.1.2",
+    "remark-toc": "^9.0.0",
+    "satori": "^0.10.14"
   },
   "devDependencies": {
-    "prettier-plugin-astro": "^0.12.3"
+    "prettier-plugin-astro": "^0.12.3",
+    "@types/github-slugger": "^2.0.0",
+    "@types/lodash.kebabcase": "^4.1.9",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
