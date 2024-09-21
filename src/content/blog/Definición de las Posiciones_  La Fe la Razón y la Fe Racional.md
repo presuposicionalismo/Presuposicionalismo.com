@@ -2,14 +2,12 @@
 title: "Definición de las Posiciones:  La Fe, la Razón y la Fe Racional"
 pubDate: "2020-02-01"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-02-01.webp"
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
+draft: true
 ---
-
 ## Definición de las Posiciones: La Fe, la Razón y la Fe Racional
 
 ### DISPONIBLE PARA DESCARGAR

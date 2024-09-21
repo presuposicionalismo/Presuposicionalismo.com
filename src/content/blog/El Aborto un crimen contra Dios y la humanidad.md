@@ -3,15 +3,14 @@ title: "El Aborto, un crimen contra Dios y la humanidad"
 pubDate: "2022-02-22"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
 ##heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2022-02-22.webp"
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "aborto"
   - "apologetica"
   - "bioetica"
+draft: true
 ---
-
 # {{title}}
 
 ## Introducción

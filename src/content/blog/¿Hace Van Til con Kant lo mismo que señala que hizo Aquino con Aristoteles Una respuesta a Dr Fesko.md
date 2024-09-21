@@ -2,14 +2,12 @@
 title: "¿Hace Van Til con Kant lo mismo que señala que hizo Aquino con Aristoteles? Una respuesta a Dr Fesko"
 pubDate: "2020-09-07"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-09-07.webp"
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
+draft: true
 ---
-
 ---
 ## Sobre el autor
 

@@ -1,15 +1,13 @@
 ---
 title: "La Apologética De Justino Mártir"
 pubDate: "2020-02-02"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-02-02.webp"
+description: "Examina la obra apologética de Justino Mártir, un defensor temprano del cristianismo. Justino usó la filosofía griega para dialogar con los intelectuales paganos, buscando demostrar la superioridad del cristianismo sobre las creencias paganas al conectar la verdad cristiana con conceptos filosóficos ya aceptados por sus contemporáneos."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
+draft: true
 ---
-
 #### Disponible para descargar
 
 Compartimos con el lector el tercer capitulo del libro “La Apologética Cristiana – Pasado y Presente,” Vol. I, ed. William Edgar & K. Scott Oliphint

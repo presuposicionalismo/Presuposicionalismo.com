@@ -1,15 +1,12 @@
 ---
 title: "Ciencia: Una celebración y un lamento"
-pubDate: "2021-09-26"
+pubDate: 2021-09-26
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2021-09-26.webp"
-heroImage: "/src/assets/coverblog/cambiar.webp"
-
-tags: 
-  - "apologetica"
+heroImage: /src/assets/coverblog/cambiar.webp
+tags:
+  - apologetica
+draft: true
 ---
-
 Vern Poythress
 
 ### ¿Cuál es el significado de la ciencia? 

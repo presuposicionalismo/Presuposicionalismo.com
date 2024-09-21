@@ -1,16 +1,14 @@
 ---
 title: "La Base Epistemológica de la Fe Cristiana"
 pubDate: "2020-10-06"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-10-06.webp"
+description: "Este artículo analiza cómo la fe cristiana se fundamenta en una base epistemológica sólida que incluye la revelación de Dios en la Escritura y la creación. Argumenta que solo a través de la revelación divina podemos tener un conocimiento verdadero y seguro, que trasciende las limitaciones de la razón humana caída."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
   - "filosofia"
+draft: true
 ---
-
 #### Por: Stephen C. Perks.
 
 ---

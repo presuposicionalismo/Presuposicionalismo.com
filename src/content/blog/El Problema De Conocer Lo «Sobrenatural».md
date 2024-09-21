@@ -1,16 +1,14 @@
 ---
 title: "El Problema De Conocer Lo «Sobrenatural»"
 pubDate: "2020-08-19"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-08-19.webp"
+description: "Discute las dificultades en el conocimiento de lo sobrenatural, argumentando que los intentos de comprender lo divino desde una perspectiva meramente humana están destinados al fracaso. La razón humana, limitada por su propia naturaleza, no puede alcanzar a Dios sin la revelación divina que trasciende nuestra comprensión finita."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
   - "teologia"
+draft: true
 ---
-
 ## El Problema De Conocer Lo «Sobrenatural»
 
 ---

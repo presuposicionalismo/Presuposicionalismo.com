@@ -1,15 +1,13 @@
 ---
 title: "Acercándose a los «Problemas» Bíblicos"
 pubDate: "2020-09-19"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-09-19.webp"
+description: "Este artículo discute cómo los cristianos deben abordar los problemas bíblicos aparentes. Sugiere que, en lugar de dudar de la Biblia, los creyentes deben confiar en la coherencia interna de la Escritura y abordar las aparentes contradicciones con una mente humilde y confiada en la revelación de Dios."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
+draft: true
 ---
-
 #### Por: Vern Poythress.
 
 ---

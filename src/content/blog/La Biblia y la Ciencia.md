@@ -1,9 +1,7 @@
 ---
 title: "La Biblia y la Ciencia"
 pubDate: "2020-10-19"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-10-19.webp"
+description: "Discute la relación entre la Biblia y la ciencia, argumentando que no hay conflicto esencial entre ambos. Sostiene que la Biblia proporciona el fundamento para el estudio científico, al establecer un orden coherente en la creación que la ciencia explora, y que las aparentes contradicciones son el resultado de interpretaciones incorrectas."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
@@ -11,8 +9,8 @@ tags:
   - "biblia"
   - "ciencia"
   - "teologia"
+draft: true
 ---
-
 ---
 
 ### Definición

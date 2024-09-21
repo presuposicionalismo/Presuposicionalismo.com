@@ -2,14 +2,13 @@
 title: "Ganar el Mundo con Esperanza"
 pubDate: "2020-01-29"
 description: "Este artículo destaca la importancia de la esperanza cristiana como motivación para la evangelización y el compromiso cultural. Argumenta que la esperanza basada en la resurrección de Cristo nos impulsa a influir positivamente en el mundo, confiando en el poder transformador del evangelio y en la soberanía de Dios sobre todas las cosas."
-#heroImage: "/default.jpg"
 heroImage: "/src/assets/coverblog/2020-01-29.webp"
 
 
 tags:
   - "apologetica"
+draft: false
 ---
-
 ## Ganar el Mundo con Esperanza
 
 K. Scott Oliphint

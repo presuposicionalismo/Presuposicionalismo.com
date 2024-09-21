@@ -2,15 +2,13 @@
 title: "Dudas de William Lane Craig sobre el relato de la creación."
 pubDate: "2021-10-11"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2021-10-11.webp"
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
   - "filosofia"
+draft: true
 ---
-
 William Lane Craig ("[The Historical Adam](https://www.firstthings.com/article/2021/10/the-historical-adam)", octubre de 2021) cree que un ser correspondiente al Adán bíblico existió realmente. La tipología paulina de Adán y Cristo, argumenta, requiere un Adán histórico, en contraposición a uno meramente literario (Rom. 5:12-21). Pero este no es el Adán de tu abuela fundamentalista. Según Craig, Adán no existió al principio de los tiempos, sino que fue precedido por miles de millones de años y muchas variedades de semihumanos. Adán no se formó del polvo de la tierra ni Eva se construyó a partir de la costilla de Adán; nuestros primeros padres fueron seleccionados de entre los ancestros del _Homo sapiens_ conocidos como _Homo heidelbergensis_. No vivieron en un idílico paraíso llamado Edén, ni fueron tentados por una serpiente parlante, aunque sí desobedecieron a Dios, se alejaron de él y desataron el pecado y la muerte en el mundo.
 
 A primera vista, el argumento de Craig gira en torno a su interpretación no literal de Génesis 2-3. Establece un marco hermenéutico en tres pasos. En primer lugar, el Génesis comparte rasgos con el mito. Sin embargo, en segundo lugar, el Génesis también tiene rasgos de historia. Por lo tanto, en tercer lugar, el Génesis es "mito-historia", y determinamos lo que el Génesis enseña sobre Adán extrayendo las pepitas de historia ocultas bajo las capas de metáfora. Craig nos advierte que evitemos una antítesis simplista entre mito e historia, pero acaba con su propia antítesis, clasificando trozos del relato de la creación en cestas marcadas como "metafóricas" y "literales".

@@ -1,19 +1,17 @@
 ---
 title: "Características De La Cosmovisión"
 pubDate: "2020-12-22"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
+description: "Describe las características clave de una cosmovisión, destacando cómo las presuposiciones fundamentales sobre la realidad, el conocimiento y la moralidad influyen en la forma en que las personas interpretan el mundo. Sostiene que una cosmovisión cristiana ofrece la única base sólida para una comprensión coherente y significativa del universo."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
-#heroImage: "/src/assets/coverblog/2020-12-22.webp"
 tags:
   - "epistemologia"
   - "etica"
   - "filosofia"
   - "metafisica"
   - "apologetica"
+draft: true
 ---
-
 “_Los cielos cuentan la gloria de Dios y el firmamento anuncia la obra de Sus manos. Un día emite palabra a otro día y una noche a otra noche revela sabiduría.”_ (Salmos 19:1–2)
 
 En nuestro primer estudio de las cosmovisiones, analizamos el concepto básico de una cosmovisión. Notamos que todos tienen una cosmovisión que está fundamentada en presuposiciones elementales y que nos sirve principalmente para ayudarnos a funcionar en el mundo. Es importante comprender que este método presuposicional de defender la fe es una apologética a nivel de una cosmovisión, que evita un análisis por partes de hechos aislados y desafía toda la cosmovisión del incrédulo con la cosmovisión cristiana. Ahora que todos estamos conscientes del significado y la necesidad de una cosmovisión, consideremos los temas clave con los que toda cosmovisión debe contar.

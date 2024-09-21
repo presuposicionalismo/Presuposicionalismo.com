@@ -2,14 +2,12 @@
 title: "¿Fue Calvino un escolástico? una respuesta a Dr. Fesko"
 pubDate: "2020-10-06"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-10-06.webp"
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
+draft: true
 ---
-
 ## Reformando la apologética (Calvino)
 
 El capítulo 3 trata de desmentir cierto mito sobre Juan Calvino, a saber, que su teología marcó una ruptura con el escolasticismo medieval, ruptura que fue deshecha en cierta medida por los teólogos reformados posteriores que trataron de reintroducir elementos del tomismo. El Dr. Fesko presenta sus objetivos así:

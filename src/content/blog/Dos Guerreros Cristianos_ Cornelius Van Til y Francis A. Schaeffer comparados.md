@@ -2,14 +2,12 @@
 title: "Dos Guerreros Cristianos: Cornelius Van Til y Francis A. Schaeffer, comparados"
 pubDate: "2020-11-30"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-11-30.webp"
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "teologia"
+draft: true
 ---
-
 Cornelius Van Til murió en 1987, tres años después que Francis A. Schaeffer. Aún es muy pronto para evaluar los legados de estas dos figuras muy diferentes en la apologética del siglo XX. Van Til pasó la mayor parte de su vida profesional enseñando en el Seminario de Westminster. Schaeffer era pastor, y luego evangelista en un ambiente comunitario.\[1\] Van Til escribió extensamente, abordando temas relacionados principalmente con la filosofía y la teología. Schaeffer fue primero un conferenciante, y un escritor sólo de manera secundaria (aunque su número de lectores fue en realidad más amplio que el de Van Til, debido sin duda a su inmensa popularidad en los círculos evangélicos). Aunque ambos tenían un trasfondo reformado, Van Til afirmó su compromiso con el sistema enseñado en los credos reformados a lo largo de sus polémicas. Schaeffer lo hizo sólo tangencialmente. ¿Qué se puede aprender comparando a estas dos personas tan diferentes?
 
 Mucho, creo. En primer lugar, los dos pensadores no siempre son claramente entendidos, ni por sus críticos ni por sus aliados. Compararlas ayuda a aclarar ambas posiciones. En el proceso, el método apologético se entiende más claramente. No sólo se pueden aclarar las cuestiones básicas de la metodología apologética: hay cuestiones de estilo, e incluso de tono, así como cuestiones de contenido en la apologética. En consecuencia, Van Til y Schaeffer difirieron en el modo, o manera, así como en la sustancia. Reconocer esta dimensión debería decirnos mucho acerca de su significado, sin ignorar de ninguna manera las cuestiones de sustancia.

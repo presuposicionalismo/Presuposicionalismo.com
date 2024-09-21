@@ -1,16 +1,14 @@
 ---
 title: "Definiendo las Cosmovisiones"
 pubDate: "2020-11-19"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-11-19.webp"
+description: "Explora cómo las cosmovisiones influyen en la interpretación de la realidad, mostrando que todos tienen presuposiciones básicas que guían su entendimiento del mundo. Una cosmovisión cristiana, fundamentada en la revelación bíblica, ofrece una comprensión coherente y significativa del universo frente a las visiones seculares."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
   - "cosmovision"
+draft: true
 ---
-
 > “Porque de Él y por Él y para Él son todas las cosas. A Él sea la Gloria por siempre. Amén.”
 >
 > _Romanos 11:36_

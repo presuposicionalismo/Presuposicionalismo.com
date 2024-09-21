@@ -128,6 +128,12 @@ section {
   display: grid;
   gap: var(--size-6);
 }
+.pl {   
+  padding-left: var(--size-fluid-1);
+}
+.pr {
+  padding-right: var(--size-fluid-1);
+}
 
 .px {
   padding-left: var(--size-fluid-2);
@@ -292,6 +298,7 @@ a {
   accent-color: var(--brand);
   border-radius: var(--radius-3);
 }
+
 
 .dropdown:hover .dropdown-content {
   /* display: flex;

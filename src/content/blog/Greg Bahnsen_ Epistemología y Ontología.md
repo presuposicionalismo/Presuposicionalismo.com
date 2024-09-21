@@ -2,14 +2,12 @@
 title: "Greg Bahnsen: Epistemología y Ontología"
 pubDate: "2020-11-04"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-11-04.webp"
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
+draft: true
 ---
-
 ## Lo que es cierto depende de lo que existe
 
 _Y Dios le dijo a Moisés, "_**Yo soy el que soy**_". Y dijo: "Así dirás a los hijos de Israel: 'YO SOY me ha enviado a vosotros'_" (Éxodo 3:14).

@@ -1,17 +1,15 @@
 ---
 title: "La Creación Bajo Ataque"
 pubDate: "2020-11-29"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-11-29.webp"
+description: "Este artículo aborda los desafíos contemporáneos a la doctrina de la creación, destacando cómo las teorías científicas y filosóficas modernas a menudo contradicen el relato bíblico. Argumenta que la fe en la creación bíblica es fundamental para una cosmovisión cristiana coherente y que los cristianos deben defenderla contra las críticas."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
   - "creacionismo"
   - "teologia"
+draft: true
 ---
-
 ## Introducción
 
 Una de las doctrinas de la Biblia más atacadas en nuestros días por los incrédulos es la doctrina de la creación. Esta doctrina ha sido abandonada casi por completo de los círculos académicos, desde los colegios hasta las universidades. La presión es tanta en los círculos académicos que los jóvenes terminan creyendo que es ridículo creer en un creador, y si quieren ser considerados verdaderamente académicos e intelectuales tendrán que abandonarla con tal de ser aceptado a los ojos de los “intelectuales”. Los padres cristianos envían a sus hijos a las escuelas y universidades con la esperanza de que se preparen para su propio futuro y terminan recibiendo a hijos incrédulos convencidos que para ser académico deben abandonar la idea de un creador.

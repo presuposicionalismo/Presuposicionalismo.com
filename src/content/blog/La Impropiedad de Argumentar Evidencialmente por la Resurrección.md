@@ -1,14 +1,13 @@
 ---
 title: "La Impropiedad de Argumentar Evidencialmente por la Resurrección"
 pubDate: "2020-03-06"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "Discute la inadecuación de los argumentos evidenciales para probar la resurrección de Cristo, sugiriendo que tales argumentos no pueden persuadir a aquellos que rechazan las presuposiciones cristianas. En su lugar, defiende un enfoque presuposicional que afirma la resurrección sobre la base de la autoridad de la Escritura y la revelación divina."
 heroImage: "/src/assets/coverblog/2020-07-11.webp"
-#heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
+draft: true
 ---
-
 ##### Greg L. Bahnsen
 
 Traducido por: Luis F. Reyes

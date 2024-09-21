@@ -1,17 +1,15 @@
 ---
 title: "Instrucción Divina versus Autonomía"
 pubDate: "2020-10-17"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-10-17.webp"
+description: "Este artículo discute la tensión entre la sumisión a la instrucción divina y la autonomía humana. Argumenta que la verdadera sabiduría proviene de seguir la revelación de Dios en lugar de confiar en la razón humana independiente. La autonomía, sin la guía divina, lleva a la confusión y al error moral y espiritual."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
   - "epistemologia"
   - "filosofia"
+draft: true
 ---
-
 ### Por: Vern S. Poythress
 
 ---

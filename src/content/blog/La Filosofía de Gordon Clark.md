@@ -1,16 +1,14 @@
 ---
 title: "La Filosofía de Gordon Clark"
 pubDate: "2020-09-29"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-09-29.webp"
+description: "Analiza la filosofía de Gordon Clark, destacando su enfoque fundacionalista y su énfasis en la lógica y la razón como bases del conocimiento. Clark sostenía que solo las proposiciones bíblicas ofrecen un fundamento seguro para el conocimiento, limitando el saber a lo que puede derivarse lógicamente de la Escritura."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
   - "filosofia"
+draft: true
 ---
-
 #### Por:  Joseph P. Braswell
 
 ---

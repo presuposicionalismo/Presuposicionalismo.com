@@ -1,9 +1,7 @@
 ---
 title: "¿Ha leído mal Van Til a Aquino? Una respuesta a Dr. Fesko"
 pubDate: "2020-08-25"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-08-25.webp"
+description: "Este artículo responde a la crítica del Dr. Fesko sobre la interpretación de Van Til de Tomás de Aquino. Argumenta que Van Til no malinterpretó a Aquino, sino que destacó correctamente las diferencias filosóficas fundamentales entre la teología reformada y la escolástica tomista, especialmente en cuanto a la autonomía de la razón."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
@@ -11,8 +9,8 @@ tags:
   - "santo-tomas"
   - "tomismo"
   - "van-til"
+draft: true
 ---
-
 Dr. James Anderson: es un ministro ordenado en la Asociación de la Iglesia Presbiteriana Reformada. El Dr. Anderson es profesor del Reformed Theological Seminary (RTS), y se especializa en teología filosófica, epistemología religiosa y apologética cristiana.
 
 ---

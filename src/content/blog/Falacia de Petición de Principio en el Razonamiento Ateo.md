@@ -1,15 +1,13 @@
 ---
 title: "Falacia de Petición de Principio en el Razonamiento Ateo"
 pubDate: "2020-02-03"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-02-03.webp"
+description: "Critica el razonamiento ateo por cometer la falacia de petición de principio, asumiendo de antemano que las explicaciones teístas son inválidas. Argumenta que esta postura no es neutral ni objetiva, sino un rechazo preconcebido de la posibilidad de lo sobrenatural, lo que socava la credibilidad de los argumentos ateos."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
+draft: true
 ---
-
 ### Greg L. Bahnsen
 
 En su debate contra Gordon Stein.

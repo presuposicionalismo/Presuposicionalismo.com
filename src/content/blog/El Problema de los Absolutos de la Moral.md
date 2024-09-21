@@ -1,9 +1,7 @@
 ---
 title: "El Problema de los Absolutos de la Moral"
 pubDate: "2020-12-03"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-12-03.webp"
+description: "Explora cómo los absolutos morales no pueden tener una base consistente en un marco secular. Argumenta que sin un Dios trascendente, no hay fundamento para una moralidad objetiva y universal, dejando las normas éticas a la arbitrariedad del relativismo cultural y personal."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
@@ -12,8 +10,8 @@ tags:
   - "filosofia"
   - "moral"
   - "teologia"
+draft: true
 ---
-
 _Porque es necesario que todos nosotros comparezcamos ante el tribunal de Cristo, para que cada uno sea recompensado por sus obras en el cuerpo, de acuerdo a lo que ha hecho, sea bueno o sea malo.” (2 Corintios 5:10)_
 
 ---

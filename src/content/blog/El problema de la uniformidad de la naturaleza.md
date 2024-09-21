@@ -1,16 +1,14 @@
 ---
 title: "El problema de la uniformidad de la naturaleza"
 pubDate: "2020-09-26"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-09-26.webp"
+description: "Este artículo aborda el problema filosófico de la uniformidad de la naturaleza, destacando cómo la ciencia presupone que las leyes naturales son consistentes y uniformes. Argumenta que esta presuposición sólo tiene sentido dentro de un marco teísta, donde un Dios ordenado garantiza la coherencia del universo."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
   - "filosofia"
+draft: true
 ---
-
 #### Por: Greg Bahnsen.
 
 ---

@@ -1,16 +1,14 @@
 ---
 title: "La Controversia Gordon Clark y Cornelius Van Til"
 pubDate: "2020-10-27"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-10-27.webp"
+description: "Explora la controversia entre Gordon Clark y Cornelius Van Til, dos influyentes teólogos reformados, sobre la epistemología y la naturaleza del conocimiento. Van Til defendió la necesidad de un enfoque presuposicional, mientras que Clark enfatizó un enfoque racionalista, resaltando diferencias significativas en su comprensión de la verdad."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
   - "filosofia"
+draft: true
 ---
-
 ## Introducción
 
 A ocho años de la fundación de la Iglesia Presbiteriana Ortodoxa, dos amigos que serían los más importantes apologistas reformados ortodoxos del siglo XX, Cornelius Van Til y Gordon Clark, se vieron envueltos en una controversia. \[1\] El debate se centró en la doctrina de la incomprensibilidad de Dios, específicamente, la relación entre el conocimiento de Dios y el conocimiento del hombre. La controversia era necesaria porque la doctrina de Clark sobre la incomprensibilidad de Dios, cuando fue llevada a su consistente fin, lo llevó a negar la Cristología de la Fe Reformada.

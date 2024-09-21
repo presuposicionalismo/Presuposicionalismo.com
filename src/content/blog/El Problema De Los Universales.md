@@ -1,16 +1,14 @@
 ---
 title: "El Problema De Los Universales"
 pubDate: "2020-10-06"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2020-10-06.webp"
+description: "Analiza el problema filosófico de los universales, cuestionando cómo conceptos generales pueden existir y aplicarse a múltiples individuos. El artículo defiende que los universales sólo tienen coherencia en una cosmovisión cristiana, donde Dios, como la fuente de toda realidad, fundamenta la existencia de categorías universales."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
   - "filosofia"
+draft: true
 ---
-
 #### Por: Greg Bahnsen.
 
 ---

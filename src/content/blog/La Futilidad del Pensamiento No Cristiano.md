@@ -1,14 +1,13 @@
 ---
 title: "La Futilidad del Pensamiento No Cristiano"
 pubDate: "2020-01-31"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/src/assets/coverblog/2020-01-31.webp"
+description: "Este artículo expone la inutilidad de las filosofías no cristianas al intentar explicar la realidad sin Dios. Argumenta que solo una cosmovisión cristiana puede proporcionar una base coherente para el conocimiento, la lógica y la moralidad, ya que reconoce a Dios como la fuente última de toda verdad y significado."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
+draft: true
 ---
-
 El cristianismo bíblico, correctamente definido en términos del protestantismo clásico, ofrece una crítica filosófica radical del pensamiento no cristiano. Esta crítica cristiana es radical en el sentido de que desafía el núcleo mismo de las pretensiones no cristianas y demuestra que el pensamiento no cristiano, ya sea ateo, agnóstico o religioso, destruye en última instancia la racionalidad, la ciencia, la ética y todos los demás aspectos de la experiencia humana.
 
 Por otra parte, puesto que una crítica bíblica apropiada debe atacar el corazón del pensamiento no-cristiano, no debe asumir las mismas normas que demuestra como inútiles (a lá de Aquino, Swinburne, etc.) o sucumbir al relativismo o al fideísmo (a lá Plantinga; Kierkegaard, etc.) o argumentar servilmente que la cosmovisión cristiana es meramente “probable” (a lá Clark, Montgomery, Geisler, Moreland, etc.). Una crítica bíblica apropiada no sólo demostrará la inutilidad total del pensamiento no cristiano, sino que demostrará positivamente que la visión cristiana de la realidad es intelectualmente imposible de rebatir. Como ha argumentado Cornelius Van Til, «se puede demostrar que el cristianismo no es ‘tan bueno como’ o incluso ‘mejor que’ la posición no-cristiana, sino que es la única posición que no hace tonterías de la experiencia humana».

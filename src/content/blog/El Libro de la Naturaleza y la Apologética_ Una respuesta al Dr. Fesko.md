@@ -2,14 +2,12 @@
 title: "El Libro de la Naturaleza y la Apologética: Una respuesta al Dr. Fesko"
 pubDate: "2021-09-12"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
-#heroImage: "/src/assets/coverblog/2021-09-12.webp"
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
+draft: true
 ---
-
 ## **Resumen del capítulo 8**
 
 En el último capítulo de su libro, J. V. Fesko trata de "presentar un esbozo básico de cómo los libros de la naturaleza y de la Escritura pueden funcionar de forma concertada en la apologética" y "demostrar cómo los cristianos pueden apoyarse en la autoridad de la Escritura para presentar las reivindicaciones del cristianismo y, al mismo tiempo, utilizar y apelar al libro de la naturaleza" (pp. 193-94). Propone hacerlo en cinco etapas:
