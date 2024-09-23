@@ -1,7 +1,7 @@
 ---
 title: "¿Razonando en Círculos?"
 pubDate: "2020-01-29"
-description: "El artículo discute la crítica de que la apologética presuposicional emplea razonamiento circular. Argumenta que, aunque todos razonan en círculos en un sentido, los presuposicionalistas hacen un «razonamiento en espiral» que se basa en la coherencia interna y la revelación divina, diferenciándolo de otros círculos viciosos.'"
+description: "El artículo discute la crítica de que la apologética presuposicional emplea razonamiento circular. Argumenta que, aunque todos razonan en círculos en un sentido, los presuposicionalistas hacen un «razonamiento en espiral» que se basa en la coherencia interna y la revelación divina, diferenciándolo de otros círculos viciosos."
 #heroImage: "/default.jpg"
 heroImage: "/src/assets/coverblog/2020-01-29.webp"
 tags:

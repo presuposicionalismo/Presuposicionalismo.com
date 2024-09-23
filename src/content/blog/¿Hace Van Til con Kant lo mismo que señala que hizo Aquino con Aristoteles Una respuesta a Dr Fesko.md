@@ -1,14 +1,14 @@
 ---
-title: "¿Hace Van Til con Kant lo mismo que señala que hizo Aquino con Aristoteles? Una respuesta a Dr Fesko"
+title: "Van Til no hizo con Kant lo mismo que señala que hizo Aquino con Aristoteles - Una respuesta a Dr Fesko"
 pubDate: "2020-09-07"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "Fesko analiza el argumento trascendental de la existencia de Dios (TAG) de Van Til, argumentando que, aunque útil, no es el único método apologético apropiado. Fesko critica a Van Til por el uso excesivo del TAG, que se basa en el idealismo y descuida la evidencia empírica, además de acusar a otros de «pensamiento de síntesis» mientras él mismo parece hacer lo mismo. Se defiende la distinción entre método y contenido y se expone la naturaleza del TAG"
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:
   - "apologetica"
 draft: true
 ---
----
+
 ## Sobre el autor
 
 ### James N. Anderson

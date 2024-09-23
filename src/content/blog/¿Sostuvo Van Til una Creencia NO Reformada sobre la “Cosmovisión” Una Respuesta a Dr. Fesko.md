@@ -1,7 +1,7 @@
 ---
-title: "¿Sostuvo Van Til una Creencia NO Reformada sobre la “Cosmovisión”? Una Respuesta a Dr. Fesko"
+title: "¿Sostuvo Van Til una Creencia NO Reformada sobre la «Cosmovisión»? Una Respuesta a Dr. Fesko"
 pubDate: "2020-11-03"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "El artículo responde a la crítica de Fesko sobre la comprensión de Van Til de la cosmovisión. Afirma que Van Til, aunque innovador en su terminología, se mantuvo firmemente dentro de la tradición reformada, utilizando el concepto de cosmovisión para resaltar la necesidad de un enfoque bíblico en la epistemología y la apologética."
 #heroImage: "/default.jpg"
 heroImage: "/src/assets/coverblog/2020-11-03.webp"
 tags:

@@ -1,7 +1,7 @@
 ---
-title: "Charles Hodge: Un Proto-Presuposicionalista"
+title: "Charles Hodge - Un Proto-Presuposicionalista"
 pubDate: "2020-10-13"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "El artículo presenta a Charles Hodge como un precursor del presuposicionalismo, mostrando cómo sus enseñanzas enfatizaban la necesidad de la revelación divina para el conocimiento verdadero. Hodge argumentó que Dios es la precondición para la inteligibilidad de la realidad, un principio fundamental en la apologética presuposicional."
 #heroImage: "/default.jpg"
 heroImage: "/src/assets/coverblog/cambiar.webp"
 tags:

@@ -1,7 +1,7 @@
 ---
-title: "¿Negó Van Til el concepto histórico de “luz de la naturaleza”? Una respuesta a Dr. Fesko"
+title: "¿Negó Van Til el concepto histórico de «luz de la naturaleza»? Una respuesta a Dr. Fesko"
 pubDate: "2020-09-21"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "Este artículo defiende a Van Til contra la acusación de haber negado el concepto tradicional de «luz de la naturaleza». Aclara que Van Til reconoció el concepto, pero insistió en que, sin la revelación especial de Dios, la razón natural está oscurecida por el pecado y no puede conocer a Dios correctamente."
 #heroImage: "/default.jpg"
 heroImage: "/src/assets/coverblog/2020-09-21.webp"
 tags:

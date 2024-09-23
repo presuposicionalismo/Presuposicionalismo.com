@@ -1,7 +1,7 @@
 ---
-title: "Ciencia: Una celebración y un lamento"
+title: "Ciencia - Una celebración y un lamento"
 pubDate: 2021-09-26
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "Este artículo reflexiona sobre los logros de la ciencia moderna y su incapacidad para reconocer la mano de Dios en la creación. Celebra los descubrimientos científicos como manifestaciones de la obra de Dios, pero lamenta la ceguera espiritual que impide a muchos ver la gloria de Dios revelada en el universo."
 heroImage: /src/assets/coverblog/cambiar.webp
 tags:
   - apologetica

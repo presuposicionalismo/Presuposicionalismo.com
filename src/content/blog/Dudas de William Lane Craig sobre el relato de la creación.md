@@ -1,8 +1,8 @@
 ---
-title: "Dudas de William Lane Craig sobre el relato de la creación."
+title: "Dudas de William Lane Craig sobre el relato de la creación"
 pubDate: "2021-10-11"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-heroImage: "/src/assets/coverblog/cambiar.webp"
+description: "Discute las dudas expresadas por William Lane Craig sobre el relato bíblico de la creación, señalando cómo su enfoque difiere del tradicionalismo reformado. Craig busca armonizar la ciencia moderna con el relato bíblico, mientras que la apologética reformada sostiene la supremacía de la Escritura sobre las interpretaciones científicas."
+heroImage: "/src/assets/coverblog/2021-10-11.webp"
 
 tags:
   - "apologetica"

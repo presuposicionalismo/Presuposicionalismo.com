@@ -1,7 +1,7 @@
 ---
-title: "El Libro de la Naturaleza y la Apologética: Una respuesta al Dr. Fesko"
+title: "El Libro de la Naturaleza y la Apologética - Una respuesta al Dr. Fesko"
 pubDate: "2021-09-12"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "Responde a la crítica de Fesko sobre la interpretación del «libro de la naturaleza» en la apologética. Defiende que la naturaleza revela a Dios, pero solo en el contexto de la revelación especial. Afirma que el conocimiento verdadero de Dios y del mundo requiere la guía de la Escritura."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:

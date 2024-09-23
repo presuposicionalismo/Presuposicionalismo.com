@@ -6,39 +6,90 @@ const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
 <nav aria-label="Paginación del blog" class="pagination">
   <div class="pagination-container">
-    {prevUrl && (
-    
-      <a href={prevUrl} class="pagination-link prev ad-shadow" aria-label="Página anterior">
-        <span class="pr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="m12 8l-4 4l4 4m4-4H8"/><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"/></g></svg> </span>  Anterior
-      </a>
-
-    )}
-    
-    <div class="pagination-numbers">
-      {pages.map((page) => (
+    {
+      prevUrl && (
         <a
-          href={page === 1 ? '/blog' : `/blog/${page}`}
-          class={`pagination-link number ${currentPage === page ? 'active' : ''}`}
-          aria-label={`Ir a la página ${page}`}
-          aria-current={currentPage === page ? 'page' : undefined}
+          href={prevUrl}
+          class="pagination-link prev ad-shadow"
+          aria-label="Página anterior"
         >
-          {page}
+          <span class="pr">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <g
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              >
+                <>
+                  <path d="m12 8l-4 4l4 4m4-4H8" />
+                  <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9" />
+                </>
+              </g>
+            </svg>{" "}
+          </span>{" "}
+          Anterior
         </a>
-      ))}
+      )
+    }
+
+    <div class="pagination-numbers">
+      {
+        pages.map((page) => (
+          <a
+            href={page === 1 ? "/blog" : `/blog/${page}`}
+            class={`pagination-link number ${currentPage === page ? "active" : ""}`}
+            aria-label={`Ir a la página ${page}`}
+            aria-current={currentPage === page ? "page" : undefined}
+          >
+            {page}
+          </a>
+        ))
+      }
     </div>
-    
-    {nextUrl && (
-      <a href={nextUrl} class="pagination-link next rad-shadow" aria-label="Página siguiente">
-        Siguiente <span  class="pl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="m12 16l4-4l-4-4m-4 4h8"/><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"/></g></svg></span>
-      </a>
-    )}
+
+    {
+      nextUrl && (
+        <a
+          href={nextUrl}
+          class="pagination-link next rad-shadow"
+          aria-label="Página siguiente"
+        >
+          Siguiente{" "}
+          <span class="pl">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <g
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+              >
+                <>
+                  <path d="m12 16l4-4l-4-4m-4 4h8" />
+                  <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9" />
+                </>
+              </g>
+            </svg>
+          </span>
+        </a>
+      )
+    }
   </div>
 </nav>
 
 <style>
-
-
-
   .pagination {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -57,21 +108,25 @@ const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
     text-decoration: none;
     color: var(--link);
     background-color: var(--surface-2);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
-  .pagination-link:hover, .pagination-link:focus {
+  .pagination-link:hover,
+  .pagination-link:focus {
     background-color: var(--surface-3);
-    color: var(--color-text-accent, #000);
+    color: var(--text-1);
   }
   .pagination-link.active {
-    background-color: var(--color-primary, #007bff);
-    color: var(--color-text-inverse, #fff);
+    background-color: var(--link);
+    color: var(--surface-1);
   }
   .pagination-numbers {
     display: flex;
     gap: 0.25rem;
   }
-  .pagination-link.prev, .pagination-link.next {
+  .pagination-link.prev,
+  .pagination-link.next {
     font-weight: var(--font-weight-5);
   }
   @media (max-width: 600px) {

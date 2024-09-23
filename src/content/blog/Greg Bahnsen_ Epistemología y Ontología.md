@@ -1,7 +1,7 @@
 ---
-title: "Greg Bahnsen: Epistemología y Ontología"
+title: "Epistemología y Ontología en el presuposicionalismo"
 pubDate: "2020-11-04"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "Explora la epistemología y ontología según Greg Bahnsen, destacando cómo su enfoque presuposicionalista defiende que todo conocimiento y realidad están fundamentados en la revelación de Dios. Bahnsen argumenta que sin Dios, los conceptos de conocimiento y ser carecen de base, subrayando la necesidad de una cosmovisión cristiana coherente."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:

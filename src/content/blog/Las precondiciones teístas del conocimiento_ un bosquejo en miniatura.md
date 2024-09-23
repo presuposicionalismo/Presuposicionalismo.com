@@ -1,7 +1,7 @@
 ---
-title: "Las precondiciones teístas del conocimiento: un bosquejo en miniatura"
+title: "Las precondiciones teístas del conocimiento - un bosquejo en miniatura"
 pubDate: "2020-10-03"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "Este artículo discute cómo las precondiciones para el conocimiento coherente requieren la existencia del Dios del teísmo cristiano. Sostiene que la uniformidad de la naturaleza y la lógica solo son posibles bajo la suposición de un Dios soberano que ordena todas las cosas, y que incluso los no cristianos dependen de estas presuposiciones mientras las rechazan verbalmente."
 #heroImage: "/default.jpg"
 heroImage: "/src/assets/coverblog/2020-10-03.webp"
 tags:

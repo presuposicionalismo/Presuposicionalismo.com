@@ -1,7 +1,7 @@
 ---
-title: "Presuposicionalismo y evidencia: Parte 1"
+title: "Presuposicionalismo y evidencia - Parte 1"
 pubDate: "2021-09-02"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "Analiza la relación entre el presuposicionalismo y la evidencia en la apologética cristiana, destacando que, aunque el presuposicionalismo no descarta la evidencia, la interpreta a través de la lente de una cosmovisión cristiana. Sostiene que todas las evidencias deben ser entendidas en el contexto de la revelación divina."
 #heroImage: "/default.jpg"
 heroImage: "/src/assets/coverblog/cambiar.webp"
 tags:

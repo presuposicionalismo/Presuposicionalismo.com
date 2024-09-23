@@ -1,0 +1,183 @@
+---
+// PostFilter.astro
+import { getCollection } from 'astro:content';
+
+// Obtén todos los posts
+const allPosts = await getCollection('blog');
+
+// Obtén todas las etiquetas y categorías únicas
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))];
+const allCategories = [...new Set(allPosts.map(post => post.data.category))];
+
+// Función para realizar búsqueda semántica (simplificada)
+function semanticSearch(posts, searchTerm) {
+  return posts.filter(post => 
+    post.data.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.data.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+}
+
+// Función para realizar búsqueda semántica (simplificada) 
+---
+
+<div class="post-filter">
+  <div class="filter-tabs">
+    <button class="tab-button" data-tab="search">Búsqueda</button>
+    <button class="tab-button" data-tab="graph">Grafo</button>
+    <button class="tab-button" data-tab="tags">Etiquetas</button>
+    <button class="tab-button" data-tab="categories">Categorías</button>
+  </div>
+
+  <div class="tab-content" id="search">
+    <input type="text" id="search-input" placeholder="Buscar posts...">
+    <button id="search-button">Buscar</button>
+  </div>
+
+  <div class="tab-content" id="graph">
+    <p>Implementación del grafo pendiente</p>
+  </div>
+
+  <div class="tab-content" id="tags">
+    {allTags.map(tag => (
+      <button class="tag-button" data-tag={tag}>{tag}</button>
+    ))}
+  </div>
+
+  <div class="tab-content" id="categories">
+    {allCategories.map(category => (
+      <button class="category-button" data-category={category}>{category}</button>
+    ))}
+  </div>
+
+  <ul id="filtered-posts">
+    {allPosts.map(post => (
+      <li class="post-item" data-tags={post.data.tags?.join(',')} data-category={post.data.category}>
+        <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<script>
+  // Lógica del cliente para manejar la interactividad
+  const filterTabs = document.querySelector('.filter-tabs');
+  const tabContents = document.querySelectorAll('.tab-content');
+  const searchInput = document.getElementById('search-input');
+  const searchButton = document.getElementById('search-button');
+  const tagButtons = document.querySelectorAll('.tag-button');
+  const categoryButtons = document.querySelectorAll('.category-button');
+  const postItems = document.querySelectorAll('.post-item');
+
+  // Manejo de pestañas
+  filterTabs.addEventListener('click', (e) => {
+    if (e.target.classList.contains('tab-button')) {
+      const tabId = e.target.dataset.tab;
+      tabContents.forEach(content => content.style.display = 'none');
+      document.getElementById(tabId).style.display = 'block';
+    }
+  });
+
+  // Búsqueda
+  searchButton.addEventListener('click', () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    postItems.forEach(item => {
+      const title = item.textContent.toLowerCase();
+      item.style.display = title.includes(searchTerm) ? 'block' : 'none';
+    });
+  });
+
+  // Filtro por etiquetas
+  tagButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tag = button.dataset.tag;
+      postItems.forEach(item => {
+        const tags = item.dataset.tags?.split(',') || [];
+        item.style.display = tags.includes(tag) ? 'block' : 'none';
+      });
+    });
+  });
+
+  // Filtro por categorías
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.dataset.category;
+      postItems.forEach(item => {
+        item.style.display = item.dataset.category === category ? 'block' : 'none';
+      });
+    });
+  });
+</script>
+
+<style>
+  .post-filter {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .filter-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .tab-button {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+  }
+
+  .tab-button:hover {
+    background-color: #e0e0e0;
+  }
+
+  .tab-content {
+    display: none;
+    margin-bottom: 20px;
+  }
+
+  #search {
+    display: block;
+  }
+
+  input[type="text"] {
+    padding: 5px;
+    width: 70%;
+  }
+
+  button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .tag-button, .category-button {
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  #filtered-posts {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .post-item {
+    margin-bottom: 10px;
+  }
+
+  .post-item a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .post-item a:hover {
+    text-decoration: underline;
+  }
+</style>

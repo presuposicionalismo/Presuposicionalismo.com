@@ -1,7 +1,7 @@
 ---
 title: "Teismo Biblico"
 pubDate: "2020-10-05"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "El ensayo argumenta que la única posición sostenible para entender la relación entre Dios y el hombre es reconocer la dependencia total del hombre en Dios en las esferas metafísica y moral. Esto se logra a través del Espíritu Santo, que nos saca de nuestra propia posición y nos da un contacto nuevo y vivo con la verdad"
 #heroImage: "/default.jpg"
 heroImage: "/src/assets/coverblog/2020-10-05.webp"
 tags:

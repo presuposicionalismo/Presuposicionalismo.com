@@ -1,7 +1,7 @@
 ---
-title: "Dos Guerreros Cristianos: Cornelius Van Til y Francis A. Schaeffer, comparados"
+title: "Dos Guerreros Cristianos - Cornelius Van Til y Francis A. Schaeffer"
 pubDate: "2020-11-30"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "Este artículo compara las apologéticas de Cornelius Van Til y Francis Schaeffer, destacando sus áreas de acuerdo, problemas preliminares, diferencias cruciales y cuestiones de estilo. Ambos autores eran reformados, pero tenían métodos apologéticos diferentes"
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:

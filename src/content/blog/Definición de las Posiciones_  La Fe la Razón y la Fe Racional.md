@@ -1,7 +1,7 @@
 ---
-title: "Definición de las Posiciones:  La Fe, la Razón y la Fe Racional"
+title: "Definición de las Posiciones - La Fe, la Razón y la Fe Racional"
 pubDate: "2020-02-01"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "Este artículo analiza la relación entre fe y razón en la apologética cristiana. Destaca que la fe no está en contra de la razón, sino que la razón misma presupone la fe en la revelación divina. La fe racional no es irracional, sino que reconoce la autoridad de Dios como fundamento del conocimiento y la verdad."
 heroImage: "/src/assets/coverblog/cambiar.webp"
 
 tags:

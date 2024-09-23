@@ -1,8 +1,8 @@
 ---
-title: "Van Til y Plantinga, Más Cerca de lo que Parece"
+title: "Van Til y Plantinga - Más Cerca de lo que Parece"
 pubDate: "2020-10-19"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-#heroImage: "/default.jpg"
+description: "Comparación entre Cornelius Van Til y Alvin Plantinga, mostrando cómo ambos comparten puntos de vista similares sobre la epistemología reformada y la importancia de las presuposiciones en la fe cristiana. Aunque difieren en algunos enfoques, ambos destacan la necesidad de una base cristiana para el conocimiento y la verdad."
+#heroImage: "/default.jpg" falta realmente
 heroImage: "/src/assets/coverblog/cambiar.webp"
 tags:
   - "apologetica"
