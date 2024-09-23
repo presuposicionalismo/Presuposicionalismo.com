@@ -1,9 +1,9 @@
 ---
-title: "El Aborto, un crimen contra Dios y la humanidad"
+title: "El Aborto - un crimen contra Dios y la humanidad"
 pubDate: "2022-02-22"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "Este artículo condena el aborto como un crimen grave contra Dios y la humanidad. Argumenta que cada vida humana es sagrada desde la concepción, y que la práctica del aborto es una violación de los mandamientos divinos y un ataque contra la imagen de Dios en el ser humano."
 ##heroImage: "/default.jpg"
-heroImage: "/src/assets/coverblog/cambiar.webp"
+heroImage: "/src/assets/coverblog/2022-02-22.webp"
 
 tags:
   - "aborto"
