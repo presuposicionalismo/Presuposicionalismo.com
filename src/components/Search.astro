@@ -1,0 +1,62 @@
+<custom-search>
+  <input data-search-inp type="text" placeholder="Buscar..." />
+  <ul data-search-result></ul>
+</custom-search>
+
+<script>
+  import type { OutputBaseSearchable } from "astro-fuse";
+
+  class CustomSearch extends HTMLElement {
+    list = this.querySelector<HTMLUListElement>("[data-search-result]");
+
+    constructor() {
+      super();
+
+      this.querySelector<HTMLInputElement>(
+        "[data-search-inp]",
+      )?.addEventListener("input", this.onInput.bind(this));
+    }
+
+    async onInput(e: Event) {
+      const { list } = this;
+
+      if (!list) {
+        return;
+      }
+
+      // create fuse instance from index
+      const { loadFuse } = await import("astro-fuse/client");
+      const fuse = await loadFuse();
+
+      const results = fuse.search<OutputBaseSearchable>(
+        (e.target as HTMLInputElement).value.trim(),
+      );
+
+      list.innerHTML = results
+        .map(
+          ({ item }) =>
+            `<div class="warp">
+            <section class="container bg">
+              <article class="card">
+                <div class="card__image rad-shadow">
+                  <img src="${item.frontmatter.heroImage}" alt="Imagen" />
+                </div>
+
+                <div>
+                  <span><FormattedDate date={pubDate} /></span>
+                  <h2 class="card__title">${item.frontmatter.title}</h1>
+                  <p class="card__text">${item.frontmatter.descrition}</p>
+                  <a class="token string" href="${item.pathname}"}>Leer mas</a>
+                  </p>
+                </div>
+              </article>
+            </section>
+            <a href="${item.pathname}">${item.frontmatter.title}</a>
+            </div>`,
+        )
+        .join("");
+    }
+  }
+
+  customElements.define("custom-search", CustomSearch);
+</script>

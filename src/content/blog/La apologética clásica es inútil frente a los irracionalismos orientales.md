@@ -1,7 +1,7 @@
 ---
 title: "Van Til y Vivekananda - Un encuentro políticamente incorrecto"
 pubDate: "2020-09-02"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
+description: "Se analiza el impacto de Swami Vivekananda en Occidente y cómo su misticismo encontró eco en una cultura que había rechazado la revelación divina. Se compara con el trabajo de Cornelius Van Til, quien defendía la apologética presuposicional como respuesta a las ideas anti-intelectuales que se expandían en el mundo."
 heroImage: "/src/assets/coverblog/2020-09-02.webp"
 
 

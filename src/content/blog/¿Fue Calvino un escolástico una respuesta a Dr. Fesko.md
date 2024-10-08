@@ -1,12 +1,12 @@
 ---
-title: "¿Fue Calvino un escolástico? una respuesta a Dr. Fesko"
-pubDate: "2020-10-06"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor rutrum dolor, quis suscipit nunc porta sed. Praesent id ante leo. Quisque velit ligula, tincidunt id lacinia maximus, efficitur sed felis. Donec dictum semper mi porta ultrices. Nam quis mollis."
-heroImage: "/src/assets/coverblog/cambiar.webp"
-
+title: ¿Fue Calvino un escolástico? una respuesta a Dr. Fesko
+pubDate: 2020-10-06
+description: El Dr. Fesko argumenta que Calvino no rompió con la escolástica medieval como algunos creen. Aunque existían diferencias, Calvino utilizó métodos y terminología escolástica. Fesko critica a teólogos como Van Til por malinterpretar a Calvino. Sin embargo, se puede discutir la interpretación de Fesko sobre el uso del término «escolástica» por parte de Van Til.
+heroImage: /src/assets/coverblog/cambiar.webp
 tags:
-  - "apologetica"
+  - apologetica
 draft: true
+slug: fue-calvino-escolastico-una-respuesta-dr-fesko
 ---
 ## Reformando la apologética (Calvino)
 

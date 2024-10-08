@@ -3,27 +3,25 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel/static";
 
+import fuse from "astro-fuse";
+
+import svelte from "@astrojs/svelte";
 
 // remarkPlugins: [remarkToc],
-
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://presuposicionalismo.com",
-  integrations: [
-    mdx({
+  integrations: [mdx({
     gfm: true,
-    
-  }),
-  sitemap()
-],
+  }), sitemap(), fuse(['content']), svelte()],
   markdown: {
     remarkPlugins: [],
     gfm: true,
   },
   output: "static",
   adapter: vercel(),
-      webAnalytics: {
-      enabled: true,
-    },
+  webAnalytics: {
+    enabled: true,
+  },
 });
