@@ -6,6 +6,7 @@ import CoverBlog from "@components/CoverBlog.astro";
 import Pagination from "@components/Pagination.astro";
 import type { GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
+import { slugifyStr } from "@utils/slugify";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection("blog");
@@ -45,7 +46,7 @@ const { page } = Astro.props;
             <div>
               <FormattedDate date={post.data.pubDate} />
               <h2 class="title">
-                <a class="token funtion" href={`/blog/${post.slug}/`}>
+                <a class="token funtion" href={`/blog/${slugifyStr(post.data.title)}/`}>
                   {post.data.title}
                 </a>
               </h2>
@@ -53,7 +54,7 @@ const { page } = Astro.props;
                 {post.data.description}
 
                 <button>
-                  <a class="token string" href={`/blog/${post.slug}/`}>
+                  <a class="token string" href={`/blog/${slugifyStr(post.data.title)}/`}>
                     Leer mas
                   </a>
                 </button>

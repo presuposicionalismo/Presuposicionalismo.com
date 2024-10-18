@@ -9,3 +9,8 @@ The "project.json" file contains:
 > Should I commit the ".vercel" folder?
 No, you should not share the ".vercel" folder with anyone.
 Upon creation, it will be automatically added to your ".gitignore" file.
+
+
+> ¿Qué pasa si elimino la carpeta ".vercel"?
+Si elimina la carpeta ".vercel", deberá volver a vincular su proyecto a Vercel.
+Al vincular nuevamente su proyecto, se volverá a crear la carpeta ".vercel".

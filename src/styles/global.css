@@ -3,13 +3,8 @@
 /* @import 'open-props/buttons'; */
 @import "./tokens.css";
 @import "./bg.css";
-/* jost-latin-wght-normal */
 
-/* Supports weights 100-900 */
-@import "@fontsource-variable/jost/wght-italic.css";
-@import "@fontsource-variable/jost";
-
-/* @import "@fontsource-variable/jost/wght.css"; */
+@import "@fontsource-variable/urbanist";
 
 html {
   --font-size-xs: clamp(0.7rem, 0.17vw + 0.6rem, 0.85rem);
@@ -119,16 +114,14 @@ html {
 
 body {
   min-block-size: 100%;
-  font-family:
-    Jost Variable,
-    sans-serif;
+  font-family: "Urbanist Variable", sans-serif;
 }
 
 section {
   display: grid;
   gap: var(--size-6);
 }
-.pl {   
+.pl {
   padding-left: var(--size-fluid-1);
 }
 .pr {
@@ -270,7 +263,7 @@ a {
     visibility: visible;
   }
 
-   Ocultar en el resto 
+   Ocultar en el resto
   @media not (--md-n-above) {
     visibility: none;
   }*/
@@ -298,7 +291,6 @@ a {
   accent-color: var(--brand);
   border-radius: var(--radius-3);
 }
-
 
 .dropdown:hover .dropdown-content {
   /* display: flex;

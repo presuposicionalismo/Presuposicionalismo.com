@@ -177,6 +177,7 @@ blockquote {
 
   padding: var(--size-fluid-1);
   margin: var(--size-fluid-1);
+  margin-inline: auto;
   max-width: 90%;
   color: var(--_ink);
   border-color: var(--_accent-2);

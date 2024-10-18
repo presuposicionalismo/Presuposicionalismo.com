@@ -11,7 +11,6 @@ tags:
   - "bioetica"
 draft: true
 ---
-# {{title}}
 
 ## Introducción
 
@@ -45,7 +44,7 @@ Hasta aquí creo que ya está claro el punto que quiero ilustrar, y vuelvo a las
 
 Con todo esto debe quedar claro que este no es un asunto que la ciencia pueda resolver. La ciencia trabaja con hechos y no con la interpretación de estos hechos. La interpretación de estos hechos proviene de los observadores, y esa interpretación dependerá mucho de lo que los observadores entiendan como vida humana.
 
-La vida humana no puede ser definida por la opinión subjetiva del hombre. Nosotros no podemos estar de acuerdo con que el hombre caído con sus estándares subjetivos determine lo que es la vida humana. Si así lo permitimos nunca habrá un consenso, puesto que, como podemos ver en el debate del aborto, cada opinión humana esta basado en un estándar subjetivo que conduce a conclusiones muy diferentes. El humano define al humano por lo anatómico, por lo físico, por lo químico, por lo material, y en ese caso cada humano podrá tomar algunas características del humano para definir al humano.  
+La vida humana no puede ser definida por la opinión subjetiva del hombre. Nosotros no podemos estar de acuerdo con que el hombre caído con sus estándares subjetivos determine lo que es la vida humana. Si así lo permitimos nunca habrá un consenso, puesto que, como podemos ver en el debate del aborto, cada opinión humana esta basado en un estándar subjetivo que conduce a conclusiones muy diferentes. El humano define al humano por lo anatómico, por lo físico, por lo químico, por lo material, y en ese caso cada humano podrá tomar algunas características del humano para definir al humano.
 Desde este subjetivismo humano hasta Hitler estaría en lo correcto. Hitler consideraba a los judíos como menos humanos por los diferentes rasgos físicos que existen entre un alemán y un judío. Desde este subjetivismo humano aquellos que consideraban que los negros no eran humanos -y por tanto debían ser esclavos- también estarían en lo correcto. Para estos últimos, las diferencias físicas y de color que existen entre un blanco y un negro mostraban claramente que los negros no eran humanos.
 
 Como cristianos debemos rechazar la idea de que el hombre o la ciencia tengan autoridad para definir lo que es la vida humana. Más bien, como cristianos debemos razonar bíblicamente y concluir que solo Dios posee la autoridad para determinar qué es un humano. El creador del hombre es el único que posee esta autoridad. A menos que Dios sea el único que posea esta autoridad, nada podría ser considerado como humano, porque no habría ningún estándar objetivo en el cuál basarnos para determinar esto.
@@ -56,10 +55,10 @@ En segundo lugar, el feto no es solamente un ser físico. Recordemos que el ser 
 
 Desde las Escrituras es claro que el bebé que está en el vientre es considerado por Dios como un ser humano con alma y con un propósito bien definido:
 
-> _"Pero cuando Dios, que me apartó desde el vientre de mi madre y me llamó por su gracia"_ Gálatas 1:15  
-> _"Antes que yo te formara en el seno materno, te conocí, y antes que nacieras, te consagré, te puse por profeta a las naciones"_ Jeremías 1:5;  
+> _"Pero cuando Dios, que me apartó desde el vientre de mi madre y me llamó por su gracia"_ Gálatas 1:15
+> _"Antes que yo te formara en el seno materno, te conocí, y antes que nacieras, te consagré, te puse por profeta a las naciones"_ Jeremías 1:5;
 > _"Porque esta es una palabra de promesa: Por este tiempo volveré, y Sara tendrá un hijo. Y no sólo esto, sino que también Rebeca, cuando concibió mellizos de uno, nuestro padre Isaac (porque cuando aún los mellizos no habían nacido, y no habían hecho nada, ni bueno ni malo, para que el propósito de Dios conforme a su elección permaneciera, no por las obras, sino por aquel que llama), se le dijo a ella: El mayor servirá al menor. Tal como está escrito: A Jacob ame, pero a Esaú aborrecí."_ Romanos 9:9-13
-> \_  
+> \_
 > _"Porque tú formaste mis entrañas; Tú me hiciste en el vientre de mi madre. Te alabaré; porque formidables, maravillosas son tus obras; Estoy maravillado, Y mi alma lo sabe muy bien. No fue encubierto de ti mi cuerpo, Bien que en oculto fui formado, Y entretejido en lo más profundo de la tierra. Mi embrión vieron tus ojos, Y en tu libro estaban escritas todas aquellas cosas Que fueron luego formadas, Sin faltar una de ellas."_ Salmos 139: 13-1;
 
 > _"Ahora pues, oye, Jacob, siervo mío, y tú, Israel, a quien yo escogí. Así dice Jehová, Hacedor tuyo, y el que te formó desde el vientre, el cual te ayudará: No temas, siervo mío Jacob, y tú, Jesurún, a quien yo escogí."_ Isaías 44:1-2
@@ -88,7 +87,7 @@ Esta posición brilla por su subjetivismo. Definitivamente no puede ser un está
 
 Los derechos deben ser definidos según Dios, pues es Dios quién los da. Nunca debemos defender nuestros derechos a través de una constitución, puesto que si eso hacemos estaríamos implícitamente diciendo que nuestros derechos son dados y definidos por los hombres, y si es así, entonces el mismo hombre puede quitarnos nuestros derechos o definirlos erradamente. Más bien, todo hombre posee derechos únicamente por ser la imagen de Dios. Es Dios quien nos da nuestros derechos.
 
-Ahora bien, si solo Dios puede definir el mal y el bien, entonces solo Dios puede decirnos si el aborto es moral o es inmoral.  
+Ahora bien, si solo Dios puede definir el mal y el bien, entonces solo Dios puede decirnos si el aborto es moral o es inmoral.
 Dios dice esto: _"No matarás"_ Éxodo 20:13. ¿Pero cuando inicia la vida humana, para saber si el aborto es un asesinato? Otro pasaje nos da luz al respecto:
 
 > _"Y si algunos hombres luchan entre sí y golpean a una mujer encinta, y ella aborta, sin haber otro daño, ciertamente el culpable será multado según lo que el esposo de la mujer demande de él; y pagará según lo que los jueces decidan. Pero si hubiera algún otro daño, entonces pondrás como castigo, vida por vida, ojo por ojo, diente por diente, mano por mano, pie por pie, quemadura por quemadura, herida por herida, golpe por golpe."_ Éxodo 21:22-25
@@ -110,11 +109,11 @@ Por último, debemos llamar a las cosas por su nombre. El aborto es definido com
 
 \-**José Ángel Ramírez**, publicado en la revista «7 minutos de calvinismo» en la edición de febrero del 2022, bajo el titulo "El aborto en perspectiva bíblica".
 
-1.Worldometers.info 31 diciembre 2021  
-2.Worldometers.info 31 diciembre 2021  
+1.Worldometers.info 31 diciembre 2021
+2.Worldometers.info 31 diciembre 2021
 3.https://www.abc.es/sociedad/20130918/abci-cuando-siente-dolor-feto-201309172222.html
-4.Las almas sin cuerpos en el cielo, en el estado intermedio, solo lo están de forma temporal por obra sobrenatural de Dios. Sin embargo, ese NO es su estado final, sino que estas almas esperan la resurrección general, en la que sus almas se unirán a un cuerpo glorificado para tener todas las partes que conforman al ser humano.  
-5.Mario Cely, Bioética Cristiana para Médicos (San José, Costa Rica: Editorial Clir, 2019), capítulo 12, página 5  
+4.Las almas sin cuerpos en el cielo, en el estado intermedio, solo lo están de forma temporal por obra sobrenatural de Dios. Sin embargo, ese NO es su estado final, sino que estas almas esperan la resurrección general, en la que sus almas se unirán a un cuerpo glorificado para tener todas las partes que conforman al ser humano.
+5.Mario Cely, Bioética Cristiana para Médicos (San José, Costa Rica: Editorial Clir, 2019), capítulo 12, página 5
 6.Cely, Bioética, capítulo 12, página 5.
-7.Jean-Paul Sartre, “Existencialismo,” trad. Bernard Frechtman, en Existencialismo y Emociones Humanas (New York: Cita del, 1957), 23. Citado en Ed. L. Miller, Preguntas que Importan: Una Invitación a la Filosofía, 3rd ed., (New York: McGraw-Hill, 1992), 396  
+7.Jean-Paul Sartre, “Existencialismo,” trad. Bernard Frechtman, en Existencialismo y Emociones Humanas (New York: Cita del, 1957), 23. Citado en Ed. L. Miller, Preguntas que Importan: Una Invitación a la Filosofía, 3rd ed., (New York: McGraw-Hill, 1992), 396
 8.“_Manifestación suave o decorosa de ideas cuya recta y franca expresión sería dura o mal sonante_”. RAE: https://dle.rae.es/eufemismo
