@@ -1,7 +1,7 @@
 {
   "name": "presuposicionalismo.com",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.81",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
