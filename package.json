@@ -3,10 +3,10 @@
   "type": "module",
   "version": "0.81",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --remote",
     "start": "astro dev",
     "check": "astro check",
-    "build": "astro check && astro build",
+    "build": "astro check & astro build --remote",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -23,8 +23,10 @@
     "@vercel/speed-insights": "^1.1.0",
     "astro": "5.1.1",
     "astro-fuse": "^1.0.1",
+    "db": "^6.0.3",
     "fuse.js": "^7.0.0",
     "lodash.kebabcase": "^4.1.1",
+    "node": "^23.5.0",
     "open-props": "^1.7.8",
     "postcss": "^8.4.49",
     "postcss-custom-media": "^8.0.2",
@@ -35,13 +37,15 @@
     "remark-collapse": "^0.1.2",
     "remark-toc": "^9.0.0",
     "satori": "^0.10.14",
+    "studiocms": "^0.1.0-beta.7",
     "svelte": "^5.15.0",
     "typescript": "^5.7.2"
   },
   "devDependencies": {
-    "prettier-plugin-astro": "^0.12.3",
+    "@types/bun": "^1.1.14",
     "@types/github-slugger": "^2.0.0",
     "@types/lodash.kebabcase": "^4.1.9",
+    "prettier-plugin-astro": "^0.12.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }
