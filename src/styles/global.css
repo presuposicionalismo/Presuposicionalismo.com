@@ -3,7 +3,7 @@
 /* @import 'open-props/buttons'; */
 @import "./tokens.css";
 @import "./bg.css";
-
+@import "tailwindcss";
 @import "@fontsource-variable/urbanist";
 
 html {
