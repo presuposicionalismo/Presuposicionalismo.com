@@ -1,0 +1,65 @@
+---
+export interface Quotation {
+  name: string;
+  text: string;
+  className: string;
+  gridSize: string;
+  avatar?: string;
+  source: string;
+}
+
+const quotations: Quotation[] = [
+  { 
+    name: "Daniel Clifford", 
+    text: "I received a job offer mid-course, and the subjects I learned were current...", 
+    className: "bg-purple-700 text-white", 
+    gridSize: "col-span-2 row-span-1", 
+    avatar: "/avatars/daniel.jpg", 
+    source: "Clifford, D. (2023). Learning to Code: A Journey. Tech Press."
+  },
+  { 
+    name: "Greg L. Bahnsen", 
+    text: "El Cristianismo es verdadero en virtud de la imposibilidad de lo contrario.", 
+    className: "bg-blue-900 text-white", 
+    gridSize: "col-span-1 row-span-1", 
+    avatar: "/avatars/jonathan.jpg", 
+    source: "Bahnsen, J. (1980). Always Ready: Directions for Defending the Faith. Covenant Media Foundation."
+  },
+  { 
+    name: "Kira Whittle", 
+    text: "Such a life-changing experience. Highly recommended!", 
+    className: "bg-white text-black border border-gray-300", 
+    gridSize: "col-span-1 row-span-2", 
+    source: "Whittle, K. (2021). The Bootcamp Experience. Coding Times."
+  },
+  { 
+    name: "Jeanette Harmon", 
+    text: "An overall wonderful and rewarding experience.", 
+    className: "bg-gray-100 text-black", 
+    gridSize: "col-span-1 row-span-1", 
+    avatar: "/avatars/jeanette.jpg", 
+    source: "Harmon, J. (2020). Reflections on Learning. Education Weekly."
+  },
+  { 
+    name: "Patrick Abrams", 
+    text: "Awesome teaching support from TAs who did the bootcamp themselves.", 
+    className: "bg-gray-800 text-white", 
+    gridSize: "col-span-2 row-span-1", 
+    avatar: "/avatars/patrick.jpg", 
+    source: "Abrams, P. (2023). Mentorship in Tech. Developer Insights."
+  }
+];
+---
+
+<div class="grid grid-cols-4 grid-rows-2 gap-4 max-w-5xl mx-auto p-6">
+  {quotations.map((quote) => (
+    <div class={`p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 ${quote.className} ${quote.gridSize}`}>
+      <div class="flex items-center mb-4">
+        {quote.avatar && <img src={quote.avatar} alt={quote.name} class="w-10 h-10 rounded-full mr-3" />}
+        <h3 class="text-xl font-semibold">{quote.name}</h3>
+      </div>
+      <p class="text-font-size-base">"{quote.text}"</p>
+      <p class="text-font-size-sm">{quote.source}</p>
+    </div>
+  ))}
+</div>
