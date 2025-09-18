@@ -40,10 +40,11 @@
   #sun {
     fill: var(--nav-icon);
     stroke: none;
+  }
 
-    @nest :hover > svg > & {
-      fill: var(--nav-icon-hover);
-    }
+  :hover > svg > #moon,
+  :hover > svg > #sun {
+    fill: var(--nav-icon-hover);
   }
 
   #sun {
@@ -59,10 +60,10 @@
     transition:
       transform 0.5s var(--ease-elastic-4),
       opacity var(--_opacity-dur) var(--ease-3);
+  }
 
-    @nest :hover > svg > & {
-      stroke: var(--nav-icon-hover);
-    }
+  :hover > svg > #sun-beams {
+    stroke: var(--nav-icon-hover);
   }
 
   #moon > circle {
