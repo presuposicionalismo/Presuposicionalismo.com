@@ -3,20 +3,30 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
 interface Props {
-    imagePath: string;
-    altText: string;
+  imagePath: string;
+  altText: string;
 }
 
 const { imagePath, altText } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/coverbook/*.{jpeg,jpg,png,gif,webp}",
+  "/src/assets/coverbook/*.{jpeg,jpg,png,gif,webp}",
 );
 if (!images[imagePath])
-    throw new Error(
-        `"${imagePath}" does not exist in glob: "/src/assets/coverbook/*.{jpeg,jpg,png,gif}"`,
-    );
+  throw new Error(
+    `"${imagePath}" does not exist in glob: "/src/assets/coverbook/*.{jpeg,jpg,png,gif}"`,
+  );
 ---
 
 <div class="card">
-    <Image src={images[imagePath]()} alt={altText} />
+  <Image src={images[imagePath]()} alt={altText} class="coverbook" />
 </div>
+
+<style>
+  .coverbook {
+    border-radius: var(--radius-2);
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 1 / 1.414;
+  }
+</style>

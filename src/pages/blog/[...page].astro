@@ -10,7 +10,9 @@ import { slugifyStr } from "@utils/slugify";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection("blog");
-  const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const sortedPosts = posts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
   return paginate(sortedPosts, { pageSize: 10 });
 }) satisfies GetStaticPaths;
 
@@ -33,43 +35,51 @@ const { page } = Astro.props;
   <section>
     <h1 class="warp">Blog</h1>
     <article>
-      {page.data.map((post) => (
-        <div class="warp">
-          <div class="card">
-            <div class="card__image container">
-              <CoverBlog
-                imagePath={String(post.data.heroImage)}
-                altText={post.data.title}
-              />
-            </div>
+      {
+        page.data.map((post) => (
+          <div class="warp">
+            <div class="card">
+              <div class="card__image container">
+                <CoverBlog
+                  imagePath={String(post.data.heroImage)}
+                  altText={post.data.title}
+                />
+              </div>
 
-            <div>
-              <FormattedDate date={post.data.pubDate} />
-              <h2 class="title">
-                <a class="token funtion" href={`/blog/${slugifyStr(post.data.title)}/`}>
-                  {post.data.title}
-                </a>
-              </h2>
-              <p class="description">
-                {post.data.description}
-
-                <button>
-                  <a class="token string" href={`/blog/${slugifyStr(post.data.title)}/`}>
-                    Leer mas
+              <div>
+                <FormattedDate date={post.data.pubDate} />
+                <h2 class="title">
+                  <a
+                    class="token funtion"
+                    href={`/blog/${slugifyStr(post.data.title)}/`}
+                  >
+                    {post.data.title}
                   </a>
-                </button>
-              </p>
+                </h2>
+                <p class="description">
+                  {post.data.description}
+
+                  <button>
+                    <a
+                      class="token string"
+                      href={`/blog/${slugifyStr(post.data.title)}/`}
+                    >
+                      Leer mas
+                    </a>
+                  </button>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </article>
   </section>
-  
-  <Pagination 
-    currentPage={page.currentPage} 
-    totalPages={page.lastPage} 
-    prevUrl={page.url.prev} 
+
+  <Pagination
+    currentPage={page.currentPage}
+    totalPages={page.lastPage}
+    prevUrl={page.url.prev}
     nextUrl={page.url.next}
   />
 </MainLayout>
@@ -112,13 +122,6 @@ const { page } = Astro.props;
       border: var(--border-size-1) solid var(--surface-3);
       background-color: var(--surface-1);
       box-shadow: var(--shadow-5);
-    }
-    img {
-      max-width: 100%; /* Asegurarse de que la imagen se ajuste al ancho de la columna */
-      height: 14rem;
-      width: 18rem;
-      object-fit: cover;
-      border-radius: var(--radius-3);
     }
   }
 

@@ -87,15 +87,6 @@ const books = (await getCollection("libros")).sort(
       background-color 0.3s,
       box-shadow 0.3s,
       border-color 0.3s;
-
-    img {
-      border-radius: var(--radius-2);
-      max-width: 100%;
-      height: auto;
-      object-fit: cover;
-      aspect-ratio: 1 / 1.414;
-    }
-
     &:hover {
       border-color: var(--surface-3);
       background-color: var(--surface-1);
