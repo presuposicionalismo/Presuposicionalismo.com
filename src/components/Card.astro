@@ -1,7 +1,6 @@
 ---
 import FormattedDate from "./FormattedDate.astro";
 const { title, description, pubDate, heroImage, slug } = Astro.props;
-
 ---
 
 <section class="container bg">
@@ -15,7 +14,6 @@ const { title, description, pubDate, heroImage, slug } = Astro.props;
       <h1 class="card__title">{title}</h1>
       <p class="card__text">{description}</p>
       <a class="token string" href={`/blog/${slug}/`}>Leer mas</a>
-      </p>
     </div>
   </article>
 </section>
@@ -60,6 +58,17 @@ const { title, description, pubDate, heroImage, slug } = Astro.props;
     padding-bottom: var(--size-fluid-1);
   }
 
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .card {
     margin-left: auto;
     margin-right: auto;
@@ -71,6 +80,9 @@ const { title, description, pubDate, heroImage, slug } = Astro.props;
     place-content: center;
     grid-gap: 20px;
     border-radius: 8px;
+    animation: fade-in linear;
+    animation-timeline: view();
+    animation-range: entry 25% cover 50%;
   }
 
   .card__image {
@@ -104,13 +116,19 @@ const { title, description, pubDate, heroImage, slug } = Astro.props;
   }
 
   .rad-shadow {
-  border: 1px solid hsl(var(--brand-hue) 10% 50% / 15%);
-  box-shadow: 0 1rem 0.5rem -0.5rem;
-  box-shadow: 0 2.8px 2.2px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 3%)),
-    0 6.7px 5.3px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 1%)),
-    0 12.5px 10px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 2%)),
-    0 22.3px 17.9px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 2%)),
-    0 41.8px 33.4px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 3%)),
-    0 100px 80px hsl(var(--surface-shadow) / var(--shadow-strength));
-}
+    border: 1px solid hsl(var(--brand-hue) 10% 50% / 15%);
+    box-shadow: 0 1rem 0.5rem -0.5rem;
+    box-shadow:
+      0 2.8px 2.2px
+        hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 3%)),
+      0 6.7px 5.3px
+        hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 1%)),
+      0 12.5px 10px
+        hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 2%)),
+      0 22.3px 17.9px
+        hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 2%)),
+      0 41.8px 33.4px
+        hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 3%)),
+      0 100px 80px hsl(var(--surface-shadow) / var(--shadow-strength));
+  }
 </style>

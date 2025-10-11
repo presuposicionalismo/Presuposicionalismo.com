@@ -1,3 +1,49 @@
-<div>
-<h1>Card</h1>
-</div>
+---
+import CoverBook from "./CoverBook.astro";
+const { title, coverBook, slug } = Astro.props;
+---
+
+<a href={`/libros/${slug}/`} class="card-book">
+  <CoverBook imagePath={coverBook} altText={`Cover of ${title}`} />
+  <h3>{title}</h3>
+</a>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .card-book {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--surface-2);
+    border-radius: var(--radius-2);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    animation: fade-in linear;
+    animation-timeline: view();
+    animation-range: entry 25% cover 50%;
+  }
+
+  .card-book:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-book h3 {
+    padding: var(--size-2);
+    font-size: var(--font-size-s);
+    text-align: center;
+    background: var(--surface-1);
+    margin-top: -5px; /* Adjust to align with the image bottom */
+    position: relative;
+    z-index: 1;
+  }
+</style>
