@@ -1,7 +1,69 @@
 ---
 const { currentPage, totalPages, prevUrl, nextUrl } = Astro.props;
-const props = Astro.props;
-const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+/**
+ * Genera un array de números de página con puntos suspensivos para la paginación.
+ * @param {number} currentPage - La página actual.
+ * @param {number} totalPages - El número total de páginas.
+ * @param {number} siblings - Cuántos números mostrar a cada lado de la página actual.
+ * @returns {(number | string)[]} - Un array de números de página y puntos suspensivos.
+ */
+const getPaginationWithEllipsis = (currentPage, totalPages, siblings = 1) => {
+  // El número total de elementos a mostrar (ej: 1 ... 4 5 6 ... 10)
+  // Incluye la primera página, la última, la actual, los hermanos y los puntos suspensivos.
+  const totalNumbersToShow = siblings * 2 + 5;
+
+  // Caso 1: Si el número total de páginas es menor o igual al que queremos mostrar,
+  // no necesitamos puntos suspensivos. Simplemente mostramos todas las páginas.
+  if (totalPages <= totalNumbersToShow) {
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  // Calculamos los índices de los hermanos izquierdo y derecho.
+  const leftSiblingIndex = Math.max(currentPage - siblings, 1);
+  const rightSiblingIndex = Math.min(currentPage + siblings, totalPages);
+
+  // Decidimos si necesitamos mostrar los puntos suspensivos a la izquierda o derecha.
+  const shouldShowLeftDots = leftSiblingIndex > 2;
+  const shouldShowRightDots = rightSiblingIndex < totalPages - 2;
+
+  const firstPageIndex = 1;
+  const lastPageIndex = totalPages;
+
+  // Caso 2: No se necesitan puntos suspensivos a la izquierda, pero sí a la derecha.
+  // Ejemplo: 1 2 3 4 5 ... 10
+  if (!shouldShowLeftDots && shouldShowRightDots) {
+    const leftItemCount = 3 + 2 * siblings;
+    const leftRange = Array.from({ length: leftItemCount }, (_, i) => i + 1);
+    return [...leftRange, "...", totalPages];
+  }
+
+  // Caso 3: Se necesitan puntos suspensivos a la izquierda, pero no a la derecha.
+  // Ejemplo: 1 ... 6 7 8 9 10
+  if (shouldShowLeftDots && !shouldShowRightDots) {
+    const rightItemCount = 3 + 2 * siblings;
+    const rightRange = Array.from(
+      { length: rightItemCount },
+      (_, i) => totalPages - rightItemCount + 1 + i,
+    );
+    return [firstPageIndex, "...", ...rightRange];
+  }
+
+  // Caso 4: Se necesitan puntos suspensivos en ambos lados.
+  // Ejemplo: 1 ... 4 5 6 ... 10
+  if (shouldShowLeftDots && shouldShowRightDots) {
+    const middleRange = Array.from(
+      { length: rightSiblingIndex - leftSiblingIndex + 1 },
+      (_, i) => leftSiblingIndex + i,
+    );
+    return [firstPageIndex, "...", ...middleRange, "...", lastPageIndex];
+  }
+
+  // Fallback (no debería alcanzarse con la lógica actual)
+  return Array.from({ length: totalPages }, (_, i) => i + 1);
+};
+
+const pages = getPaginationWithEllipsis(currentPage, totalPages);
 ---
 
 <nav aria-label="Paginación del blog" class="pagination">
@@ -14,7 +76,22 @@ const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
           aria-label="Página anterior"
         >
           <span class="pr">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Tabler Icons by Paweł Kuna - https://github.com/tabler/tabler-icons/blob/master/LICENSE --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m12 8l-4 4l4 4m4-4H8"/><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"/></g></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              ><!-- Icon from Tabler Icons by Paweł Kuna - https://github.com/tabler/tabler-icons/blob/master/LICENSE --><g
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                ><path d="m12 8l-4 4l4 4m4-4H8" /><path
+                  d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"
+                /></g
+              ></svg
+            >
           </span>
           Anterior
         </a>
@@ -23,16 +100,22 @@ const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
     <div class="pagination-numbers">
       {
-        pages.map((page) => (
-          <a
-            href={page === 1 ? "/blog" : `/blog/${page}`}
-            class={`pagination-link number ${currentPage === page ? "active" : ""}`}
-            aria-label={`Ir a la página ${page}`}
-            aria-current={currentPage === page ? "page" : undefined}
-          >
-            {page}
-          </a>
-        ))
+        pages.map((page) =>
+          typeof page === "number" ? (
+            <a
+              href={page === 1 ? "/blog" : `/blog/${page}`}
+              class={`pagination-link number ${currentPage === page ? "active" : ""}`}
+              aria-label={`Ir a la página ${page}`}
+              aria-current={currentPage === page ? "page" : undefined}
+            >
+              {page}
+            </a>
+          ) : (
+            <span class="pagination-ellipsis" aria-hidden="true">
+              &hellip;
+            </span>
+          ),
+        )
       }
     </div>
 
@@ -45,7 +128,22 @@ const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
         >
           Siguiente{" "}
           <span class="pl">
-           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Tabler Icons by Paweł Kuna - https://github.com/tabler/tabler-icons/blob/master/LICENSE --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m12 16l4-4l-4-4m-4 4h8"/><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"/></g></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              ><!-- Icon from Tabler Icons by Paweł Kuna - https://github.com/tabler/tabler-icons/blob/master/LICENSE --><g
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                ><path d="m12 16l4-4l-4-4m-4 4h8" /><path
+                  d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"
+                /></g
+              ></svg
+            >
           </span>
         </a>
       )
@@ -67,6 +165,8 @@ const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
   }
   .pagination-link {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 0.5rem 1rem;
     border-radius: var(--radius-3);
     text-decoration: none;
@@ -84,10 +184,17 @@ const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
   .pagination-link.active {
     background-color: var(--link);
     color: var(--surface-1);
+    font-weight: var(--font-weight-6);
   }
   .pagination-numbers {
     display: flex;
     gap: 0.25rem;
+    align-items: center;
+  }
+  .pagination-ellipsis {
+    padding: 0.5rem 0.25rem;
+    color: var(--text-2);
+    user-select: none;
   }
   .pagination-link.prev,
   .pagination-link.next {
