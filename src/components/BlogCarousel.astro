@@ -1,0 +1,175 @@
+---
+import { getCollection } from "astro:content";
+import Card from "./Card.astro";
+
+const posts = (await getCollection("blog"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+---
+
+<section class="blog-carousel">
+  <h2>Últimas entradas del Blog</h2>
+  <div class="carousel-wrapper">
+    <div class="carousel-viewport">
+      <div class="carousel-container">
+        {
+          posts.map((post) => (
+            <div class="carousel-item">
+              <Card
+                title={post.data.title}
+                description={post.data.description}
+                pubDate={post.data.pubDate}
+                heroImage={post.data.heroImage}
+                slug={post.slug}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <button class="carousel-button prev" aria-label="Anterior entrada del blog"
+      >&#10094;</button
+    >
+    <button class="carousel-button next" aria-label="Siguiente entrada del blog"
+      >&#10095;</button
+    >
+  </div>
+  <div class="more-link">
+    <a href="/blog">Ver todas las entradas</a>
+  </div>
+</section>
+
+<style>
+  .blog-carousel {
+    padding-top: var(--size-fluid-3);
+    padding-bottom: var(--size-fluid-3);
+  }
+
+  .blog-carousel h2 {
+    text-align: center;
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--size-fluid-3);
+  }
+
+  .carousel-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .carousel-viewport {
+    overflow: hidden;
+  }
+
+  .carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .carousel-item {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    padding: 0 var(--size-2);
+  }
+
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: hsl(var(--brand-hue) 10% 50% / 15%);
+    border: 1px solid var(--surface-3);
+    color: var(--text-1);
+    font-size: var(--font-size-l);
+    cursor: pointer;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+  }
+
+  .carousel-button:hover {
+    background-color: var(--surface-3);
+  }
+
+  .carousel-button.prev {
+    left: -20px;
+  }
+
+  .carousel-button.next {
+    right: -20px;
+  }
+
+  @media (max-width: 940px) {
+    .carousel-button.prev {
+      left: 5px;
+    }
+    .carousel-button.next {
+      right: 5px;
+    }
+  }
+
+  .more-link {
+    text-align: center;
+    margin-top: var(--size-fluid-3);
+  }
+
+  .more-link a {
+    color: var(--text-1);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 2px solid var(--brand);
+    padding-bottom: var(--size-1);
+    transition:
+      color 0.2s ease-in-out,
+      border-color 0.2s ease-in-out;
+  }
+
+  .more-link a:hover {
+    color: var(--brand);
+  }
+</style>
+
+<script>
+  const carouselWrapper = document.querySelector(".carousel-wrapper");
+
+  if (carouselWrapper) {
+    const carouselContainer = carouselWrapper.querySelector(
+      ".carousel-container",
+    );
+    const prevButton = carouselWrapper.querySelector(".carousel-button.prev");
+    const nextButton = carouselWrapper.querySelector(".carousel-button.next");
+
+    if (carouselContainer && prevButton && nextButton) {
+      const items = carouselContainer.querySelectorAll(".carousel-item");
+      const totalItems = items.length;
+      let currentIndex = 0;
+
+      function updateCarousel() {
+        if (carouselContainer instanceof HTMLElement) {
+          carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+      }
+
+      prevButton.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+        updateCarousel();
+      });
+
+      nextButton.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % totalItems;
+        updateCarousel();
+      });
+
+      if (totalItems <= 1) {
+        if (prevButton instanceof HTMLElement)
+          prevButton.style.display = "none";
+        if (nextButton instanceof HTMLElement)
+          nextButton.style.display = "none";
+      }
+    }
+  }
+</script>
