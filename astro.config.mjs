@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel";
+import vercelStatic from "@astrojs/vercel/static";
 
 import fuse from "astro-fuse";
 
@@ -30,7 +30,7 @@ export default defineConfig({
   },
 
   output: "static",
-  adapter: vercel(),
+  adapter: vercelStatic(),
 
   webAnalytics: {
     enabled: true,
