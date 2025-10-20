@@ -52,7 +52,6 @@ const posts = (await getCollection("blog"))
 
   .blog-carousel h2 {
     text-align: center;
-    font-size: var(--font-size-xl);
     margin-bottom: var(--size-fluid-3);
     max-width: var(--size-header-3); /* Añadir un ancho máximo */
     margin-left: auto; /* Centrar el bloque */
@@ -71,7 +70,6 @@ const posts = (await getCollection("blog"))
 
   .carousel-container {
     display: flex;
-    width: 90vw;
     transition: transform 0.5s ease-in-out;
   }
 
@@ -110,6 +108,11 @@ const posts = (await getCollection("blog"))
   }
 
   @media (max-width: 940px) {
+    .carousel-container {
+      display: flex;
+      width: 90vw;
+      transition: transform 0.5s ease-in-out;
+    }
     .carousel-button.prev {
       left: 5px;
     }
