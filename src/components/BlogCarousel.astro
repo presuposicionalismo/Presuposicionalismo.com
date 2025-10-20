@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import Card from "./Card.astro";
+import ArrowLeft from "./ArrowLeft.astro";
+import ArrowRight from "./ArrowRight.astro";
 
 const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -27,12 +29,15 @@ const posts = (await getCollection("blog"))
         }
       </div>
     </div>
-    <button class="carousel-button prev" aria-label="Anterior entrada del blog"
-      >&#10094;</button
+    <button class="carousel-button prev" aria-label="Anterior entrada del blog">
+      <ArrowLeft />
+    </button>
+    <button
+      class="carousel-button next"
+      aria-label="Siguiente entrada del blog"
     >
-    <button class="carousel-button next" aria-label="Siguiente entrada del blog"
-      >&#10095;</button
-    >
+      <ArrowRight />
+    </button>
   </div>
   <div class="more-link">
     <a href="/blog">Ver todas las entradas</a>
@@ -49,6 +54,9 @@ const posts = (await getCollection("blog"))
     text-align: center;
     font-size: var(--font-size-xl);
     margin-bottom: var(--size-fluid-3);
+    max-width: var(--size-header-3); /* Añadir un ancho máximo */
+    margin-left: auto; /* Centrar el bloque */
+    margin-right: auto; /* Centrar el bloque */
   }
 
   .carousel-wrapper {
@@ -69,7 +77,6 @@ const posts = (await getCollection("blog"))
   .carousel-item {
     flex: 0 0 100%;
     box-sizing: border-box;
-    padding: 0 var(--size-2);
   }
 
   .carousel-button {
@@ -79,11 +86,9 @@ const posts = (await getCollection("blog"))
     background-color: hsl(var(--brand-hue) 10% 50% / 15%);
     border: 1px solid var(--surface-3);
     color: var(--text-1);
-    font-size: var(--font-size-l);
+    font-size: var(--font-size-lg); /* Usar tamaño fluido para el icono */
     cursor: pointer;
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
+    border-radius: 40%;
     z-index: 10;
     display: flex;
     align-items: center;
