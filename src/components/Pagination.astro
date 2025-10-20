@@ -1,4 +1,7 @@
 ---
+import ArrowLeft from "./ArrowLeft.astro";
+import ArrowRight from "./ArrowRight.astro";
+
 const { currentPage, totalPages, prevUrl, nextUrl } = Astro.props;
 
 /**
@@ -75,23 +78,8 @@ const pages = getPaginationWithEllipsis(currentPage, totalPages);
           class="pagination-link prev ad-shadow"
           aria-label="Página anterior"
         >
-          <span class="pr">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              ><!-- Icon from Tabler Icons by Paweł Kuna - https://github.com/tabler/tabler-icons/blob/master/LICENSE --><g
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                ><path d="m12 8l-4 4l4 4m4-4H8" /><path
-                  d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"
-                /></g
-              ></svg
-            >
+          <span class="pr icon-size-fluid">
+            <ArrowLeft />
           </span>
           Anterior
         </a>
@@ -127,23 +115,8 @@ const pages = getPaginationWithEllipsis(currentPage, totalPages);
           aria-label="Página siguiente"
         >
           Siguiente{" "}
-          <span class="pl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              ><!-- Icon from Tabler Icons by Paweł Kuna - https://github.com/tabler/tabler-icons/blob/master/LICENSE --><g
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                ><path d="m12 16l4-4l-4-4m-4 4h8" /><path
-                  d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"
-                /></g
-              ></svg
-            >
+          <span class="pl icon-size-fluid">
+            <ArrowRight />
           </span>
         </a>
       )
@@ -199,6 +172,13 @@ const pages = getPaginationWithEllipsis(currentPage, totalPages);
   .pagination-link.prev,
   .pagination-link.next {
     font-weight: var(--font-weight-5);
+  }
+  .icon-size-fluid {
+    font-size: var(
+      --font-size-lg
+    ); /* O el tamaño fluido que prefieras, ej. var(--font-size-md) */
+    display: flex; /* Asegura que el SVG herede el font-size correctamente */
+    align-items: center;
   }
   @media (max-width: 600px) {
     .pagination-numbers {
