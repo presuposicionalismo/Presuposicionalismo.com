@@ -11,7 +11,11 @@ const { currentPage, totalPages, prevUrl, nextUrl } = Astro.props;
  * @param {number} siblings - Cuántos números mostrar a cada lado de la página actual.
  * @returns {(number | string)[]} - Un array de números de página y puntos suspensivos.
  */
-const getPaginationWithEllipsis = (currentPage, totalPages, siblings = 1) => {
+const getPaginationWithEllipsis = (
+  currentPage: number,
+  totalPages: number,
+  siblings: number = 1,
+) => {
   // El número total de elementos a mostrar (ej: 1 ... 4 5 6 ... 10)
   // Incluye la primera página, la última, la actual, los hermanos y los puntos suspensivos.
   const totalNumbersToShow = siblings * 2 + 5;
