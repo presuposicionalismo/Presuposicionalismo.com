@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/:slug((?!blog$).*)",
+      "destination": "/blog/:slug",
+      "permanent": true
+    }
+  ]
+}
