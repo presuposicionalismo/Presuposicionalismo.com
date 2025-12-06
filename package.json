@@ -6,9 +6,10 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "build": "astro check && astro build",
+    "build": "npm run generate:og-images && astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate:og-images": "node --experimental-loader=@swc-node/register/esm --experimental-json-modules ./script/generate-og-images.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
