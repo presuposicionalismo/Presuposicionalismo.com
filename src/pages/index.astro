@@ -3,10 +3,11 @@ import MainLayout from "@layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import BlogCarousel from "../components/BlogCarousel.astro";
 import FeaturedBooks from "../components/FeaturedBooks.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 // import Quotes from "../components/Quotes.astro";//
 ---
 
-<MainLayout>
+<MainLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <Hero />
   <BlogCarousel />
   <FeaturedBooks />

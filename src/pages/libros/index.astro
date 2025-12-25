@@ -4,6 +4,7 @@ import MainLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import CoverBook from "@components/CoverBook.astro";
 
+import { SITE_DESCRIPTION } from "../../consts";
 const books = (await getCollection("libros")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
@@ -11,7 +12,7 @@ const books = (await getCollection("libros")).sort(
 
 <MainLayout
   title="Libros"
-  description="Lorem ipsum dolor sit amet"
+  description={SITE_DESCRIPTION}
   pubDate={new Date("August 08 2021")}
   heroImage="/blog-placeholder-about.jpg"
 >
