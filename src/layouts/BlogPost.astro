@@ -10,14 +10,17 @@ import "../styles/blog.css";
 // SpeedInsights of vercel
 import SpeedInsights from "@vercel/speed-insights/astro";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<"blog">["data"] & { slug?: string };
 
-const { title, description, pubDate, heroImage } = Astro.props;
+const { title, description, pubDate, heroImage, slug } = Astro.props;
+
+// Determine OG Image
+const ogImage = slug ? `/og/${slug}.png` : "/Portada.png";
 ---
 
 <html lang="es">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} image={ogImage} />
   </head>
 
   <body>

@@ -15,6 +15,6 @@ const book = Astro.props;
 const { Content } = await book.render();
 ---
 
-<BookLayout {...book.data}>
+<BookLayout {...book.data} slug={book.slug}>
   <Content />
 </BookLayout>

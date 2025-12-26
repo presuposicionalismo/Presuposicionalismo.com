@@ -9,14 +9,18 @@ import "../styles/blog.css";
 
 // SpeedInsights of vercel
 import SpeedInsights from "@vercel/speed-insights/astro";
-type Props = CollectionEntry<"libros">["data"];
+type Props = CollectionEntry<"libros">["data"] & { slug?: string };
 
-const { title, description, pubDate, coverBook, downloadBook } = Astro.props;
+const { title, description, pubDate, coverBook, downloadBook, slug } =
+  Astro.props;
+
+// Determine OG Image
+const ogImage = slug ? `/og/libros/${slug}.png` : "/Portada.png";
 ---
 
 <html lang="es">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} image={ogImage} />
   </head>
 
   <body>
