@@ -4,6 +4,7 @@ import { Resvg } from "@resvg/resvg-js";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { SITE_TITLE } from "../../consts";
+import { THEME } from "../../consts/open-props";
 
 export async function getStaticPaths() {
     const posts = await getCollection("blog");
@@ -14,24 +15,11 @@ export async function getStaticPaths() {
 }
 
 export async function GET({ params: _params, props }: { params: any; props: any }) {
-    const { title, description, pubDate } = props.data;
+    const { title, description } = props.data;
 
-    // Format date
-    const formattedDate = new Date(pubDate).toLocaleDateString("es-ES", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
-
-    // Load fonts
     // Load fonts
     const fontRegular = await readFile(join(process.cwd(), "public/fonts/Urbanist-Regular.ttf"));
     const fontBold = await readFile(join(process.cwd(), "public/fonts/Urbanist-Bold.ttf"));
-
-    // Define Colors
-    const bg = "#f8fafc"; // surface-1 equivalentish
-    const text = "#1e293b"; // text-1
-    const brand = "#4f46e5"; // indigo-6
 
     const svg = await satori(
         {
@@ -41,39 +29,18 @@ export async function GET({ params: _params, props }: { params: any; props: any 
                     display: "flex",
                     height: "100%",
                     width: "100%",
-                    backgroundColor: bg,
-                    backgroundImage: `radial-gradient(circle at 25px 25px, ${brand} 2%, transparent 0%), radial-gradient(circle at 75px 75px, ${brand} 2%, transparent 0%)`,
+                    backgroundColor: THEME.bg,
+                    backgroundImage: `radial-gradient(circle at 25px 25px, ${THEME.surface} 2%, transparent 0%), radial-gradient(circle at 75px 75px, ${THEME.surface} 2%, transparent 0%)`,
                     backgroundSize: "100px 100px",
-                    color: text,
+                    color: THEME.text,
                     flexDirection: "column",
                     alignItems: "center",
-                    padding: "30px",
-                    gap: "20px",
+                    justifyContent: "center",
+                    padding: "40px",
+                    fontFamily: "Urbanist",
                 },
                 children: [
-                    // Logo (Centered Top)
-                    {
-                        type: "svg",
-                        props: {
-                            width: "255",
-                            height: "62",
-                            viewBox: "0 0 628 153",
-                            fill: text,
-                            children: [
-                                { type: "path", props: { d: "m322 6.7l-6.6 66.6-6.6-66.6c-0.4-3.2 2.3-6.1 6-6.4 3.7-0.3 6.9 2.1 7.2 5.4 0.1 0.3 0.1 0.7 0 1z" } },
-                                { type: "path", props: { d: "m338.4 15.9l-3.8 45.4-3.8-45.4c-0.1-1.9 1.4-3.5 3.5-3.6 2.1-0.2 3.9 1.2 4.1 3.1q0 0.2 0 0.5z" } },
-                                { type: "path", props: { d: "m300 15.9l-3.8 45.4-3.8-45.4c-0.1-1.9 1.4-3.5 3.5-3.6 2.1-0.2 3.9 1.2 4.1 3.1q0 0.2 0 0.5z" } },
-                                { type: "path", props: { d: "m357.6 26.5l-3.8 24.4-3.8-24.4c-0.3-1.8 1.2-3.5 3.3-3.8 2.1-0.3 4 1 4.3 2.9q0 0.5 0 0.9z" } },
-                                { type: "path", props: { d: "m280.8 26.5l-3.8 24.4-3.8-24.4c-0.3-1.8 1.2-3.5 3.3-3.8 2.1-0.3 4 1 4.3 2.9q0.1 0.5 0 0.9z" } },
-                                { type: "path", props: { d: "m376.2 32.2l-3.8 13.5-3.8-13.5c-0.5-1.9 0.8-3.7 2.9-4.2 2.1-0.5 4.2 0.7 4.7 2.5 0.2 0.6 0.2 1.2 0 1.7z" } },
-                                { type: "path", props: { d: "m262.2 32.2l-3.8 13.5-3.8-13.5c-0.5-1.9 0.7-3.7 2.8-4.2 2.1-0.5 4.2 0.7 4.8 2.5 0.1 0.6 0.1 1.2 0 1.7z" } },
-                                { type: "path", props: { d: "m4.1 152h7.2v-26.8h9.1c9.3 0 11.8-2.6 11.8-11.7v-18.3c0-9-2.5-11.7-11.8-11.7h-16.3zm7.2-32.8v-29.7h7.8c5.3 0 5.9 1.7 5.9 6.9v15.9c0 5.2-0.6 6.9-5.9 6.9zm56.9 9.1c0-6.7-1.5-9.8-6.2-11 4.7-1.2 6.2-4.3 6.2-11.1v-11c0-9-2.6-11.7-12-11.7h-16.9v68.5h7.2v-31.8h7.9c5.5 0 6.5 2.3 6.5 7.6v13.6c0 4.3 0 8.4 1 10.6h7.7c-1.1-3.4-1.4-7.6-1.4-12zm-7.3-21.1c0 5.2-0.5 7-5.8 7h-8.6v-24.8h8.6c5.4 0 5.8 1.7 5.8 7zm23.9-17.8h14.8v-6h-22.1v68.5h22.1v-6h-14.8v-27h12.6v-5.8h-12.6zm41.2 50c0 5.3-0.5 7-5.7 7h-2.1c-5.3 0-5.7-1.7-5.7-7v-12.3h-6.9v13.6c0 9 2.6 11.7 11.9 11.7h4c9.3 0 11.7-2.7 11.7-11.7v-7.1c0-8.5-1.7-11.3-11.1-18.9-7.9-6.5-9.2-8.5-9.2-14.9v-4.1c0-5.2 0.4-6.8 5.7-6.8h2.1c5.3 0 5.7 1.6 5.7 6.9v10.4h6.8v-11.7c0-9-2.4-11.6-11.7-11.6h-4c-9.3 0-11.9 2.6-11.9 11.6v5.4c0 8.5 1.8 11.2 11.1 18.9 8 6.5 9.3 8.4 9.3 14.9zm22.8-56.1h-7.2v57.3c0 9 2.4 11.7 11.9 11.7h4.7c9.4 0 11.9-2.7 11.9-11.7v-57.3h-6.9v56.1c0 5.3-0.4 6.9-5.8 6.9h-2.8c-5.3 0-5.8-1.6-5.8-6.9zm30.9 68.5h7.3v-26.8h9c9.3 0 11.9-2.7 11.9-11.8v-18.3c0-9-2.6-11.6-11.9-11.6h-16.3zm7.3-32.8v-29.7h7.8c5.3 0 5.8 1.6 5.8 6.9v15.9c0 5.1-0.5 6.9-5.8 6.9zm27.2 21.6c0 9 2.6 11.7 12 11.7h5.1c9.4 0 12-2.7 12-11.7v-46.2c0-9-2.6-11.6-12-11.6h-5.1c-9.4 0-12 2.6-12 11.6zm21.7-1.2c0 5.3-0.3 6.9-5.7 6.9h-2.9c-5.4 0-5.7-1.6-5.7-6.9v-43.7c0-5.2 0.3-6.9 5.7-6.9h2.9c5.4 0 5.7 1.7 5.7 6.9zm35.5 0c0 5.3-0.4 7-5.7 7h-2.1c-5.3 0-5.7-1.7-5.7-7v-12.3h-6.8v13.6c0 9 2.5 11.7 11.8 11.7h4c9.3 0 11.7-2.7 11.7-11.7v-7.1c0-8.5-1.7-11.3-11.1-18.9-7.9-6.5-9.2-8.5-9.2-14.9v-4.1c0-5.2 0.5-6.8 5.7-6.8h2.1c5.3 0 5.7 1.6 5.7 6.9v10.4h6.8v-11.7c0-9-2.4-11.6-11.7-11.6h-4c-9.3 0-11.8 2.6-11.8 11.6v5.4c0 8.5 1.7 11.2 11.1 18.9 7.9 6.5 9.2 8.4 9.2 14.9zm15.8 12.4h7.3v-68.5h-7.3zm23.9-56.1c0-5.2 0.3-6.9 5.7-6.9h2.8c5.4 0 5.8 1.7 5.8 6.9v12.2h6.9v-13.4c0-9-2.4-11.7-11.9-11.7h-4.7c-9.5 0-12 2.7-12 11.7v46.2c0 9 2.5 11.6 12 11.6h4.7c9.5 0 11.9-2.6 11.9-11.6v-16.4h-6.9v15.1c0 5.3-0.4 6.9-5.8 6.9h-2.8c-5.4 0-5.7-1.6-5.7-6.9zm30.3 56h7.3v-68.4h-7.3zm16.5-11.2c0 9 2.5 11.6 12 11.6h5c9.5 0 12-2.6 12-11.6v-46.2c0-9-2.5-11.6-12-11.6h-5c-9.5 0-12 2.6-12 11.6zm21.6-1.2c0 5.2-0.3 6.9-5.7 6.9h-2.8c-5.4 0-5.7-1.7-5.7-6.9v-43.7c0-5.3 0.3-6.9 5.7-6.9h2.8c5.4 0 5.7 1.6 5.7 6.9zm37.5 12.4h8.2v-68.4h-6.4v42c0 4.3 0.2 8.1 0.3 11.9-0.7-3.8-1.4-7.6-2.5-11.8l-11.1-42.1h-9.4v68.4h6.3v-44.9c0-4.3-0.1-8.1-0.2-11.8 0.6 3.7 1.4 7.5 2.5 11.6zm38.8 0h7.3l-10.7-68.4h-10l-10.8 68.4h6.5l1.8-11h14zm-12.7-31.5c2-12.4 3.2-23.2 3.8-31.1 0.8 7.9 2.1 18.6 4 31.1l2.2 14.5h-12.3zm26.8 31.5h20.4v-6h-13.1v-62.5h-7.3zm26.4 0h7.2v-68.5h-7.2zm36-12.4c0 5.3-0.4 6.9-5.7 6.9h-2.1c-5.3 0-5.7-1.6-5.7-6.9v-12.4h-6.8v13.6c0 9 2.5 11.7 11.9 11.7h3.9c9.4 0 11.8-2.7 11.8-11.7v-7.1c0-8.5-1.8-11.2-11.1-18.9-7.9-6.4-9.3-8.5-9.3-14.9v-4.1c0-5.1 0.5-6.8 5.8-6.8h2.1c5.2 0 5.7 1.7 5.7 6.9v10.4h6.8v-11.6c0-9-2.4-11.7-11.8-11.7h-3.9c-9.4 0-11.9 2.7-11.9 11.7v5.3c0 8.6 1.8 11.2 11.1 18.9 7.9 6.5 9.2 8.4 9.2 14.9zm46.6-33.6c0.6-3 1-7.4 1.6-11-0.1 3.5-0.3 7.9-0.3 11v46h7.2v-68.5h-10.9l-7.8 45.8c-0.4 2.9-0.8 6.3-1 9.6-0.3-3.3-0.6-6.7-1.1-9.6l-7.8-45.8h-10.8v68.5h6.3v-46c0-3.1-0.1-8.2-0.2-12 0.4 3.8 1.1 8.7 1.7 12l8.4 46h6.5zm17.6 34.9c0 9 2.5 11.6 12 11.6h5c9.5 0 12-2.6 12-11.6v-46.2c0-9-2.5-11.7-12-11.7h-5c-9.5 0-12 2.7-12 11.7zm21.6-1.3c0 5.3-0.3 6.9-5.7 6.9h-2.8c-5.4 0-5.8-1.6-5.8-6.9v-43.6c0-5.3 0.4-7 5.8-7h2.8c5.4 0 5.7 1.7 5.7 7z" } },
-                                { type: "path", props: { d: "m3 64.4h225" } },
-                                { type: "path", props: { d: "m625.7 64.4h-219.2" } },
-                            ]
-                        }
-                    },
-                    // Content Container
+                    // Main Card
                     {
                         type: "div",
                         props: {
@@ -81,34 +48,75 @@ export async function GET({ params: _params, props }: { params: any; props: any 
                                 display: "flex",
                                 flexDirection: "column",
                                 width: "100%",
-                                flex: 1,
-                                backgroundColor: "#ffffff",
-                                border: "4px solid " + brand,
+                                height: "90%",
+                                backgroundColor: THEME.surface,
+                                border: `2px solid ${THEME.accent}`,
                                 borderRadius: "24px",
-                                padding: "30px",
-                                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                                padding: "40px",
+                                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+                                justifyContent: "space-between",
                             },
                             children: [
-                                // Title & Description (Centered)
+                                // Logo and Site Title Header
+                                {
+                                    type: "div",
+                                    props: {
+                                        style: {
+                                            display: "flex",
+                                            alignItems: "center",
+                                            gap: "16px",
+                                        },
+                                        children: [
+                                            {
+                                                type: "svg",
+                                                props: {
+                                                    width: "48",
+                                                    height: "48",
+                                                    viewBox: "0 0 24 24",
+                                                    fill: THEME.accent,
+                                                    children: [
+                                                        {
+                                                            type: "path",
+                                                            props: { d: "M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" }
+                                                        }
+                                                    ],
+                                                },
+                                            },
+                                            {
+                                                type: "span",
+                                                props: {
+                                                    style: {
+                                                        fontSize: "24px",
+                                                        fontWeight: 700,
+                                                        color: THEME.accent,
+                                                        letterSpacing: "0.05em",
+                                                        textTransform: "uppercase",
+                                                    },
+                                                    children: SITE_TITLE,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                // Content
                                 {
                                     type: "div",
                                     props: {
                                         style: {
                                             display: "flex",
                                             flexDirection: "column",
-                                            gap: "10px",
-                                            justifyContent: "center",
-                                            flex: 1,
+                                            gap: "24px",
                                         },
                                         children: [
                                             {
                                                 type: "h1",
                                                 props: {
                                                     style: {
-                                                        fontSize: "48px",
-                                                        fontWeight: 600,
+                                                        fontSize: "64px",
+                                                        fontWeight: 700,
                                                         lineHeight: 1.1,
                                                         margin: 0,
+                                                        color: THEME.text,
                                                     },
                                                     children: title,
                                                 },
@@ -117,13 +125,13 @@ export async function GET({ params: _params, props }: { params: any; props: any 
                                                 type: "p",
                                                 props: {
                                                     style: {
-                                                        fontSize: "24px",
-                                                        color: "#475569",
+                                                        fontSize: "32px",
+                                                        color: "#9ca3af", // localized gray
                                                         lineHeight: 1.4,
                                                         margin: 0,
-                                                        overflow: "hidden",
                                                         display: "-webkit-box",
                                                         lineClamp: 3,
+                                                        overflow: "hidden",
                                                     },
                                                     children: description,
                                                 },
@@ -131,83 +139,32 @@ export async function GET({ params: _params, props }: { params: any; props: any 
                                         ],
                                     },
                                 },
-                            ],
-                        },
-                    },
-                    // Footer: Socials + Site Title
-                    {
-                        type: "div",
-                        props: {
-                            style: {
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "30px",
-                                width: "100%",
-                                justifyContent: "center",
-                            },
-                            children: [
-                                // Site Title
-                                {
-                                    type: "span",
-                                    props: {
-                                        style: { fontWeight: 700, color: brand, textTransform: "uppercase", letterSpacing: "2px", fontSize: "28px" },
-                                        children: SITE_TITLE
-                                    }
-                                },
-                                // Social Icons
+                                // Footer / URL
                                 {
                                     type: "div",
                                     props: {
-                                        style: { display: "flex", gap: "20px" },
+                                        style: {
+                                            display: "flex",
+                                            justifyContent: "flex-end",
+                                            alignItems: "center",
+                                        },
                                         children: [
-                                            // Facebook
                                             {
-                                                type: "svg",
+                                                type: "span",
                                                 props: {
-                                                    width: "32", height: "32", viewBox: "0 0 24 24", fill: "none", stroke: brand, strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round",
-                                                    children: [
-                                                        { type: "path", props: { d: "M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" } }
-                                                    ]
-                                                }
+                                                    style: {
+                                                        fontSize: "20px",
+                                                        color: THEME.accent,
+                                                        fontWeight: 500,
+                                                    },
+                                                    children: "presuposicionalismo.com",
+                                                },
                                             },
-                                            // X (Twitter)
-                                            {
-                                                type: "svg",
-                                                props: {
-                                                    width: "28", height: "28", viewBox: "0 0 24 24", fill: brand,
-                                                    children: [
-                                                        { type: "path", props: { d: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" } }
-                                                    ]
-                                                }
-                                            },
-                                            // Instagram
-                                            {
-                                                type: "svg",
-                                                props: {
-                                                    width: "32", height: "32", viewBox: "0 0 24 24", fill: "none", stroke: brand, strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round",
-                                                    children: [
-                                                        { type: "rect", props: { x: "2", y: "2", width: "20", height: "20", rx: "5", ry: "5" } },
-                                                        { type: "path", props: { d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" } },
-                                                        { type: "line", props: { x1: "17.5", y1: "6.5", x2: "17.51", y2: "6.5" } }
-                                                    ]
-                                                }
-                                            },
-                                            // YouTube
-                                            {
-                                                type: "svg",
-                                                props: {
-                                                    width: "32", height: "32", viewBox: "0 0 24 24", fill: "none", stroke: brand, strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round",
-                                                    children: [
-                                                        { type: "path", props: { d: "M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z" } },
-                                                        { type: "polygon", props: { points: "9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" } }
-                                                    ]
-                                                }
-                                            }
-                                        ]
-                                    }
+                                        ],
+                                    },
                                 },
-                            ]
-                        }
+                            ],
+                        },
                     },
                 ],
             },

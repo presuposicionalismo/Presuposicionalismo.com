@@ -18,17 +18,15 @@ const { title, description, image = "/Portada.png" } = Astro.props;
 
 // Determine OG Image
 let ogImage = new URL(image, Astro.url);
-if (
-  pathname.startsWith("/blog/") &&
-  pathname !== "/blog/" &&
-  !image.startsWith("http")
-) {
-  // If we are on a blog post (not index) and using default or local image
-  // We prefer the generated OG image.
-  // Note: Astro.url.pathname might have trailing slash.
+if (pathname.startsWith("/blog/") && pathname !== "/blog/") {
   const slug = pathname.replace(/^\/blog\//, "").replace(/\/$/, "");
   if (slug) {
     ogImage = new URL(`/og/${slug}.png`, Astro.url);
+  }
+} else if (pathname.startsWith("/libros/") && pathname !== "/libros/") {
+  const slug = pathname.replace(/^\/libros\//, "").replace(/\/$/, "");
+  if (slug) {
+    ogImage = new URL(`/og/libros/${slug}.png`, Astro.url);
   }
 }
 ---
