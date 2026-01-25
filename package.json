@@ -8,42 +8,56 @@
     "check": "astro check",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "astro check",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{astro,js,ts,tsx,jsx,mjs,cjs,json,md,mdx}": [
+      "prettier --write"
+    ],
+    "*.{astro,ts,tsx}": [
+      "astro check --minimumSeverity warning --noWatch"
+    ]
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
+    "@astrojs/check": "^0.9.6",
     "@astrojs/mdx": "4.3.6",
-    "@astrojs/rss": "^4.0.12",
-    "@astrojs/sitemap": "^3.6.0",
-    "@astrojs/svelte": "^7.2.0",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/svelte": "^7.2.5",
     "@astrojs/vercel": "8.2.8",
     "@fontsource-variable/urbanist": "^5.2.7",
     "@libsql/client": "^0.15.15",
     "@resvg/resvg-js": "^2.6.2",
-    "@tailwindcss/vite": "^4.1.13",
-    "@vercel/speed-insights": "^1.2.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "@vercel/speed-insights": "^1.3.1",
     "astro": "5.14.1",
     "astro-fuse": "^1.0.4",
     "fuse.js": "^7.1.0",
     "lodash.kebabcase": "^4.1.1",
-    "open-props": "^1.7.16",
+    "open-props": "^1.7.17",
     "postcss": "^8.5.6",
     "postcss-custom-media": "^11.0.6",
     "postcss-jit-props": "^1.0.16",
     "postcss-nesting": "^13.0.2",
-    "postcss-preset-env": "^10.4.0",
+    "postcss-preset-env": "^10.6.1",
     "prettier": "4.0.0-alpha.12",
     "remark-collapse": "^0.1.2",
     "remark-toc": "^9.0.0",
-    "satori": "^0.18.3",
-    "sharp": "^0.34.4",
-    "svelte": "^5.39.6",
-    "tailwindcss": "^4.1.13",
-    "typescript": "^5.9.2"
+    "satori": "^0.18.4",
+    "sharp": "^0.34.5",
+    "svelte": "^5.48.2",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@types/github-slugger": "^2.0.0",
     "@types/lodash.kebabcase": "^4.1.9",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier-plugin-astro": "^0.14.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

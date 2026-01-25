@@ -28,7 +28,7 @@ if (
   // Note: Astro.url.pathname might have trailing slash.
   const slug = pathname.replace(/^\/blog\//, "").replace(/\/$/, "");
   if (slug) {
-    ogImage = new URL(`/og/${slug}.png`, Astro.url);
+    ogImage = new URL(`/og/blog/${slug}.png`, Astro.url);
   }
 }
 ---
