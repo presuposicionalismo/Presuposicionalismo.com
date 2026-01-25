@@ -5,9 +5,10 @@ import { Image } from "astro:assets";
 interface Props {
   imagePath: string;
   altText: string;
+  loading?: "lazy" | "eager";
 }
 
-const { imagePath, altText } = Astro.props;
+const { imagePath, altText, loading = "lazy" } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/coverbook/*.{jpeg,jpg,png,gif,webp}",
 );
@@ -18,7 +19,12 @@ if (!images[imagePath])
 ---
 
 <div class="card">
-  <Image src={images[imagePath]()} alt={altText} class="coverbook" />
+  <Image
+    src={images[imagePath]()}
+    alt={altText}
+    class="coverbook"
+    loading={loading}
+  />
 </div>
 
 <style>

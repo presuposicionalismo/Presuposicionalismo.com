@@ -13,7 +13,24 @@ import { ClientRouter } from "astro:transitions";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
+const { pathname } = Astro.url;
 const { title, description, image = "/Portada.png" } = Astro.props;
+
+// Determine OG Image
+let ogImage = new URL(image, Astro.url);
+if (
+  pathname.startsWith("/blog/") &&
+  pathname !== "/blog/" &&
+  !image.startsWith("http")
+) {
+  // If we are on a blog post (not index) and using default or local image
+  // We prefer the generated OG image.
+  // Note: Astro.url.pathname might have trailing slash.
+  const slug = pathname.replace(/^\/blog\//, "").replace(/\/$/, "");
+  if (slug) {
+    ogImage = new URL(`/og/${slug}.png`, Astro.url);
+  }
+}
 ---
 
 <!-- Global Metadata -->
@@ -39,11 +56,11 @@ const { title, description, image = "/Portada.png" } = Astro.props;
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={ogImage} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:image" content={ogImage} />

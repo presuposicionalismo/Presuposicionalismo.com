@@ -28,10 +28,11 @@ type Props = {
   };
 };
 
+import { SITE_DESCRIPTION } from "../../consts";
 const { page } = Astro.props;
 ---
 
-<MainLayout title="Blog">
+<MainLayout title="Blog" description={SITE_DESCRIPTION}>
   <section>
     <h1 class="warp">Blog</h1>
     <article class="center">
