@@ -12,7 +12,7 @@ const allBooks = (await getCollection("libros")).sort(
 const featuredBooks = allBooks.slice(0, 3);
 ---
 
-<section>
+<section class="center">
   <h2 class="warp">Libros Destacados</h2>
   <Grid>
     {
@@ -36,9 +36,9 @@ const featuredBooks = allBooks.slice(0, 3);
 
 <style>
   section {
-    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
+    max-width: 80%;
   }
 
   .warp {
@@ -50,37 +50,34 @@ const featuredBooks = allBooks.slice(0, 3);
   }
 
   .content {
+    background-color: var(--surface-1);
+    border-radius: var(--size-2);
+    bottom: var(--size-fluid-1);
+    height: max-content;
+    left: var(--size-fluid-1);
+    margin: var(--size-2);
+    opacity: 0;
+    padding: var(--size-5) var(--size-6) var(--size-5) var(--size-6);
     position: absolute;
     right: var(--size-fluid-1);
-    left: var(--size-fluid-1);
-    bottom: var(--size-fluid-1);
-    padding-top: var(--size-5);
-    padding-bottom: var(--size-5);
-    padding-left: var(--size-6);
-    padding-right: var(--size-6);
-    margin: var(--size-2);
-    border-radius: var(--size-2);
-    height: max-content;
-    background-color: var(--surface-1);
-    opacity: 0;
-    visibility: hidden;
     transform: translateY(100%);
     transition:
       opacity 0.5s,
       transform 0.5s,
       visibility 0s 0.5s;
+    visibility: hidden;
   }
 
   .card {
-    position: relative;
-    box-shadow: var(--shadow-2);
     background-color: var(--surface-2);
-    color: var(--text-2);
-    margin-inline: auto;
-    padding: var(--size-fluid-1);
     border: var(--border-size-1) solid var(--surface-2);
     border-radius: var(--radius-3);
+    box-shadow: var(--shadow-2);
+    color: var(--text-2);
+    margin-inline: auto;
     overflow: hidden;
+    padding: var(--size-fluid-1);
+    position: relative;
     transition:
       background-color 0.3s,
       box-shadow 0.3s,
@@ -88,20 +85,20 @@ const featuredBooks = allBooks.slice(0, 3);
   }
 
   .card:hover {
-    border-color: var(--surface-3);
     background-color: var(--surface-1);
+    border-color: var(--surface-3);
     box-shadow: var(--shadow-5);
   }
 
   .card:hover .content {
+    animation: var(--animation-slide-in-up);
     opacity: 1;
-    visibility: visible;
     transform: translateY(0);
     transition:
       opacity 0.5s,
       transform 0.5s,
       visibility 0s;
-    animation: var(--animation-slide-in-up);
+    visibility: visible;
   }
 
   h3 {

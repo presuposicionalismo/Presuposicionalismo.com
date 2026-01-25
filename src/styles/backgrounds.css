@@ -1,0 +1,12 @@
+@layer components {
+    .bg {
+        background-color: var(--surface-2);
+        background-image: repeating-linear-gradient(to right,
+                var(--brand),
+                var(--brand) 1px,
+                var(--surface-1) 1px,
+                var(--surface-1));
+        background-size: 20px 20px;
+        opacity: 0.8;
+    }
+}

@@ -14,6 +14,7 @@ const { title, coverBook, slug } = Astro.props;
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -21,16 +22,16 @@ const { title, coverBook, slug } = Astro.props;
   }
 
   .card-book {
-    display: block;
-    text-decoration: none;
-    color: inherit;
+    animation: fade-in linear;
+    animation-range: entry 25% cover 50%;
+    animation-timeline: view();
     border: 1px solid var(--surface-2);
     border-radius: var(--radius-2);
+    color: inherit;
+    display: block;
     overflow: hidden;
+    text-decoration: none;
     transition: transform 0.2s ease-in-out;
-    animation: fade-in linear;
-    animation-timeline: view();
-    animation-range: entry 25% cover 50%;
   }
 
   .card-book:hover {
@@ -38,12 +39,12 @@ const { title, coverBook, slug } = Astro.props;
   }
 
   .card-book h3 {
-    padding: var(--size-2);
-    font-size: var(--font-size-s);
-    text-align: center;
     background: var(--surface-1);
+    font-size: var(--font-size-s);
     margin-top: -5px; /* Adjust to align with the image bottom */
+    padding: var(--size-2);
     position: relative;
+    text-align: center;
     z-index: 1;
   }
 </style>

@@ -1,6 +1,7 @@
 ---
 import ArrowLeft from "./ArrowLeft.astro";
 import ArrowRight from "./ArrowRight.astro";
+import ButtonReset from "./ButtonReset.astro";
 
 const { currentPage, totalPages, prevUrl, nextUrl } = Astro.props;
 
@@ -77,7 +78,8 @@ const pages = getPaginationWithEllipsis(currentPage, totalPages);
   <div class="pagination-container">
     {
       prevUrl && (
-        <a
+        <ButtonReset
+          as="a"
           href={prevUrl}
           class="pagination-link prev ad-shadow"
           aria-label="Página anterior"
@@ -86,7 +88,7 @@ const pages = getPaginationWithEllipsis(currentPage, totalPages);
             <ArrowLeft />
           </span>
           Anterior
-        </a>
+        </ButtonReset>
       )
     }
 
@@ -113,7 +115,8 @@ const pages = getPaginationWithEllipsis(currentPage, totalPages);
 
     {
       nextUrl && (
-        <a
+        <ButtonReset
+          as="a"
           href={nextUrl}
           class="pagination-link next rad-shadow"
           aria-label="Página siguiente"
@@ -122,7 +125,7 @@ const pages = getPaginationWithEllipsis(currentPage, totalPages);
           <span class="pl icon-size-fluid">
             <ArrowRight />
           </span>
-        </a>
+        </ButtonReset>
       )
     }
   </div>
@@ -130,61 +133,64 @@ const pages = getPaginationWithEllipsis(currentPage, totalPages);
 
 <style>
   .pagination {
-    margin-top: 2rem;
     margin-bottom: 2rem;
+    margin-top: 2rem;
   }
+
   .pagination-container {
-    display: flex;
-    justify-content: center;
     align-items: center;
+    display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-  }
-  .pagination-link {
-    display: inline-flex;
-    align-items: center;
     justify-content: center;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-3);
-    text-decoration: none;
-    color: var(--link);
+  }
+
+  .pagination-link {
     background-color: var(--surface-2);
+    border-radius: var(--radius-3);
+    color: var(--link);
+    padding: 0.5rem 1rem;
     transition:
       background-color 0.3s ease,
       color 0.3s ease;
   }
+
   .pagination-link:hover,
   .pagination-link:focus {
     background-color: var(--surface-3);
     color: var(--text-1);
   }
+
   .pagination-link.active {
     background-color: var(--link);
     color: var(--surface-1);
     font-weight: var(--font-weight-6);
   }
+
   .pagination-numbers {
+    align-items: center;
     display: flex;
     gap: 0.25rem;
-    align-items: center;
   }
+
   .pagination-ellipsis {
-    padding: 0.5rem 0.25rem;
     color: var(--text-2);
+    padding: 0.5rem 0.25rem;
     user-select: none;
   }
+
   .pagination-link.prev,
   .pagination-link.next {
     font-weight: var(--font-weight-5);
   }
+
   .icon-size-fluid {
-    font-size: var(
-      --font-size-lg
-    ); /* O el tamaño fluido que prefieras, ej. var(--font-size-md) */
-    display: flex; /* Asegura que el SVG herede el font-size correctamente */
     align-items: center;
+    display: flex; /* Asegura que el SVG herede el font-size correctamente */
+    font-size: 1em; /* ButtonReset ya impone 1.2em, aqui lo heredamos o ajustamos si es necesario, pero 1em es relativo al padre */
   }
-  @media (max-width: 600px) {
+
+  @media (width <= 600px) {
     .pagination-numbers {
       display: none;
     }

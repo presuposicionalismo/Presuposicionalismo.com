@@ -1,0 +1,7 @@
+@layer reset {
+  @import "open-props/normalize";
+
+  * {
+    box-sizing: border-box;
+  }
+}

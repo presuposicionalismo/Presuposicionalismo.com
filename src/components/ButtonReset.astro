@@ -1,0 +1,22 @@
+---
+const { as: Element = "button", class: className, ...props } = Astro.props;
+---
+
+<Element class:list={["button-reset", className]} {...props}>
+    <slot />
+</Element>
+
+<style>
+    .button-reset {
+        align-items: center;
+        appearance: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        font-size: 1.2em;
+        justify-content: center;
+        padding: 0;
+        text-decoration: none;
+    }
+</style>

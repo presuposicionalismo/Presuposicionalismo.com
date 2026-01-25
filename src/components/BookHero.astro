@@ -22,44 +22,46 @@ import CoverBook from "./CoverBook.astro";
 
 <style>
   h1 {
-    max-inline-size: var(--size-header-3);
-    font-size: var(--font-size-xl);
-    display: inline-flex;
     align-items: center;
+    display: inline-flex;
+    font-size: var(--font-size-xl);
     gap: var(--size-3);
-    text-wrap: balance;
+    max-inline-size: var(--size-header-3);
     padding-bottom: var(--size-fluid-1);
+    text-wrap: balance;
   }
+
   .card {
+    border-radius: 8px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr; /* Cambiar a una sola columna en pantallas pequeñas */
     margin-left: auto;
     margin-right: auto;
     max-width: 80vw;
-    padding-top: var(--size-fluid-3);
     padding-bottom: var(--size-fluid-3);
-    display: grid;
-    grid-template-columns: 1fr; /* Cambiar a una sola columna en pantallas pequeñas */
+    padding-top: var(--size-fluid-3);
     place-content: center;
-    grid-gap: 20px;
-    border-radius: 8px;
   }
 
   .card__image {
+    display: grid;
+    gap: 20px;
+    grid-column: 1;
     margin-left: auto;
     margin-right: auto;
-    display: grid;
-    grid-column: 1;
-    grid-gap: 20px;
     width: 65vw;
+
     img {
-      max-width: 100%; /* Asegurarse de que la imagen se ajuste al ancho de la columna */
-      height: auto; /* Evitar que la imagen se estire */
-      object-fit: cover;
-      border-radius: var(--radius-3);
       aspect-ratio: 1 / 1.414;
+      border-radius: var(--radius-3);
+      height: auto; /* Evitar que la imagen se estire */
+      max-width: 100%; /* Asegurarse de que la imagen se ajuste al ancho de la columna */
+      object-fit: cover;
     }
   }
 
-  @media (min-width: 601px) {
+  @media (width >= 601px) {
     /* Restaurar la cuadrícula de dos columnas en pantallas más grandes */
     .card {
       grid-template-columns: 5fr 8fr;
@@ -67,8 +69,8 @@ import CoverBook from "./CoverBook.astro";
 
     .card__image {
       display: grid;
+      gap: 20px;
       grid-column: 1;
-      grid-gap: 20px;
       width: 25vw;
     }
   }

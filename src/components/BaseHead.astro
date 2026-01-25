@@ -1,7 +1,7 @@
 ---
-// Import the global.css file here so that it is included on
+// Import the index.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import "../styles/global.css";
+import "../styles/index.css";
 
 interface Props {
   title: string;
@@ -23,10 +23,8 @@ const { title, description, image = "/Portada.png" } = Astro.props;
 <link rel="icon" type="image/svg+xml" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
 
-
 <!-- <ViewTransitions > -->
 <ClientRouter />
-
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

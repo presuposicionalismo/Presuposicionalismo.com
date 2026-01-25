@@ -1,1 +1,20 @@
-@layer reset, base, tokens, recipes, utilities;
+/* CSS Layer Definition */
+@layer reset, base, tokens, components, utilities;
+
+/* External Dependencies */
+@import "open-props/media";
+/* @import "open-props/buttons" layer(components); */
+@import "@fontsource-variable/urbanist";
+
+/* Layer Imports */
+@import "./layers/reset.css";
+@import "./layers/tokens.css";
+@import "./layers/themes.css";
+@import "./layers/base.css";
+@import "./layers/utilities.css";
+@import "./layers/components.css";
+
+/* Feature Styles */
+@import "./typography.css";
+@import "./syntax.css";
+/* @import "./backgrounds.css"; */

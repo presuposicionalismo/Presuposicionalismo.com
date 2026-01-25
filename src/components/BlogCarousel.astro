@@ -46,22 +46,22 @@ const posts = (await getCollection("blog"))
 
 <style>
   .blog-carousel {
-    padding-top: var(--size-fluid-3);
     padding-bottom: var(--size-fluid-3);
+    padding-top: var(--size-fluid-3);
   }
 
   .blog-carousel h2 {
-    text-align: center;
     margin-bottom: var(--size-fluid-3);
-    max-width: var(--size-header-3); /* Añadir un ancho máximo */
     margin-left: auto; /* Centrar el bloque */
     margin-right: auto; /* Centrar el bloque */
+    max-width: var(--size-header-3); /* Añadir un ancho máximo */
+    text-align: center;
   }
 
   .carousel-wrapper {
-    position: relative;
-    max-width: 900px;
     margin: 0 auto;
+    max-width: 900px;
+    position: relative;
   }
 
   .carousel-viewport {
@@ -74,27 +74,38 @@ const posts = (await getCollection("blog"))
   }
 
   .carousel-item {
-    flex: 0 0 100%;
     box-sizing: border-box;
+    flex: 0 0 100%;
   }
 
   .carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: hsl(var(--brand-hue) 10% 50% / 15%);
-    border: 1px solid var(--surface-3);
-    color: var(--text-1);
-    font-size: var(--font-size-lg); /* Usar tamaño fluido para el icono */
-    cursor: pointer;
-    border-radius: 40%;
-    z-index: 10;
+    /* Tamaño del botón */
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+
+    /* Centrado del contenido */
     display: flex;
     align-items: center;
     justify-content: center;
+
+    /* Estilo visual */
+    background-color: hsl(var(--brand-hue) 10% 50% / 15%);
+    border: 1px solid var(--surface-3);
+    border-radius: 40%;
+    color: var(--text-1);
+    font-size: var(--font-size-lg);
+
+    /* Posicionamiento */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    /* Interacción */
+    cursor: pointer;
     transition: background-color 0.2s ease;
   }
-
   .carousel-button:hover {
     background-color: var(--surface-3);
   }
@@ -107,31 +118,33 @@ const posts = (await getCollection("blog"))
     right: -20px;
   }
 
-  @media (max-width: 940px) {
+  @media (width <= 940px) {
     .carousel-container {
       display: flex;
-      width: 90vw;
       transition: transform 0.5s ease-in-out;
+      width: 90vw;
     }
+
     .carousel-button.prev {
       left: 5px;
     }
+
     .carousel-button.next {
       right: 5px;
     }
   }
 
   .more-link {
-    text-align: center;
     margin-top: var(--size-fluid-3);
+    text-align: center;
   }
 
   .more-link a {
-    color: var(--text-1);
-    text-decoration: none;
-    font-weight: 500;
     border-bottom: 2px solid var(--brand);
+    color: var(--text-1);
+    font-weight: 500;
     padding-bottom: var(--size-1);
+    text-decoration: none;
     transition:
       color 0.2s ease-in-out,
       border-color 0.2s ease-in-out;

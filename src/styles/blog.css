@@ -1,17 +1,14 @@
 article {
-  margin-top: var(--size-4);
-  margin-bottom: var(--size-1);
-  margin-left: auto;
-  margin-right: auto;
+  margin: var(--size-4) auto var(--size-1) auto;
   max-width: 90vw;
 }
 
 :where(h2, h3, h4, h5, h6) {
-  margin-top: var(--size-3);
-  margin-bottom: var(--size-2);
-  min-width: 100%;
   font-weight: var(--font-weight-6);
   line-height: var(--font-lineheight-1);
+  margin-bottom: var(--size-2);
+  margin-top: var(--size-3);
+  min-width: 100%;
 }
 
 :where(h1) {
@@ -46,12 +43,12 @@ article {
 }
 
 p {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-4);
   margin-left: auto;
   margin-right: auto;
   max-width: 100%;
   padding-bottom: var(--size-fluid-1);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-4);
   text-indent: 1rem;
 }
 
@@ -70,20 +67,20 @@ img {
 
 hr {
   margin: var(--size-2);
-  width: 30%;
   max-width: 40vw;
+  width: 30%;
 }
 
 /* ol */
 
 ol {
-  list-style-type: decimal;
+  background-color: var(--surface-2);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-4);
-  padding-block: var(--size-fluid-2);
-  padding: var(--size-fluid-1);
+  list-style-type: decimal;
   margin: var(--size-fluid-1);
-  background-color: var(--surface-2);
+  padding: var(--size-fluid-1);
+  padding-block: var(--size-fluid-2);
 }
 
 ol li p {
@@ -101,17 +98,17 @@ ol em {
 ol li {
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--size-fluid-2);
   max-width: 95%;
+  padding-left: var(--size-fluid-2);
 }
 
 /* Footnotes */
 
 section.footnotes ol {
-  list-style-type: decimal;
+  background-color: var(--surface-1);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-4);
-  background-color: var(--surface-1);
+  list-style-type: decimal;
 }
 
 section.footnotes ol em {
@@ -119,16 +116,17 @@ section.footnotes ol em {
   font-weight: var(--font-weight-4);
   padding-block: var(--size-fluid-1);
 }
+
 section.footnotes ol li {
-  padding-left: var(--size-fluid-2);
   max-width: 90%;
+  padding-left: var(--size-fluid-2);
 }
 
 section.footnotes ol li p {
-  margin-left: auto;
-  padding-bottom: var(--size-fluid-1);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-4);
+  margin-left: auto;
+  padding-bottom: var(--size-fluid-1);
   text-indent: 0;
 }
 
@@ -140,15 +138,15 @@ section.footnotes ol li p {
   --_bg: var(--surface-2);
   --_ink: var(--text-1);
 
-  padding: var(--size-fluid-1);
-  margin: var(--size-fluid-0);
-  color: var(--_ink);
   border-color: var(--_accent-2);
+  color: var(--_ink);
   display: block;
-  margin-top: var(--size-fluid-1);
   font-size: var(--font-size-base);
-  font-weight: var(--font-weight-6);
   font-style: normal;
+  font-weight: var(--font-weight-6);
+  margin: var(--size-fluid-0);
+  margin-top: var(--size-fluid-1);
+  padding: var(--size-fluid-1);
 }
 
 cite {
@@ -157,14 +155,14 @@ cite {
   --_bg: var(--surface-2);
   --_ink: var(--text-1);
 
-  padding: var(--size-fluid-1);
-  margin: var(--size-fluid-0);
-  color: var(--_ink);
   border-color: var(--_accent-2);
+  color: var(--_ink);
   display: block;
-  margin-top: var(--size-fluid-1);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-6);
+  margin: var(--size-fluid-0);
+  margin-top: var(--size-fluid-1);
+  padding: var(--size-fluid-1);
 }
 
 /* Blockquote */
@@ -175,20 +173,21 @@ blockquote {
   --_bg: var(--surface-2);
   --_ink: var(--text-1);
 
-  padding: var(--size-fluid-1);
+  background-color: var(--_bg);
+  border-color: var(--_accent-2);
+  color: var(--_ink);
+  justify-self: flex-start;
   margin: var(--size-fluid-1);
   margin-inline: auto;
   max-width: 90%;
-  color: var(--_ink);
-  border-color: var(--_accent-2);
-  background-color: var(--_bg);
-  justify-self: flex-start;
+  padding: var(--size-fluid-1);
 }
 
 blockquote p {
+  font-size: var(--font-size-base);
   margin: var(--size-fluid-1);
   text-align: left;
-  font-size: var(--font-size-base);
+
   /* text-wrap: pretty; */
 }
 
@@ -198,11 +197,11 @@ blockquote cite {
   --_bg: var(--surface-2);
   --_ink: var(--text-1);
 
-  padding: var(--size-fluid-1);
-  margin: var(--size-fluid-0);
-  color: var(--_ink);
   border-color: var(--_accent-2);
+  color: var(--_ink);
   display: block;
-  margin-top: var(--size-fluid-1);
   font-size: var(--font-size-sm);
+  margin: var(--size-fluid-0);
+  margin-top: var(--size-fluid-1);
+  padding: var(--size-fluid-1);
 }

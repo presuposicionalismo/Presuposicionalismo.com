@@ -8,7 +8,9 @@
     "check": "astro check",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint:css": "stylelint \"src/**/*.{css,astro}\"",
+    "lint:css:fix": "stylelint \"src/**/*.{css,astro}\" --fix"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -44,8 +46,12 @@
   "devDependencies": {
     "@types/github-slugger": "^2.0.0",
     "@types/lodash.kebabcase": "^4.1.9",
+    "postcss-html": "^1.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "stylelint": "^17.0.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-order": "^7.0.1"
   }
 }

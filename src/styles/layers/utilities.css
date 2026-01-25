@@ -1,0 +1,104 @@
+@layer utilities {
+    /* Padding utilities */
+    .pl {
+        padding-left: var(--size-fluid-1);
+    }
+
+    .pr {
+        padding-right: var(--size-fluid-1);
+    }
+
+    .px {
+        padding-left: var(--size-fluid-2);
+        padding-right: var(--size-fluid-2);
+    }
+
+    .px-2 {
+        padding-left: var(--size-fluid-4);
+        padding-right: var(--size-fluid-4);
+    }
+
+    .py {
+        padding-bottom: var(--size-fluid-2);
+        padding-top: var(--size-fluid-2);
+    }
+
+    .py-2 {
+        padding-bottom: var(--size-fluid-4);
+        padding-top: var(--size-fluid-4);
+    }
+
+    /* Margin utilities */
+    .mx {
+        margin-left: var(--size-fluid-2);
+        margin-right: var(--size-fluid-2);
+    }
+
+    .mx-2 {
+        margin-left: var(--size-fluid-4);
+        margin-right: var(--size-fluid-4);
+    }
+
+    .mx-3 {
+        margin-left: var(--size-fluid-6);
+        margin-right: var(--size-fluid-6);
+    }
+
+    .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .my {
+        margin-bottom: var(--size-fluid-2);
+        margin-top: var(--size-fluid-2);
+    }
+
+    .my-2 {
+        margin-bottom: var(--size-fluid-4);
+        margin-top: var(--size-fluid-4);
+    }
+
+    .my-3 {
+        margin-bottom: var(--size-fluid-6);
+        margin-top: var(--size-fluid-6);
+    }
+
+    .my-auto {
+        margin-bottom: auto;
+        margin-top: auto;
+    }
+
+    /* Text utilities */
+    .text-center {
+        text-align: center;
+    }
+
+    /* Layout utilities */
+    .warp-fluid {
+        display: flex;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding-block: var(--size-fluid-3);
+    }
+
+    .warp {
+        display: flex;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .container {
+        display: grid;
+        place-items: center;
+    }
+
+    /* Responsive utilities */
+    @media (width >= 768px) {
+        .md-hidden {
+            display: none;
+        }
+    }
+}

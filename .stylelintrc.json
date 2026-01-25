@@ -1,0 +1,55 @@
+{
+    "extends": [
+        "stylelint-config-standard"
+    ],
+    "plugins": [
+        "stylelint-order"
+    ],
+    "dependencies": {
+        "postcss-html": "^1.6.0"
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.astro"
+            ],
+            "customSyntax": "postcss-html"
+        }
+    ],
+    "rules": {
+        "at-rule-no-unknown": [
+            true,
+            {
+                "ignoreAtRules": [
+                    "tailwind",
+                    "apply",
+                    "variants",
+                    "responsive",
+                    "screen",
+                    "layer"
+                ]
+            }
+        ],
+        "custom-property-pattern": null,
+        "import-notation": "string",
+        "selector-class-pattern": null,
+        "no-descending-specificity": null,
+        "property-no-unknown": [
+            true,
+            {
+                "ignoreProperties": [
+                    "content-visibility"
+                ]
+            }
+        ],
+        "order/properties-alphabetical-order": true,
+        "selector-pseudo-class-no-unknown": [
+            true,
+            {
+                "ignorePseudoClasses": [
+                    "global"
+                ]
+            }
+        ]
+    }
+}

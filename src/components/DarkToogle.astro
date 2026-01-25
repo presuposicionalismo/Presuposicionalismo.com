@@ -1,4 +1,8 @@
-<button
+---
+import ButtonReset from "./ButtonReset.astro";
+---
+
+<ButtonReset
   id="theme-btn"
   class="theme-toggle"
   title="Toggles light & dark"
@@ -23,17 +27,17 @@
       <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
     </g>
   </svg>
-</button>
+</ButtonReset>
 
 <style is:global>
   .theme-toggle {
-    background: none;
+    border-radius: var(--radius-2);
+    min-height: 24px;
+    min-width: 24px;
+    padding: 6px;
+
     --nav-icon: var(--text-2);
     --nav-icon-hover: var(--brand);
-    border-radius: var(--radius-2);
-    min-width: 24px;
-    min-height: 24px;
-    padding: 6px;
   }
 
   #moon,
@@ -48,12 +52,13 @@
   }
 
   #sun {
-    transition: transform 0.5s var(--ease-4);
     transform-origin: center center;
+    transition: transform 0.5s var(--ease-4);
   }
 
   #sun-beams {
     --_opacity-dur: 0.15s;
+
     stroke: var(--nav-icon);
     stroke-width: 2px;
     transform-origin: center center;
@@ -77,6 +82,7 @@
 
     & #sun-beams {
       transform: rotateZ(0.25turn);
+
       --_opacity-dur: 0.5s;
     }
   }
@@ -93,6 +99,7 @@
 </style>
 
 <script is:inline>
+  console.log("DarkToggle init");
   const primaryColorScheme = ""; // "light" | "dark"
 
   // Get theme data from local storage
@@ -146,23 +153,17 @@
   // set early so no page flashes / CSS is made aware
   reflectPreference();
 
-  window.onload = () => {
-    function setThemeFeature() {
-      // set on load so screen readers can get the latest value on the button
-      reflectPreference();
+  // Setup on page load (initial + view transitions)
+  document.addEventListener("astro:page-load", () => {
+    // set on load so screen readers can get the latest value on the button
+    reflectPreference();
 
-      // now this script can find and listen for clicks on the control
-      document.querySelector("#theme-btn")?.addEventListener("click", () => {
-        themeValue = themeValue === "light" ? "dark" : "light";
-        setPreference();
-      });
-    }
-
-    setThemeFeature();
-
-    // Runs on view transitions navigation
-    document.addEventListener("astro:after-swap", setThemeFeature);
-  };
+    // now this script can find and listen for clicks on the control
+    document.querySelector("#theme-btn")?.addEventListener("click", () => {
+      themeValue = themeValue === "light" ? "dark" : "light";
+      setPreference();
+    });
+  });
 
   // sync with system changes
   window
