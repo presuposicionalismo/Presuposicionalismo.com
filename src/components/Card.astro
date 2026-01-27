@@ -9,7 +9,7 @@ const { title, description, pubDate, heroImage, slug } = Astro.props;
 <div class="warp">
   <div class="card">
     <div class="card__image container">
-      <CoverBlog imagePath={String(heroImage)} altText={title} />
+      {heroImage && <CoverBlog imagePath={String(heroImage)} altText={title} />}
     </div>
 
     <div>

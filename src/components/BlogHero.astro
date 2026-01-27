@@ -8,7 +8,7 @@ const { title, description, pubDate, heroImage } = Astro.props;
 <section class="container">
   <article class="card">
     <div class="card__image rad-shadow">
-      <CoverBlog imagePath={heroImage} altText={title} />
+      {heroImage && <CoverBlog imagePath={heroImage} altText={title} />}
     </div>
 
     <div>

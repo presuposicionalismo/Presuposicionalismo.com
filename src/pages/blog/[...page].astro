@@ -40,10 +40,12 @@ const { page } = Astro.props;
           <div class="warp">
             <div class="card">
               <div class="card__image container">
-                <CoverBlog
-                  imagePath={String(post.data.heroImage)}
-                  altText={post.data.title}
-                />
+                {post.data.heroImage && (
+                  <CoverBlog
+                    imagePath={String(post.data.heroImage)}
+                    altText={post.data.title}
+                  />
+                )}
               </div>
 
               <div>
