@@ -13,7 +13,8 @@ export async function GET({ params: _params, props }: { params: any; props: any 
     const { title, description } = props.data;
 
     try {
-        const imageBuffer = await generateOgImage(title, description);
+        const { author, coverBook } = props.data;
+        const imageBuffer = await generateOgImage(title, description, "book", { author, coverBook });
 
         return new Response(imageBuffer as any, {
             headers: {
