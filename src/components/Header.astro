@@ -6,7 +6,7 @@ import Logo from "./Logo.astro";
 ---
 
 <header>
-  <a class="logo" aria-label="logo" href="/"><Logo /></a>
+  <a aria-label="logo" href="/"><Logo /></a>
 
   <nav>
     <NavMenu />
@@ -14,25 +14,3 @@ import Logo from "./Logo.astro";
     <Dropdown />
   </nav>
 </header>
-
-<style>
-  .logo {
-    width: 150px;
-    min-width: 100px;
-  }
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--size-fluid-1);
-    padding-inline: 5vw;
-    background-color: var(--surface-2);
-    box-shadow: var(--shadow-3);
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-  }
-</style>
