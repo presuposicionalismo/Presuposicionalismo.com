@@ -5,7 +5,6 @@ import BookHero from "@components/BookHero.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
-import "../styles/blog.css";
 
 // SpeedInsights of vercel
 import SpeedInsights from "@vercel/speed-insights/astro";
@@ -38,40 +37,11 @@ const ogImage = slug ? `/og/libros/${slug}.png` : "/Portada.png";
         <slot />
         <h2>Descargar</h2>
         <p>Descarga externa via Google Drive</p>
-        <a class="btn" href={downloadBook} target="_blank"> Descargar</a>
+        <a href={downloadBook} target="_blank"> Descargar</a>
       </article>
     </main>
     <Footer />
-    <style>
-      h2 {
-        padding-block: var(--size-fluid-3);
-      }
-      a {
-        margin: var(--size-fluid-1);
-        padding-left: var(--size-fluid-3);
-        padding-right: var(--size-fluid-3);
-        padding-block: var(--size-2);
-        border-radius: var(--radius-2);
-        border-color: var(--text-2);
-        border: var(--border-size-4);
-        background-color: var(--surface-3);
-        color: var(--text-1);
-        transition:
-          transform 1s var(--ease-spring-5),
-          box-shadow 1s var(--ease-spring-5),
-          outline-offset 145ms var(--ease-4);
-        box-shadow: var(--shadow-4);
 
-        &:hover {
-          background-color: var(--surface-2);
-        }
-
-        &:active {
-          transform: scale(0.9);
-          box-shadow: var(--shadow-1);
-        }
-      }
-    </style>
     <SpeedInsights />
   </body>
 </html>
