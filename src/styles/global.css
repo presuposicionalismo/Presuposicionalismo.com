@@ -1,12 +1,33 @@
-@import "tailwindcss";
 @import "@fontsource-variable/urbanist";
+@import "tailwindcss";
 
 @theme {
-  /* Keep fonts fluid if desired, or remove if user wants PURE 0 */
-  --font-family-sans: "Urbanist Variable", sans-serif;
+  --color-primary: #1a1a1a;
+  --color-accent: #4a5568;
+  --color-secondary: #666666;
+  /* Staying for compatibility */
+  --color-background-light: #fcfcfc;
+  --color-background-dark: #121212;
+  --color-paper: #ffffff;
+  --color-paper-dark: #1a1a1a;
+  --color-border-light: #e5e5e5;
+
+  --font-display: "Urbanist Variable", sans-serif;
+  --font-sans: "Urbanist Variable", sans-serif;
+
+  --radius-lg: 0.75rem;
+  /* 12px per design 'lg': '12px' */
+  --radius-xl: 0.5rem;
 }
 
-/* Minimal base styles */
+@layer utilities {
+  .serif-text {
+    font-family: var(--font-display);
+  }
+}
+
+/* Base styles for the new theme */
 body {
-  font-family: "Urbanist Variable", sans-serif;
+  font-family: var(--font-sans);
+  @apply bg-background-light text-slate-800 antialiased selection:bg-primary selection:text-white dark:bg-background-dark dark:text-slate-200 transition-colors duration-300;
 }

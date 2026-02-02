@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
-import BlogHero from "../components/BlogHero.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
 import "../styles/global.css";
 
 // SpeedInsights of vercel
@@ -11,7 +11,7 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 
 type Props = CollectionEntry<"blog">["data"] & { slug?: string };
 
-const { title, description, pubDate, heroImage, slug } = Astro.props;
+const { title, description, pubDate, heroImage, slug, tags } = Astro.props;
 
 // Determine OG Image
 const ogImage = slug ? `/og/blog/${slug}.png` : "/Portada.png";
@@ -22,20 +22,181 @@ const ogImage = slug ? `/og/blog/${slug}.png` : "/Portada.png";
     <BaseHead title={title} description={description} image={ogImage} />
   </head>
 
-  <body>
+  <body class="bg-background-light dark:bg-background-dark">
+    <!-- Scroll Progress Bar -->
+    <div
+      class="fixed top-0 left-0 h-1 bg-primary dark:bg-white z-50"
+      id="progress-bar"
+    >
+    </div>
+
     <Header />
-    <main>
-      <BlogHero
-        title={title}
-        heroImage={heroImage}
-        description={description}
-        pubDate={pubDate}
-      />
-      <article>
-        <slot />
+
+    <!-- Main Content Area -->
+    <main class="flex flex-col items-center w-full pt-12 pb-24">
+      <!-- Article Container -->
+      <article class="w-full max-w-[800px] px-5 md:px-0 flex flex-col gap-10">
+        <!-- Article Header -->
+        <header class="flex flex-col gap-6">
+          <!-- Category Chip -->
+          {
+            tags && tags.length > 0 && (
+              <div class="flex">
+                <span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-bold tracking-widest text-primary dark:text-white bg-primary/10 dark:bg-white/10 uppercase">
+                  {tags[0]}
+                </span>
+              </div>
+            )
+          }
+
+          <!-- Headline -->
+          <h1
+            class="text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] text-primary dark:text-white tracking-tight font-display"
+          >
+            {title}
+          </h1>
+
+          <!-- Author Metadata -->
+          <div
+            class="flex items-center justify-between border-t border-b border-gray-100 dark:border-gray-800 py-4 mt-2"
+          >
+            <div class="flex items-center gap-4">
+              <div class="flex flex-col">
+                <span
+                  class="text-base font-bold text-primary dark:text-white leading-tight"
+                  >Presuposicionalismo</span
+                >
+                <span class="text-sm text-slate-500 dark:text-slate-400">
+                  <FormattedDate date={pubDate} />
+                </span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Featured Image -->
+        {
+          heroImage && (
+            <figure class="w-full">
+              <div class="w-full aspect-[21/9] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden relative">
+                <img
+                  src={heroImage}
+                  alt={title}
+                  class="w-full h-full object-cover"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
+            </figure>
+          )
+        }
+
+        <!-- Body Layout Wrapper -->
+        <div class="relative w-full">
+          <!-- Typography Content -->
+          <div
+            class="prose prose-lg prose-slate dark:prose-invert font-sans max-w-none
+                   prose-headings:font-display prose-headings:font-bold prose-headings:text-primary dark:prose-headings:text-white
+                   prose-p:text-slate-700 dark:prose-p:text-slate-300 prose-p:leading-relaxed
+                   prose-a:text-primary dark:prose-a:text-white prose-a:no-underline hover:prose-a:underline
+                   prose-strong:text-primary dark:prose-strong:text-white prose-strong:font-semibold
+                   prose-blockquote:border-l-4 prose-blockquote:border-primary dark:prose-blockquote:border-white
+                   prose-blockquote:bg-slate-50 dark:prose-blockquote:bg-slate-900 prose-blockquote:py-4 prose-blockquote:px-6
+                   prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:font-display
+                   prose-code:text-primary dark:prose-code:text-white prose-code:bg-slate-100 dark:prose-code:bg-slate-800
+                   prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-mono prose-code:text-sm
+                   prose-pre:bg-slate-900 dark:prose-pre:bg-slate-950 prose-pre:border prose-pre:border-slate-700
+                   prose-img:rounded-lg prose-img:shadow-lg
+                   prose-hr:border-slate-200 dark:prose-hr:border-slate-800"
+          >
+            <slot />
+          </div>
+        </div>
+
+        <!-- Footer Section of Article -->
+        <footer class="mt-16 flex flex-col gap-16">
+          <!-- Divider -->
+          <div class="w-full h-px bg-gray-200 dark:bg-gray-800"></div>
+
+          <!-- Tags Section -->
+          {
+            tags && tags.length > 0 && (
+              <div class="flex flex-wrap gap-2">
+                <span class="text-sm font-medium text-slate-600 dark:text-slate-400 mr-2">
+                  Etiquetas:
+                </span>
+                {tags.map((tag) => (
+                  <a
+                    href={`/tags/${tag.toLowerCase()}`}
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-primary/10 dark:hover:bg-white/10 hover:text-primary dark:hover:text-white transition-colors"
+                  >
+                    #{tag}
+                  </a>
+                ))}
+              </div>
+            )
+          }
+
+          <!-- Share Section -->
+          <div
+            class="flex items-center justify-between p-6 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800"
+          >
+            <div class="flex flex-col gap-1">
+              <span
+                class="text-sm font-bold text-primary dark:text-white uppercase tracking-wider"
+                >Compartir artículo</span
+              >
+              <span class="text-xs text-slate-500 dark:text-slate-400"
+                >Ayúdanos a difundir el contenido</span
+              >
+            </div>
+            <div class="flex gap-3">
+              <button
+                class="p-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-primary dark:hover:border-white hover:text-primary dark:hover:text-white transition-colors"
+                aria-label="Compartir en Twitter"
+              >
+                <span class="material-icons-outlined text-[20px]">share</span>
+              </button>
+              <button
+                class="p-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-primary dark:hover:border-white hover:text-primary dark:hover:text-white transition-colors"
+                aria-label="Copiar enlace"
+              >
+                <span class="material-icons-outlined text-[20px]">link</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Back to Blog Link -->
+          <div class="text-center">
+            <a
+              href="/blog"
+              class="inline-flex items-center gap-2 text-sm font-medium text-primary dark:text-white hover:underline"
+            >
+              <span class="material-icons-outlined text-[18px]">arrow_back</span
+              >
+              Volver al blog
+            </a>
+          </div>
+        </footer>
       </article>
     </main>
+
     <Footer />
     <SpeedInsights />
+
+    <!-- Scroll Progress Script -->
+    <script is:inline>
+      window.addEventListener("scroll", function () {
+        let winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        let height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        const progressBar = document.getElementById("progress-bar");
+        if (progressBar) {
+          progressBar.style.width = scrolled + "%";
+        }
+      });
+    </script>
   </body>
 </html>

@@ -1,11 +1,13 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
+import { slugifyStr } from "@utils/slugify";
+import postFilter from "@utils/postFilter";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("blog", postFilter);
   return posts.map((post) => ({
-    params: { slug: post.id },
+    params: { slug: slugifyStr(post.data.title) },
     props: post,
   }));
 }

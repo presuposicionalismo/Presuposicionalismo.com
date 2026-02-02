@@ -1,16 +1,52 @@
 ---
-import NavMenu from "./NavMenu.astro";
-
-import Dropdown from "./Dropdown.astro";
-import Logo from "./Logo.astro";
+import HeaderLink from "./HeaderLink.astro";
+import DarkToogle from "./DarkToogle.astro";
 ---
 
-<header>
-  <a aria-label="logo" href="/"><Logo /></a>
-
-  <nav>
-    <NavMenu />
-
-    <Dropdown />
-  </nav>
+<header
+  class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-border-light dark:border-gray-800 transition-colors duration-300"
+>
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <a class="flex items-center gap-2 group" href="/">
+        <span
+          class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform duration-300"
+          >menu_book</span
+        >
+        <h2
+          class="text-base md:text-lg font-bold font-display uppercase tracking-ultra-wide text-primary dark:text-white"
+        >
+          Presuposicionalismo
+        </h2>
+      </a>
+    </div>
+    <div class="hidden md:flex flex-1 justify-end items-center gap-8">
+      <nav class="flex items-center gap-8">
+        <HeaderLink
+          href="/"
+          class="text-sm font-medium hover:text-primary dark:hover:text-white transition-colors pb-1"
+          >Inicio</HeaderLink
+        >
+        <HeaderLink
+          href="/blog"
+          class="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors pb-1"
+          >Blog</HeaderLink
+        >
+        <HeaderLink
+          href="/libros"
+          class="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors pb-1"
+          >Libros</HeaderLink
+        >
+        <DarkToogle />
+      </nav>
+      <!-- <button
+        class="px-6 py-2.5 bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors border border-transparent"
+      >
+        Donar
+      </button> -->
+    </div>
+    <button class="md:hidden p-2 text-primary dark:text-white">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
 </header>

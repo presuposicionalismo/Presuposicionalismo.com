@@ -1,16 +1,41 @@
 ---
-import DarkToogle from "./DarkToogle.astro";
-import Logo from "./Logo.astro";
-import SocialFooter from "./SocialFooter.astro";
+const today = new Date();
 ---
 
-<footer>
-  <a aria-label="logo" href="/"><Logo /></a>
-
-  <nav>
-    <!-- <NavMenu />-->
-    <SocialFooter />
-
-    <DarkToogle />
-  </nav>
+<footer
+  class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-16 mt-20"
+>
+  <div
+    class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8"
+  >
+    <div class="flex flex-col items-center md:items-start gap-4">
+      <span
+        class="text-xl font-bold tracking-[0.2em] text-primary dark:text-white uppercase"
+        >Presuposicionalismo</span
+      >
+      <p class="text-sm text-slate-500 dark:text-slate-400">
+        © {today.getFullYear()} Soli Deo Gloria. Todos los derechos reservados.
+      </p>
+    </div>
+    <div
+      class="flex gap-8 text-sm font-medium text-slate-600 dark:text-slate-400"
+    >
+      <a
+        class="hover:text-primary dark:hover:text-white transition-colors"
+        href="#">Instagram</a
+      >
+      <a
+        class="hover:text-primary dark:hover:text-white transition-colors"
+        href="#">Twitter</a
+      >
+      <a
+        class="hover:text-primary dark:hover:text-white transition-colors"
+        href="#">Youtube</a
+      >
+      <a
+        class="hover:text-primary dark:hover:text-white transition-colors"
+        href="#">Newsletter</a
+      >
+    </div>
+  </div>
 </footer>

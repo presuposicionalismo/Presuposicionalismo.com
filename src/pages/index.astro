@@ -1,15 +1,151 @@
 ---
 import MainLayout from "@layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import BlogCarousel from "../components/BlogCarousel.astro";
-import FeaturedBooks from "../components/FeaturedBooks.astro";
+import { getCollection } from "astro:content";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-// import Quotes from "../components/Quotes.astro";//
+import FormattedDate from "@components/FormattedDate.astro";
+import CoverBlog from "@components/CoverBlog.astro";
+import { slugifyStr } from "@utils/slugify";
+
+const allPosts = await getCollection("blog");
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// Featured post (latest)
+const featuredPost = sortedPosts[0];
+// Next 3 posts for grid
+const gridPosts = sortedPosts.slice(1, 4);
 ---
 
 <MainLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <Hero />
-  <BlogCarousel />
-  <FeaturedBooks />
-  <!-- <Quotes /> -->
+  <section class="max-w-4xl mx-auto px-6 py-24 md:py-32 text-center">
+    <h1
+      class="serif-text text-4xl md:text-6xl font-medium leading-tight mb-8 text-primary dark:text-white"
+    >
+      ¿Estás preparado para algo intelectualmente <span class="italic"
+        >estimulante</span
+      > y conmovedor para el alma?
+    </h1>
+    <div
+      class="space-y-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-light"
+    >
+      <p>
+        Este sitio está dedicado a promover literatura que suscribe una
+        filosofía distintivamente cristiana y principalmente a la metodología
+        apologética del "padre del presuposicionalismo", el fallecido (1987) Dr.
+        Cornelius Van Til, y sus estudiantes, el fallecido (1995) Dr. Greg L.
+        Bahnsen, y el Dr. John M. Frame.
+      </p>
+      <p>
+        Otros "vantilianos" de interés incluyen pero no se limitan a: James
+        Anderson, William Edgar, Scott Oliphint, James White, y Richard Pratt.
+        De cualquier manera, ¡que Dios lo bendiga ricamente a través de este
+        pequeño sitio que existe para promover la gloria de Dios solamente!
+      </p>
+    </div>
+    <div class="mt-12">
+      <a
+        href="#blog"
+        class="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white dark:bg-white dark:text-primary font-medium hover:opacity-90 transition-opacity"
+      >
+        Explorar Contenido
+        <span class="material-icons-outlined text-sm">arrow_downward</span>
+      </a>
+    </div>
+  </section>
+
+  <section
+    id="blog"
+    class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-100 dark:border-slate-800"
+  >
+    <div class="flex items-center justify-between mb-12">
+      <h2 class="serif-text text-3xl font-medium text-primary dark:text-white">
+        Últimas entradas del Blog
+      </h2>
+      <div class="flex gap-4">
+        <!-- Visual arrows (functional if we add carousel logic later) -->
+        <a
+          href="/blog"
+          class="w-10 h-10 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+        >
+          <span class="material-icons-outlined">chevron_right</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Featured Post -->
+    {
+      featuredPost && (
+        <div class="relative group mb-12">
+          <div class="bg-white dark:bg-slate-900 rounded-lg overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 grid md:grid-cols-2 min-h-[400px]">
+            <div class="relative overflow-hidden">
+              <div class="absolute inset-0 w-full h-full">
+                <CoverBlog
+                  imagePath={String(featuredPost.data.heroImage)}
+                  altText={featuredPost.data.title}
+                  class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                  loading="eager"
+                />
+              </div>
+              <div class="absolute inset-0 bg-primary/10" />
+            </div>
+            <div class="p-10 md:p-16 flex flex-col justify-center">
+              <div class="flex items-center gap-2 text-slate-400 dark:text-slate-500 text-sm mb-4 uppercase tracking-widest font-medium">
+                <span class="material-icons-outlined text-base">
+                  calendar_today
+                </span>
+                <FormattedDate date={featuredPost.data.pubDate} />
+              </div>
+              <h3 class="serif-text text-3xl md:text-4xl text-primary dark:text-white mb-6 hover:text-slate-600 dark:hover:text-slate-300 transition-colors cursor-pointer">
+                <a href={`/blog/${slugifyStr(featuredPost.data.title)}/`}>
+                  {featuredPost.data.title}
+                </a>
+              </h3>
+              <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8 line-clamp-3">
+                {featuredPost.data.description}
+              </p>
+              <div>
+                <a
+                  href={`/blog/${slugifyStr(featuredPost.data.title)}/`}
+                  class="inline-flex items-center gap-2 font-medium text-primary dark:text-white border-b border-primary/20 dark:border-white/20 pb-1 hover:border-primary dark:hover:border-white transition-all"
+                >
+                  Leer artículo completo
+                  <span class="material-icons-outlined text-sm">
+                    arrow_forward
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Grid Posts -->
+    <div class="grid md:grid-cols-3 gap-8 mt-12">
+      {
+        gridPosts.map((post) => (
+          <div class="space-y-4 group">
+            <div class="aspect-video overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800">
+              <a href={`/blog/${slugifyStr(post.data.title)}/`}>
+                <CoverBlog
+                  imagePath={String(post.data.heroImage)}
+                  altText={post.data.title}
+                  class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                />
+              </a>
+            </div>
+            <span class="text-xs font-bold text-slate-400 tracking-tighter uppercase">
+              <FormattedDate date={post.data.pubDate} />
+            </span>
+            <h4 class="serif-text text-xl text-primary dark:text-white group-hover:underline underline-offset-4 decoration-1">
+              <a href={`/blog/${slugifyStr(post.data.title)}/`}>
+                {post.data.title}
+              </a>
+            </h4>
+          </div>
+        ))
+      }
+    </div>
+  </section>
 </MainLayout>

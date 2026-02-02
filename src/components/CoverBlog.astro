@@ -6,9 +6,10 @@ interface Props {
   imagePath: string;
   altText: string;
   loading?: "lazy" | "eager";
+  class?: string;
 }
 
-const { imagePath, altText, loading = "lazy" } = Astro.props;
+const { imagePath, altText, loading = "lazy", class: className } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/coverblog/*.{jpeg,jpg,png,gif,webp}",
 );
@@ -18,11 +19,9 @@ if (!images[imagePath])
   );
 ---
 
-<div class="card">
-  <Image
-    src={images[imagePath]()}
-    alt={altText}
-    class="coverblog"
-    loading={loading}
-  />
-</div>
+<Image
+  src={images[imagePath]()}
+  alt={altText}
+  class={className}
+  loading={loading}
+/>

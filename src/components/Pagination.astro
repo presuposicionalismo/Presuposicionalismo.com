@@ -1,52 +1,33 @@
 ---
-import ArrowLeft from "./ArrowLeft.astro";
-import ArrowRight from "./ArrowRight.astro";
-
 const { currentPage, totalPages, prevUrl, nextUrl } = Astro.props;
 
 /**
  * Genera un array de números de página con puntos suspensivos para la paginación.
- * @param {number} currentPage - La página actual.
- * @param {number} totalPages - El número total de páginas.
- * @param {number} siblings - Cuántos números mostrar a cada lado de la página actual.
- * @returns {(number | string)[]} - Un array de números de página y puntos suspensivos.
  */
 const getPaginationWithEllipsis = (
   currentPage: number,
   totalPages: number,
   siblings: number = 1,
 ) => {
-  // El número total de elementos a mostrar (ej: 1 ... 4 5 6 ... 10)
-  // Incluye la primera página, la última, la actual, los hermanos y los puntos suspensivos.
   const totalNumbersToShow = siblings * 2 + 5;
 
-  // Caso 1: Si el número total de páginas es menor o igual al que queremos mostrar,
-  // no necesitamos puntos suspensivos. Simplemente mostramos todas las páginas.
   if (totalPages <= totalNumbersToShow) {
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
 
-  // Calculamos los índices de los hermanos izquierdo y derecho.
   const leftSiblingIndex = Math.max(currentPage - siblings, 1);
   const rightSiblingIndex = Math.min(currentPage + siblings, totalPages);
-
-  // Decidimos si necesitamos mostrar los puntos suspensivos a la izquierda o derecha.
   const shouldShowLeftDots = leftSiblingIndex > 2;
   const shouldShowRightDots = rightSiblingIndex < totalPages - 2;
-
   const firstPageIndex = 1;
   const lastPageIndex = totalPages;
 
-  // Caso 2: No se necesitan puntos suspensivos a la izquierda, pero sí a la derecha.
-  // Ejemplo: 1 2 3 4 5 ... 10
   if (!shouldShowLeftDots && shouldShowRightDots) {
     const leftItemCount = 3 + 2 * siblings;
     const leftRange = Array.from({ length: leftItemCount }, (_, i) => i + 1);
     return [...leftRange, "...", totalPages];
   }
 
-  // Caso 3: Se necesitan puntos suspensivos a la izquierda, pero no a la derecha.
-  // Ejemplo: 1 ... 6 7 8 9 10
   if (shouldShowLeftDots && !shouldShowRightDots) {
     const rightItemCount = 3 + 2 * siblings;
     const rightRange = Array.from(
@@ -56,8 +37,6 @@ const getPaginationWithEllipsis = (
     return [firstPageIndex, "...", ...rightRange];
   }
 
-  // Caso 4: Se necesitan puntos suspensivos en ambos lados.
-  // Ejemplo: 1 ... 4 5 6 ... 10
   if (shouldShowLeftDots && shouldShowRightDots) {
     const middleRange = Array.from(
       { length: rightSiblingIndex - leftSiblingIndex + 1 },
@@ -66,64 +45,64 @@ const getPaginationWithEllipsis = (
     return [firstPageIndex, "...", ...middleRange, "...", lastPageIndex];
   }
 
-  // Fallback (no debería alcanzarse con la lógica actual)
   return Array.from({ length: totalPages }, (_, i) => i + 1);
 };
 
 const pages = getPaginationWithEllipsis(currentPage, totalPages);
 ---
 
-<nav aria-label="Paginación del blog" class="pagination">
-  <div class="pagination-container">
-    {
-      prevUrl && (
-        <a
-          href={prevUrl}
-          class="pagination-link prev ad-shadow"
-          aria-label="Página anterior"
-        >
-          <span class="pr icon-size-fluid">
-            <ArrowLeft />
-          </span>
-          Anterior
-        </a>
-      )
-    }
+<nav class="flex items-center gap-6 justify-center mt-20">
+  {
+    prevUrl ? (
+      <a
+        href={prevUrl}
+        class="text-xs uppercase font-bold tracking-widest text-secondary hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors"
+      >
+        Anterior
+      </a>
+    ) : (
+      <span class="text-xs uppercase font-bold tracking-widest text-gray-300 dark:text-gray-600 cursor-not-allowed">
+        Anterior
+      </span>
+    )
+  }
 
-    <div class="pagination-numbers">
-      {
-        pages.map((page) =>
-          typeof page === "number" ? (
-            <a
-              href={page === 1 ? "/blog" : `/blog/${page}`}
-              class={`pagination-link number ${currentPage === page ? "active" : ""}`}
-              aria-label={`Ir a la página ${page}`}
-              aria-current={currentPage === page ? "page" : undefined}
-            >
-              {page}
-            </a>
-          ) : (
-            <span class="pagination-ellipsis" aria-hidden="true">
-              &hellip;
-            </span>
-          ),
-        )
-      }
-    </div>
-
+  <div class="flex gap-2">
     {
-      nextUrl && (
-        <a
-          href={nextUrl}
-          class="pagination-link next rad-shadow"
-          aria-label="Página siguiente"
-        >
-          Siguiente{" "}
-          <span class="pl icon-size-fluid">
-            <ArrowRight />
+      pages.map((page) =>
+        typeof page === "number" ? (
+          <a
+            href={page === 1 ? "/blog" : `/blog/page/${page}`}
+            class={`w-8 h-8 flex items-center justify-center text-xs font-bold transition-colors ${
+              currentPage === page
+                ? "border border-primary text-primary dark:border-white dark:text-white"
+                : "text-gray-400 hover:text-primary dark:hover:text-white"
+            }`}
+            aria-current={currentPage === page ? "page" : undefined}
+          >
+            {page}
+          </a>
+        ) : (
+          <span class="w-8 h-8 flex items-center justify-center text-xs text-gray-400">
+            &hellip;
           </span>
-        </a>
+        ),
       )
     }
   </div>
+
+  {
+    nextUrl ? (
+      <a
+        href={nextUrl}
+        class="text-xs uppercase font-bold tracking-widest text-primary hover:text-black dark:text-white transition-colors"
+      >
+        Siguiente
+      </a>
+    ) : (
+      <span class="text-xs uppercase font-bold tracking-widest text-gray-300 dark:text-gray-600 cursor-not-allowed">
+        Siguiente
+      </span>
+    )
+  }
 </nav>

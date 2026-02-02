@@ -5,8 +5,6 @@ import vercelStatic from "@astrojs/vercel";
 
 import fuse from "astro-fuse";
 
-import svelte from "@astrojs/svelte";
-
 import tailwindcss from "@tailwindcss/vite";
 
 // remarkPlugins: [remarkToc],
@@ -21,7 +19,6 @@ export default defineConfig({
     }),
     sitemap(),
     fuse(["content"]),
-    svelte(),
   ],
 
   markdown: {
