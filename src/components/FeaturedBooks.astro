@@ -24,7 +24,7 @@ const featuredBooks = allBooks.slice(0, 3);
             transition:name={`coverbook ${book.data.title} image`}
           />
           <div class="content">
-            <a href={`/libros/${book.slug}/`}>
+            <a href={`/libros/${book.id}/`}>
               <h3>{book.data.title}</h3>
             </a>
           </div>

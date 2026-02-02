@@ -52,7 +52,7 @@ function semanticSearch(posts, searchTerm) {
   <ul id="filtered-posts">
     {allPosts.map(post => (
       <li class="post-item" data-tags={post.data.tags?.join(',')} data-category={post.data.category}>
-        <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+        <a href={`/blog/${post.id}`}>{post.data.title}</a>
       </li>
     ))}
   </ul>

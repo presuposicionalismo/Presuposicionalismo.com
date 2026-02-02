@@ -1,12 +1,12 @@
 // import type socialIcons from "@assets/socialIcons";
 
 export type Site = {
-    website: string;
-    desc: string;
-    title: string;
-    postPerIndex: number;
-    postPerPage: number;
-  };
+  website: string;
+  desc: string;
+  title: string;
+  postPerIndex: number;
+  postPerPage: number;
+};
 
 // export type Site = {
 //   website: string;

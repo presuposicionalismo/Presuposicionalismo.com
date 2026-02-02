@@ -1,51 +1,55 @@
-.token:is(.property,.atrule > *) {
-    color: var(--text-1);
-    text-shadow: 0 1px 0 var(--surface-1)
+.token:is(.property, .atrule > *) {
+  color: var(--text-1);
+  text-shadow: 0 1px 0 var(--surface-1);
 }
 
-[data-theme=light] .token:is(.property,.atrule > *) {
-    text-shadow: 0 1px 0 var(--gray-3)
+[data-theme="light"] .token:is(.property, .atrule > *) {
+  text-shadow: 0 1px 0 var(--gray-3);
 }
 
 .token.selector {
-    color: var(--text-2);
-    text-shadow: none
+  color: var(--text-2);
+  text-shadow: none;
 }
 
-.token:is(.string,.attr-value) {
-    color: var(--teal-0);
-    text-shadow: 0 0 10px var(--teal-5),0 0 25px var(--teal-7)
+.token:is(.string, .attr-value) {
+  color: var(--teal-0);
+  text-shadow:
+    0 0 10px var(--teal-5),
+    0 0 25px var(--teal-7);
 }
 
-[data-theme=light] .token:is(.string,.attr-value) {
-    color: var(--purple-9);
-    text-shadow: 0 0 15px var(--purple-9)
+[data-theme="light"] .token:is(.string, .attr-value) {
+  color: var(--purple-9);
+  text-shadow: 0 0 15px var(--purple-9);
 }
 
 @media (dynamic-range: high) or (color-gamut: p3) {
-    .token:is(.string,.attr-value) {
-        text-shadow: 0 0 15px color(display-p3 0 1 0)
-    }
+  .token:is(.string, .attr-value) {
+    text-shadow: 0 0 15px color(display-p3 0 1 0);
+  }
 }
 
-.token:is(.comment,.punctuation) {
-    color: var(--gray-5);
-    text-shadow: none
+.token:is(.comment, .punctuation) {
+  color: var(--gray-5);
+  text-shadow: none;
 }
 
-[data-theme=light] .token:is(.comment,.punctuation) {
-    color: var(--gray-6)
+[data-theme="light"] .token:is(.comment, .punctuation) {
+  color: var(--gray-6);
 }
 
 .token.slider-target {
-    color: #000;
-    color: initial
+  color: #000;
+  color: initial;
 }
 
 .token.slider-target:before {
-    content: "\2192";
-    opacity: 0;
-    position: absolute;
-    inset-inline-start: calc(var(--size-4) / 2 - .5ch);
-    animation: var(--animation-slide-in-right) forwards,var(--animation-fade-in) forwards
+  content: "\2192";
+  opacity: 0;
+  position: absolute;
+  inset-inline-start: calc(var(--size-4) / 2 - 0.5ch);
+  animation:
+    var(--animation-slide-in-right) forwards,
+    var(--animation-fade-in) forwards;
 }

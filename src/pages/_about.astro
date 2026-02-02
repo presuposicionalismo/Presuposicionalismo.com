@@ -9,7 +9,9 @@ import type { CollectionEntry } from "astro:content";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection("blog");
-  const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const sortedPosts = posts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
   return paginate(sortedPosts, { pageSize: 10 });
 }) satisfies GetStaticPaths;
 
@@ -32,36 +34,38 @@ const { page } = Astro.props;
   <section>
     <h1 class="warp">Blog</h1>
     <article>
-      {page.data.map((post) => (
-        <div class="warp">
-          <div class="card">
-            <div class="card__image container">
-              <CoverBlog
-                imagePath={String(post.data.heroImage)}
-                altText={post.data.title}
-              />
-            </div>
+      {
+        page.data.map((post) => (
+          <div class="warp">
+            <div class="card">
+              <div class="card__image container">
+                <CoverBlog
+                  imagePath={String(post.data.heroImage)}
+                  altText={post.data.title}
+                />
+              </div>
 
-            <div>
-              <FormattedDate date={post.data.pubDate} />
-              <h2 class="title">
-                <a class="token funtion" href={`/blog/${post.slug}/`}>
-                  {post.data.title}
-                </a>
-              </h2>
-              <p class="description">
-                {post.data.description}
-
-                <button>
-                  <a class="token string" href={`/blog/${post.slug}/`}>
-                    Leer mas
+              <div>
+                <FormattedDate date={post.data.pubDate} />
+                <h2 class="title">
+                  <a class="token funtion" href={`/blog/${post.id}/`}>
+                    {post.data.title}
                   </a>
-                </button>
-              </p>
+                </h2>
+                <p class="description">
+                  {post.data.description}
+
+                  <button>
+                    <a class="token string" href={`/blog/${post.id}/`}>
+                      Leer mas
+                    </a>
+                  </button>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </article>
   </section>
 

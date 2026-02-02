@@ -31,7 +31,7 @@ const books = (await getCollection("libros")).sort(
                 transition:name=`coverbook ${book.data.title} image`
               />
               <div class="content">
-                <a href={`/libros/${book.slug}/`}>
+                <a href={`/libros/${book.id}/`}>
                   <h2>{book.data.title}</h2>
                 </a>
               </div>
