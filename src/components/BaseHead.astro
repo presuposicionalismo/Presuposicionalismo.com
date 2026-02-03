@@ -8,6 +8,7 @@ interface Props {
   description: string;
   image?: string;
 }
+
 //  <ViewTransitions >
 import { ClientRouter } from "astro:transitions";
 
@@ -33,6 +34,40 @@ if (
 }
 ---
 
+<!-- Blocking script to avoid FART (Flash of wrong theme) -->
+<script is:inline>
+  // This code runs immediately before the body is rendered
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+    document.documentElement.setAttribute("data-theme", "light");
+  } else {
+    document.documentElement.classList.add("dark");
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+  window.localStorage.setItem("theme", theme);
+
+  // Preserve theme during View Transitions
+  document.addEventListener("astro:after-swap", () => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  });
+</script>
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />

@@ -1,23 +1,33 @@
 @import "@fontsource-variable/urbanist";
 @import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-primary: #1a1a1a;
-  --color-accent: #4a5568;
-  --color-secondary: #666666;
-  /* Staying for compatibility */
-  --color-background-light: #fcfcfc;
-  --color-background-dark: #121212;
-  --color-paper: #ffffff;
-  --color-paper-dark: #1a1a1a;
-  --color-border-light: #e5e5e5;
+  /* Colores semánticos - Light mode (default) */
+  --color-foreground: #1a1a1a;
+  --color-background: #fcfcfc;
+  --color-surface: #ffffff;
+  --color-muted: #666666;
+  --color-border: #e5e5e5;
+  --color-accent: #1a1a1a;
 
+  /* Fuentes */
   --font-display: "Urbanist Variable", sans-serif;
   --font-sans: "Urbanist Variable", sans-serif;
 
+  /* Radios */
   --radius-lg: 0.75rem;
-  /* 12px per design 'lg': '12px' */
   --radius-xl: 0.5rem;
+}
+
+/* Dark mode overrides via class (for toggle) */
+.dark {
+  --color-foreground: #f5f5f5;
+  --color-background: #121212;
+  --color-surface: #1a1a1a;
+  --color-muted: #a0a0a0;
+  --color-border: #2a2a2a;
+  --color-accent: #ffffff;
 }
 
 @layer utilities {
@@ -26,8 +36,24 @@
   }
 }
 
-/* Base styles for the new theme */
+/* Base styles */
 body {
   font-family: var(--font-sans);
-  @apply bg-background-light text-slate-800 antialiased selection:bg-primary selection:text-white dark:bg-background-dark dark:text-slate-200 transition-colors duration-300;
+  @apply bg-background text-foreground antialiased selection:bg-accent selection:text-background transition-colors duration-300;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Drop cap style for blog posts */
+.drop-cap::first-letter {
+  float: left;
+  font-size: 4.5rem;
+  line-height: 0.85;
+  font-weight: 600;
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+  color: var(--color-accent);
 }

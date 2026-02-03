@@ -1,0 +1,43 @@
+---
+import FormattedDate from "./FormattedDate.astro";
+
+interface Props {
+  pubDate: Date;
+  format?: string;
+  language?: string;
+  access?: string;
+}
+
+const {
+  pubDate,
+  format = "PDF Digital",
+  language = "Español",
+  access = "Gratuito",
+} = Astro.props;
+---
+
+<div class="border-t border-b border-border py-6 mb-10">
+  <h3 class="text-sm font-bold text-muted uppercase tracking-wider mb-4">
+    Detalles del Producto
+  </h3>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4">
+    <div>
+      <p class="text-xs text-muted mb-1">Publicación</p>
+      <p class="font-medium text-accent">
+        <FormattedDate date={pubDate} />
+      </p>
+    </div>
+    <div>
+      <p class="text-xs text-muted mb-1">Formato</p>
+      <p class="font-medium text-accent">{format}</p>
+    </div>
+    <div>
+      <p class="text-xs text-muted mb-1">Idioma</p>
+      <p class="font-medium text-accent">{language}</p>
+    </div>
+    <div>
+      <p class="text-xs text-muted mb-1">Acceso</p>
+      <p class="font-medium text-accent">{access}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+---
+import FormattedDate from "./FormattedDate.astro";
+
+interface Props {
+  title: string;
+  pubDate: Date;
+  tags?: string[];
+  author?: string;
+}
+
+const { title, pubDate, tags, author = "Presuposicionalismo" } = Astro.props;
+---
+
+<header class="flex flex-col gap-6">
+  <!-- Category Chip -->
+  {
+    tags && tags.length > 0 && (
+      <div class="flex">
+        <span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-bold tracking-widest text-accent bg-accent/10 uppercase">
+          {tags[0]}
+        </span>
+      </div>
+    )
+  }
+
+  <!-- Headline -->
+  <h1
+    class="serif-text text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] text-accent tracking-tight"
+  >
+    {title}
+  </h1>
+
+  <!-- Author Metadata -->
+  <div
+    class="flex items-center justify-between border-t border-b border-border py-4 mt-2"
+  >
+    <div class="flex items-center gap-4">
+      <div class="flex flex-col">
+        <span class="text-base font-bold text-accent leading-tight">
+          {author}
+        </span>
+        <span class="text-sm text-muted">
+          <FormattedDate date={pubDate} />
+        </span>
+      </div>
+    </div>
+    <!-- Mobile Share -->
+    <div class="flex lg:hidden gap-2 text-muted">
+      <button
+        class="p-2 hover:bg-surface rounded-full transition-colors"
+        aria-label="Compartir"
+        onclick="navigator.share?.({ title: document.title, url: window.location.href })"
+      >
+        <span class="material-icons-outlined text-[20px]">share</span>
+      </button>
+      <button
+        class="p-2 hover:bg-surface rounded-full transition-colors"
+        aria-label="Guardar"
+      >
+        <span class="material-icons-outlined text-[20px]">bookmark</span>
+      </button>
+    </div>
+  </div>
+</header>

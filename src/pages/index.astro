@@ -20,15 +20,13 @@ const gridPosts = sortedPosts.slice(1, 4);
 <MainLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <section class="max-w-4xl mx-auto px-6 py-24 md:py-32 text-center">
     <h1
-      class="serif-text text-4xl md:text-6xl font-medium leading-tight mb-8 text-primary dark:text-white"
+      class="serif-text text-4xl md:text-6xl font-medium leading-tight mb-8 text-accent"
     >
       ¿Estás preparado para algo intelectualmente <span class="italic"
         >estimulante</span
       > y conmovedor para el alma?
     </h1>
-    <div
-      class="space-y-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-light"
-    >
+    <div class="space-y-6 text-lg text-muted leading-relaxed font-light">
       <p>
         Este sitio está dedicado a promover literatura que suscribe una
         filosofía distintivamente cristiana y principalmente a la metodología
@@ -46,7 +44,7 @@ const gridPosts = sortedPosts.slice(1, 4);
     <div class="mt-12">
       <a
         href="#blog"
-        class="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white dark:bg-white dark:text-primary font-medium hover:opacity-90 transition-opacity"
+        class="inline-flex items-center gap-2 px-8 py-3 bg-accent text-background font-medium hover:opacity-90 transition-opacity"
       >
         Explorar Contenido
         <span class="material-icons-outlined text-sm">arrow_downward</span>
@@ -56,17 +54,17 @@ const gridPosts = sortedPosts.slice(1, 4);
 
   <section
     id="blog"
-    class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-100 dark:border-slate-800"
+    class="max-w-7xl mx-auto px-6 py-20 border-t border-border"
   >
     <div class="flex items-center justify-between mb-12">
-      <h2 class="serif-text text-3xl font-medium text-primary dark:text-white">
+      <h2 class="serif-text text-3xl font-medium text-accent">
         Últimas entradas del Blog
       </h2>
       <div class="flex gap-4">
         <!-- Visual arrows (functional if we add carousel logic later) -->
         <a
           href="/blog"
-          class="w-10 h-10 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+          class="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-surface transition-colors"
         >
           <span class="material-icons-outlined">chevron_right</span>
         </a>
@@ -77,7 +75,7 @@ const gridPosts = sortedPosts.slice(1, 4);
     {
       featuredPost && (
         <div class="relative group mb-12">
-          <div class="bg-white dark:bg-slate-900 rounded-lg overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 grid md:grid-cols-2 min-h-[400px]">
+          <div class="bg-surface rounded-lg overflow-hidden shadow-sm border border-border grid md:grid-cols-2 min-h-[400px]">
             <div class="relative overflow-hidden">
               <div class="absolute inset-0 w-full h-full">
                 <CoverBlog
@@ -87,27 +85,27 @@ const gridPosts = sortedPosts.slice(1, 4);
                   loading="eager"
                 />
               </div>
-              <div class="absolute inset-0 bg-primary/10" />
+              <div class="absolute inset-0 bg-accent/10" />
             </div>
             <div class="p-10 md:p-16 flex flex-col justify-center">
-              <div class="flex items-center gap-2 text-slate-400 dark:text-slate-500 text-sm mb-4 uppercase tracking-widest font-medium">
+              <div class="flex items-center gap-2 text-muted text-sm mb-4 uppercase tracking-widest font-medium">
                 <span class="material-icons-outlined text-base">
                   calendar_today
                 </span>
                 <FormattedDate date={featuredPost.data.pubDate} />
               </div>
-              <h3 class="serif-text text-3xl md:text-4xl text-primary dark:text-white mb-6 hover:text-slate-600 dark:hover:text-slate-300 transition-colors cursor-pointer">
+              <h3 class="serif-text text-3xl md:text-4xl text-accent mb-6 hover:opacity-80 transition-opacity cursor-pointer">
                 <a href={`/blog/${slugifyStr(featuredPost.data.title)}/`}>
                   {featuredPost.data.title}
                 </a>
               </h3>
-              <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8 line-clamp-3">
+              <p class="text-muted text-lg leading-relaxed mb-8 line-clamp-3">
                 {featuredPost.data.description}
               </p>
               <div>
                 <a
                   href={`/blog/${slugifyStr(featuredPost.data.title)}/`}
-                  class="inline-flex items-center gap-2 font-medium text-primary dark:text-white border-b border-primary/20 dark:border-white/20 pb-1 hover:border-primary dark:hover:border-white transition-all"
+                  class="inline-flex items-center gap-2 font-medium text-accent border-b border-accent/20 pb-1 hover:border-accent transition-all"
                 >
                   Leer artículo completo
                   <span class="material-icons-outlined text-sm">
@@ -126,7 +124,7 @@ const gridPosts = sortedPosts.slice(1, 4);
       {
         gridPosts.map((post) => (
           <div class="space-y-4 group">
-            <div class="aspect-video overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800">
+            <div class="aspect-video overflow-hidden rounded-lg bg-surface">
               <a href={`/blog/${slugifyStr(post.data.title)}/`}>
                 <CoverBlog
                   imagePath={String(post.data.heroImage)}
@@ -135,10 +133,10 @@ const gridPosts = sortedPosts.slice(1, 4);
                 />
               </a>
             </div>
-            <span class="text-xs font-bold text-slate-400 tracking-tighter uppercase">
+            <span class="text-xs font-bold text-muted tracking-tighter uppercase">
               <FormattedDate date={post.data.pubDate} />
             </span>
-            <h4 class="serif-text text-xl text-primary dark:text-white group-hover:underline underline-offset-4 decoration-1">
+            <h4 class="serif-text text-xl text-accent group-hover:underline underline-offset-4 decoration-1">
               <a href={`/blog/${slugifyStr(post.data.title)}/`}>
                 {post.data.title}
               </a>

@@ -1,0 +1,164 @@
+<button
+  id="theme-btn"
+  class="theme-toggle text-foreground transition-colors"
+  title="Toggles light & dark"
+  aria-label="auto"
+  aria-live="polite"
+>
+  <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+    <!-- https://feathericons.com/?query=sun -->
+    <mask id="moon">
+      <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
+      <circle cx="40" cy="8" r="11" fill="black"></circle>
+    </mask>
+    <circle id="sun" cx="12" cy="12" r="11" mask="url(#moon)"></circle>
+    <g id="sun-beams">
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </g>
+  </svg>
+</button>
+
+<style is:global>
+  .theme-toggle {
+    background: none;
+    --nav-icon: currentColor;
+    --nav-icon-hover: var(--color-primary);
+    border-radius: 0.5rem;
+    min-width: 24px;
+    min-height: 24px;
+    padding: 6px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #moon,
+  #sun {
+    fill: var(--nav-icon);
+    stroke: none;
+  }
+
+  :hover > svg > #moon,
+  :hover > svg > #sun {
+    fill: var(--nav-icon-hover);
+  }
+
+  #sun {
+    transition: transform 0.5s var(--ease-4, cubic-bezier(0.25, 0, 0.3, 1));
+    transform-origin: center center;
+  }
+
+  #sun-beams {
+    --_opacity-dur: 0.15s;
+    stroke: var(--nav-icon);
+    stroke-width: 2px;
+    transform-origin: center center;
+    transition:
+      transform 0.5s var(--ease-elastic-4, cubic-bezier(0.5, 1.5, 0.75, 1.25)),
+      opacity var(--_opacity-dur) var(--ease-3, cubic-bezier(0.25, 0, 0.3, 1));
+  }
+
+  :hover > svg > #sun-beams {
+    stroke: var(--nav-icon-hover);
+  }
+
+  #moon > circle {
+    transition: transform 0.5s var(--ease-out-3, cubic-bezier(0, 0, 0.2, 1));
+  }
+
+  [data-theme="light"] #sun {
+    transform: scale(0.5);
+  }
+
+  [data-theme="light"] #sun-beams {
+    transform: rotateZ(0.25turn);
+    --_opacity-dur: 0.5s;
+  }
+
+  [data-theme="dark"] #moon > circle {
+    transform: translateX(-20px);
+  }
+
+  [data-theme="dark"] #sun-beams {
+    opacity: 0;
+  }
+</style>
+
+<script is:inline>
+  const primaryColorScheme = ""; // "light" | "dark"
+
+  function getPreferTheme() {
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme) return currentTheme;
+    if (primaryColorScheme) return primaryColorScheme;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  let themeValue = getPreferTheme();
+
+  function setPreference() {
+    localStorage.setItem("theme", themeValue);
+    reflectPreference();
+  }
+
+  function reflectPreference() {
+    document.firstElementChild.setAttribute("data-theme", themeValue);
+    document
+      .querySelector("#theme-btn")
+      ?.setAttribute("aria-label", themeValue);
+
+    // Toggle the 'dark' class for Tailwind CSS
+    if (themeValue === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    // Update theme-color meta tag
+    const body = document.body;
+    if (body) {
+      const bgColor = window.getComputedStyle(body).backgroundColor;
+      document
+        .querySelector("meta[name='theme-color']")
+        ?.setAttribute("content", bgColor);
+    }
+  }
+
+  // Named function for the click handler to enable proper cleanup
+  function handleThemeToggle() {
+    themeValue = themeValue === "light" ? "dark" : "light";
+    setPreference();
+  }
+
+  // set early so no page flashes / CSS is made aware
+  reflectPreference();
+
+  // Setup theme toggle on page load
+  document.addEventListener("astro:page-load", () => {
+    themeValue = getPreferTheme();
+    reflectPreference();
+
+    const themeBtn = document.querySelector("#theme-btn");
+    if (themeBtn) {
+      // Remove any existing listener before adding a new one
+      themeBtn.removeEventListener("click", handleThemeToggle);
+      themeBtn.addEventListener("click", handleThemeToggle);
+    }
+  });
+
+  // Sync with system changes
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", ({ matches: isDark }) => {
+      themeValue = isDark ? "dark" : "light";
+      setPreference();
+    });
+</script>

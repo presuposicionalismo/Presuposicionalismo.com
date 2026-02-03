@@ -16,23 +16,37 @@ const books = (await getCollection("libros")).sort(
   pubDate={new Date("August 08 2021")}
   heroImage="/blog-placeholder-about.jpg"
 >
-  <main>
-    <section>
-      <h1 class="warp">Libros</h1>
+  <main class="max-w-7xl mx-auto px-6 py-20">
+    <section class="text-center mb-16">
+      <h1 class="serif-text text-4xl md:text-5xl font-medium text-accent mb-4">
+        Libros
+      </h1>
+      <p class="text-lg text-muted max-w-2xl mx-auto">
+        Colección de recursos apologéticos y teológicos reformados
+      </p>
     </section>
+
     <section>
       <Grid>
         {
           books.map((book) => (
-            <article class="card">
-              <CoverBook
-                imagePath={String(book.data.coverBook)}
-                altText={book.data.title}
-                transition:name=`coverbook ${book.data.title} image`
-              />
-              <div class="content">
+            <article class="group relative bg-surface rounded-lg overflow-hidden border border-border hover:border-accent/50 transition-all duration-300 hover:shadow-lg">
+              <div class="aspect-[3/4] overflow-hidden">
+                <CoverBook
+                  imagePath={String(book.data.coverBook)}
+                  altText={book.data.title}
+                  transition:name={`coverbook ${book.data.title} image`}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/95 to-transparent p-6 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                 <a href={`/libros/${book.id}/`}>
-                  <h2>{book.data.title}</h2>
+                  <h2 class="text-lg font-semibold text-accent mb-2 line-clamp-2">
+                    {book.data.title}
+                  </h2>
+                  <p class="text-sm text-muted line-clamp-2">
+                    {book.data.author}
+                  </p>
                 </a>
               </div>
             </article>
@@ -42,73 +56,3 @@ const books = (await getCollection("libros")).sort(
     </section>
   </main>
 </MainLayout>
-
-<style>
-  .warp {
-    display: flex;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding-block: var(--size-fluid-3);
-  }
-
-  .content {
-    position: absolute;
-    right: var(--size-fluid-1);
-    left: var(--size-fluid-1);
-    bottom: var(--size-fluid-1);
-    padding-top: var(--size-5);
-    padding-bottom: var(--size-5);
-    padding-left: var(--size-6);
-    padding-right: var(--size-6);
-    margin: var(--size-2);
-    border-radius: var(--size-2);
-    height: max-content;
-    background-color: var(--surface-1);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(100%);
-    transition:
-      opacity 0.5s,
-      transform 0.5s,
-      visibility 0s 0.5s;
-  }
-
-  .card {
-    position: relative;
-    box-shadow: var(--shadow-2);
-    background-color: var(--surface-2);
-    color: var(--text-2);
-    margin-inline: auto;
-    padding: var(--size-fluid-1);
-    border: var(--border-size-1) solid var(--surface-2);
-    border-radius: var(--radius-3);
-    overflow: hidden;
-    transition:
-      background-color 0.3s,
-      box-shadow 0.3s,
-      border-color 0.3s;
-    &:hover {
-      border-color: var(--surface-3);
-      background-color: var(--surface-1);
-      box-shadow: var(--shadow-5);
-    }
-
-    &:hover .content {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-      transition:
-        opacity 0.5s,
-        transform 0.5s,
-        visibility 0s;
-      animation: var(--animation-slide-in-up);
-    }
-  }
-
-  h2 {
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-6);
-    padding-bottom: 8px;
-  }
-</style>

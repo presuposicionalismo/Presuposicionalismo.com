@@ -1,0 +1,82 @@
+---
+interface Article {
+  title: string;
+  description: string;
+  category: string;
+  slug: string;
+  image?: string;
+}
+
+interface Props {
+  articles?: Article[];
+}
+
+const { articles = [] } = Astro.props;
+
+// Placeholder articles if none provided
+const displayArticles =
+  articles.length > 0
+    ? articles.slice(0, 3)
+    : [
+        {
+          title: "Artículo Relacionado",
+          description: "Descripción del artículo relacionado.",
+          category: "Teología",
+          slug: "/blog",
+        },
+        {
+          title: "Artículo Relacionado",
+          description: "Descripción del artículo relacionado.",
+          category: "Filosofía",
+          slug: "/blog",
+        },
+        {
+          title: "Artículo Relacionado",
+          description: "Descripción del artículo relacionado.",
+          category: "Historia",
+          slug: "/blog",
+        },
+      ];
+---
+
+<div class="flex flex-col gap-8">
+  <div class="flex items-center justify-between">
+    <h3 class="serif-text text-2xl font-bold text-accent">
+      Artículos Relacionados
+    </h3>
+    <a
+      class="hidden sm:block text-sm font-medium text-muted hover:text-accent transition-colors"
+      href="/blog"
+    >
+      Ver todos
+    </a>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {
+      displayArticles.map((article) => (
+        <a class="group flex flex-col gap-3" href={article.slug}>
+          <div class="aspect-[4/3] w-full rounded-lg overflow-hidden bg-surface border border-border">
+            {article.image ? (
+              <img
+                src={article.image}
+                alt={article.title}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center text-muted">
+                <span class="material-icons-outlined text-5xl">article</span>
+              </div>
+            )}
+          </div>
+          <span class="text-xs font-bold text-accent uppercase tracking-wider mt-1">
+            {article.category}
+          </span>
+          <h4 class="text-lg font-bold text-accent leading-tight group-hover:opacity-80 transition-opacity">
+            {article.title}
+          </h4>
+          <p class="text-sm text-muted line-clamp-2">{article.description}</p>
+        </a>
+      ))
+    }
+  </div>
+</div>

@@ -1,0 +1,55 @@
+---
+interface Props {
+  name?: string;
+  bio?: string;
+  avatarUrl?: string;
+  profileUrl?: string;
+}
+
+const {
+  name = "Presuposicionalismo",
+  bio = "Equipo editorial de Presuposicionalismo dedicado a promover la apologética reformada y la cosmovisión cristiana.",
+  avatarUrl,
+  profileUrl,
+} = Astro.props;
+---
+
+<div
+  class="bg-surface rounded-xl p-8 flex flex-col md:flex-row gap-6 items-start border border-border"
+>
+  <div class="shrink-0">
+    {
+      avatarUrl ? (
+        <img
+          src={avatarUrl}
+          alt={name}
+          class="w-20 h-20 rounded-full object-cover ring-2 ring-border shadow-md"
+        />
+      ) : (
+        <div class="w-20 h-20 rounded-full bg-muted/20 flex items-center justify-center ring-2 ring-border shadow-md">
+          <span class="material-icons-outlined text-4xl text-muted">
+            person
+          </span>
+        </div>
+      )
+    }
+  </div>
+  <div class="flex flex-col gap-3">
+    <div class="flex items-center justify-between">
+      <h4 class="text-xl font-bold text-accent">Sobre el Autor</h4>
+      {
+        profileUrl && (
+          <a
+            href={profileUrl}
+            class="text-sm font-semibold text-accent hover:opacity-80 transition-opacity"
+          >
+            Ver Perfil
+          </a>
+        )
+      }
+    </div>
+    <p class="text-base text-muted leading-relaxed">
+      {bio}
+    </p>
+  </div>
+</div>

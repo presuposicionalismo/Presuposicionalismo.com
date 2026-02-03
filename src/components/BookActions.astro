@@ -1,0 +1,26 @@
+---
+interface Props {
+  downloadBook: string;
+}
+
+const { downloadBook } = Astro.props;
+---
+
+<div class="flex flex-col gap-4 max-w-[400px] mx-auto w-full">
+  <a
+    href={downloadBook}
+    target="_blank"
+    class="flex items-center justify-center gap-3 w-full h-12 bg-accent text-background rounded-lg shadow-md transition-all hover:opacity-90 active:scale-[0.98]"
+  >
+    <span class="material-icons-outlined text-[20px]">download</span>
+    <span class="text-base font-bold tracking-wide">Descargar libro</span>
+  </a>
+  <a
+    href={downloadBook}
+    target="_blank"
+    class="flex items-center justify-center gap-2 w-full h-10 text-accent hover:bg-accent/10 rounded-lg transition-colors border border-transparent hover:border-accent/20"
+  >
+    <span class="material-icons-outlined text-[20px]">picture_as_pdf</span>
+    <span class="text-sm font-bold">Ver muestra (PDF)</span>
+  </a>
+</div>

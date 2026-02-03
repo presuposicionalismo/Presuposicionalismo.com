@@ -1,0 +1,37 @@
+<aside
+  class="hidden lg:flex flex-col gap-6 absolute -left-24 top-0 h-full w-12 items-center"
+>
+  <div class="sticky top-32 flex flex-col gap-4">
+    <p
+      class="text-[10px] text-muted uppercase tracking-widest text-center mb-1"
+    >
+      Share
+    </p>
+    <button
+      class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent hover:-translate-y-1"
+      aria-label="Copiar enlace"
+      onclick="navigator.clipboard.writeText(window.location.href)"
+    >
+      <span class="material-icons-outlined text-[20px]">link</span>
+    </button>
+    <button
+      class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent hover:-translate-y-1"
+      aria-label="Compartir en Twitter"
+    >
+      <span class="material-icons-outlined text-[20px]">send</span>
+    </button>
+    <button
+      class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent hover:-translate-y-1"
+      aria-label="Compartir en Facebook"
+    >
+      <span class="material-icons-outlined text-[20px]">thumb_up</span>
+    </button>
+    <div class="w-8 h-px bg-border my-2 mx-auto"></div>
+    <button
+      class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:bg-accent/10"
+      aria-label="Guardar artículo"
+    >
+      <span class="material-icons-outlined text-[20px]">bookmark_add</span>
+    </button>
+  </div>
+</aside>

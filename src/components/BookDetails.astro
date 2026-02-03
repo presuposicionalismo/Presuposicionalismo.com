@@ -1,0 +1,59 @@
+---
+interface Props {
+  title: string;
+  author: string;
+  description: string;
+  category?: string;
+}
+
+const {
+  title,
+  author,
+  description,
+  category = "Apologética Reformada",
+} = Astro.props;
+---
+
+<div class="flex flex-col">
+  <!-- Breadcrumbs -->
+  <div class="flex flex-wrap items-center gap-2 mb-6 text-sm">
+    <a
+      class="text-muted hover:text-accent transition-colors font-medium"
+      href="/">Inicio</a
+    >
+    <span class="text-muted font-medium">/</span>
+    <a
+      class="text-muted hover:text-accent transition-colors font-medium"
+      href="/libros">Libros</a
+    >
+    <span class="text-muted font-medium">/</span>
+    <span class="text-accent font-semibold">{title}</span>
+  </div>
+
+  <!-- Category Tag -->
+  <div class="mb-5">
+    <span
+      class="inline-flex items-center px-3 py-1 rounded bg-accent/10 text-accent text-xs font-bold tracking-wider uppercase"
+    >
+      {category}
+    </span>
+  </div>
+
+  <!-- Title & Author -->
+  <h1
+    class="serif-text text-4xl md:text-5xl font-bold text-accent leading-[1.1] mb-3 tracking-tight"
+  >
+    {title}
+  </h1>
+  <div class="mb-8 flex items-center gap-2">
+    <span class="text-muted italic">por</span>
+    <span class="text-xl text-accent font-medium">{author}</span>
+  </div>
+
+  <!-- Synopsis -->
+  <div
+    class="prose prose-lg max-w-none text-foreground leading-relaxed mb-10 prose-p:text-foreground prose-strong:text-accent prose-blockquote:border-accent prose-blockquote:text-muted prose-blockquote:italic"
+  >
+    <p>{description}</p>
+  </div>
+</div>
