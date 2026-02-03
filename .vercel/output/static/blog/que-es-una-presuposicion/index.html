@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="es"> <head><!-- Blocking script to avoid FART (Flash of wrong theme) --><script>
+  // This code runs immediately before the body is rendered
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+    document.documentElement.setAttribute("data-theme", "light");
+  } else {
+    document.documentElement.classList.add("dark");
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+  window.localStorage.setItem("theme", theme);
+
+  // Preserve theme during View Transitions
+  document.addEventListener("astro:after-swap", () => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  });
+</script> <!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> --><link rel="icon" type="image/svg+xml" href="/favicon.png"><meta name="generator" content="Astro v6.0.0-beta.6"><!-- Material Icons --><link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined&display=swap" rel="stylesheet"><!-- <ViewTransitions > --><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QRDonH3Q.js"></script><!-- Canonical URL --><link rel="canonical" href="https://presuposicionalismo.com/blog/que-es-una-presuposicion/"><!-- Primary Meta Tags --><title>¿Qué es una Presuposición?</title><meta name="title" content="¿Qué es una Presuposición?"><meta name="description" content="Define «presuposición» en el contexto de la apologética presuposicional como un supuesto fundamental y no negociable que sirve de base para todas las creencias y razonamientos. Explica que, para los presuposicionalistas, las presuposiciones cristianas son necesarias para la inteligibilidad y consistencia del pensamiento y la experiencia.'"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://presuposicionalismo.com/blog/que-es-una-presuposicion/"><meta property="og:title" content="¿Qué es una Presuposición?"><meta property="og:description" content="Define «presuposición» en el contexto de la apologética presuposicional como un supuesto fundamental y no negociable que sirve de base para todas las creencias y razonamientos. Explica que, para los presuposicionalistas, las presuposiciones cristianas son necesarias para la inteligibilidad y consistencia del pensamiento y la experiencia.'"><meta property="og:image" content="https://presuposicionalismo.com/og/blog/que-es-una-presuposicion.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://presuposicionalismo.com/blog/que-es-una-presuposicion/"><meta property="twitter:title" content="¿Qué es una Presuposición?"><meta property="twitter:description" content="Define «presuposición» en el contexto de la apologética presuposicional como un supuesto fundamental y no negociable que sirve de base para todas las creencias y razonamientos. Explica que, para los presuposicionalistas, las presuposiciones cristianas son necesarias para la inteligibilidad y consistencia del pensamiento y la experiencia.'"><meta property="twitter:image" content="https://presuposicionalismo.com/og/blog/que-es-una-presuposicion.png"><link rel="stylesheet" href="/_astro/index.Di0jlq4a.css"></head> <body> <!-- Scroll Progress Bar --> <div class="fixed top-0 left-0 h-1 bg-accent z-50" id="progress-bar"></div> <header class="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border transition-colors duration-300"> <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between"> <div class="flex items-center gap-4"> <a class="flex items-center gap-2 group" href="/"> <svg class="logo" viewBox="0 0 628 153" width="150" height="37" stroke="currentColor" fill="currentColor" stroke-linecap="round" stroke-linejoin="round"> <path d="m322 6.7l-6.6 66.6-6.6-66.6c-0.4-3.2 2.3-6.1 6-6.4 3.7-0.3 6.9 2.1 7.2 5.4 0.1 0.3 0.1 0.7 0 1z"></path> <path d="m338.4 15.9l-3.8 45.4-3.8-45.4c-0.1-1.9 1.4-3.5 3.5-3.6 2.1-0.2 3.9 1.2 4.1 3.1q0 0.2 0 0.5z"></path> <path d="m300 15.9l-3.8 45.4-3.8-45.4c-0.1-1.9 1.4-3.5 3.5-3.6 2.1-0.2 3.9 1.2 4.1 3.1q0 0.2 0 0.5z"></path> <path d="m357.6 26.5l-3.8 24.4-3.8-24.4c-0.3-1.8 1.2-3.5 3.3-3.8 2.1-0.3 4 1 4.3 2.9q0 0.5 0 0.9z"></path> <path d="m280.8 26.5l-3.8 24.4-3.8-24.4c-0.3-1.8 1.2-3.5 3.3-3.8 2.1-0.3 4 1 4.3 2.9q0.1 0.5 0 0.9z"></path> <path d="m376.2 32.2l-3.8 13.5-3.8-13.5c-0.5-1.9 0.8-3.7 2.9-4.2 2.1-0.5 4.2 0.7 4.7 2.5 0.2 0.6 0.2 1.2 0 1.7z"></path> <path d="m262.2 32.2l-3.8 13.5-3.8-13.5c-0.5-1.9 0.7-3.7 2.8-4.2 2.1-0.5 4.2 0.7 4.8 2.5 0.1 0.6 0.1 1.2 0 1.7z"></path> <path d="m4.1 152h7.2v-26.8h9.1c9.3 0 11.8-2.6 11.8-11.7v-18.3c0-9-2.5-11.7-11.8-11.7h-16.3zm7.2-32.8v-29.7h7.8c5.3 0 5.9 1.7 5.9 6.9v15.9c0 5.2-0.6 6.9-5.9 6.9zm56.9 9.1c0-6.7-1.5-9.8-6.2-11 4.7-1.2 6.2-4.3 6.2-11.1v-11c0-9-2.6-11.7-12-11.7h-16.9v68.5h7.2v-31.8h7.9c5.5 0 6.5 2.3 6.5 7.6v13.6c0 4.3 0 8.4 1 10.6h7.7c-1.1-3.4-1.4-7.6-1.4-12zm-7.3-21.1c0 5.2-0.5 7-5.8 7h-8.6v-24.8h8.6c5.4 0 5.8 1.7 5.8 7zm23.9-17.8h14.8v-6h-22.1v68.5h22.1v-6h-14.8v-27h12.6v-5.8h-12.6zm41.2 50c0 5.3-0.5 7-5.7 7h-2.1c-5.3 0-5.7-1.7-5.7-7v-12.3h-6.9v13.6c0 9 2.6 11.7 11.9 11.7h4c9.3 0 11.7-2.7 11.7-11.7v-7.1c0-8.5-1.7-11.3-11.1-18.9-7.9-6.5-9.2-8.5-9.2-14.9v-4.1c0-5.2 0.4-6.8 5.7-6.8h2.1c5.3 0 5.7 1.6 5.7 6.9v10.4h6.8v-11.7c0-9-2.4-11.6-11.7-11.6h-4c-9.3 0-11.9 2.6-11.9 11.6v5.4c0 8.5 1.8 11.2 11.1 18.9 8 6.5 9.3 8.4 9.3 14.9zm22.8-56.1h-7.2v57.3c0 9 2.4 11.7 11.9 11.7h4.7c9.4 0 11.9-2.7 11.9-11.7v-57.3h-6.9v56.1c0 5.3-0.4 6.9-5.8 6.9h-2.8c-5.3 0-5.8-1.6-5.8-6.9zm30.9 68.5h7.3v-26.8h9c9.3 0 11.9-2.7 11.9-11.8v-18.3c0-9-2.6-11.6-11.9-11.6h-16.3zm7.3-32.8v-29.7h7.8c5.3 0 5.8 1.6 5.8 6.9v15.9c0 5.1-0.5 6.9-5.8 6.9zm27.2 21.6c0 9 2.6 11.7 12 11.7h5.1c9.4 0 12-2.7 12-11.7v-46.2c0-9-2.6-11.6-12-11.6h-5.1c-9.4 0-12 2.6-12 11.6zm21.7-1.2c0 5.3-0.3 6.9-5.7 6.9h-2.9c-5.4 0-5.7-1.6-5.7-6.9v-43.7c0-5.2 0.3-6.9 5.7-6.9h2.9c5.4 0 5.7 1.7 5.7 6.9zm35.5 0c0 5.3-0.4 7-5.7 7h-2.1c-5.3 0-5.7-1.7-5.7-7v-12.3h-6.8v13.6c0 9 2.5 11.7 11.8 11.7h4c9.3 0 11.7-2.7 11.7-11.7v-7.1c0-8.5-1.7-11.3-11.1-18.9-7.9-6.5-9.2-8.5-9.2-14.9v-4.1c0-5.2 0.5-6.8 5.7-6.8h2.1c5.3 0 5.7 1.6 5.7 6.9v10.4h6.8v-11.7c0-9-2.4-11.6-11.7-11.6h-4c-9.3 0-11.8 2.6-11.8 11.6v5.4c0 8.5 1.7 11.2 11.1 18.9 7.9 6.5 9.2 8.4 9.2 14.9zm15.8 12.4h7.3v-68.5h-7.3zm23.9-56.1c0-5.2 0.3-6.9 5.7-6.9h2.8c5.4 0 5.8 1.7 5.8 6.9v12.2h6.9v-13.4c0-9-2.4-11.7-11.9-11.7h-4.7c-9.5 0-12 2.7-12 11.7v46.2c0 9 2.5 11.6 12 11.6h4.7c9.5 0 11.9-2.6 11.9-11.6v-16.4h-6.9v15.1c0 5.3-0.4 6.9-5.8 6.9h-2.8c-5.4 0-5.7-1.6-5.7-6.9zm30.3 56h7.3v-68.4h-7.3zm16.5-11.2c0 9 2.5 11.6 12 11.6h5c9.5 0 12-2.6 12-11.6v-46.2c0-9-2.5-11.6-12-11.6h-5c-9.5 0-12 2.6-12 11.6zm21.6-1.2c0 5.2-0.3 6.9-5.7 6.9h-2.8c-5.4 0-5.7-1.7-5.7-6.9v-43.7c0-5.3 0.3-6.9 5.7-6.9h2.8c5.4 0 5.7 1.6 5.7 6.9zm37.5 12.4h8.2v-68.4h-6.4v42c0 4.3 0.2 8.1 0.3 11.9-0.7-3.8-1.4-7.6-2.5-11.8l-11.1-42.1h-9.4v68.4h6.3v-44.9c0-4.3-0.1-8.1-0.2-11.8 0.6 3.7 1.4 7.5 2.5 11.6zm38.8 0h7.3l-10.7-68.4h-10l-10.8 68.4h6.5l1.8-11h14zm-12.7-31.5c2-12.4 3.2-23.2 3.8-31.1 0.8 7.9 2.1 18.6 4 31.1l2.2 14.5h-12.3zm26.8 31.5h20.4v-6h-13.1v-62.5h-7.3zm26.4 0h7.2v-68.5h-7.2zm36-12.4c0 5.3-0.4 6.9-5.7 6.9h-2.1c-5.3 0-5.7-1.6-5.7-6.9v-12.4h-6.8v13.6c0 9 2.5 11.7 11.9 11.7h3.9c9.4 0 11.8-2.7 11.8-11.7v-7.1c0-8.5-1.8-11.2-11.1-18.9-7.9-6.4-9.3-8.5-9.3-14.9v-4.1c0-5.1 0.5-6.8 5.8-6.8h2.1c5.2 0 5.7 1.7 5.7 6.9v10.4h6.8v-11.6c0-9-2.4-11.7-11.8-11.7h-3.9c-9.4 0-11.9 2.7-11.9 11.7v5.3c0 8.6 1.8 11.2 11.1 18.9 7.9 6.5 9.2 8.4 9.2 14.9zm46.6-33.6c0.6-3 1-7.4 1.6-11-0.1 3.5-0.3 7.9-0.3 11v46h7.2v-68.5h-10.9l-7.8 45.8c-0.4 2.9-0.8 6.3-1 9.6-0.3-3.3-0.6-6.7-1.1-9.6l-7.8-45.8h-10.8v68.5h6.3v-46c0-3.1-0.1-8.2-0.2-12 0.4 3.8 1.1 8.7 1.7 12l8.4 46h6.5zm17.6 34.9c0 9 2.5 11.6 12 11.6h5c9.5 0 12-2.6 12-11.6v-46.2c0-9-2.5-11.7-12-11.7h-5c-9.5 0-12 2.7-12 11.7zm21.6-1.3c0 5.3-0.3 6.9-5.7 6.9h-2.8c-5.4 0-5.8-1.6-5.8-6.9v-43.6c0-5.3 0.4-7 5.8-7h2.8c5.4 0 5.7 1.7 5.7 7z"></path> <path d="m3 64.4h225"></path> <path d="m625.7 64.4h-219.2"></path> </svg> <!-- stroke="currentColor" fill="currentColor" --> </a> </div> <div class="hidden md:flex flex-1 justify-end items-center gap-8"> <nav class="flex items-center gap-8"> <a href="/" class="text-sm font-medium hover:text-accent transition-colors pb-1"> Inicio </a> <a href="/blog" class="text-sm font-medium text-muted hover:text-accent transition-colors pb-1"> Blog </a> <a href="/libros" class="text-sm font-medium text-muted hover:text-accent transition-colors pb-1"> Libros </a> <button class="theme-toggle text-foreground transition-colors theme-btn-main" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24"> <!-- https://feathericons.com/?query=sun --> <mask id="moon"> <rect x="0" y="0" width="100%" height="100%" fill="white"></rect> <circle cx="40" cy="8" r="11" fill="black"></circle> </mask> <circle class="sun" cx="12" cy="12" r="11" mask="url(#moon)"></circle> <g class="sun-beams"> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </g> </svg> </button>  <script>
+  const primaryColorScheme = ""; // "light" | "dark"
+
+  function getPreferTheme() {
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme) return currentTheme;
+    if (primaryColorScheme) return primaryColorScheme;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  let themeValue = getPreferTheme();
+
+  function setPreference() {
+    localStorage.setItem("theme", themeValue);
+    reflectPreference();
+  }
+
+  function reflectPreference() {
+    document.firstElementChild.setAttribute("data-theme", themeValue);
+
+    // Update ALL toggle buttons
+    document.querySelectorAll(".theme-toggle").forEach((btn) => {
+      btn.setAttribute("aria-label", themeValue);
+    });
+
+    // Toggle the 'dark' class for Tailwind CSS
+    if (themeValue === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    // Update theme-color meta tag
+    const body = document.body;
+    if (body) {
+      const bgColor = window.getComputedStyle(body).backgroundColor;
+      document
+        .querySelector("meta[name='theme-color']")
+        ?.setAttribute("content", bgColor);
+    }
+  }
+
+  // Named function for the click handler
+  function handleThemeToggle() {
+    themeValue = themeValue === "light" ? "dark" : "light";
+    setPreference();
+  }
+
+  // set early so no page flashes / CSS is made aware
+  reflectPreference();
+
+  // Setup theme toggle on page load
+  document.addEventListener("astro:page-load", () => {
+    themeValue = getPreferTheme();
+    reflectPreference();
+
+    // Attach listeners to ALL toggle buttons
+    document.querySelectorAll(".theme-toggle").forEach((btn) => {
+      btn.removeEventListener("click", handleThemeToggle);
+      btn.addEventListener("click", handleThemeToggle);
+    });
+  });
+
+  // Sync with system changes
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", ({ matches: isDark }) => {
+      themeValue = isDark ? "dark" : "light";
+      setPreference();
+    });
+</script> </nav> <!-- <button
+        class="px-6 py-2.5 bg-accent text-background text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity border border-transparent"
+      >
+        Donar
+      </button> --> </div> <button id="mobile-menu-btn" class="md:hidden p-2 text-primary dark:text-white" aria-label="Menu"> <span class="material-symbols-outlined text-2xl">menu</span> </button> </div> <!-- Mobile Menu Overlay --> <div id="mobile-menu" class="fixed inset-0 z-[100] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col"> <div class="flex items-center justify-between p-6 border-b border-border"> <div class="flex items-center gap-2"> <span class="text-xl font-bold tracking-tight">Menú</span> </div> <button id="close-menu-btn" class="p-2 text-primary dark:text-white" aria-label="Cerrar menú"> <span class="material-symbols-outlined text-2xl">close</span> </button> </div> <nav class="flex flex-col p-6 gap-6"> <a href="/" class="text-2xl font-display font-medium text-primary dark:text-white hover:text-accent transition-colors">Inicio</a> <a href="/blog" class="text-2xl font-display font-medium text-primary dark:text-white hover:text-accent transition-colors">Blog</a> <a href="/libros" class="text-2xl font-display font-medium text-primary dark:text-white hover:text-accent transition-colors">Libros</a> <div class="pt-6 border-t border-border flex items-center justify-between"> <span class="text-lg font-medium text-secondary dark:text-gray-400">Apariencia</span> <button class="theme-toggle text-foreground transition-colors theme-btn-main" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24"> <!-- https://feathericons.com/?query=sun --> <mask id="moon"> <rect x="0" y="0" width="100%" height="100%" fill="white"></rect> <circle cx="40" cy="8" r="11" fill="black"></circle> </mask> <circle class="sun" cx="12" cy="12" r="11" mask="url(#moon)"></circle> <g class="sun-beams"> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </g> </svg> </button>  <script>
+  const primaryColorScheme = ""; // "light" | "dark"
+
+  function getPreferTheme() {
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme) return currentTheme;
+    if (primaryColorScheme) return primaryColorScheme;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  let themeValue = getPreferTheme();
+
+  function setPreference() {
+    localStorage.setItem("theme", themeValue);
+    reflectPreference();
+  }
+
+  function reflectPreference() {
+    document.firstElementChild.setAttribute("data-theme", themeValue);
+
+    // Update ALL toggle buttons
+    document.querySelectorAll(".theme-toggle").forEach((btn) => {
+      btn.setAttribute("aria-label", themeValue);
+    });
+
+    // Toggle the 'dark' class for Tailwind CSS
+    if (themeValue === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    // Update theme-color meta tag
+    const body = document.body;
+    if (body) {
+      const bgColor = window.getComputedStyle(body).backgroundColor;
+      document
+        .querySelector("meta[name='theme-color']")
+        ?.setAttribute("content", bgColor);
+    }
+  }
+
+  // Named function for the click handler
+  function handleThemeToggle() {
+    themeValue = themeValue === "light" ? "dark" : "light";
+    setPreference();
+  }
+
+  // set early so no page flashes / CSS is made aware
+  reflectPreference();
+
+  // Setup theme toggle on page load
+  document.addEventListener("astro:page-load", () => {
+    themeValue = getPreferTheme();
+    reflectPreference();
+
+    // Attach listeners to ALL toggle buttons
+    document.querySelectorAll(".theme-toggle").forEach((btn) => {
+      btn.removeEventListener("click", handleThemeToggle);
+      btn.addEventListener("click", handleThemeToggle);
+    });
+  });
+
+  // Sync with system changes
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", ({ matches: isDark }) => {
+      themeValue = isDark ? "dark" : "light";
+      setPreference();
+    });
+</script> </div> </nav> </div> </header> <script type="module">const l=document.getElementById("mobile-menu-btn"),o=document.getElementById("close-menu-btn"),e=document.getElementById("mobile-menu");e&&document.body&&document.body.appendChild(e);function t(){e?.classList.toggle("translate-x-full");const n=!e?.classList.contains("translate-x-full");document.body.style.overflow=n?"hidden":""}l?.addEventListener("click",t);o?.addEventListener("click",t);e?.querySelectorAll("a").forEach(n=>{n.addEventListener("click",()=>{t()})});</script> <!-- Main Content Area --> <main class="flex flex-col items-center w-full pt-12 pb-24"> <!-- Article Container --> <article class="w-full max-w-[800px] px-5 md:px-0 flex flex-col gap-10"> <!-- Article Header --> <header class="flex flex-col gap-6"> <!-- Category Chip --> <div class="flex"> <span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-bold tracking-widest text-accent bg-accent/10 uppercase"> apologetica </span> </div> <!-- Headline --> <h1 class="serif-text text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] text-accent tracking-tight"> ¿Qué es una Presuposición? </h1> <!-- Author Metadata --> <div class="flex items-center justify-between border-t border-b border-border py-4 mt-2"> <div class="flex items-center gap-4"> <div class="flex flex-col"> <span class="text-base font-bold text-accent leading-tight"> Presuposicionalismo </span> <span class="text-sm text-muted"> <div> <span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm12-4v4M8 3v4m-4 4h16M7 14h.013m2.997 0h.005m2.995 0h.005m3 0h.005m-3.005 3h.005m-6.01 0h.005m2.995 0h.005"></path></svg> </span> <span> <time datetime="2020-09-24T00:00:00.000Z"> 23 de sept de 2020 </time> </span> </div> </span> </div> </div> <!-- Mobile Share --> <div class="flex lg:hidden gap-2 text-muted"> <button class="p-2 hover:bg-surface rounded-full transition-colors" aria-label="Compartir" onclick="navigator.share?.({ title: document.title, url: window.location.href })"> <span class="material-icons-outlined text-[20px]">share</span> </button> <button class="p-2 hover:bg-surface rounded-full transition-colors" aria-label="Guardar"> <span class="material-icons-outlined text-[20px]">bookmark</span> </button> </div> </div> </header> <!-- Featured Image --> <figure class="w-full"> <div class="w-full aspect-[21/9] bg-surface rounded-lg overflow-hidden relative"> <img src="/src/assets/coverblog/cambiar.webp" alt="¿Qué es una Presuposición?" class="w-full h-full object-cover"> <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div> </div> </figure> <!-- Body Layout Wrapper --> <div class="relative w-full"> <!-- Floating Sidebar (Desktop) --> <aside class="hidden lg:flex flex-col gap-6 absolute -left-24 top-0 h-full w-12 items-center"> <div class="sticky top-32 flex flex-col gap-4"> <p class="text-[10px] text-muted uppercase tracking-widest text-center mb-1">
+Share
+</p> <button class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent hover:-translate-y-1" aria-label="Copiar enlace" onclick="navigator.clipboard.writeText(window.location.href)"> <span class="material-icons-outlined text-[20px]">link</span> </button> <button class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent hover:-translate-y-1" aria-label="Compartir en Twitter"> <span class="material-icons-outlined text-[20px]">send</span> </button> <button class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent hover:-translate-y-1" aria-label="Compartir en Facebook"> <span class="material-icons-outlined text-[20px]">thumb_up</span> </button> <div class="w-8 h-px bg-border my-2 mx-auto"></div> <button class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:bg-accent/10" aria-label="Guardar artículo"> <span class="material-icons-outlined text-[20px]">bookmark_add</span> </button> </div> </aside> <!-- Typography Content --> <div class="prose-content">  <p>Frecuentemente nos encontramos con malos entendidos respecto a lo que es una presuposición. Creo que una de las principales barreras que alejan a las personas de nuestra metodología apologética es esta confusión. Comúnmente se cree que una presuposición es cualquier creencia que se dé por sentada, aunque esta sea arbitraria. Ciertamente esta es una definición común y aceptada de lo que es una presuposición, pero cuando los presuposicionalistas vantilianos están usando este término no lo usan en un sentido tan ligero y tan general. Creo que ese gran malentendido a veces impide una conversación fructífera entre apologistas, puesto que mientras el presuposicionalista está usando la palabra con una connotación vantiliana, el opositor está usando la palabra en un sentido general y ligero. Voy a citar algunos escritos que son bastante conocidos respecto nuestra metodología apologética para dejar claro lo que es una presuposición para Van Til y, por ende, para todo presuposicionalista vantiliano.</p>
+<p>En el libro “¡<em>Prepárate para la Buena Batalla!: La Metodología Apologética de Greg Bahnsen</em>” leemos lo siguiente:</p>
+<blockquote>
+<p><em>Una cosmovisión—cualquier cosmovisión, ya sea cristiana o secular—se fundamenta sobre cierto tipo de creencias conocidas como “presuposiciones”. Esto no significa que se establece en cualquier selección de los supuestos favoritos de alguien, sino más bien en premisas de un tipo especial, conocidas como “presuposiciones.”</em></p>
+</blockquote>
+<p><em>Pero en sí, ¿qué se quiere decir con una presuposición? El definir las presuposiciones será sumamente importante para poder comprender el enfoque bíblico a la apologética. En realidad, este método apologético es conocido popularmente como “Apologética Presuposicional” o de manera más sencilla “Presuposicionalismo.” En el libro de “La Apologética de Van Til”, la presuposición es definida de esta manera:</em></p>
+<blockquote>
+<p><em>«Una “presuposición” es un supuesto elemental en el razonamiento de alguien o en el proceso por medio del cual las opiniones son formadas … Esta no es simplemente cualquier supuesto en un argumento, sino un compromiso personal que se sostiene en el nivel más básico de la red de creencias de alguien. Las presuposiciones forman una perspectiva (o punto de partida) fundamental y amplia, en términos de la cual, todo lo demás es interpretado y evaluado. Como tales, las presuposiciones tienen la autoridad más alta en el pensamiento de alguien, siendo tratadas como las creencias menos negociables de la persona y siendoles otorgadas la inmunidad más alta al ser revisadas».</em></p>
+</blockquote>
+<p><em>Una presuposición es, por lo tanto, un supuesto “elemental” (es decir, básico, fundamental, el punto de partida) acerca de la realidad de un todo. Una presuposición elemental sirve como condición esencial necesaria para la perspectiva que alguien tiene del mundo y de la vida.</em> <strong><em>Es una precondición necesaria para el pensamiento humano y la experiencia, sin la cual el razonamiento lógico sería imposible y la experiencia humana sería ininteligible.</em></strong> <em>Profundicemos un poco más para que puedas ver la importancia de tus presuposiciones.</em></p>
+<p><em>Las presuposiciones son normalmente, supuestos escondidos en los que de manera reflexiva dependes para temas fundamentales de la experiencia humana tales como la naturaleza y la estructura de la realidad, la posibilidad y el método de conocimiento, los estándares y los universales de la moral. Estas presuposiciones básicas acerca del mundo y la vida te guían para descubrir y resolver problemas, planear para el futuro y demás; estas te proveen de todos los estándares para interpretar toda la vida. Ellas gobiernan tu manera de pensar y de actuar, hasta la forma en la que seleccionas y empleas hechos específicos en los innumerables hechos que fluyen sin cesar a través de tus sentidos y en tu mente en todos y cada uno de los momentos del día. Estas forman el fundamento de tu visión del mundo y la vida</em>.»</p>
+<p>Una “presuposición”, entonces, es una “<strong><em>una precondición necesaria para el pensamiento humano y la experiencia, sin la cual el razonamiento lógico sería imposible y la experiencia humana sería ininteligible”.</em></strong> Así que, cuando el presuposicionalista afirma que debemos presuponer a Dios, no está usando el término de una manera ligera y general, ni hablando de una presuposición arbitraria basada en los supuestos favoritos de alguien, sino que está afirmando que la idea de Dios es “<strong><em>una precondición necesaria para el pensamiento humano y la experiencia, sin la cual el razonamiento lógico sería imposible y la experiencia humana sería ininteligible.</em></strong><em>”</em> De ahí, que el presuposicionalista esté argumentando trascendentalmente, como afirma John Frame:</p>
+<blockquote>
+<p>«<em>Van Til y los que le siguen de cerca sostienen que ese argumento apologético debe ser trascendental. También lo llama “razonamiento por presuposición” (Van Til, Defense, p. 99). Un argumento trascendental trata de mostrar las condiciones que hacen que cualquier cosa sea lo que es, particularmente las condiciones o presuposiciones necesarias para el pensamiento racional. Esta comprensión de la apologética subraya la convicción de Van Til de que el Dios cristiano no es simplemente otro hecho que se descubre junto a los que ya conocemos, sino que es el hecho del que todos los demás hechos derivan su significado e inteligibilidad</em>.»</p>
+</blockquote>
+<p>Un argumento trascendental para la existencia de Dios es aquel que argumenta a favor de Dios, no como un hecho más a descubrir, sino como una precondición (presuposición) necesaria para la inteligibilidad de la experiencia humana, y demostrando que lo contrario es imposible. Cuando el presuposicionalista afirma que debemos presuponer a Dios, está pensando en el argumento anterior. Esa, por supuesto, no es una declaración gratuita. Él debe probar esto y la manera de hacerlo es presionando todas las cosmovisiones no cristianas y conduciendolas a sus conclusiones lógicas. Es decir, llevarlas al absurdo. Y entonces, argumentar que a menos que Dios sea presupuesto como la precondición necesaria para X “hecho” o “ley”, tal cosa sería ininteligible. Por supuesto, el incrédulo en principio no necesita creer en Dios para inteligiblemente entender X “hecho” o “ley”, pero el punto es que su cosmovisión no puede dar cuenta de ello, y que, si su cosmovisión fuese cierta, de hecho, X “hecho” y “ley” no sería inteligible. Por tanto, el incrédulo toma capital prestado del cristianismo. Esa es la forma de un argumento por presuposición.</p>
+<p>En otro lugar, Greg Bahnsen, muestra las diferencias entre Gordón Clark, Francis Schaeffer y Cornelius Van Til de lo que cada uno entendía por el término presuposición. Debemos tener estas diferencias claras para no leer este término en los presuposicionalistas vantilianos con los lentes de Clark o Schaeffer:</p>
+<blockquote>
+<p>«<em>Gordon Clark es llamado a veces un presuposicionalista por la gente. Y no estoy celoso por el término. Así que, si la gente quiere decir eso, si dan alguna definición abstracta que incluya a Clark y Van Til, que así sea. No creo que eso ayude. Creo que es más confuso que esclarecedor reunirlos de esa manera.</em></p>
+</blockquote>
+<blockquote>
+<p><em>Según Gordon Clark, nuestras suposiciones o premisas últimas son axiomas que no están sujetos a prueba. Y es por eso que al final de su carrera apoyó abiertamente el fideísmo como su enfoque de la apologética. Dijo abiertamente que tenemos fe en este conjunto de axiomas. El otro tipo tiene fe en su conjunto de axiomas y realmente no hay ninguna discusión entre los dos. Al final, depende de la obra del Espíritu Santo en el corazón del otro hombre para que cambie sus axiomas».</em></p>
+</blockquote>
+<p><em>El error que se comete allí es que Clark pasa de las razones de la fe cristiana a las causas de la fe cristiana y no responde realmente a la pregunta: “¿cómo se resuelve entonces el conflicto entre los axiomas? Dice que no puedes. Es sólo una elección fideísta, y luego eres consistente y vives dentro de tu visión del mundo. Y tratas de derribar lo que dicen los demás. De hecho, dice Clark, lo derribas demostrando que no pueden saber nada, ni nada, basado en pensamientos o enfoques empíricos y observacionales.</em></p>
+<p><em>Como vantiliano, y espero que sea fiel a la Biblia, no estoy de acuerdo con él en que toda metodología empírica no nos proporcione conocimiento. Que no podemos saber nada más que lo que está en la Biblia. Pero estoy de acuerdo con la premisa, enseñada por Van Til, de que aparte de lo que la Biblia enseña, en principio no se puede saber nada basado en la metodología empírica. Pero ahora, volvamos a Clark. Su visión de una presuposición es entonces un axioma que es algo que no se puede probar. Es algo que se elige de manera fideísta y luego se trata de ser consistente dentro de todo el razonamiento.</em></p>
+<p><strong><em>El enfoque de Van Til con respecto a una presuposición es que es una condición previa de inteligibilidad</em></strong> <em>y, por lo tanto, se puede argumentar indirectamente a favor de ella. Puedes reducir a tu oponente al absurdo. Usted puede hacer una crítica interna de la filosofía del incrédulo para mostrar en esa filosofía que él no podía saber nada en absoluto. Y más allá de eso, su razonamiento, su apelación a la historia y a la ciencia y a otras cosas ha estado siempre asumiendo su filosofía como una forma de argumentar en contra de su filosofía, por lo que</em> <strong><em>lo que queremos decir con presuposiciones es bastante diferente.</em></strong></p>
+<p><em>Ya que estoy en el tema, podría señalar que Francis Schaeffer tiene otra definición de la palabra presuposición que difiere de la de Van Til y Clark. Y esto se puede ver cuando Francis Schaeffer habla en “La muerte en la ciudad”. Tiene un capítulo, El Universo en Dos Sillas. Según Schaeffer, podemos imaginar que hay un creyente y un no creyente sentados en dos sillas en esta sala, y que van a discutir entre ellos lo que pueden saber y lo que es la realidad. Y el incrédulo hace todo su análisis científico de la pintura de las paredes. Y según Schaeffer, el incrédulo expone todas las verdades que ha aprendido sobre el mundo basándose en su análisis material de la habitación, la silla o lo que sea. Según Schaeffer, todo está bien hasta dónde llega, pero es sólo la mitad de la naranja. Ahora permítanme, como cristiano, complementar lo que han dicho. Verá,</em> <strong><em>Schaeffer no consideraba las presuposiciones cristianas como la condición previa para toda inteligibilidad, porque si fueran las condiciones previas para la inteligibilidad, el incrédulo no tendría ni la mitad de la naranja, no tendría nada en absoluto</em></strong>.</p>
+<p><em>Schaeffer debería haber dicho que no estás siendo fiel a tus propias presuposiciones. Schaeffer dijo: “Debemos pedir a los hombres que consideren la hipótesis, la cosmovisión presentada por el cristianismo, es decir, la uniformidad de las causas naturales en un sistema abierto, donde Dios puede entrar en el sistema, y compararla con la filosofía de la uniformidad de las causas naturales en un sistema cerrado. Y luego pregunte cuál de esas dos hipótesis encaja con los hechos tal como los conocemos en el mundo natural y la hombría del hombre. Ahora bien, en este tipo de comentarios, podemos ver que Schaeffer no trata las presuposiciones como el compromiso final por el cual nos acercamos a la ciencia y a la evaluación, sino que en realidad trata las presuposiciones como una hipótesis sujeta a prueba. Así que está hablando de algo que puede ser probado, entonces no está hablando de su presuposición última porque cualquier cosa que use para probarlo es su presuposición última.</em></p>
+<p><em>Así que puede ser muy fácil confundirse cuando se lee la literatura de los apologistas reformados del siglo XX.</em> <strong><em>Schaeffer, Clark y Van Til no significan lo mismo con la palabra presuposición.</em></strong> <em>Pero en el enfoque de la presuposición que Van Til nos enseñó, en última instancia en principio y muchas veces en la conversación real cuando estamos defendiendo la fe, se reduce a señalar que el incrédulo tiene una presuposición particular, el creyente tiene una presuposición particular o conjunto de presuposiciones,</em> <strong><em>y debemos argumentar en términos de las precondiciones de inteligibilidad que la nuestra es correcta y la de ellos no lo es.</em></strong> <em>¿Recuerdas el enfoque indirecto? Tenemos dos posiciones, dos visiones del mundo, invitamos al incrédulo a pararse dentro de nuestra visión del mundo para ver que todas sus objeciones no son realmente objeciones contundentes. “No respondemos al tonto de acuerdo a su locura, no sea que seamos como él.” Pero entonces nos paramos dentro de la visión del mundo del incrédulo para mirar sus presuposiciones básicas y explicarle lo que eso implicaría. “Respondemos al necio de acuerdo a su insensatez, para que no sea sabio en su propia vanidad”. Para que piense bien que tengo una base para la ciencia, para los absolutos morales, tengo una base para la libertad y la dignidad humana. Por lo tanto, el paso final del procedimiento es mostrar que el empirismo y el ateísmo de nuestros amigos epicúreos es completamente inadecuado para dar cuenta de, o incluso hacer posible, la objetividad en la racionalidad del pensamiento del hombre en el pensamiento del hombre. Es imposible dar cuenta o hacer posible la libertad del hombre, o los absolutos morales</em>.</p>
+<p>Todas estas citas parecen ser lo suficientemente claras para que nuestros críticos y aquellos que deseen aprender puedan comprender lo que es una “<em>presuposición</em>” para lo presuposicionalistas vantilianos. Esta aclaración evitará dos cosas: 1) evitará que crean que afirmar que Dios debe ser presupuesto es una afirmación ligera, y 2) evitará que nos acusen de razonamiento circular falaz, ya que un argumento trascendental que argumenta a favor de Dios como precondición (presuposición) necesaria para la inteligibilidad no es un argumento circular.</p>
+<h4 id="por-josé-ángel-ramírez">Por: José Ángel Ramírez.</h4>
+<hr/>  </div> </div> <!-- Footer Section of Article --> <footer class="mt-16 flex flex-col gap-16"> <!-- Divider --> <div class="w-full h-px bg-border"></div> <!-- Author Bio --> <div class="bg-surface rounded-xl p-8 flex flex-col md:flex-row gap-6 items-start border border-border"> <div class="shrink-0"> <div class="w-20 h-20 rounded-full bg-muted/20 flex items-center justify-center ring-2 ring-border shadow-md"> <span class="material-icons-outlined text-4xl text-muted">
+person
+</span> </div> </div> <div class="flex flex-col gap-3"> <div class="flex items-center justify-between"> <h4 class="text-xl font-bold text-accent">Sobre el Autor</h4>  </div> <p class="text-base text-muted leading-relaxed"> Equipo editorial de Presuposicionalismo dedicado a promover la apologética reformada y la cosmovisión cristiana. </p> </div> </div> <!-- Related Articles --> <div class="flex flex-col gap-8"> <div class="flex items-center justify-between"> <h3 class="serif-text text-2xl font-bold text-accent">
+Artículos Relacionados
+</h3> <a class="hidden sm:block text-sm font-medium text-muted hover:text-accent transition-colors" href="/blog">
+Ver todos
+</a> </div> <div class="grid grid-cols-1 md:grid-cols-3 gap-6"> <a class="group flex flex-col gap-3" href="/blog"> <div class="aspect-[4/3] w-full rounded-lg overflow-hidden bg-surface border border-border"> <div class="w-full h-full flex items-center justify-center text-muted"> <span class="material-icons-outlined text-5xl">article</span> </div> </div> <span class="text-xs font-bold text-accent uppercase tracking-wider mt-1"> Teología </span> <h4 class="text-lg font-bold text-accent leading-tight group-hover:opacity-80 transition-opacity"> Artículo Relacionado </h4> <p class="text-sm text-muted line-clamp-2">Descripción del artículo relacionado.</p> </a><a class="group flex flex-col gap-3" href="/blog"> <div class="aspect-[4/3] w-full rounded-lg overflow-hidden bg-surface border border-border"> <div class="w-full h-full flex items-center justify-center text-muted"> <span class="material-icons-outlined text-5xl">article</span> </div> </div> <span class="text-xs font-bold text-accent uppercase tracking-wider mt-1"> Filosofía </span> <h4 class="text-lg font-bold text-accent leading-tight group-hover:opacity-80 transition-opacity"> Artículo Relacionado </h4> <p class="text-sm text-muted line-clamp-2">Descripción del artículo relacionado.</p> </a><a class="group flex flex-col gap-3" href="/blog"> <div class="aspect-[4/3] w-full rounded-lg overflow-hidden bg-surface border border-border"> <div class="w-full h-full flex items-center justify-center text-muted"> <span class="material-icons-outlined text-5xl">article</span> </div> </div> <span class="text-xs font-bold text-accent uppercase tracking-wider mt-1"> Historia </span> <h4 class="text-lg font-bold text-accent leading-tight group-hover:opacity-80 transition-opacity"> Artículo Relacionado </h4> <p class="text-sm text-muted line-clamp-2">Descripción del artículo relacionado.</p> </a> </div> </div> <!-- Newsletter CTA --> <div class="bg-accent rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"> <div class="relative z-10 max-w-lg mx-auto flex flex-col gap-6"> <div class="mx-auto bg-background/10 p-3 rounded-full w-fit"> <span class="material-icons-outlined text-background text-3xl">mail</span> </div> <div> <h3 class="text-2xl font-bold text-background mb-2">Profundice en su fe</h3> <p class="text-background/70 text-sm"> Reciba artículos semanales sobre apologética, teología y filosofía cristiana directamente en su bandeja de entrada. </p> </div> <form class="flex flex-col sm:flex-row gap-3 w-full"> <input class="flex-1 rounded-lg border-0 px-4 py-3 text-sm focus:ring-2 focus:ring-accent text-foreground placeholder:text-muted bg-background" placeholder="Su correo electrónico" type="email" name="email"> <button class="bg-background text-accent font-medium px-6 py-3 rounded-lg text-sm transition-opacity hover:opacity-90 whitespace-nowrap" type="submit">
+Suscribirse
+</button> </form> <p class="text-[10px] text-background/60">
+Respetamos su privacidad. Cancele su suscripción en cualquier momento.
+</p> </div> <!-- Decorative background pattern --> <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div> </div> <!-- Back to Blog Link --> <div class="text-center"> <a href="/blog" class="inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"> <span class="material-icons-outlined text-[18px]">arrow_back</span>
+Volver al blog
+</a> </div> </footer> </article> </main> <footer class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-16 mt-20"> <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8"> <div class="flex flex-col items-center md:items-start gap-4"> <span class="text-xl font-bold tracking-[0.2em] text-primary dark:text-white uppercase">Presuposicionalismo</span> <p class="text-sm text-slate-500 dark:text-slate-400">
+© 2026 Soli Deo Gloria. Todos los derechos reservados.
+</p> </div> <div class="flex gap-8 text-sm font-medium text-slate-600 dark:text-slate-400"> <a class="hover:text-primary dark:hover:text-white transition-colors" href="#">Instagram</a> <a class="hover:text-primary dark:hover:text-white transition-colors" href="#">Twitter</a> <a class="hover:text-primary dark:hover:text-white transition-colors" href="#">Youtube</a> <a class="hover:text-primary dark:hover:text-white transition-colors" href="#">Newsletter</a> </div> </div> </footer> <vercel-speed-insights data-props="{}" data-params="{&#34;slug&#34;:&#34;que-es-una-presuposicion&#34;}" data-pathname="/blog/que-es-una-presuposicion/"></vercel-speed-insights> <script type="module">var o="@vercel/speed-insights",u="1.3.1",f=()=>{window.si||(window.si=function(...r){(window.siq=window.siq||[]).push(r)})};function l(){return typeof window<"u"}function h(){try{const e="production"}catch{}return"production"}function d(){return h()==="development"}function v(e,r){if(!e||!r)return e;let n=e;try{const t=Object.entries(r);for(const[s,i]of t)if(!Array.isArray(i)){const a=c(i);a.test(n)&&(n=n.replace(a,`/[${s}]`))}for(const[s,i]of t)if(Array.isArray(i)){const a=c(i.join("/"));a.test(n)&&(n=n.replace(a,`/[...${s}]`))}return n}catch{return e}}function c(e){return new RegExp(`/${g(e)}(?=[/?#]|$)`)}function g(e){return e.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}function m(e){return e.scriptSrc?e.scriptSrc:d()?"https://va.vercel-scripts.com/v1/speed-insights/script.debug.js":e.dsn?"https://va.vercel-scripts.com/v1/speed-insights/script.js":e.basePath?`${e.basePath}/speed-insights/script.js`:"/_vercel/speed-insights/script.js"}function w(e={}){var r;if(!l()||e.route===null)return null;f();const n=m(e);if(document.head.querySelector(`script[src*="${n}"]`))return null;e.beforeSend&&((r=window.si)==null||r.call(window,"beforeSend",e.beforeSend));const t=document.createElement("script");return t.src=n,t.defer=!0,t.dataset.sdkn=o+(e.framework?`/${e.framework}`:""),t.dataset.sdkv=u,e.sampleRate&&(t.dataset.sampleRate=e.sampleRate.toString()),e.route&&(t.dataset.route=e.route),e.endpoint?t.dataset.endpoint=e.endpoint:e.basePath&&(t.dataset.endpoint=`${e.basePath}/speed-insights/vitals`),e.dsn&&(t.dataset.dsn=e.dsn),d()&&e.debug===!1&&(t.dataset.debug="false"),t.onerror=()=>{console.log(`[Vercel Speed Insights] Failed to load script from ${n}. Please check if any content blockers are enabled and try again.`)},document.head.appendChild(t),{setRoute:s=>{t.dataset.route=s??void 0}}}function p(){try{return}catch{}}customElements.define("vercel-speed-insights",class extends HTMLElement{constructor(){super();try{const r=JSON.parse(this.dataset.props??"{}"),n=JSON.parse(this.dataset.params??"{}"),t=v(this.dataset.pathname??"",n);w({route:t,...r,framework:"astro",basePath:p(),beforeSend:window.speedInsightsBeforeSend})}catch(r){throw new Error(`Failed to parse SpeedInsights properties: ${r}`)}}});</script> <!-- Scroll Progress Script --> <script>
+      window.addEventListener("scroll", function () {
+        let winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        let height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        const progressBar = document.getElementById("progress-bar");
+        if (progressBar) {
+          progressBar.style.width = scrolled + "%";
+        }
+      });
+    </script> </body> </html>

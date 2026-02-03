@@ -1,6 +1,5 @@
 <button
-  id="theme-btn"
-  class="theme-toggle text-foreground transition-colors"
+  class="theme-toggle text-foreground transition-colors theme-btn-main"
   title="Toggles light & dark"
   aria-label="auto"
   aria-live="polite"
@@ -11,8 +10,8 @@
       <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
       <circle cx="40" cy="8" r="11" fill="black"></circle>
     </mask>
-    <circle id="sun" cx="12" cy="12" r="11" mask="url(#moon)"></circle>
-    <g id="sun-beams">
+    <circle class="sun" cx="12" cy="12" r="11" mask="url(#moon)"></circle>
+    <g class="sun-beams">
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
       <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
@@ -39,22 +38,22 @@
   }
 
   #moon,
-  #sun {
+  .sun {
     fill: var(--nav-icon);
     stroke: none;
   }
 
   :hover > svg > #moon,
-  :hover > svg > #sun {
+  :hover > svg > .sun {
     fill: var(--nav-icon-hover);
   }
 
-  #sun {
+  .sun {
     transition: transform 0.5s var(--ease-4, cubic-bezier(0.25, 0, 0.3, 1));
     transform-origin: center center;
   }
 
-  #sun-beams {
+  .sun-beams {
     --_opacity-dur: 0.15s;
     stroke: var(--nav-icon);
     stroke-width: 2px;
@@ -64,7 +63,7 @@
       opacity var(--_opacity-dur) var(--ease-3, cubic-bezier(0.25, 0, 0.3, 1));
   }
 
-  :hover > svg > #sun-beams {
+  :hover > svg > .sun-beams {
     stroke: var(--nav-icon-hover);
   }
 
@@ -72,11 +71,11 @@
     transition: transform 0.5s var(--ease-out-3, cubic-bezier(0, 0, 0.2, 1));
   }
 
-  [data-theme="light"] #sun {
+  [data-theme="light"] .sun {
     transform: scale(0.5);
   }
 
-  [data-theme="light"] #sun-beams {
+  [data-theme="light"] .sun-beams {
     transform: rotateZ(0.25turn);
     --_opacity-dur: 0.5s;
   }
@@ -85,7 +84,7 @@
     transform: translateX(-20px);
   }
 
-  [data-theme="dark"] #sun-beams {
+  [data-theme="dark"] .sun-beams {
     opacity: 0;
   }
 </style>
@@ -111,9 +110,11 @@
 
   function reflectPreference() {
     document.firstElementChild.setAttribute("data-theme", themeValue);
-    document
-      .querySelector("#theme-btn")
-      ?.setAttribute("aria-label", themeValue);
+
+    // Update ALL toggle buttons
+    document.querySelectorAll(".theme-toggle").forEach((btn) => {
+      btn.setAttribute("aria-label", themeValue);
+    });
 
     // Toggle the 'dark' class for Tailwind CSS
     if (themeValue === "dark") {
@@ -132,7 +133,7 @@
     }
   }
 
-  // Named function for the click handler to enable proper cleanup
+  // Named function for the click handler
   function handleThemeToggle() {
     themeValue = themeValue === "light" ? "dark" : "light";
     setPreference();
@@ -146,12 +147,11 @@
     themeValue = getPreferTheme();
     reflectPreference();
 
-    const themeBtn = document.querySelector("#theme-btn");
-    if (themeBtn) {
-      // Remove any existing listener before adding a new one
-      themeBtn.removeEventListener("click", handleThemeToggle);
-      themeBtn.addEventListener("click", handleThemeToggle);
-    }
+    // Attach listeners to ALL toggle buttons
+    document.querySelectorAll(".theme-toggle").forEach((btn) => {
+      btn.removeEventListener("click", handleThemeToggle);
+      btn.addEventListener("click", handleThemeToggle);
+    });
   });
 
   // Sync with system changes

@@ -67,10 +67,10 @@ html {
      existing @apply prose classes. The provided "Code Edit" snippet
      did not contain any @apply prose classes to remove or replace.
      Therefore, no changes are made to this block based on the provided input. */
-  @apply prose prose-lg max-w-none;
+  @apply prose prose-lg max-w-none dark:prose-invert;
 
   /* Headings */
-  @apply prose-headings:serif-text prose-headings:font-bold prose-headings:text-accent;
+  @apply prose-headings:font-bold prose-headings:text-accent;
   @apply prose-h1:text-4xl prose-h1:mt-8 prose-h1:mb-4;
   @apply prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6;
   @apply prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4;
@@ -121,3 +121,11 @@ html {
   @apply prose-blockquote:py-6 prose-blockquote:px-8;
   @apply prose-blockquote:serif-text prose-blockquote:text-2xl prose-blockquote:font-medium prose-blockquote:italic;
 } */
+
+#mobile-menu {
+  background-color: #ffffff !important;
+}
+
+.dark #mobile-menu {
+  background-color: #000000 !important;
+}

@@ -1,86 +1,117 @@
 ---
-import { getCollection } from "astro:content";
-import Card from "./Card.astro";
-import ArrowLeft from "./ArrowLeft.astro";
-import ArrowRight from "./ArrowRight.astro";
+import type { CollectionEntry } from "astro:content";
+import FeaturedPost from "@components/FeaturedPost.astro";
+import PostGridItem from "@components/PostGridItem.astro";
 
-const posts = (await getCollection("blog"))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 5);
+interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+
+const { posts } = Astro.props;
+
+// First post is featured, rest are for grid (groups of 3)
+const featuredPost = posts[0];
+const remainingPosts = posts.slice(1);
+
+// Create groups of 3 posts for the grid slides
+const gridSlides: CollectionEntry<"blog">[][] = [];
+for (let i = 0; i < remainingPosts.length; i += 3) {
+  gridSlides.push(remainingPosts.slice(i, i + 3));
+}
+
+const totalSlides = 1 + gridSlides.length; // 1 featured + grid slides
 ---
 
-<section class="blog-carousel">
-  <h2>Últimas entradas del Blog</h2>
-  <div class="carousel-wrapper">
-    <div class="carousel-viewport">
-      <div class="carousel-container">
-        {
-          posts.map((post) => (
-            <div class="carousel-item">
-              <Card
-                title={post.data.title}
-                description={post.data.description}
-                pubDate={post.data.pubDate}
-                heroImage={post.data.heroImage}
-                slug={post.id}
-              />
-            </div>
-          ))
-        }
-      </div>
+<div class="carousel-wrapper overflow-hidden relative group w-full">
+  <div
+    class="flex items-center justify-between mb-8 absolute top-[-80px] right-0 z-10"
+  >
+    <div class="flex gap-4">
+      <button
+        class="carousel-button prev w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-surface transition-colors disabled:opacity-30 disabled:cursor-not-allowed bg-background"
+        aria-label="Post anterior"
+      >
+        <span class="material-icons-outlined">chevron_left</span>
+      </button>
+      <button
+        class="carousel-button next w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-surface transition-colors disabled:opacity-30 disabled:cursor-not-allowed bg-background"
+        aria-label="Siguiente post"
+      >
+        <span class="material-icons-outlined">chevron_right</span>
+      </button>
     </div>
-    <button class="carousel-button prev" aria-label="Anterior entrada del blog">
-      <ArrowLeft />
-    </button>
-    <button
-      class="carousel-button next"
-      aria-label="Siguiente entrada del blog"
-    >
-      <ArrowRight />
-    </button>
   </div>
-  <div class="more-link">
-    <a href="/blog">Ver todas las entradas</a>
+
+  <div
+    class="carousel-container transition-transform duration-500 ease-in-out flex w-full"
+  >
+    <!-- Featured Post Slide -->
+    <div class="carousel-slide min-w-full w-full flex-shrink-0 px-1">
+      {featuredPost && <FeaturedPost post={featuredPost} />}
+    </div>
+
+    <!-- Grid Slides -->
+    {
+      gridSlides.map((slideGroup) => (
+        <div class="carousel-slide min-w-full w-full flex-shrink-0 px-1">
+          <div class="grid md:grid-cols-3 gap-8">
+            {slideGroup.map((post) => (
+              <PostGridItem post={post} />
+            ))}
+          </div>
+        </div>
+      ))
+    }
   </div>
-</section>
+</div>
 
 <script>
-  const carouselWrapper = document.querySelector(".carousel-wrapper");
-
-  if (carouselWrapper) {
-    const carouselContainer = carouselWrapper.querySelector(
+  // Use a class to handle multiple carousels if needed, though currently selecting by class
+  // scoped to this component's usage context
+  function initCarousel(wrapper: Element) {
+    const container = wrapper.querySelector(
       ".carousel-container",
-    );
-    const prevButton = carouselWrapper.querySelector(".carousel-button.prev");
-    const nextButton = carouselWrapper.querySelector(".carousel-button.next");
+    ) as HTMLElement;
+    const prevButton = wrapper.querySelector(
+      ".carousel-button.prev",
+    ) as HTMLButtonElement;
+    const nextButton = wrapper.querySelector(
+      ".carousel-button.next",
+    ) as HTMLButtonElement;
+    const slides = wrapper.querySelectorAll(".carousel-slide");
 
-    if (carouselContainer && prevButton && nextButton) {
-      const items = carouselContainer.querySelectorAll(".carousel-item");
-      const totalItems = items.length;
+    if (container && prevButton && nextButton && slides.length > 0) {
       let currentIndex = 0;
+      const totalSlides = slides.length;
 
       function updateCarousel() {
-        if (carouselContainer instanceof HTMLElement) {
-          carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
+        container.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateButtons();
+      }
+
+      function updateButtons() {
+        prevButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === totalSlides - 1;
       }
 
       prevButton.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-        updateCarousel();
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateCarousel();
+        }
       });
 
       nextButton.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % totalItems;
-        updateCarousel();
+        if (currentIndex < totalSlides - 1) {
+          currentIndex++;
+          updateCarousel();
+        }
       });
 
-      if (totalItems <= 1) {
-        if (prevButton instanceof HTMLElement)
-          prevButton.style.display = "none";
-        if (nextButton instanceof HTMLElement)
-          nextButton.style.display = "none";
-      }
+      updateButtons();
     }
   }
+
+  // Initialize all carousels on the page
+  document.querySelectorAll(".carousel-wrapper").forEach(initCarousel);
 </script>

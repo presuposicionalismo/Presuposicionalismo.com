@@ -3,7 +3,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import vercelStatic from "@astrojs/vercel";
 
-import fuse from "astro-fuse";
+// import fuse from "astro-fuse";
 
 import tailwindcss from "@tailwindcss/vite";
 
@@ -18,7 +18,7 @@ export default defineConfig({
       gfm: true,
     }),
     sitemap(),
-    fuse(["content"]),
+    // fuse(["content"]),
   ],
 
   markdown: {

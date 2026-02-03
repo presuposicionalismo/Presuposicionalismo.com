@@ -38,8 +38,86 @@ import Logo from "./Logo.astro";
         Donar
       </button> -->
     </div>
-    <button class="md:hidden p-2 text-accent">
-      <span class="material-symbols-outlined">menu</span>
+
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 text-primary dark:text-white"
+      aria-label="Menu"
+    >
+      <span class="material-symbols-outlined text-2xl">menu</span>
     </button>
   </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-[100] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col"
+  >
+    <div class="flex items-center justify-between p-6 border-b border-border">
+      <div class="flex items-center gap-2">
+        <span class="text-xl font-bold tracking-tight">Menú</span>
+      </div>
+      <button
+        id="close-menu-btn"
+        class="p-2 text-primary dark:text-white"
+        aria-label="Cerrar menú"
+      >
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+    </div>
+
+    <nav class="flex flex-col p-6 gap-6">
+      <a
+        href="/"
+        class="text-2xl font-display font-medium text-primary dark:text-white hover:text-accent transition-colors"
+        >Inicio</a
+      >
+      <a
+        href="/blog"
+        class="text-2xl font-display font-medium text-primary dark:text-white hover:text-accent transition-colors"
+        >Blog</a
+      >
+      <a
+        href="/libros"
+        class="text-2xl font-display font-medium text-primary dark:text-white hover:text-accent transition-colors"
+        >Libros</a
+      >
+
+      <div
+        class="pt-6 border-t border-border flex items-center justify-between"
+      >
+        <span class="text-lg font-medium text-secondary dark:text-gray-400"
+          >Apariencia</span
+        >
+        <DarkToggle />
+      </div>
+    </nav>
+  </div>
 </header>
+
+<script>
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const closeMenuBtn = document.getElementById("close-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  // Move menu to body to avoid stacking context issues
+  if (mobileMenu && document.body) {
+    document.body.appendChild(mobileMenu);
+  }
+
+  function toggleMenu() {
+    mobileMenu?.classList.toggle("translate-x-full");
+    const isOpen = !mobileMenu?.classList.contains("translate-x-full");
+    document.body.style.overflow = isOpen ? "hidden" : "";
+  }
+
+  mobileMenuBtn?.addEventListener("click", toggleMenu);
+  closeMenuBtn?.addEventListener("click", toggleMenu);
+
+  // Close menu when clicking links (delegation since we moved the menu)
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      toggleMenu();
+    });
+  });
+</script>

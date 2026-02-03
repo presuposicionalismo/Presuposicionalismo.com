@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  highlightedText: string;
+  description: string[];
+  ctaText: string;
+  ctaHref: string;
+}
+
+const { title, highlightedText, description, ctaText, ctaHref } = Astro.props;
+---
+
+<section class="max-w-4xl mx-auto px-6 py-24 md:py-32 text-center">
+  <h1
+    class="serif-text text-4xl md:text-6xl font-medium leading-tight mb-8 text-accent"
+  >
+    {title}
+    <span class="italic">{highlightedText}</span>?
+  </h1>
+  <div class="space-y-6 text-lg text-muted leading-relaxed font-light">
+    {description.map((paragraph) => <p>{paragraph}</p>)}
+  </div>
+  <div class="mt-12">
+    <a
+      href={ctaHref}
+      class="inline-flex items-center gap-2 px-8 py-3 bg-accent text-background font-medium hover:opacity-90 transition-opacity"
+    >
+      {ctaText}
+      <span class="material-icons-outlined text-sm">arrow_downward</span>
+    </a>
+  </div>
+</section>

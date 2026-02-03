@@ -1,0 +1,58 @@
+---
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "@components/FormattedDate.astro";
+import CoverBlog from "@components/CoverBlog.astro";
+import { slugifyStr } from "@utils/slugify";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const postUrl = `/blog/${slugifyStr(post.data.title)}/`;
+---
+
+<div class="relative group mb-12">
+  <div
+    class="bg-surface rounded-lg overflow-hidden shadow-sm border border-border grid md:grid-cols-2 min-h-[400px]"
+  >
+    <div class="relative overflow-hidden h-64 md:h-auto">
+      <div class="absolute inset-0 w-full h-full">
+        <CoverBlog
+          imagePath={String(post.data.heroImage)}
+          altText={post.data.title}
+          class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+          loading="eager"
+        />
+      </div>
+      <div class="absolute inset-0 bg-accent/10"></div>
+    </div>
+    <div class="p-10 md:p-16 flex flex-col justify-center">
+      <div
+        class="flex items-center gap-2 text-muted text-sm mb-4 uppercase tracking-widest font-medium"
+      >
+        <span class="material-icons-outlined text-base">calendar_today</span>
+        <FormattedDate date={post.data.pubDate} />
+      </div>
+      <h3
+        class="serif-text text-3xl md:text-4xl text-accent mb-6 hover:opacity-80 transition-opacity cursor-pointer"
+      >
+        <a href={postUrl}>
+          {post.data.title}
+        </a>
+      </h3>
+      <p class="text-muted text-lg leading-relaxed mb-8 line-clamp-3">
+        {post.data.description}
+      </p>
+      <div>
+        <a
+          href={postUrl}
+          class="inline-flex items-center gap-2 font-medium text-accent border-b border-accent/20 pb-1 hover:border-accent transition-all"
+        >
+          Leer artículo completo
+          <span class="material-icons-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

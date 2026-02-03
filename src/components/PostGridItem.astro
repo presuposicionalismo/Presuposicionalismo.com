@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "@components/FormattedDate.astro";
+import CoverBlog from "@components/CoverBlog.astro";
+import { slugifyStr } from "@utils/slugify";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const postUrl = `/blog/${slugifyStr(post.data.title)}/`;
+---
+
+<div class="space-y-4 group">
+  <div class="aspect-video overflow-hidden rounded-lg bg-surface">
+    <a href={postUrl}>
+      <CoverBlog
+        imagePath={String(post.data.heroImage)}
+        altText={post.data.title}
+        class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+      />
+    </a>
+  </div>
+  <span class="text-xs font-bold text-muted tracking-tighter uppercase">
+    <FormattedDate date={post.data.pubDate} />
+  </span>
+  <h4
+    class="serif-text text-xl text-accent group-hover:underline underline-offset-4 decoration-1"
+  >
+    <a href={postUrl}>
+      {post.data.title}
+    </a>
+  </h4>
+</div>
