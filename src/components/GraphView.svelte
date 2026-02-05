@@ -6,7 +6,9 @@
     GraphLink as BaseGraphLink,
   } from "../utils/graphData";
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher<{
+    nodeClick: { node: GraphNode; originalEvent: any };
+  }>();
 
   // Extend base types with D3 simulation properties
   interface GraphNode extends BaseGraphNode, d3.SimulationNodeDatum {}
