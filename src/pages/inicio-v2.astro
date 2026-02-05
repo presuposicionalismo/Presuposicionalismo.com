@@ -1,0 +1,52 @@
+---
+import MainLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import postFilter from "@utils/postFilter";
+
+// Svelte Components
+import InteractiveHero from "@components/home/InteractiveHero.svelte";
+import FeatureGrid from "@components/home/FeatureGrid.svelte";
+import LatestContent from "@components/home/LatestContent.svelte";
+
+// Data Fetching
+const allPosts = await getCollection("blog", postFilter);
+const sortedPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3); // Take top 3
+
+const contentItems = sortedPosts.map((post) => ({
+  title: post.data.title,
+  description: post.data.description,
+  date: post.data.pubDate.toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }),
+  href: `/blog/${post.id}`,
+  image: post.data.heroImage,
+}));
+
+const heroProps = {
+  title: "¿Estás preparado para algo intelectualmente",
+  highlightedText: "estimulante",
+  description: [
+    'Este sitio está dedicado a promover literatura que suscribe una filosofía distintivamente cristiana y principalmente a la metodología apologética del "padre del presuposicionalismo", el Dr. Cornelius Van Til.',
+    "Explora nuestros recursos y clases para fortalecer tu fe con fundamentos sólidos.",
+  ],
+  ctaText: "Explorar Contenido",
+  ctaHref: "#content",
+};
+---
+
+<MainLayout title={`Inicio v2 - ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
+  <div class="overflow-hidden">
+    <InteractiveHero client:load {...heroProps} />
+  </div>
+
+  <div id="content">
+    <FeatureGrid client:visible />
+  </div>
+
+  <LatestContent client:visible items={contentItems} />
+</MainLayout>

@@ -1,0 +1,136 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import AuthorCard from "../components/AuthorCard.astro";
+import NewsletterCTA from "../components/NewsletterCTA.astro";
+import ArticleHeader from "../components/ArticleHeader.astro";
+import Outline from "../components/mdx/Outline.svelte";
+import "../styles/global.css";
+
+// SpeedInsights of vercel
+import SpeedInsights from "@vercel/speed-insights/astro";
+
+type Props = CollectionEntry<"clases">["data"] & {
+  slug?: string;
+  headings?: import("astro").MarkdownHeading[];
+};
+
+const {
+  title,
+  description,
+  pubDate,
+  heroImage,
+  slug,
+  tags,
+  headings = [],
+} = Astro.props;
+
+// Determine OG Image
+const ogImage = slug ? `/og/blog/${slug}.png` : "/Portada.png";
+---
+
+<html lang="es">
+  <head>
+    <BaseHead title={title} description={description} image={ogImage} />
+  </head>
+
+  <body>
+    <!-- Scroll Progress Bar -->
+    <div class="fixed top-0 left-0 h-1 bg-accent z-50" id="progress-bar"></div>
+
+    <Header />
+
+    <!-- Main Content Area - Wider container for classes -->
+    <main class="flex flex-col items-center w-full pt-12 pb-24">
+      <!-- Article Container - Increased max-width to accommodate both sidebars -->
+      <article class="w-full max-w-[1440px] px-5 md:px-8 flex flex-col gap-10">
+        <!-- Article Header -->
+        <div class="max-w-[800px] mx-auto w-full">
+          <ArticleHeader title={title} pubDate={pubDate} tags={tags} />
+        </div>
+
+        <!-- Featured Image -->
+        {
+          heroImage && (
+            <figure class="w-full max-w-[1000px] mx-auto">
+              <div class="w-full aspect-21/9 bg-surface rounded-lg overflow-hidden relative">
+                <img
+                  src={heroImage}
+                  alt={title}
+                  class="w-full h-full object-cover"
+                />
+                <div class="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
+              </div>
+            </figure>
+          )
+        }
+
+        <!-- Body Layout Wrapper -->
+        <div
+          class="relative w-full flex flex-col lg:flex-row lg:justify-center gap-6 xl:gap-12"
+        >
+          <!-- Left Sidebar (Reserved for Outline) -->
+          <div class="hidden lg:block w-[16rem] shrink-0">
+            <Outline client:load items={headings} />
+          </div>
+
+          <!-- Typography Content -->
+          <!-- On mobile: centered, full width. On desktop: centered between spacers -->
+          <div
+            class="prose-content w-full max-w-[750px] relative overflow-visible"
+          >
+            <slot />
+          </div>
+
+          <!-- Right Sidebar (Reserved for Sidenotes) -->
+          <div class="hidden lg:block w-[16rem] shrink-0"></div>
+        </div>
+
+        <!-- Footer Section of Article -->
+        <footer class="mt-16 flex flex-col gap-16 max-w-[800px] mx-auto w-full">
+          <!-- Divider -->
+          <div class="w-full h-px bg-border"></div>
+
+          <!-- Author Bio -->
+          <AuthorCard />
+
+          <!-- Newsletter CTA -->
+          <NewsletterCTA />
+
+          <!-- Back to Classes Link -->
+          <div class="text-center">
+            <a
+              href="/clases"
+              class="inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
+            >
+              <span class="material-icons-outlined text-[18px]">arrow_back</span
+              >
+              Volver al programa
+            </a>
+          </div>
+        </footer>
+      </article>
+    </main>
+
+    <Footer />
+    <SpeedInsights />
+
+    <!-- Scroll Progress Script -->
+    <script is:inline>
+      window.addEventListener("scroll", function () {
+        let winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        let height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        const progressBar = document.getElementById("progress-bar");
+        if (progressBar) {
+          progressBar.style.width = scrolled + "%";
+        }
+      });
+    </script>
+  </body>
+</html>

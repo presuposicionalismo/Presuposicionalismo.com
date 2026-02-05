@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import svelte from "@astrojs/svelte";
 import vercelStatic from "@astrojs/vercel";
 
 // import fuse from "astro-fuse";
@@ -17,6 +18,7 @@ export default defineConfig({
     mdx({
       gfm: true,
     }),
+    svelte(),
     sitemap(),
     // fuse(["content"]),
   ],

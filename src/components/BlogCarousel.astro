@@ -18,8 +18,6 @@ const gridSlides: CollectionEntry<"blog">[][] = [];
 for (let i = 0; i < remainingPosts.length; i += 3) {
   gridSlides.push(remainingPosts.slice(i, i + 3));
 }
-
-const totalSlides = 1 + gridSlides.length; // 1 featured + grid slides
 ---
 
 <div class="carousel-wrapper overflow-hidden relative group w-full">
