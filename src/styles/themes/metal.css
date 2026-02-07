@@ -1,52 +1,115 @@
-/* --- ART DIRECTION 4: BLACK METAL (BATHORY) --- */
+/* --- THEME: BLACK METAL (BATHORY) --- */
+/* Raw, lo-fi, high contrast dark aesthetic */
 .theme-metal {
+  /* Light Mode (Inverted Metal) */
+  --background: rgb(193, 193, 193);
+  --foreground: rgb(0, 0, 0);
+  --card: rgb(217, 217, 217);
+  --card-foreground: rgb(0, 0, 0);
+  --popover: rgb(217, 217, 217);
+  --popover-foreground: rgb(0, 0, 0);
+  --primary: rgb(231, 138, 83);
+  --primary-foreground: rgb(0, 0, 0);
+  --secondary: rgb(179, 179, 179);
+  --secondary-foreground: rgb(0, 0, 0);
+  --muted: rgb(204, 204, 204);
+  --muted-foreground: rgb(102, 102, 102);
+  --accent: rgb(204, 204, 204);
+  --accent-foreground: rgb(0, 0, 0);
+  --destructive: rgb(170, 85, 85);
+  --destructive-foreground: rgb(255, 255, 255);
+  --border: rgb(102, 102, 102);
+  --input: rgb(102, 102, 102);
+  --ring: rgb(231, 138, 83);
+  --chart-1: rgb(231, 138, 83);
+  --chart-2: rgb(204, 119, 68);
+  --chart-3: rgb(170, 85, 85);
+  --chart-4: rgb(153, 153, 153);
+  --chart-5: rgb(179, 179, 179);
+  --sidebar: rgb(230, 230, 230);
+  --sidebar-foreground: rgb(0, 0, 0);
+  --sidebar-primary: rgb(231, 138, 83);
+  --sidebar-primary-foreground: rgb(0, 0, 0);
+  --sidebar-accent: rgb(204, 204, 204);
+  --sidebar-accent-foreground: rgb(0, 0, 0);
+  --sidebar-border: rgb(102, 102, 102);
+  --sidebar-ring: rgb(231, 138, 83);
+  --font-sans: "Inter", sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: "Courier New", monospace;
   --radius: 0px;
+  --shadow-x: 0px;
+  --shadow-y: 0px;
+  --shadow-blur: 0px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0;
+  --shadow-color: transparent;
+  --shadow-2xs: none;
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
+  --shadow-2xl: none;
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
 
-  /* Metal Style: Raw, Lo-fi, High Contrast Dark */
+  /* Custom Colors Light */
+  --color-foreground: rgb(0, 0, 0);
+  --color-background: rgb(193, 193, 193);
+  --color-surface: rgb(217, 217, 217);
+  --color-muted: rgb(102, 102, 102);
+  --color-border: rgb(102, 102, 102);
+  --color-accent: rgb(231, 138, 83);
+
+  /* Artistic Tokens */
   --shadow-card: none;
   --border-width: 1px;
-  
-  /* Default is DARK regardless of mode preference usually, but we implement both */
-  /* Base00 #000000, Base05 #c1c1c1, Base0A #e78a53 */
-  
-  /* Dark Mode (Preferred) */
-  --background: 0 0% 0%;         /* #000000 */
-  --foreground: 0 0% 76%;        /* #c1c1c1 */
-  --card: 0 0% 7%;               /* #121212 (Base01) */
-  --card-foreground: 0 0% 76%;
-  --popover: 0 0% 7%;
-  --popover-foreground: 0 0% 76%;
-  --primary: 22 74% 62%;         /* #e78a53 (Base0A - Orange/Gold) */
-  --primary-foreground: 0 0% 0%;
-  --secondary: 0 0% 20%;         /* #333333 (Base03) */
-  --secondary-foreground: 0 0% 76%;
-  --muted: 0 0% 13%;             /* #222222 (Base02) */
-  --muted-foreground: 0 0% 60%;  /* #999999 (Base04) */
-  --accent: 0 0% 20%;
-  --accent-foreground: 0 0% 76%;
-  --destructive: 0 60% 50%;      /* #aa5555 approx */
-  --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 20%;            /* #333333 */
-  --input: 0 0% 20%;
-  --ring: 22 74% 62%;
+  --glow: none;
+}
 
-  --color-foreground: #c1c1c1;
-  --color-background: #000000;
-  --color-surface: #121212;
-  --color-muted: #222222;
-  --color-border: #333333;
-  --color-accent: #e78a53;
+/* Dark Mode for Metal (Preferred) */
+.theme-metal.dark,
+.dark .theme-metal {
+  --background: rgb(0, 0, 0);
+  --foreground: rgb(193, 193, 193);
+  --card: rgb(18, 18, 18);
+  --card-foreground: rgb(193, 193, 193);
+  --popover: rgb(18, 18, 18);
+  --popover-foreground: rgb(193, 193, 193);
+  --primary: rgb(231, 138, 83);
+  --primary-foreground: rgb(0, 0, 0);
+  --secondary: rgb(51, 51, 51);
+  --secondary-foreground: rgb(193, 193, 193);
+  --muted: rgb(34, 34, 34);
+  --muted-foreground: rgb(153, 153, 153);
+  --accent: rgb(51, 51, 51);
+  --accent-foreground: rgb(193, 193, 193);
+  --destructive: rgb(170, 85, 85);
+  --destructive-foreground: rgb(255, 255, 255);
+  --border: rgb(51, 51, 51);
+  --input: rgb(51, 51, 51);
+  --ring: rgb(231, 138, 83);
+  --chart-1: rgb(231, 138, 83);
+  --chart-2: rgb(204, 119, 68);
+  --chart-3: rgb(170, 85, 85);
+  --chart-4: rgb(153, 153, 153);
+  --chart-5: rgb(102, 102, 102);
+  --sidebar: rgb(5, 5, 5);
+  --sidebar-foreground: rgb(193, 193, 193);
+  --sidebar-primary: rgb(231, 138, 83);
+  --sidebar-primary-foreground: rgb(0, 0, 0);
+  --sidebar-accent: rgb(34, 34, 34);
+  --sidebar-accent-foreground: rgb(193, 193, 193);
+  --sidebar-border: rgb(51, 51, 51);
+  --sidebar-ring: rgb(231, 138, 83);
 
-  /* Light Mode (Inverted Metal?) */
-  /* Mapping Base05 as bg and Base00 as fg for contrast */
-  &.light, :root:not(.dark) & {
-     --background: 0 0% 76%;        /* #c1c1c1 */
-     --foreground: 0 0% 0%;         /* #000000 */
-     --card: 0 0% 85%;              /* Light gray */
-     --card-foreground: 0 0% 0%;
-     --border: 0 0% 40%;
-     
-     --color-foreground: #000000;
-     --color-background: #c1c1c1;
-  }
+  /* Custom Colors Dark */
+  --color-foreground: rgb(193, 193, 193);
+  --color-background: rgb(0, 0, 0);
+  --color-surface: rgb(18, 18, 18);
+  --color-muted: rgb(34, 34, 34);
+  --color-border: rgb(51, 51, 51);
+  --color-accent: rgb(231, 138, 83);
 }

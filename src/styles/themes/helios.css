@@ -1,52 +1,115 @@
-/* --- ART DIRECTION 7: HELIOS --- */
+/* --- THEME: HELIOS --- */
+/* Warm amber/orange theme with high contrast */
 .theme-helios {
-  --radius: 0.3rem;
+  /* Light Mode */
+  --background: rgb(255, 255, 255);
+  --foreground: rgb(38, 38, 38);
+  --card: rgb(255, 255, 255);
+  --card-foreground: rgb(38, 38, 38);
+  --popover: rgb(255, 255, 255);
+  --popover-foreground: rgb(38, 38, 38);
+  --primary: rgb(245, 158, 11);
+  --primary-foreground: rgb(0, 0, 0);
+  --secondary: rgb(243, 244, 246);
+  --secondary-foreground: rgb(75, 85, 99);
+  --muted: rgb(249, 250, 251);
+  --muted-foreground: rgb(107, 114, 128);
+  --accent: rgb(255, 251, 235);
+  --accent-foreground: rgb(146, 64, 14);
+  --destructive: rgb(239, 68, 68);
+  --destructive-foreground: rgb(255, 255, 255);
+  --border: rgb(229, 231, 235);
+  --input: rgb(229, 231, 235);
+  --ring: rgb(245, 158, 11);
+  --chart-1: rgb(245, 158, 11);
+  --chart-2: rgb(217, 119, 6);
+  --chart-3: rgb(180, 83, 9);
+  --chart-4: rgb(146, 64, 14);
+  --chart-5: rgb(120, 53, 15);
+  --sidebar: rgb(249, 250, 251);
+  --sidebar-foreground: rgb(38, 38, 38);
+  --sidebar-primary: rgb(245, 158, 11);
+  --sidebar-primary-foreground: rgb(255, 255, 255);
+  --sidebar-accent: rgb(255, 251, 235);
+  --sidebar-accent-foreground: rgb(146, 64, 14);
+  --sidebar-border: rgb(229, 231, 235);
+  --sidebar-ring: rgb(245, 158, 11);
+  --font-sans: Inter, sans-serif;
+  --font-serif: Source Serif 4, serif;
+  --font-mono: JetBrains Mono, monospace;
+  --radius: 0.375rem;
+  --shadow-x: 0px;
+  --shadow-y: 4px;
+  --shadow-blur: 8px;
+  --shadow-spread: -1px;
+  --shadow-opacity: 0.1;
+  --shadow-color: hsl(0 0% 0%);
+  --shadow-2xs: 0px 4px 8px -1px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0px 4px 8px -1px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 1px 2px -2px hsl(0 0% 0% / 0.10);
+  --shadow: 0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 1px 2px -2px hsl(0 0% 0% / 0.10);
+  --shadow-md: 0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 2px 4px -2px hsl(0 0% 0% / 0.10);
+  --shadow-lg: 0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 4px 6px -2px hsl(0 0% 0% / 0.10);
+  --shadow-xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 8px 10px -2px hsl(0 0% 0% / 0.10);
+  --shadow-2xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.25);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
 
-  /* Helios Style: High contrast, Tech-oriented, Solar */
-  --shadow-card: 0 4px 14px 0 rgba(0,0,0,0.3);
+  /* Custom Colors Light */
+  --color-foreground: rgb(38, 38, 38);
+  --color-background: rgb(255, 255, 255);
+  --color-surface: rgb(255, 255, 255);
+  --color-muted: rgb(107, 114, 128);
+  --color-border: rgb(229, 231, 235);
+  --color-accent: rgb(245, 158, 11);
+
+  /* Artistic Tokens */
+  --shadow-card: 0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 1px 2px -2px hsl(0 0% 0% / 0.10);
   --border-width: 1px;
   --glow: none;
+}
 
-  /* Helios Dark (Default) */
-  --background: 0 0% 13%;        /* #1d2021 (Base00) */
-  --foreground: 0 0% 84%;        /* #d5d5d5 (Base05) */
-  --card: 200 5% 23%;            /* #383c3e (Base01) */
-  --card-foreground: 0 0% 84%;
-  --popover: 200 5% 23%;
-  --popover-foreground: 0 0% 84%;
-  --primary: 31 85% 50%;         /* #eb8413 (Base09 - Orange) */
-  --primary-foreground: 0 0% 100%;
-  --secondary: 206 5% 34%;       /* #53585b (Base02) */
-  --secondary-foreground: 0 0% 84%;
-  --muted: 206 5% 34%;
-  --muted-foreground: 204 4% 45%; /* #6f7579 (Base03) */
-  --accent: 36 89% 52%;          /* #f19d1a (Base0A - Yellow) */
-  --accent-foreground: 0 0% 13%;
-  --destructive: 354 70% 50%;    /* #d72638 (Base08 - Red) */
-  --destructive-foreground: 0 0% 100%;
-  --border: 206 5% 34%;          /* #53585b */
-  --input: 206 5% 34%;
-  --ring: 31 85% 50%;
+/* Dark Mode for Helios */
+.theme-helios.dark,
+.dark .theme-helios {
+  --background: rgb(23, 23, 23);
+  --foreground: rgb(229, 229, 229);
+  --card: rgb(38, 38, 38);
+  --card-foreground: rgb(229, 229, 229);
+  --popover: rgb(38, 38, 38);
+  --popover-foreground: rgb(229, 229, 229);
+  --primary: rgb(245, 158, 11);
+  --primary-foreground: rgb(0, 0, 0);
+  --secondary: rgb(38, 38, 38);
+  --secondary-foreground: rgb(229, 229, 229);
+  --muted: rgb(31, 31, 31);
+  --muted-foreground: rgb(163, 163, 163);
+  --accent: rgb(146, 64, 14);
+  --accent-foreground: rgb(253, 230, 138);
+  --destructive: rgb(239, 68, 68);
+  --destructive-foreground: rgb(255, 255, 255);
+  --border: rgb(64, 64, 64);
+  --input: rgb(64, 64, 64);
+  --ring: rgb(245, 158, 11);
+  --chart-1: rgb(251, 191, 36);
+  --chart-2: rgb(217, 119, 6);
+  --chart-3: rgb(146, 64, 14);
+  --chart-4: rgb(180, 83, 9);
+  --chart-5: rgb(146, 64, 14);
+  --sidebar: rgb(15, 15, 15);
+  --sidebar-foreground: rgb(229, 229, 229);
+  --sidebar-primary: rgb(245, 158, 11);
+  --sidebar-primary-foreground: rgb(255, 255, 255);
+  --sidebar-accent: rgb(146, 64, 14);
+  --sidebar-accent-foreground: rgb(253, 230, 138);
+  --sidebar-border: rgb(64, 64, 64);
+  --sidebar-ring: rgb(245, 158, 11);
 
-  --color-foreground: #d5d5d5;
-  --color-background: #1d2021;
-  --color-surface: #383c3e;
-  --color-muted: #53585b;
-  --color-border: #53585b;
-  --color-accent: #eb8413;
-
-  /* Helios Light */
-  /* Base07 #e5e5e5, Base02 #53585b */
-  &.light, :root:not(.dark) & {
-     --background: 0 0% 90%;        /* #e5e5e5 (Base07) */
-     --foreground: 0 0% 13%;        /* #1d2021 (Base00) */
-     --card: 0 0% 87%;              /* #dddddd (Base06) */
-     --card-foreground: 0 0% 13%;
-     --border: 0 0% 70%;
-     
-     --color-foreground: #1d2021;
-     --color-background: #e5e5e5;
-     --color-surface: #dddddd;
-     --color-border: #cdcdcd;
-  }
+  /* Custom Colors Dark */
+  --color-foreground: rgb(229, 229, 229);
+  --color-background: rgb(23, 23, 23);
+  --color-surface: rgb(38, 38, 38);
+  --color-muted: rgb(163, 163, 163);
+  --color-border: rgb(64, 64, 64);
+  --color-accent: rgb(245, 158, 11);
 }

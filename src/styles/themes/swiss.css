@@ -1,54 +1,115 @@
-/* --- ART DIRECTION 1: SWISS MINIMALISM --- */
+/* --- THEME: SWISS MINIMALISM --- */
+/* Strict borders, no shadows, clean grid aesthetic */
 .theme-swiss {
-  --radius: 0px; 
-  --font-sans: "Inter", "Helvetica Neue", sans-serif;
-
-  /* Swiss Style: Strict borders, No shadows, Clean Grid */
-  --shadow-card: none;
-  --border-width: 1px; /* Can go up to 2px for strong grid */
-  --glow: none;
-
   /* Light Mode (Default for Swiss) */
-  --background: 0 0% 100%;       /* #ffffff */
-  --foreground: 0 0% 0%;         /* #000000 */
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 0%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 0%;
-  --primary: 0 100% 50%;         /* Swiss Red #FF0000 */
-  --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 96%;
-  --secondary-foreground: 0 0% 0%;
-  --muted: 0 0% 90%;
-  --muted-foreground: 0 0% 40%;
-  --accent: 0 0% 96%;
-  --accent-foreground: 0 100% 50%;
-  --destructive: 0 100% 50%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 0%;             /* Black borders */
-  --input: 0 0% 0%;
-  --ring: 0 100% 50%;
+  --background: rgb(255, 255, 255);
+  --foreground: rgb(0, 0, 0);
+  --card: rgb(255, 255, 255);
+  --card-foreground: rgb(0, 0, 0);
+  --popover: rgb(255, 255, 255);
+  --popover-foreground: rgb(0, 0, 0);
+  --primary: rgb(255, 0, 0);
+  --primary-foreground: rgb(255, 255, 255);
+  --secondary: rgb(245, 245, 245);
+  --secondary-foreground: rgb(0, 0, 0);
+  --muted: rgb(230, 230, 230);
+  --muted-foreground: rgb(102, 102, 102);
+  --accent: rgb(245, 245, 245);
+  --accent-foreground: rgb(255, 0, 0);
+  --destructive: rgb(255, 0, 0);
+  --destructive-foreground: rgb(255, 255, 255);
+  --border: rgb(0, 0, 0);
+  --input: rgb(0, 0, 0);
+  --ring: rgb(255, 0, 0);
+  --chart-1: rgb(255, 0, 0);
+  --chart-2: rgb(204, 0, 0);
+  --chart-3: rgb(153, 0, 0);
+  --chart-4: rgb(102, 102, 102);
+  --chart-5: rgb(230, 230, 230);
+  --sidebar: rgb(250, 250, 250);
+  --sidebar-foreground: rgb(0, 0, 0);
+  --sidebar-primary: rgb(255, 0, 0);
+  --sidebar-primary-foreground: rgb(255, 255, 255);
+  --sidebar-accent: rgb(245, 245, 245);
+  --sidebar-accent-foreground: rgb(0, 0, 0);
+  --sidebar-border: rgb(0, 0, 0);
+  --sidebar-ring: rgb(255, 0, 0);
+  --font-sans: "Inter", "Helvetica Neue", sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: "Courier New", monospace;
+  --radius: 0px;
+  --shadow-x: 0px;
+  --shadow-y: 0px;
+  --shadow-blur: 0px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0;
+  --shadow-color: transparent;
+  --shadow-2xs: none;
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
+  --shadow-2xl: none;
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
 
-  --color-foreground: #000000;
-  --color-background: #ffffff;
-  --color-surface: #ffffff;
-  --color-muted: #555555;
-  --color-border: #000000;
-  --color-accent: #ff0000;
+  /* Custom Colors Light */
+  --color-foreground: rgb(0, 0, 0);
+  --color-background: rgb(255, 255, 255);
+  --color-surface: rgb(255, 255, 255);
+  --color-muted: rgb(85, 85, 85);
+  --color-border: rgb(0, 0, 0);
+  --color-accent: rgb(255, 0, 0);
 
-  /* Swiss Dark Mode */
-  &.dark {
-     --background: 0 0% 5%;         /* Almost black */
-     --foreground: 0 0% 100%;       /* White */
-     --card: 0 0% 5%;
-     --card-foreground: 0 0% 100%;
-     --primary: 0 100% 50%;         /* Keep Red */
-     --border: 0 0% 100%;           /* White borders */
-     --input: 0 0% 100%;
-     
-     --color-foreground: #ffffff;
-     --color-background: #0d0d0d;
-     --color-surface: #0d0d0d;
-     --color-border: #ffffff;
-  }
+  /* Artistic Tokens */
+  --shadow-card: none;
+  --border-width: 1px;
+  --glow: none;
+}
+
+/* Dark Mode for Swiss */
+.theme-swiss.dark,
+.dark .theme-swiss {
+  --background: rgb(13, 13, 13);
+  --foreground: rgb(255, 255, 255);
+  --card: rgb(13, 13, 13);
+  --card-foreground: rgb(255, 255, 255);
+  --popover: rgb(13, 13, 13);
+  --popover-foreground: rgb(255, 255, 255);
+  --primary: rgb(255, 0, 0);
+  --primary-foreground: rgb(255, 255, 255);
+  --secondary: rgb(38, 38, 38);
+  --secondary-foreground: rgb(255, 255, 255);
+  --muted: rgb(26, 26, 26);
+  --muted-foreground: rgb(163, 163, 163);
+  --accent: rgb(38, 38, 38);
+  --accent-foreground: rgb(255, 0, 0);
+  --destructive: rgb(255, 0, 0);
+  --destructive-foreground: rgb(255, 255, 255);
+  --border: rgb(255, 255, 255);
+  --input: rgb(255, 255, 255);
+  --ring: rgb(255, 0, 0);
+  --chart-1: rgb(255, 0, 0);
+  --chart-2: rgb(255, 77, 77);
+  --chart-3: rgb(255, 128, 128);
+  --chart-4: rgb(163, 163, 163);
+  --chart-5: rgb(77, 77, 77);
+  --sidebar: rgb(10, 10, 10);
+  --sidebar-foreground: rgb(255, 255, 255);
+  --sidebar-primary: rgb(255, 0, 0);
+  --sidebar-primary-foreground: rgb(255, 255, 255);
+  --sidebar-accent: rgb(38, 38, 38);
+  --sidebar-accent-foreground: rgb(255, 255, 255);
+  --sidebar-border: rgb(255, 255, 255);
+  --sidebar-ring: rgb(255, 0, 0);
+
+  /* Custom Colors Dark */
+  --color-foreground: rgb(255, 255, 255);
+  --color-background: rgb(13, 13, 13);
+  --color-surface: rgb(13, 13, 13);
+  --color-muted: rgb(163, 163, 163);
+  --color-border: rgb(255, 255, 255);
+  --color-accent: rgb(255, 0, 0);
 }

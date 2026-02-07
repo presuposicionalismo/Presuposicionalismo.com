@@ -1,55 +1,126 @@
-/* --- ART DIRECTION 2: NEO-BRUTALISM --- */
+/* --- THEME: NEO-BRUTALISM --- */
+/* Hard shadows, thick borders, bold colors */
 .theme-neo {
+  /* Light Mode (Default for Neo) */
+  --background: rgb(255, 253, 240);
+  --foreground: rgb(26, 26, 26);
+  --card: rgb(255, 253, 240);
+  --card-foreground: rgb(26, 26, 26);
+  --popover: rgb(255, 253, 240);
+  --popover-foreground: rgb(26, 26, 26);
+  --primary: rgb(102, 51, 238);
+  --primary-foreground: rgb(255, 255, 255);
+  --secondary: rgb(0, 255, 255);
+  --secondary-foreground: rgb(26, 26, 26);
+  --muted: rgb(230, 226, 204);
+  --muted-foreground: rgb(102, 102, 102);
+  --accent: rgb(255, 0, 255);
+  --accent-foreground: rgb(255, 255, 255);
+  --destructive: rgb(255, 0, 0);
+  --destructive-foreground: rgb(255, 255, 255);
+  --border: rgb(0, 0, 0);
+  --input: rgb(0, 0, 0);
+  --ring: rgb(0, 0, 0);
+  --chart-1: rgb(102, 51, 238);
+  --chart-2: rgb(255, 0, 255);
+  --chart-3: rgb(0, 255, 255);
+  --chart-4: rgb(255, 255, 0);
+  --chart-5: rgb(0, 255, 0);
+  --sidebar: rgb(255, 253, 240);
+  --sidebar-foreground: rgb(26, 26, 26);
+  --sidebar-primary: rgb(102, 51, 238);
+  --sidebar-primary-foreground: rgb(255, 255, 255);
+  --sidebar-accent: rgb(255, 0, 255);
+  --sidebar-accent-foreground: rgb(255, 255, 255);
+  --sidebar-border: rgb(0, 0, 0);
+  --sidebar-ring: rgb(0, 0, 0);
+  --font-sans: "Inter", sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: "Courier New", monospace;
   --radius: 4px;
-  
-  /* Neo Style: Hard Shadows, Thick Borders */
-  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-x: 4px;
+  --shadow-y: 4px;
+  --shadow-blur: 0px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 1;
+  --shadow-color: rgb(0, 0, 0);
+  --shadow-2xs: 4px 4px 0px 0px rgb(0, 0, 0);
+  --shadow-xs: 4px 4px 0px 0px rgb(0, 0, 0);
+  --shadow-sm: 4px 4px 0px 0px rgb(0, 0, 0);
+  --shadow: 4px 4px 0px 0px rgb(0, 0, 0);
+  --shadow-md: 4px 4px 0px 0px rgb(0, 0, 0);
+  --shadow-lg: 6px 6px 0px 0px rgb(0, 0, 0);
+  --shadow-xl: 8px 8px 0px 0px rgb(0, 0, 0);
+  --shadow-2xl: 10px 10px 0px 0px rgb(0, 0, 0);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+
+  /* Custom Colors Light */
+  --color-foreground: rgb(26, 26, 26);
+  --color-background: rgb(255, 253, 240);
+  --color-surface: rgb(255, 253, 240);
+  --color-muted: rgb(136, 136, 136);
+  --color-border: rgb(0, 0, 0);
+  --color-accent: rgb(107, 33, 168);
+
+  /* Artistic Tokens */
+  --shadow-card: 4px 4px 0px 0px rgb(0, 0, 0);
   --border-width: 2px;
   --glow: none;
+}
 
-  /* Neo Light */
-  --background: 48 100% 97%;     /* #FFFDF0 */
-  --foreground: 0 0% 10%;
-  --card: 48 100% 97%;
-  --card-foreground: 0 0% 10%;
-  --popover: 48 100% 97%;
-  --popover-foreground: 0 0% 10%;
-  --primary: 260 100% 60%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 180 100% 50%;
-  --secondary-foreground: 0 0% 10%;
-  --muted: 48 20% 80%;
-  --muted-foreground: 0 0% 40%;
-  --accent: 320 100% 50%;
-  --accent-foreground: 0 0% 100%;
-  --destructive: 0 100% 50%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 0%;
-  --input: 0 0% 0%;
-  --ring: 0 0% 0%;
+/* Dark Mode for Neo */
+.theme-neo.dark,
+.dark .theme-neo {
+  --background: rgb(21, 20, 25);
+  --foreground: rgb(255, 253, 240);
+  --card: rgb(21, 20, 25);
+  --card-foreground: rgb(255, 253, 240);
+  --popover: rgb(21, 20, 25);
+  --popover-foreground: rgb(255, 253, 240);
+  --primary: rgb(153, 102, 255);
+  --primary-foreground: rgb(21, 20, 25);
+  --secondary: rgb(0, 255, 255);
+  --secondary-foreground: rgb(21, 20, 25);
+  --muted: rgb(51, 48, 61);
+  --muted-foreground: rgb(163, 163, 163);
+  --accent: rgb(255, 0, 255);
+  --accent-foreground: rgb(21, 20, 25);
+  --destructive: rgb(255, 77, 77);
+  --destructive-foreground: rgb(255, 255, 255);
+  --border: rgb(255, 253, 240);
+  --input: rgb(255, 253, 240);
+  --ring: rgb(255, 253, 240);
+  --chart-1: rgb(153, 102, 255);
+  --chart-2: rgb(255, 0, 255);
+  --chart-3: rgb(0, 255, 255);
+  --chart-4: rgb(255, 255, 0);
+  --chart-5: rgb(0, 255, 0);
+  --sidebar: rgb(15, 15, 18);
+  --sidebar-foreground: rgb(255, 253, 240);
+  --sidebar-primary: rgb(153, 102, 255);
+  --sidebar-primary-foreground: rgb(21, 20, 25);
+  --sidebar-accent: rgb(255, 0, 255);
+  --sidebar-accent-foreground: rgb(21, 20, 25);
+  --sidebar-border: rgb(255, 253, 240);
+  --sidebar-ring: rgb(255, 253, 240);
 
-  --color-foreground: #1a1a1a;
-  --color-background: #fffdf0;
-  --color-surface: #fffdf0;
-  --color-muted: #888888;
-  --color-border: #000000;
-  --color-accent: #6b21a8;
+  /* Custom Colors Dark */
+  --color-foreground: rgb(255, 253, 240);
+  --color-background: rgb(21, 20, 25);
+  --color-surface: rgb(21, 20, 25);
+  --color-muted: rgb(163, 163, 163);
+  --color-border: rgb(255, 253, 240);
+  --color-accent: rgb(153, 102, 255);
 
-  /* Neo Dark */
-  &.dark {
-      --background: 260 20% 10%;   /* Dark Purplish Gray */
-      --foreground: 48 100% 97%;   /* Cream text */
-      --card: 260 20% 10%;
-      --card-foreground: 48 100% 97%;
-      --border: 48 100% 97%;       /* Cream borders */
-      --input: 48 100% 97%;
-      
-      /* White/Cream Shadow for Dark Mode Neo */
-      --shadow-card: 4px 4px 0px 0px #FFFDF0;
-
-      --color-foreground: #fffdf0;
-      --color-background: #151419;
-      --color-surface: #151419;
-      --color-border: #fffdf0;
-  }
+  /* Artistic Tokens - Cream shadow for dark mode */
+  --shadow-card: 4px 4px 0px 0px rgb(255, 253, 240);
+  --shadow-2xs: 4px 4px 0px 0px rgb(255, 253, 240);
+  --shadow-xs: 4px 4px 0px 0px rgb(255, 253, 240);
+  --shadow-sm: 4px 4px 0px 0px rgb(255, 253, 240);
+  --shadow: 4px 4px 0px 0px rgb(255, 253, 240);
+  --shadow-md: 4px 4px 0px 0px rgb(255, 253, 240);
+  --shadow-lg: 6px 6px 0px 0px rgb(255, 253, 240);
+  --shadow-xl: 8px 8px 0px 0px rgb(255, 253, 240);
+  --shadow-2xl: 10px 10px 0px 0px rgb(255, 253, 240);
 }
