@@ -1,6 +1,7 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import DarkToggle from "./DarkToggle.astro";
+import ThemeSwitcher from "$lib/components/ThemeSwitcher.svelte";
 import Logo from "./Logo.astro";
 ---
 
@@ -30,6 +31,7 @@ import Logo from "./Logo.astro";
           class="text-sm font-medium text-muted hover:text-accent transition-colors pb-1"
           >Libros</HeaderLink
         >
+        <ThemeSwitcher client:load />
         <DarkToggle />
       </nav>
       <!-- <button
@@ -89,7 +91,10 @@ import Logo from "./Logo.astro";
         <span class="text-lg font-medium text-secondary dark:text-gray-400"
           >Apariencia</span
         >
-        <DarkToggle />
+        <div class="flex items-center gap-4">
+          <ThemeSwitcher client:load />
+          <DarkToggle />
+        </div>
       </div>
     </nav>
   </div>

@@ -3,37 +3,159 @@
 @plugin "@tailwindcss/typography";
 @variant dark (&:where(.dark, .dark *));
 
+/* Importing Theme Modules */
+@import "./themes/swiss.css";
+@import "./themes/neo.css";
+@import "./themes/cyber.css";
+@import "./themes/metal.css";
+@import "./themes/danqing.css";
+@import "./themes/espresso.css";
+@import "./themes/helios.css";
+
+/* Importing Utility Modules */
+@import "./prose.css";
+
+/* Base Theme (Default implementation - maps to Shadcn original) */
+@layer base {
+  :root {
+    /* Default Radius */
+    --radius: 0.5rem;
+
+    /* Light Mode Default */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+
+    /* Custom Colors Default */
+    --color-foreground: #1a1a1a;
+    --color-background: #fcfcfc;
+    --color-surface: #ffffff;
+    --color-muted: #666666;
+    --color-border: #e5e5e5;
+    --color-accent: #1a1a1a;
+    
+    /* Artistic Tokens - Default State */
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --border-width: 1px;
+    --glow: none;
+  }
+
+  /* Dark Mode Overrides (Applied when .dark class is present) */
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    /* ... (rest of dark vars) ... */
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    /* Custom Colors Dark */
+    --color-foreground: #f5f5f5;
+    --color-background: #121212;
+    --color-surface: #1a1a1a;
+    --color-muted: #a0a0a0;
+    --color-border: #2a2a2a;
+    --color-accent: #ffffff;
+  }
+}
+
 @theme {
   /* Colores semánticos - Light mode (default) */
-  --color-foreground: #1a1a1a;
-  --color-background: #fcfcfc;
-  --color-surface: #ffffff;
-  --color-muted: #666666;
-  --color-border: #e5e5e5;
-  --color-accent: #1a1a1a;
+  --color-foreground: var(--color-foreground);
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-accent: var(--color-accent);
 
   /* Fuentes */
   --font-display: "Urbanist Variable", sans-serif;
   --font-sans: "Urbanist Variable", sans-serif;
 
   /* Radios */
-  --radius-lg: 0.75rem;
-  --radius-xl: 0.5rem;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: var(--radius); /* Card uses rounded-xl, maps here */
+
+  /* Shadcn Variables Map */
+  --radius: var(--radius);
+
+  /* Artistic Overrides */
+  --shadow-sm: var(--shadow-card);
+  --shadow-md: var(--shadow-card);
+  --shadow-lg: var(--shadow-card);
+  --shadow-xl: var(--shadow-card);
 }
 
-/* Dark mode overrides via class (for toggle) */
-.dark {
-  --color-foreground: #f5f5f5;
-  --color-background: #121212;
-  --color-surface: #1a1a1a;
-  --color-muted: #a0a0a0;
-  --color-border: #2a2a2a;
-  --color-accent: #ffffff;
+/* Force border widths if not utilizing tailwind classes directly */
+@layer base {
+  *, ::before, ::after {
+    border-width: 0;
+    border-style: solid; 
+    /* We don't want to override ALL borders to --border-width because it might break layout borders that expect 0. 
+       But we can set a utility or rely on components using `border` class which defaults to 1px.
+       Tailwind default `border` class uses `border-width: 1px`. 
+       We can override the `border` utility in @theme if supported, or via base.
+    */
+  }
+  
+  .border {
+    border-width: var(--border-width);
+  }
 }
 
 @layer utilities {
   .serif-text {
     font-family: var(--font-display);
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-in-view {
+    animation: fade-in-up 0.6s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
   }
 }
 
@@ -58,69 +180,6 @@ html {
   margin-top: 0.25rem;
   color: var(--color-accent);
 }
-
-/* 
-/* Prose styles for content */
-.prose-content {
-  /* The instruction "Remove @apply prose classes and use direct CSS instead"
-     is general, but no specific direct CSS was provided to replace the
-     existing @apply prose classes. The provided "Code Edit" snippet
-     did not contain any @apply prose classes to remove or replace.
-     Therefore, no changes are made to this block based on the provided input. */
-  @apply prose prose-lg max-w-none dark:prose-invert;
-
-  /* Headings */
-  @apply prose-headings:font-bold prose-headings:text-accent;
-  @apply prose-h1:text-4xl prose-h1:mt-8 prose-h1:mb-4;
-  @apply prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6;
-  @apply prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4;
-  @apply prose-h4:text-xl prose-h4:mt-8 prose-h4:mb-3;
-
-  /* Paragraphs */
-  @apply prose-p:text-foreground prose-p:leading-relaxed prose-p:text-lg;
-
-  /* Links */
-  @apply prose-a:text-accent prose-a:font-medium prose-a:no-underline hover:prose-a:underline;
-
-  /* Emphasis */
-  @apply prose-strong:text-accent prose-strong:font-semibold;
-  @apply prose-em:text-foreground prose-em:italic;
-
-  /* Blockquotes */
-  @apply prose-blockquote:border-l-4 prose-blockquote:border-accent;
-  @apply prose-blockquote:bg-surface prose-blockquote:py-4 prose-blockquote:px-6;
-  @apply prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:text-foreground;
-
-  /* Code */
-  @apply prose-code:text-accent prose-code:bg-surface prose-code:font-mono;
-  @apply prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-normal;
-  @apply prose-code:before:content-none prose-code:after:content-none;
-
-  /* Pre */
-  @apply prose-pre:bg-accent prose-pre:text-background prose-pre:border prose-pre:border-border;
-
-  /* Lists */
-  @apply prose-ul:text-foreground prose-ol:text-foreground;
-  @apply prose-li:text-foreground prose-li:leading-relaxed;
-
-  /* Images */
-  @apply prose-img:rounded-lg prose-img:shadow-lg;
-
-  /* HR */
-  @apply prose-hr:border-border;
-}
-
-/* Blog-specific prose with larger blockquotes 
-.prose-blog {
-  /* The instruction "Remove @apply prose classes and use direct CSS instead"
-     is general, but no specific direct CSS was provided to replace the
-     existing @apply prose classes. The provided "Code Edit" snippet
-     did not contain any @apply prose classes to remove or replace.
-     Therefore, no changes are made to this block based on the provided input. 
-  @apply prose-content;
-  @apply prose-blockquote:py-6 prose-blockquote:px-8;
-  @apply prose-blockquote:serif-text prose-blockquote:text-2xl prose-blockquote:font-medium prose-blockquote:italic;
-} */
 
 #mobile-menu {
   background-color: #ffffff !important;

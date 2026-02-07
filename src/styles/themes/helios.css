@@ -1,0 +1,52 @@
+/* --- ART DIRECTION 7: HELIOS --- */
+.theme-helios {
+  --radius: 0.3rem;
+
+  /* Helios Style: High contrast, Tech-oriented, Solar */
+  --shadow-card: 0 4px 14px 0 rgba(0,0,0,0.3);
+  --border-width: 1px;
+  --glow: none;
+
+  /* Helios Dark (Default) */
+  --background: 0 0% 13%;        /* #1d2021 (Base00) */
+  --foreground: 0 0% 84%;        /* #d5d5d5 (Base05) */
+  --card: 200 5% 23%;            /* #383c3e (Base01) */
+  --card-foreground: 0 0% 84%;
+  --popover: 200 5% 23%;
+  --popover-foreground: 0 0% 84%;
+  --primary: 31 85% 50%;         /* #eb8413 (Base09 - Orange) */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 206 5% 34%;       /* #53585b (Base02) */
+  --secondary-foreground: 0 0% 84%;
+  --muted: 206 5% 34%;
+  --muted-foreground: 204 4% 45%; /* #6f7579 (Base03) */
+  --accent: 36 89% 52%;          /* #f19d1a (Base0A - Yellow) */
+  --accent-foreground: 0 0% 13%;
+  --destructive: 354 70% 50%;    /* #d72638 (Base08 - Red) */
+  --destructive-foreground: 0 0% 100%;
+  --border: 206 5% 34%;          /* #53585b */
+  --input: 206 5% 34%;
+  --ring: 31 85% 50%;
+
+  --color-foreground: #d5d5d5;
+  --color-background: #1d2021;
+  --color-surface: #383c3e;
+  --color-muted: #53585b;
+  --color-border: #53585b;
+  --color-accent: #eb8413;
+
+  /* Helios Light */
+  /* Base07 #e5e5e5, Base02 #53585b */
+  &.light, :root:not(.dark) & {
+     --background: 0 0% 90%;        /* #e5e5e5 (Base07) */
+     --foreground: 0 0% 13%;        /* #1d2021 (Base00) */
+     --card: 0 0% 87%;              /* #dddddd (Base06) */
+     --card-foreground: 0 0% 13%;
+     --border: 0 0% 70%;
+     
+     --color-foreground: #1d2021;
+     --color-background: #e5e5e5;
+     --color-surface: #dddddd;
+     --color-border: #cdcdcd;
+  }
+}

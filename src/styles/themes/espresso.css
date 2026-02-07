@@ -1,0 +1,53 @@
+/* --- ART DIRECTION 6: ESPRESSO --- */
+.theme-espresso {
+  --radius: 0.5rem;
+
+  /* Espresso Style: Warm, Smooth, Caffeinated */
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  --border-width: 1px;
+  --glow: none;
+  
+  /* Espresso Dark (Default) */
+  --background: 0 0% 18%;        /* #2d2d2d (Base00) */
+  --foreground: 0 0% 80%;        /* #cccccc (Base05) */
+  --card: 0 0% 22%;              /* #393939 (Base01) */
+  --card-foreground: 0 0% 80%;
+  --popover: 0 0% 22%;
+  --popover-foreground: 0 0% 80%;
+  --primary: 30 93% 66%;         /* #f9a959 (Base09 - Orange) */
+  --primary-foreground: 0 0% 18%;
+  --secondary: 0 0% 32%;         /* #515151 (Base02) */
+  --secondary-foreground: 0 0% 80%;
+  --muted: 0 0% 32%;
+  --muted-foreground: 0 0% 60%;
+  --accent: 42 100% 71%;         /* #ffc66d (Base0A - Yellow/Gold) */
+  --accent-foreground: 0 0% 18%;
+  --destructive: 0 59% 57%;      /* #d25252 (Base08) */
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 32%;            /* #515151 */
+  --input: 0 0% 32%;
+  --ring: 30 93% 66%;
+
+  --color-foreground: #cccccc;
+  --color-background: #2d2d2d;
+  --color-surface: #393939;
+  --color-muted: #515151;
+  --color-border: #515151;
+  --color-accent: #f9a959;
+
+  /* Espresso Light (Latte?) */
+  /* Base07 #ffffff, Base02 #515151 */
+  &.light, :root:not(.dark) & {
+     --background: 0 0% 100%;       /* #ffffff (Base07) */
+     --foreground: 0 0% 18%;        /* #2d2d2d (Base00) */
+     --card: 0 0% 95%;              /* Light foam/crema */
+     --card-foreground: 0 0% 18%;
+     --border: 0 0% 85%;
+     --muted: 0 0% 90%;
+     
+     --color-foreground: #2d2d2d;
+     --color-background: #ffffff;
+     --color-surface: #f2f2f2;
+     --color-border: #e0e0e0;
+  }
+}

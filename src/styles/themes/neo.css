@@ -1,0 +1,55 @@
+/* --- ART DIRECTION 2: NEO-BRUTALISM --- */
+.theme-neo {
+  --radius: 4px;
+  
+  /* Neo Style: Hard Shadows, Thick Borders */
+  --shadow-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --border-width: 2px;
+  --glow: none;
+
+  /* Neo Light */
+  --background: 48 100% 97%;     /* #FFFDF0 */
+  --foreground: 0 0% 10%;
+  --card: 48 100% 97%;
+  --card-foreground: 0 0% 10%;
+  --popover: 48 100% 97%;
+  --popover-foreground: 0 0% 10%;
+  --primary: 260 100% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 180 100% 50%;
+  --secondary-foreground: 0 0% 10%;
+  --muted: 48 20% 80%;
+  --muted-foreground: 0 0% 40%;
+  --accent: 320 100% 50%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 100% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 0%;
+  --input: 0 0% 0%;
+  --ring: 0 0% 0%;
+
+  --color-foreground: #1a1a1a;
+  --color-background: #fffdf0;
+  --color-surface: #fffdf0;
+  --color-muted: #888888;
+  --color-border: #000000;
+  --color-accent: #6b21a8;
+
+  /* Neo Dark */
+  &.dark {
+      --background: 260 20% 10%;   /* Dark Purplish Gray */
+      --foreground: 48 100% 97%;   /* Cream text */
+      --card: 260 20% 10%;
+      --card-foreground: 48 100% 97%;
+      --border: 48 100% 97%;       /* Cream borders */
+      --input: 48 100% 97%;
+      
+      /* White/Cream Shadow for Dark Mode Neo */
+      --shadow-card: 4px 4px 0px 0px #FFFDF0;
+
+      --color-foreground: #fffdf0;
+      --color-background: #151419;
+      --color-surface: #151419;
+      --color-border: #fffdf0;
+  }
+}

@@ -1,0 +1,63 @@
+/* --- ART DIRECTION 3: CYBER-VAPORWAVE --- */
+.theme-cyber {
+  --radius: 1rem;
+
+  /* Cyber Style: Soft Glows, Single border width, Glassy if possible */
+  /* Box Shadow Glow: Cyan/Pink */
+  --shadow-card: 0 0 15px -3px rgba(0, 255, 255, 0.3), 0 0 5px 0px rgba(255, 0, 255, 0.2);
+  --border-width: 1px;
+  
+  /* Cyber Dark (Default) */
+  --background: 280 60% 5%;      /* ~#0d0514 */
+  --foreground: 300 100% 90%;    /* #ffe6ff */
+  --card: 280 50% 10%;
+  --card-foreground: 300 100% 90%;
+  --popover: 280 50% 10%;
+  --popover-foreground: 300 100% 90%;
+  --primary: 320 100% 60%;       /* Hot Pink */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 180 100% 50%;     /* Cyan */
+  --secondary-foreground: 280 60% 5%;
+  --muted: 280 40% 20%;
+  --muted-foreground: 280 40% 60%;
+  --accent: 260 100% 60%;        /* Electric Violet */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 100% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 320 80% 60%;         /* Pinkish border */
+  --input: 320 80% 60%;
+  --ring: 180 100% 50%;
+
+  --color-foreground: #ffe6ff;
+  --color-background: #0d0514;
+  --color-surface: #1a0f2e;
+  --color-muted: #4a2b6b;
+  --color-border: #ff00ff;
+  --color-accent: #00ffff;
+
+  /* Cyber Light */
+  /* If users select "Light Mode" with Cyber theme */
+  --background: 300 100% 95%;    /* Very light pink */
+  --foreground: 280 60% 5%;
+  --card: 300 100% 95%;
+  --card-foreground: 280 60% 5%;
+  --border: 320 80% 60%;
+  
+  --color-background: #fff0ff;
+  --color-foreground: #2a0a2a;
+
+  &.dark {
+      /* The original Dark Cyber vars */
+      --background: 280 60% 5%;
+      --foreground: 300 100% 90%;
+      --card: 280 50% 10%;
+      --card-foreground: 300 100% 90%;
+      --popover: 280 50% 10%;
+      --popover-foreground: 300 100% 90%;
+      --border: 320 80% 60%;
+      --input: 320 80% 60%;
+      
+      --color-background: #0d0514;
+      --color-foreground: #ffe6ff;
+  }
+}

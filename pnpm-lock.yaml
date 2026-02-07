@@ -53,6 +53,12 @@ importers:
       astro-fuse:
         specifier: ^1.0.4
         version: 1.0.4(astro@6.0.0-beta.6(@types/node@25.2.0)(@vercel/functions@2.2.13)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.57.1)(typescript@5.9.3)(yaml@2.8.2))(fuse.js@7.1.0)
+      bits-ui:
+        specifier: ^2.15.5
+        version: 2.15.5(@internationalized/date@3.11.0)(svelte@5.49.1)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       d3:
         specifier: ^7.9.0
         version: 7.9.0
@@ -62,6 +68,9 @@ importers:
       lodash.kebabcase:
         specifier: ^4.1.1
         version: 4.1.1
+      lucide-svelte:
+        specifier: ^0.563.0
+        version: 0.563.0(svelte@5.49.1)
       mermaid:
         specifier: ^11.12.2
         version: 11.12.2
@@ -89,12 +98,21 @@ importers:
       satori:
         specifier: ^0.18.4
         version: 0.18.4
+      shadcn-svelte:
+        specifier: ^1.1.1
+        version: 1.1.1
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
       svelte:
         specifier: ^5.49.1
         version: 5.49.1
+      tailwind-merge:
+        specifier: ^3.4.0
+        version: 3.4.0
+      tailwind-variants:
+        specifier: ^3.2.2
+        version: 3.2.2(tailwind-merge@3.4.0)(tailwindcss@4.1.18)
       tailwindcss:
         specifier: ^4.1.18
         version: 4.1.18
@@ -102,6 +120,9 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
     devDependencies:
+      '@internationalized/date':
+        specifier: ^3.11.0
+        version: 3.11.0
       '@types/lodash.kebabcase':
         specifier: ^4.1.9
         version: 4.1.9
@@ -861,6 +882,15 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@floating-ui/core@1.7.4':
+    resolution: {integrity: sha512-C3HlIdsBxszvm5McXlB8PeOEWfBhcGBTZGkGlWc2U0KFY5IwG5OQEuQ8rq52DZmcHDlPLd+YFBK+cZcytwIFWg==}
+
+  '@floating-ui/dom@1.7.5':
+    resolution: {integrity: sha512-N0bD2kIPInNHUHehXhMke1rBGs1dwqvC9O9KYMyyjK7iXt7GAhnro7UlcuYcGdS/yYOlq0MAVgrow8IbWJwyqg==}
+
+  '@floating-ui/utils@0.2.10':
+    resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
+
   '@fontsource-variable/urbanist@5.2.7':
     resolution: {integrity: sha512-OYeUoBQhwm3pbXG5yUxq1omO9H64Dx1eKxldKYOztrf+8GFG1vu3FP/zZpmFOwtgsPj2h6JYHX9VVWopSxvOyQ==}
 
@@ -1006,6 +1036,9 @@ packages:
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [win32]
+
+  '@internationalized/date@3.11.0':
+    resolution: {integrity: sha512-BOx5huLAWhicM9/ZFs84CzP+V3gBW6vlpM02yzsdYC7TGlZJX1OJiEEHcSayF00Z+3jLlm4w79amvSt6RqKN3Q==}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -1377,6 +1410,9 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
       vite: ^6.0.0
+
+  '@swc/helpers@0.5.18':
+    resolution: {integrity: sha512-TXTnIcNJQEKwThMMqBXsZ4VGAza6bvN4pa41Rkqoio6QBKMvo+5lexeTMScGCIxtzgQJzElcvIltani+adC5PQ==}
 
   '@tailwindcss/node@4.1.18':
     resolution: {integrity: sha512-DoR7U1P7iYhw16qJ49fgXUlry1t4CpXeErJHnQ44JgTSKMaZUdf17cfn5mHchfJ4KRBZRFA/Coo+MUF5+gOaCQ==}
@@ -1860,6 +1896,13 @@ packages:
 
   bindings@1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
+
+  bits-ui@2.15.5:
+    resolution: {integrity: sha512-WhS+P+E//ClLfKU6KqjKC17nGDRLnz+vkwoP6ClFUPd5m1fFVDxTElPX8QVsduLj5V1KFDxlnv6sW2G5Lqk+vw==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@internationalized/date': ^3.8.1
+      svelte: ^5.33.0
 
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
@@ -2887,6 +2930,15 @@ packages:
     resolution: {integrity: sha512-vFrFJkWtJvJnD5hg+hJvVE8Lh/TcMzKnTgCWmtBipwI5yLX/iX+5UB2tfuyODF5E7k9xEzMdYgGqaSb1c0c5Yw==}
     engines: {node: 20 || >=22}
 
+  lucide-svelte@0.563.0:
+    resolution: {integrity: sha512-pjZKw7TpQcamfQrx7YdbOHgmrcNeKiGGMD0tKZQaVktwSsbqw28CsKc2Q97ttwjytiCWkJyOa8ij2Q+Og0nPfQ==}
+    peerDependencies:
+      svelte: ^3 || ^4 || ^5.0.0-next.42
+
+  lz-string@1.5.0:
+    resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
+    hasBin: true
+
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
@@ -3621,6 +3673,15 @@ packages:
   roughjs@4.6.6:
     resolution: {integrity: sha512-ZUz/69+SYpFN/g/lUlo2FXcIjRkSu3nDarreVdGGndHEBJ6cXPdKguS8JGxwj5HA5xIbVKSmLgr5b3AWxtRfvQ==}
 
+  runed@0.35.1:
+    resolution: {integrity: sha512-2F4Q/FZzbeJTFdIS/PuOoPRSm92sA2LhzTnv6FXhCoENb3huf5+fDuNOg1LNvGOouy3u/225qxmuJvcV3IZK5Q==}
+    peerDependencies:
+      '@sveltejs/kit': ^2.21.0
+      svelte: ^5.7.0
+    peerDependenciesMeta:
+      '@sveltejs/kit':
+        optional: true
+
   rw@1.3.3:
     resolution: {integrity: sha512-PdhdWy89SiZogBLaw42zdeqtRJ//zFd2PgQavcICDUgJT5oW10QCRKbJ6bg4r0/UY2M6BWd5tkxuGFRvCkgfHQ==}
 
@@ -3650,6 +3711,10 @@ packages:
   semver@7.7.3:
     resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
     engines: {node: '>=10'}
+    hasBin: true
+
+  shadcn-svelte@1.1.1:
+    resolution: {integrity: sha512-ojCwEOK4ggawNogoHyN51PqxDYT/6Qzi9TdEu6gfTb/ITRCU4mEQBGylf2hqB+nfKcj9xXv99CR9b0bEKmAC5A==}
     hasBin: true
 
   sharp@0.34.5:
@@ -3765,6 +3830,12 @@ packages:
   suf-log@2.5.3:
     resolution: {integrity: sha512-KvC8OPjzdNOe+xQ4XWJV2whQA0aM1kGVczMQ8+dStAO6KfEB140JEVQ9dE76ONZ0/Ylf67ni4tILPJB41U0eow==}
 
+  svelte-toolbelt@0.10.6:
+    resolution: {integrity: sha512-YWuX+RE+CnWYx09yseAe4ZVMM7e7GRFZM6OYWpBKOb++s+SQ8RBIMMe+Bs/CznBMc0QPLjr+vDBxTAkozXsFXQ==}
+    engines: {node: '>=18', pnpm: '>=8.7.0'}
+    peerDependencies:
+      svelte: ^5.30.2
+
   svelte2tsx@0.7.47:
     resolution: {integrity: sha512-1aw/MFKVPM96OBevJdC12do2an9t5Zwr3Va9amLgTLpJje36ibD1iIHpuqCYWUrdR9vw6g6btKGQPmsqE8ZYCw==}
     peerDependencies:
@@ -3779,6 +3850,22 @@ packages:
     resolution: {integrity: sha512-VvrHQ+9uniE+Mvx3+C9IEe/lWasXCU0nXMY2kZeLrHNICuRiC8uMPyM14UEaMOFA5mhyQqEkB02VoQ16n3DLaw==}
     engines: {node: '>=16'}
     hasBin: true
+
+  tabbable@6.4.0:
+    resolution: {integrity: sha512-05PUHKSNE8ou2dwIxTngl4EzcnsCDZGJ/iCLtDflR/SHB/ny14rXc+qU5P4mG9JkusiV7EivzY9Mhm55AzAvCg==}
+
+  tailwind-merge@3.4.0:
+    resolution: {integrity: sha512-uSaO4gnW+b3Y2aWoWfFpX62vn2sR3skfhbjsEnaBI81WD1wBLlHZe5sWf0AqjksNdYTbGBEd0UasQMT3SNV15g==}
+
+  tailwind-variants@3.2.2:
+    resolution: {integrity: sha512-Mi4kHeMTLvKlM98XPnK+7HoBPmf4gygdFmqQPaDivc3DpYS6aIY6KiG/PgThrGvii5YZJqRsPz0aPyhoFzmZgg==}
+    engines: {node: '>=16.x', pnpm: '>=7.x'}
+    peerDependencies:
+      tailwind-merge: '>=3.0.0'
+      tailwindcss: '*'
+    peerDependenciesMeta:
+      tailwind-merge:
+        optional: true
 
   tailwindcss@4.1.18:
     resolution: {integrity: sha512-4+Z+0yiYyEtUVCScyfHCxOYP06L5Ne+JiHhY2IjR2KWMIWhJOYZKLSGZaP5HkZ8+bY0cxfzwDE5uOmzFXyIwxw==}
@@ -5042,6 +5129,17 @@ snapshots:
   '@esbuild/win32-x64@0.27.2':
     optional: true
 
+  '@floating-ui/core@1.7.4':
+    dependencies:
+      '@floating-ui/utils': 0.2.10
+
+  '@floating-ui/dom@1.7.5':
+    dependencies:
+      '@floating-ui/core': 1.7.4
+      '@floating-ui/utils': 0.2.10
+
+  '@floating-ui/utils@0.2.10': {}
+
   '@fontsource-variable/urbanist@5.2.7': {}
 
   '@iconify/types@2.0.0': {}
@@ -5147,6 +5245,10 @@ snapshots:
 
   '@img/sharp-win32-x64@0.34.5':
     optional: true
+
+  '@internationalized/date@3.11.0':
+    dependencies:
+      '@swc/helpers': 0.5.18
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -5526,6 +5628,10 @@ snapshots:
       vitefu: 1.1.1(vite@6.4.1(@types/node@25.2.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))
     transitivePeerDependencies:
       - supports-color
+
+  '@swc/helpers@0.5.18':
+    dependencies:
+      tslib: 2.8.1
 
   '@tailwindcss/node@4.1.18':
     dependencies:
@@ -6082,6 +6188,19 @@ snapshots:
   bindings@1.5.0:
     dependencies:
       file-uri-to-path: 1.0.0
+
+  bits-ui@2.15.5(@internationalized/date@3.11.0)(svelte@5.49.1):
+    dependencies:
+      '@floating-ui/core': 1.7.4
+      '@floating-ui/dom': 1.7.5
+      '@internationalized/date': 3.11.0
+      esm-env: 1.2.2
+      runed: 0.35.1(svelte@5.49.1)
+      svelte: 5.49.1
+      svelte-toolbelt: 0.10.6(svelte@5.49.1)
+      tabbable: 6.4.0
+    transitivePeerDependencies:
+      - '@sveltejs/kit'
 
   boolbase@1.0.0: {}
 
@@ -7214,6 +7333,12 @@ snapshots:
   lru-cache@10.4.3: {}
 
   lru-cache@11.2.5: {}
+
+  lucide-svelte@0.563.0(svelte@5.49.1):
+    dependencies:
+      svelte: 5.49.1
+
+  lz-string@1.5.0: {}
 
   magic-string@0.30.21:
     dependencies:
@@ -8396,6 +8521,13 @@ snapshots:
       points-on-curve: 0.2.0
       points-on-path: 0.2.1
 
+  runed@0.35.1(svelte@5.49.1):
+    dependencies:
+      dequal: 2.0.3
+      esm-env: 1.2.2
+      lz-string: 1.5.0
+      svelte: 5.49.1
+
   rw@1.3.3: {}
 
   s.color@0.0.15: {}
@@ -8429,6 +8561,12 @@ snapshots:
       parseley: 0.12.1
 
   semver@7.7.3: {}
+
+  shadcn-svelte@1.1.1:
+    dependencies:
+      commander: 14.0.3
+      node-fetch-native: 1.6.7
+      postcss: 8.5.6
 
   sharp@0.34.5:
     dependencies:
@@ -8577,6 +8715,15 @@ snapshots:
     dependencies:
       s.color: 0.0.15
 
+  svelte-toolbelt@0.10.6(svelte@5.49.1):
+    dependencies:
+      clsx: 2.1.1
+      runed: 0.35.1(svelte@5.49.1)
+      style-to-object: 1.0.14
+      svelte: 5.49.1
+    transitivePeerDependencies:
+      - '@sveltejs/kit'
+
   svelte2tsx@0.7.47(svelte@5.49.1)(typescript@5.9.3):
     dependencies:
       dedent-js: 1.0.1
@@ -8611,6 +8758,16 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.1.1
       sax: 1.4.4
+
+  tabbable@6.4.0: {}
+
+  tailwind-merge@3.4.0: {}
+
+  tailwind-variants@3.2.2(tailwind-merge@3.4.0)(tailwindcss@4.1.18):
+    dependencies:
+      tailwindcss: 4.1.18
+    optionalDependencies:
+      tailwind-merge: 3.4.0
 
   tailwindcss@4.1.18: {}
 
@@ -8705,8 +8862,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.9.3
 
-  tslib@2.8.1:
-    optional: true
+  tslib@2.8.1: {}
 
   type-fest@4.41.0: {}
 

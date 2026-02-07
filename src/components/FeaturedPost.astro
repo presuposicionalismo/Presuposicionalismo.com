@@ -12,7 +12,7 @@ const { post } = Astro.props;
 const postUrl = `/blog/${slugifyStr(post.data.title)}/`;
 ---
 
-<div class="relative group mb-12">
+<div class="relative group mb-12 animate-in-view">
   <div
     class="bg-surface rounded-lg overflow-hidden shadow-sm border border-border grid md:grid-cols-2 min-h-[400px]"
   >

@@ -1,0 +1,53 @@
+/* --- ART DIRECTION 5: DANQING (Traditional Ink) --- */
+.theme-danqing {
+  --radius: 0.75rem;
+
+  /* DanQing Style: Soft, Ink-like, Balanced */
+  --shadow-card: 0 4px 12px -2px rgba(45, 48, 47, 0.5); /* Soft ink shadow */
+  --border-width: 1px;
+  
+  /* DanQing Dark (Default base) */
+  --background: 126 3% 18%;      /* #2d302f (Base00) */
+  --foreground: 174 40% 90%;     /* #e0f0eF (Base05) */
+  --card: 160 3% 27%;            /* #434846 (Base01) */
+  --card-foreground: 174 40% 90%;
+  --popover: 160 3% 27%;
+  --popover-foreground: 174 40% 90%;
+  --primary: 15 90% 70%;         /* #F9906F (Base08 - Vermilion) */
+  --primary-foreground: 126 3% 18%;
+  --secondary: 163 3% 36%;       /* #5a605d (Base02) */
+  --secondary-foreground: 174 40% 90%;
+  --muted: 163 3% 36%;
+  --muted-foreground: 164 7% 63%; /* #9da8a3 (Base03) */
+  --accent: 78 35% 54%;          /* #8AB361 (Base0B - Green) */
+  --accent-foreground: 126 3% 18%;
+  --destructive: 15 90% 70%;
+  --destructive-foreground: 126 3% 18%;
+  --border: 163 3% 36%;
+  --input: 163 3% 36%;
+  --ring: 15 90% 70%;
+
+  --color-foreground: #e0f0ef;
+  --color-background: #2d302f;
+  --color-surface: #434846;
+  --color-muted: #5a605d;
+  --color-border: #5a605d;
+  --color-accent: #f9906f;
+
+  /* DanQing Light (Inverted/Paper) */
+  /* Base07 #fcfefd (Paper White), Base02 #5a605d (Ink Text) */
+  &.light, :root:not(.dark) & {
+     --background: 180 14% 99%;     /* #fcfefd (Base07) */
+     --foreground: 126 3% 18%;      /* #2d302f (Base00 - Ink) */
+     --card: 160 20% 96%;           /* #ecf6f2 (Base06) */
+     --card-foreground: 126 3% 18%;
+     --primary: 15 90% 50%;         /* Darker Red for light mode? Keep Base08 */
+     --border: 160 10% 85%;         /* #cad8d2 (Base04) */
+     --muted: 160 10% 90%;
+     
+     --color-foreground: #2d302f;
+     --color-background: #fcfefd;
+     --color-surface: #ecf6f2;
+     --color-border: #cad8d2;
+  }
+}
