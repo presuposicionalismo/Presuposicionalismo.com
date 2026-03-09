@@ -5,8 +5,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
-// SpeedInsights of vercel
-import SpeedInsights from "@vercel/speed-insights/astro";
+
 const { title, description } = Astro.props;
 ---
 
@@ -22,6 +21,6 @@ const { title, description } = Astro.props;
       <slot />
     </main>
     <Footer />
-    <SpeedInsights />
+
   </body>
 </html>

@@ -1,62 +1,127 @@
-<custom-search>
-  <input data-search-inp type="text" placeholder="Buscar..." />
-  <ul data-search-result></ul>
-</custom-search>
+---
+import { Search as SearchIcon, Loader2 } from "lucide-svelte";
+---
+
+<semantic-search class="relative w-full max-w-sm">
+  <div class="relative flex items-center">
+    <SearchIcon class="absolute left-3 w-5 h-5 text-muted-foreground hidden sm:block" />
+    <input 
+      data-search-inp 
+      type="text" 
+      placeholder="Búsqueda semántica (ej: apologética presuposicional)..." 
+      class="w-full sm:pl-10 px-4 py-2 rounded-md border border-input bg-background/80 backdrop-blur-sm text-sm focus:outline-none focus:ring-2 focus:ring-primary transition shadow-sm"
+    />
+    <Loader2 data-search-loader class="absolute right-3 w-4 h-4 text-primary animate-spin hidden" />
+  </div>
+  
+  <div data-search-dropdown class="absolute z-50 w-full mt-2 bg-popover text-popover-foreground border rounded-md shadow-lg hidden flex-col max-h-[400px] overflow-y-auto overflow-x-hidden">
+    <div data-search-empty class="p-6 text-sm text-center text-muted-foreground hidden flex-col items-center gap-2">
+      <SearchIcon class="w-8 h-8 opacity-20" />
+      <span>No se encontraron resultados semánticos.</span>
+      <span class="text-xs opacity-70">Intenta con otros conceptos relacionados.</span>
+    </div>
+    <ul data-search-result class="flex flex-col"></ul>
+  </div>
+</semantic-search>
 
 <script>
-  import type { OutputBaseSearchable } from "astro-fuse";
-
-  class CustomSearch extends HTMLElement {
+  class SemanticSearch extends HTMLElement {
+    input = this.querySelector<HTMLInputElement>("[data-search-inp]");
+    dropdown = this.querySelector<HTMLDivElement>("[data-search-dropdown]");
     list = this.querySelector<HTMLUListElement>("[data-search-result]");
+    empty = this.querySelector<HTMLDivElement>("[data-search-empty]");
+    loader = this.querySelector<HTMLElement>("[data-search-loader]");
+    
+    timeout: number | null = null;
+    currentQuery = "";
 
     constructor() {
       super();
 
-      this.querySelector<HTMLInputElement>(
-        "[data-search-inp]",
-      )?.addEventListener("input", this.onInput.bind(this));
+      this.input?.addEventListener("input", this.onInput.bind(this));
+      this.input?.addEventListener("focus", () => {
+        if (this.input?.value.trim() !== "") {
+          this.dropdown?.classList.remove("hidden");
+        }
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!this.contains(e.target as Node)) {
+          this.dropdown?.classList.add("hidden");
+        }
+      });
     }
 
-    async onInput(e: Event) {
-      const { list } = this;
-
-      if (!list) {
+    onInput(e: Event) {
+      const target = e.target as HTMLInputElement;
+      const q = target.value.trim();
+      
+      if (q === "") {
+        this.dropdown?.classList.add("hidden");
+        if (this.list) this.list.innerHTML = "";
+        this.currentQuery = "";
         return;
       }
 
-      // create fuse instance from index
-      const { loadFuse } = await import("astro-fuse/client");
-      const fuse = await loadFuse();
+      this.currentQuery = q;
+      this.dropdown?.classList.remove("hidden");
+      this.empty?.classList.add("hidden");
+      
+      if (this.loader) this.loader.classList.remove("hidden");
 
-      const results = fuse.search<OutputBaseSearchable>(
-        (e.target as HTMLInputElement).value.trim(),
-      );
+      if (this.timeout) clearTimeout(this.timeout);
 
-      list.innerHTML = results
-        .map(
-          ({ item }) =>
-            `<div class="warp">
-            <section class="container bg">
-              <article class="card">
-                <div class="card__image rad-shadow">
-                  <img src="${item.frontmatter.heroImage}" alt="Imagen" />
-                </div>
+      // Debounce requests by 450ms
+      this.timeout = window.setTimeout(async () => {
+        if (this.currentQuery !== q) return; // Skip if query has changed
+        
+        try {
+          const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+          if (!res.ok) throw new Error("Search failed");
+          
+          const data = await res.json();
+          this.renderResults(data.results || []);
+        } catch (error) {
+          console.error("Semantic search error:", error);
+          this.renderResults([]); // Show empty state on error
+        } finally {
+           if (this.loader) this.loader.classList.add("hidden");
+        }
+      }, 450); 
+    }
 
-                <div>
-                  <span><FormattedDate date={pubDate} /></span>
-                  <h2 class="card__title">${item.frontmatter.title}</h1>
-                  <p class="card__text">${item.frontmatter.descrition}</p>
-                  <a class="token string" href="${item.pathname}"}>Leer mas</a>
-                  </p>
-                </div>
-              </article>
-            </section>
-            <a href="${item.pathname}">${item.frontmatter.title}</a>
-            </div>`,
-        )
-        .join("");
+    renderResults(results: any[]) {
+      if (!this.list || !this.empty) return;
+      
+      if (results.length === 0) {
+        this.list.innerHTML = "";
+        this.empty.classList.remove("hidden");
+        this.empty.classList.add("flex");
+        return;
+      }
+      
+      this.empty.classList.add("hidden");
+      this.empty.classList.remove("flex");
+
+      this.list.innerHTML = results.map((res: any) => {
+        const item = res.metadata;
+        if (!item) return "";
+        
+        return `
+          <li>
+            <a href="${item.path}" class="flex flex-col p-3 hover:bg-muted/60 transition-colors border-b border-border/50 last:border-0 group">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-sm">${item.type}</span>
+                <h3 class="font-medium text-sm leading-tight text-foreground group-hover:text-primary transition-colors">${item.title}</h3>
+              </div>
+              <p class="text-xs text-muted-foreground line-clamp-2 pl-1">${item.description || ''}</p>
+            </a>
+          </li>
+        `;
+      }).join("");
     }
   }
 
-  customElements.define("custom-search", CustomSearch);
+  customElements.define("semantic-search", SemanticSearch);
 </script>

@@ -10,8 +10,7 @@ import ProductInfo from "../components/ProductInfo.astro";
 import AuthorCard from "../components/AuthorCard.astro";
 import "../styles/global.css";
 
-// SpeedInsights of vercel
-import SpeedInsights from "@vercel/speed-insights/astro";
+
 
 type Props = CollectionEntry<"libros">["data"] & { slug?: string };
 
@@ -72,6 +71,6 @@ const ogImage = slug ? `/og/libros/${slug}.png` : "/Portada.png";
     </main>
 
     <Footer />
-    <SpeedInsights />
+
   </body>
 </html>

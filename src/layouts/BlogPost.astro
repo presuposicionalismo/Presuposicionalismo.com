@@ -10,8 +10,7 @@ import NewsletterCTA from "../components/NewsletterCTA.astro";
 import ArticleHeader from "../components/ArticleHeader.astro";
 import "../styles/global.css";
 
-// SpeedInsights of vercel
-import SpeedInsights from "@vercel/speed-insights/astro";
+
 
 type Props = CollectionEntry<"blog">["data"] & { slug?: string };
 
@@ -96,7 +95,7 @@ const ogImage = slug ? `/og/blog/${slug}.png` : "/Portada.png";
     </main>
 
     <Footer />
-    <SpeedInsights />
+
 
     <!-- Scroll Progress Script -->
     <script is:inline>

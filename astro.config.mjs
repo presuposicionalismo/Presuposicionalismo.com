@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
-import vercelStatic from "@astrojs/vercel";
+import cloudflare from "@astrojs/cloudflare";
 
 // import fuse from "astro-fuse";
 
@@ -28,11 +28,11 @@ export default defineConfig({
     gfm: true,
   },
 
-  output: "static",
-  adapter: vercelStatic(),
+  output: "server",
+  adapter: cloudflare(),
 
   webAnalytics: {
-    enabled: true,
+    // enabled: true, // Requires configuration or separate plugin for Cloudflare
   },
 
   vite: {

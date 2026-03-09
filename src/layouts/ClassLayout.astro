@@ -9,8 +9,7 @@ import ArticleHeader from "../components/ArticleHeader.astro";
 import Outline from "../components/mdx/Outline.svelte";
 import "../styles/global.css";
 
-// SpeedInsights of vercel
-import SpeedInsights from "@vercel/speed-insights/astro";
+
 
 type Props = CollectionEntry<"clases">["data"] & {
   slug?: string;
@@ -115,7 +114,7 @@ const ogImage = slug ? `/og/blog/${slug}.png` : "/Portada.png";
     </main>
 
     <Footer />
-    <SpeedInsights />
+
 
     <!-- Scroll Progress Script -->
     <script is:inline>
