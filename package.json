@@ -12,7 +12,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "astro check",
-    "prepare": "husky"
+    "prepare": "husky",
+    "generate-types": "wrangler types"
   },
   "lint-staged": {
     "*.{astro,js,ts,tsx,jsx,mjs,cjs,json,md,mdx}": [
@@ -24,18 +25,18 @@
   },
   "dependencies": {
     "@astrojs/check": "0.9.7-beta.1",
-    "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/cloudflare": "^13.0.2",
     "@astrojs/mdx": "5.0.0-beta.3",
     "@astrojs/rss": "4.0.15-beta.2",
     "@astrojs/sitemap": "3.6.1-beta.2",
-    "@astrojs/svelte": "^7.2.5",
+    "@astrojs/svelte": "^8.0.0",
     "@fontsource-variable/urbanist": "^5.2.7",
     "@libsql/client": "^0.15.15",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.1",
     "@types/d3": "^7.4.3",
-    "astro": "6.0.0-beta.6",
+    "astro": "6.0.2",
     "astro-fuse": "^1.0.4",
     "bits-ui": "^2.16.3",
     "clsx": "^2.1.1",
@@ -43,7 +44,7 @@
     "fuse.js": "^7.1.0",
     "lodash.kebabcase": "^4.1.1",
     "lucide-svelte": "^0.563.0",
-    "mermaid": "^11.12.3",
+    "mermaid": "^11.13.0",
     "postcss": "^8.5.8",
     "postcss-custom-media": "^11.0.6",
     "postcss-nesting": "^13.0.2",
@@ -54,18 +55,19 @@
     "satori": "^0.18.4",
     "shadcn-svelte": "^1.1.1",
     "sharp": "^0.34.5",
-    "svelte": "^5.53.7",
+    "svelte": "^5.53.10",
     "tailwind-merge": "^3.5.0",
     "tailwind-variants": "^3.2.2",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260307.1",
+    "@cloudflare/workers-types": "^4.20260310.1",
     "@internationalized/date": "^3.12.0",
     "@types/lodash.kebabcase": "^4.1.9",
     "husky": "^9.1.7",
-    "lint-staged": "^16.3.2",
-    "prettier-plugin-astro": "^0.14.1"
+    "lint-staged": "^16.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "wrangler": "^4.72.0"
   }
 }

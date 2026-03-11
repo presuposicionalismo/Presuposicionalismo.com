@@ -17,5 +17,6 @@
       "@lib/*": ["lib/*"],
       "$lib/*": ["lib/*"]
     }
-  }
+  },
+  "include": ["./worker-configuration.d.ts"]
 }

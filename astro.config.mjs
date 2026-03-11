@@ -29,7 +29,9 @@ export default defineConfig({
   },
 
   output: "server",
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: "passthrough",
+  }),
 
   webAnalytics: {
     // enabled: true, // Requires configuration or separate plugin for Cloudflare

@@ -1,25 +1,27 @@
 import { getCollection } from "astro:content";
 import { generateOgImage } from "../../../utils/generateOg";
 
-export async function getStaticPaths() {
-  const books = await getCollection("libros");
-  return books.map((book) => ({
-    params: { slug: book.id },
-    props: book,
-  }));
-}
-
 export async function GET({
-  params: _params,
-  props,
+  params,
+  request,
 }: {
   params: any;
-  props: any;
+  request: Request;
 }) {
-  const { title, description } = props.data;
+  const slug = params.slug;
+  if (!slug) {
+    return new Response("Not found", { status: 404 });
+  }
 
+  const books = await getCollection("libros");
+  const book = books.find((b) => b.id === slug);
+
+  if (!book) {
+    return new Response("Book not found", { status: 404 });
+  }
+
+  const { title, description, author, coverBook } = book.data;
   try {
-    const { author, coverBook } = props.data;
     const imageBuffer = await generateOgImage(title, description, "book", {
       author,
       coverBook,
