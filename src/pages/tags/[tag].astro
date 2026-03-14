@@ -7,6 +7,8 @@ import CategoryFilter from "@components/CategoryFilter.astro";
 import postFilter from "@utils/postFilter";
 import { slugifyStr } from "@utils/slugify";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const allPosts = await getCollection("blog", postFilter);
 

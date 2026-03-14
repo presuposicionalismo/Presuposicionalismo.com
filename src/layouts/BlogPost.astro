@@ -10,14 +10,12 @@ import NewsletterCTA from "../components/NewsletterCTA.astro";
 import ArticleHeader from "../components/ArticleHeader.astro";
 import "../styles/global.css";
 
-
-
 type Props = CollectionEntry<"blog">["data"] & { slug?: string };
 
 const { title, description, pubDate, heroImage, slug, tags } = Astro.props;
 
 // Determine OG Image
-const ogImage = slug ? `/og/blog/${slug}.png` : "/Portada.png";
+const ogImage = heroImage || "/Portada.png";
 ---
 
 <html lang="es">
@@ -95,7 +93,6 @@ const ogImage = slug ? `/og/blog/${slug}.png` : "/Portada.png";
     </main>
 
     <Footer />
-
 
     <!-- Scroll Progress Script -->
     <script is:inline>

@@ -1,127 +1,400 @@
 ---
-import { Search as SearchIcon, Loader2 } from "lucide-svelte";
+
 ---
 
-<semantic-search class="relative w-full max-w-sm">
-  <div class="relative flex items-center">
-    <SearchIcon class="absolute left-3 w-5 h-5 text-muted-foreground hidden sm:block" />
-    <input 
-      data-search-inp 
-      type="text" 
-      placeholder="Búsqueda semántica (ej: apologética presuposicional)..." 
-      class="w-full sm:pl-10 px-4 py-2 rounded-md border border-input bg-background/80 backdrop-blur-sm text-sm focus:outline-none focus:ring-2 focus:ring-primary transition shadow-sm"
-    />
-    <Loader2 data-search-loader class="absolute right-3 w-4 h-4 text-primary animate-spin hidden" />
-  </div>
-  
-  <div data-search-dropdown class="absolute z-50 w-full mt-2 bg-popover text-popover-foreground border rounded-md shadow-lg hidden flex-col max-h-[400px] overflow-y-auto overflow-x-hidden">
-    <div data-search-empty class="p-6 text-sm text-center text-muted-foreground hidden flex-col items-center gap-2">
-      <SearchIcon class="w-8 h-8 opacity-20" />
-      <span>No se encontraron resultados semánticos.</span>
-      <span class="text-xs opacity-70">Intenta con otros conceptos relacionados.</span>
+<semantic-search class="block w-full">
+  <button
+    type="button"
+    data-search-open
+    class="group relative flex h-7 w-48 items-center gap-1 rounded-md border border-input bg-background/80 px-2 text-left text-[11px] text-muted-foreground shadow-sm transition hover:border-primary/40 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+    aria-haspopup="dialog"
+    aria-expanded="false"
+  >
+    <svg
+      class="h-3 w-3 shrink-0"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.3-4.3"></path>
+    </svg>
+    <span class="truncate">Buscar</span>
+    <span
+      class="ml-auto hidden rounded border border-border bg-muted/60 px-1 py-0 text-[9px] font-medium tracking-wide text-muted-foreground sm:inline"
+    >
+      Ctrl+K
+    </span>
+  </button>
+
+  <div
+    data-search-modal
+    class="fixed inset-0 z-[120] hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Búsqueda"
+  >
+    <button
+      type="button"
+      data-search-overlay
+      class="absolute inset-0 bg-background/70 backdrop-blur-sm"
+      aria-label="Cerrar búsqueda"></button>
+
+    <div
+      class="relative mx-auto mt-[10vh] w-[min(760px,92vw)] overflow-hidden rounded-2xl border border-border bg-popover text-popover-foreground shadow-2xl"
+    >
+      <div
+        class="relative flex items-center border-b border-border/80 px-4 py-3"
+      >
+        <svg
+          class="h-5 w-5 text-muted-foreground"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+
+        <input
+          data-search-inp
+          type="text"
+          placeholder="Busca por tema, autor o concepto apologético..."
+          class="w-full bg-transparent px-3 py-1 text-base outline-none placeholder:text-muted-foreground"
+        />
+
+        <svg
+          data-search-loader
+          class="hidden h-4 w-4 animate-spin text-primary"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+        </svg>
+      </div>
+
+      <div class="max-h-[60vh] overflow-y-auto overflow-x-hidden">
+        <div
+          data-search-empty
+          class="hidden flex-col items-center gap-2 p-8 text-center text-sm text-muted-foreground"
+        >
+          <svg
+            class="h-9 w-9 opacity-25"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+          <span>No encontramos resultados semánticos.</span>
+          <span class="text-xs opacity-70"
+            >Prueba con una idea relacionada o un término más general.</span
+          >
+        </div>
+        <ul data-search-result class="flex flex-col"></ul>
+      </div>
+
+      <div
+        class="flex items-center justify-between border-t border-border/80 px-4 py-2 text-xs text-muted-foreground"
+      >
+        <span>Navega con ↑ ↓ y abre con Enter</span>
+        <span>Esc para cerrar</span>
+      </div>
     </div>
-    <ul data-search-result class="flex flex-col"></ul>
   </div>
 </semantic-search>
 
 <script>
+  type ResultItem = {
+    title: string;
+    description?: string;
+    path: string;
+    type: "blog" | "clase" | "libro";
+    score?: number;
+    source?: "vector" | "fallback";
+  };
+
   class SemanticSearch extends HTMLElement {
+    static instances = new Set<SemanticSearch>();
+    static hotkeyReady = false;
+
+    trigger = this.querySelector<HTMLButtonElement>("[data-search-open]");
+    modal = this.querySelector<HTMLDivElement>("[data-search-modal]");
+    overlay = this.querySelector<HTMLButtonElement>("[data-search-overlay]");
     input = this.querySelector<HTMLInputElement>("[data-search-inp]");
-    dropdown = this.querySelector<HTMLDivElement>("[data-search-dropdown]");
     list = this.querySelector<HTMLUListElement>("[data-search-result]");
     empty = this.querySelector<HTMLDivElement>("[data-search-empty]");
     loader = this.querySelector<HTMLElement>("[data-search-loader]");
-    
+
     timeout: number | null = null;
     currentQuery = "";
+    activeIndex = -1;
+    currentResults: ResultItem[] = [];
+    restoreOverflow = "";
 
     constructor() {
       super();
+      SemanticSearch.instances.add(this);
+
+      this.trigger?.addEventListener("click", () => {
+        this.openModal();
+      });
+
+      this.overlay?.addEventListener("click", () => {
+        this.closeModal();
+      });
 
       this.input?.addEventListener("input", this.onInput.bind(this));
-      this.input?.addEventListener("focus", () => {
-        if (this.input?.value.trim() !== "") {
-          this.dropdown?.classList.remove("hidden");
-        }
-      });
-      
-      // Close dropdown when clicking outside
-      document.addEventListener("click", (e) => {
-        if (!this.contains(e.target as Node)) {
-          this.dropdown?.classList.add("hidden");
-        }
-      });
+      this.input?.addEventListener("keydown", this.onKeyDown.bind(this));
+
+      if (!SemanticSearch.hotkeyReady) {
+        document.addEventListener("keydown", (event) => {
+          const target = event.target as HTMLElement | null;
+          const isTyping =
+            target?.tagName === "INPUT" ||
+            target?.tagName === "TEXTAREA" ||
+            target?.isContentEditable;
+          const isOpen = Array.from(SemanticSearch.instances).some((instance) =>
+            instance.isModalOpen(),
+          );
+
+          if (
+            (event.ctrlKey || event.metaKey) &&
+            event.key.toLowerCase() === "k"
+          ) {
+            event.preventDefault();
+            const visible = Array.from(SemanticSearch.instances).find(
+              (instance) => instance.isVisible(),
+            );
+            visible?.openModal();
+            return;
+          }
+
+          if (event.key === "Escape" && isOpen) {
+            Array.from(SemanticSearch.instances).forEach((instance) =>
+              instance.closeModal(),
+            );
+            return;
+          }
+
+          if (!isTyping && event.key === "/" && !isOpen) {
+            const visible = Array.from(SemanticSearch.instances).find(
+              (instance) => instance.isVisible(),
+            );
+            if (visible) {
+              event.preventDefault();
+              visible.openModal();
+            }
+          }
+        });
+
+        SemanticSearch.hotkeyReady = true;
+      }
+    }
+
+    disconnectedCallback() {
+      SemanticSearch.instances.delete(this);
+    }
+
+    isVisible() {
+      return this.offsetParent !== null;
+    }
+
+    isModalOpen() {
+      return !!this.modal && !this.modal.classList.contains("hidden");
+    }
+
+    openModal() {
+      if (!this.modal) {
+        return;
+      }
+
+      this.modal.classList.remove("hidden");
+      this.trigger?.setAttribute("aria-expanded", "true");
+      this.restoreOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+
+      window.setTimeout(() => {
+        this.input?.focus();
+      }, 0);
+    }
+
+    closeModal() {
+      if (!this.modal) {
+        return;
+      }
+
+      this.modal.classList.add("hidden");
+      this.trigger?.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = this.restoreOverflow;
+      this.activeIndex = -1;
+      this.syncActiveState();
+    }
+
+    clearResults() {
+      this.currentResults = [];
+      this.activeIndex = -1;
+      if (this.list) {
+        this.list.innerHTML = "";
+      }
+      this.empty?.classList.add("hidden");
+      this.empty?.classList.remove("flex");
+      if (this.loader) {
+        this.loader.classList.add("hidden");
+      }
     }
 
     onInput(e: Event) {
       const target = e.target as HTMLInputElement;
       const q = target.value.trim();
-      
+
       if (q === "") {
-        this.dropdown?.classList.add("hidden");
-        if (this.list) this.list.innerHTML = "";
+        this.clearResults();
         this.currentQuery = "";
         return;
       }
 
       this.currentQuery = q;
-      this.dropdown?.classList.remove("hidden");
       this.empty?.classList.add("hidden");
-      
+
       if (this.loader) this.loader.classList.remove("hidden");
 
       if (this.timeout) clearTimeout(this.timeout);
 
       // Debounce requests by 450ms
       this.timeout = window.setTimeout(async () => {
-        if (this.currentQuery !== q) return; // Skip if query has changed
-        
+        if (this.currentQuery !== q) return;
+
         try {
-          const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
-          if (!res.ok) throw new Error("Search failed");
-          
+          const res = await fetch(
+            `/api/search?q=${encodeURIComponent(q)}&topK=8`,
+          );
+          if (!res.ok) {
+            throw new Error(`Search failed (${res.status})`);
+          }
+
           const data = await res.json();
-          this.renderResults(data.results || []);
+          this.renderResults(Array.isArray(data.results) ? data.results : []);
         } catch (error) {
           console.error("Semantic search error:", error);
-          this.renderResults([]); // Show empty state on error
+          this.renderResults([]);
         } finally {
-           if (this.loader) this.loader.classList.add("hidden");
+          if (this.loader) this.loader.classList.add("hidden");
         }
-      }, 450); 
+      }, 450);
     }
 
-    renderResults(results: any[]) {
+    onKeyDown(event: KeyboardEvent) {
+      if (!this.currentResults.length) {
+        if (event.key === "Escape") {
+          this.closeModal();
+        }
+        return;
+      }
+
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        this.activeIndex = (this.activeIndex + 1) % this.currentResults.length;
+        this.syncActiveState();
+      }
+
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        this.activeIndex =
+          this.activeIndex <= 0
+            ? this.currentResults.length - 1
+            : this.activeIndex - 1;
+        this.syncActiveState();
+      }
+
+      if (event.key === "Enter" && this.activeIndex >= 0) {
+        event.preventDefault();
+        const selected = this.currentResults[this.activeIndex];
+        if (selected?.path) {
+          window.location.href = selected.path;
+        }
+      }
+
+      if (event.key === "Escape") {
+        this.closeModal();
+      }
+    }
+
+    syncActiveState() {
+      if (!this.list) {
+        return;
+      }
+
+      const links = Array.from(
+        this.list.querySelectorAll<HTMLAnchorElement>("[data-search-link]"),
+      );
+      links.forEach((link, index) => {
+        const isActive = index === this.activeIndex;
+        link.classList.toggle("bg-muted/70", isActive);
+        link.setAttribute("aria-selected", isActive ? "true" : "false");
+        if (isActive) {
+          link.scrollIntoView({ block: "nearest" });
+        }
+      });
+    }
+
+    renderResults(results: ResultItem[]) {
       if (!this.list || !this.empty) return;
-      
+
+      this.currentResults = results;
+      this.activeIndex = -1;
+
       if (results.length === 0) {
         this.list.innerHTML = "";
         this.empty.classList.remove("hidden");
         this.empty.classList.add("flex");
         return;
       }
-      
+
       this.empty.classList.add("hidden");
       this.empty.classList.remove("flex");
 
-      this.list.innerHTML = results.map((res: any) => {
-        const item = res.metadata;
-        if (!item) return "";
-        
-        return `
+      this.list.innerHTML = results
+        .map((item) => {
+          if (!item?.path || !item?.title) return "";
+
+          return `
           <li>
-            <a href="${item.path}" class="flex flex-col p-3 hover:bg-muted/60 transition-colors border-b border-border/50 last:border-0 group">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-sm">${item.type}</span>
-                <h3 class="font-medium text-sm leading-tight text-foreground group-hover:text-primary transition-colors">${item.title}</h3>
+            <a href="${item.path}" data-search-link aria-selected="false" class="group flex flex-col gap-1 border-b border-border/50 px-4 py-3 transition-colors hover:bg-muted/60 last:border-0">
+              <div class="mb-0.5 flex items-center gap-2">
+                <span class="rounded-sm bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">${item.type}</span>
+                <h3 class="text-sm font-medium leading-tight text-foreground transition-colors group-hover:text-primary">${item.title}</h3>
               </div>
-              <p class="text-xs text-muted-foreground line-clamp-2 pl-1">${item.description || ''}</p>
+              <p class="line-clamp-2 pl-1 text-xs text-muted-foreground">${item.description || ""}</p>
             </a>
           </li>
         `;
-      }).join("");
+        })
+        .join("");
+
+      this.syncActiveState();
     }
   }
 
-  customElements.define("semantic-search", SemanticSearch);
+  if (!customElements.get("semantic-search")) {
+    customElements.define("semantic-search", SemanticSearch);
+  }
 </script>

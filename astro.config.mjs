@@ -31,6 +31,7 @@ export default defineConfig({
   output: "server",
   adapter: cloudflare({
     imageService: "passthrough",
+    prerenderEnvironment: "node",
   }),
 
   webAnalytics: {
@@ -39,6 +40,9 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    ssr: {
+      noExternal: ["lucide-svelte"],
+    },
     server: {
       allowedHosts: true,
     },

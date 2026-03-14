@@ -8,6 +8,8 @@ import type { GetStaticPaths } from "astro";
 import { SITE_DESCRIPTION } from "../../../consts";
 import postFilter from "@utils/postFilter";
 
+export const prerender = true;
+
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection("blog", postFilter);
   const sortedPosts = posts.sort(

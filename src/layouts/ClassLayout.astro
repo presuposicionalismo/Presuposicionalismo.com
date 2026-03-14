@@ -9,8 +9,6 @@ import ArticleHeader from "../components/ArticleHeader.astro";
 import Outline from "../components/mdx/Outline.svelte";
 import "../styles/global.css";
 
-
-
 type Props = CollectionEntry<"clases">["data"] & {
   slug?: string;
   headings?: import("astro").MarkdownHeading[];
@@ -27,7 +25,7 @@ const {
 } = Astro.props;
 
 // Determine OG Image
-const ogImage = slug ? `/og/blog/${slug}.png` : "/Portada.png";
+const ogImage = heroImage || "/Portada.png";
 ---
 
 <html lang="es">
@@ -114,7 +112,6 @@ const ogImage = slug ? `/og/blog/${slug}.png` : "/Portada.png";
     </main>
 
     <Footer />
-
 
     <!-- Scroll Progress Script -->
     <script is:inline>

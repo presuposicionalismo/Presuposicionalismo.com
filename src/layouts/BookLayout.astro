@@ -10,15 +10,13 @@ import ProductInfo from "../components/ProductInfo.astro";
 import AuthorCard from "../components/AuthorCard.astro";
 import "../styles/global.css";
 
-
-
 type Props = CollectionEntry<"libros">["data"] & { slug?: string };
 
 const { title, description, pubDate, coverBook, downloadBook, slug, author } =
   Astro.props;
 
 // Determine OG Image
-const ogImage = slug ? `/og/libros/${slug}.png` : "/Portada.png";
+const ogImage = coverBook || "/Portada.png";
 ---
 
 <html lang="es">
@@ -71,6 +69,5 @@ const ogImage = slug ? `/og/libros/${slug}.png` : "/Portada.png";
     </main>
 
     <Footer />
-
   </body>
 </html>

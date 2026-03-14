@@ -4,6 +4,8 @@ import BlogPost from "../../layouts/BlogPost.astro";
 import { slugifyStr } from "@utils/slugify";
 import postFilter from "@utils/postFilter";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const posts = await getCollection("blog", postFilter);
   return posts.map((post) => ({
