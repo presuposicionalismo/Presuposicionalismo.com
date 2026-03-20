@@ -5,16 +5,16 @@
 
 import ENTRY, {
   __INTERNAL_WRANGLER_MIDDLEWARE__,
-} from "C:\\Users\\ASUS\\Documents\\Luis\\Presuposicionalismo.com\\.wrangler\\tmp\\bundle-8GXAVn\\middleware-insertion-facade.js";
+} from "C:\\Users\\ASUS\\Documents\\Luis\\Presuposicionalismo.com\\.wrangler\\tmp\\bundle-lQpwiZ\\middleware-insertion-facade.js";
 import {
   __facade_invoke__,
   __facade_register__,
   Dispatcher,
-} from "C:\\Users\\ASUS\\AppData\\Local\\pnpm-cache\\dlx\\d548229fe8139299543399281fcfa8066274de9c9a0ad0da81ad03ab2c213822\\19ced10ba2e-8610\\node_modules\\.pnpm\\wrangler@4.73.0\\node_modules\\wrangler\\templates\\middleware\\common.ts";
-import type { WorkerEntrypointConstructor } from "C:\\Users\\ASUS\\Documents\\Luis\\Presuposicionalismo.com\\.wrangler\\tmp\\bundle-8GXAVn\\middleware-insertion-facade.js";
+} from "C:\\Users\\ASUS\\AppData\\Local\\pnpm-cache\\dlx\\be1e7ee7d404231aa8601a124a3e24ff620a6d44355f5582f73f002ad19ae1a8\\19d0c3261b0-90d8\\node_modules\\.pnpm\\wrangler@4.76.0\\node_modules\\wrangler\\templates\\middleware\\common.ts";
+import type { WorkerEntrypointConstructor } from "C:\\Users\\ASUS\\Documents\\Luis\\Presuposicionalismo.com\\.wrangler\\tmp\\bundle-lQpwiZ\\middleware-insertion-facade.js";
 
 // Preserve all the exports from the worker
-export * from "C:\\Users\\ASUS\\Documents\\Luis\\Presuposicionalismo.com\\.wrangler\\tmp\\bundle-8GXAVn\\middleware-insertion-facade.js";
+export * from "C:\\Users\\ASUS\\Documents\\Luis\\Presuposicionalismo.com\\.wrangler\\tmp\\bundle-lQpwiZ\\middleware-insertion-facade.js";
 
 class __Facade_ScheduledController__ implements ScheduledController {
   readonly #noRetry: ScheduledController["noRetry"];
