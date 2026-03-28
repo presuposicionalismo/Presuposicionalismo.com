@@ -26,3 +26,6 @@ pnpm-debug.log*
 
 # Open Graph Cache
 .og-cache/
+
+# Cloudflare Wrangler local artifacts
+.wrangler/

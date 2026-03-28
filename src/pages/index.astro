@@ -1,28 +1,40 @@
 ---
-import MainLayout from "@layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import MainLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import BlogCarousel from "../components/BlogCarousel.astro";
+import FeaturedBooks from "../components/FeaturedBooks.astro";
+import Quotes from "../components/Quotes.astro";
+import NewsletterCTA from "../components/NewsletterCTA.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import HeroSection from "@components/HeroSection.astro";
-import BlogSection from "@components/BlogSection.astro";
-import postFilter from "@utils/postFilter";
-
-const allPosts = await getCollection("blog", postFilter);
-const sortedPosts = allPosts.sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
 ---
 
 <MainLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <HeroSection
-    title="¿Estás preparado para algo intelectualmente"
-    highlightedText="estimulante"
-    description={[
-      'Este sitio está dedicado a promover literatura que suscribe una filosofía distintivamente cristiana y principalmente a la metodología apologética del "padre del presuposicionalismo", el fallecido (1987) Dr. Cornelius Van Til, y sus estudiantes, el fallecido (1995) Dr. Greg L. Bahnsen, y el Dr. John M. Frame.',
-      'Otros "vantilianos" de interés incluyen pero no se limitan a: James Anderson, William Edgar, Scott Oliphint, James White, y Richard Pratt. De cualquier manera, ¡que Dios lo bendiga ricamente a través de este pequeño sitio que existe para promover la gloria de Dios solamente!',
-    ]}
-    ctaText="Explorar Contenido"
-    ctaHref="#blog"
-  />
+  <!-- Hero -->
+  <Hero />
 
-  <BlogSection posts={sortedPosts} />
+  <!-- Divider -->
+  <div class="mx-auto max-w-6xl px-6">
+    <hr class="border-border" />
+  </div>
+
+  <!-- Blog Carousel -->
+  <BlogCarousel />
+
+  <!-- Divider -->
+  <div class="mx-auto max-w-6xl px-6">
+    <hr class="border-border" />
+  </div>
+
+  <!-- Featured Books -->
+  <section class="pt-16 md:pt-20">
+    <FeaturedBooks />
+  </section>
+
+  <!-- Quotes / Thoughts section -->
+  <Quotes />
+
+  <!-- Newsletter CTA -->
+  <section class="mx-auto max-w-6xl px-6 pb-20 md:pb-28">
+    <NewsletterCTA />
+  </section>
 </MainLayout>
