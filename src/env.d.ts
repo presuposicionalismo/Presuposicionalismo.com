@@ -2,5 +2,5 @@
 /// <reference types="astro/client" />
 
 declare namespace App {
-  interface Locals extends import("@astrojs/cloudflare").Runtime {}
+  interface Locals {}
 }

@@ -1,0 +1,3 @@
+{
+  "ignorePatterns": [".vercel/", ".astro/", "dist/", ".vite/", "*.astro"]
+}

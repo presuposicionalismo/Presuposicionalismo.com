@@ -1,7 +1,7 @@
 {
   "name": "presuposicionalismo.com",
-  "type": "module",
   "version": "0.82",
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -9,18 +9,10 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "bunx prettier --write .",
-    "format:check": "bunx prettier --check .",
-    "lint": "astro check",
+    "format": "bunx oxfmt .",
+    "format:check": "bunx oxfmt --check .",
+    "lint": "bunx oxlint .",
     "prepare": "husky"
-  },
-  "lint-staged": {
-    "*.{astro,js,ts,tsx,jsx,mjs,cjs,json,md,mdx}": [
-      "sh -c 'bunx prettier --write \"$@\"; exit 0' --"
-    ],
-    "*.{astro,ts,tsx}": [
-      "astro check --minimumSeverity warning --noWatch"
-    ]
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
@@ -44,7 +36,6 @@
     "postcss": "^8.5.25",
     "postcss-custom-media": "^11.0.6",
     "postcss-nesting": "^13.0.2",
-    "prettier": "4.0.0-alpha.12",
     "sharp": "^0.34.5",
     "svelte": "^5.56.8",
     "tailwindcss": "^4.3.3",
@@ -54,6 +45,18 @@
     "@types/lodash.kebabcase": "^4.1.9",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
-    "prettier-plugin-astro": "^0.14.1"
+    "oxfmt": "^0.52.0",
+    "oxlint": "^1.69.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx,mjs,cjs,json,md,mdx}": [
+      "bunx oxfmt"
+    ],
+    "*.{astro,js,ts,tsx,jsx,mjs,cjs}": [
+      "bunx oxlint --fix"
+    ],
+    "*.{astro,ts,tsx}": [
+      "astro check --minimumSeverity warning --noWatch"
+    ]
   }
 }

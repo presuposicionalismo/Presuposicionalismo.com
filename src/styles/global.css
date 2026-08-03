@@ -136,16 +136,18 @@
 
 /* Force border widths if not utilizing tailwind classes directly */
 @layer base {
-  *, ::before, ::after {
+  *,
+  ::before,
+  ::after {
     border-width: 0;
-    border-style: solid; 
+    border-style: solid;
     /* We don't want to override ALL borders to --border-width because it might break layout borders that expect 0. 
        But we can set a utility or rely on components using `border` class which defaults to 1px.
        Tailwind default `border` class uses `border-width: 1px`. 
        We can override the `border` utility in @theme if supported, or via base.
     */
   }
-  
+
   .border {
     border-width: var(--border-width);
   }
