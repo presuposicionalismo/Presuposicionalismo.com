@@ -34,9 +34,9 @@ const tagCounts = allPosts.reduce(
   {} as Record<string, number>,
 );
 
-const sortedTags = Object.keys(tagCounts)
-  .sort((a, b) => tagCounts[b] - tagCounts[a])
-  .slice(0, 10); // Top 10 tags for filter
+const sortedTags = Object.keys(tagCounts).sort(
+  (a, b) => tagCounts[b] - tagCounts[a],
+);
 ---
 
 <MainLayout title="Artículos" description={SITE_DESCRIPTION}>
@@ -49,12 +49,12 @@ const sortedTags = Object.keys(tagCounts)
             >Blog & Ensayos</span
           >
           <h1
-            class="text-5xl md:text-7xl font-display font-medium text-primary dark:text-white mb-6 leading-tight"
+            class="text-5xl md:text-7xl font-display font-medium text-foreground mb-6 leading-tight"
           >
             Artículos
           </h1>
           <p
-            class="text-lg md:text-xl text-secondary dark:text-gray-400 font-display italic leading-relaxed"
+            class="text-lg md:text-xl text-muted font-display italic leading-relaxed"
           >
             Exploraciones profundas sobre la fe, la razón y la presuposición,
             analizando la cultura desde una óptica consistentemente reformada.

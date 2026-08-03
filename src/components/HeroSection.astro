@@ -1,4 +1,6 @@
 ---
+import ArrowDown from "./icons/ArrowDown.astro";
+
 interface Props {
   title: string;
   highlightedText: string;
@@ -26,7 +28,7 @@ const { title, highlightedText, description, ctaText, ctaHref } = Astro.props;
       class="inline-flex items-center gap-2 px-8 py-3 bg-accent text-background font-medium hover:opacity-90 transition-opacity"
     >
       {ctaText}
-      <span class="material-icons-outlined text-sm">arrow_downward</span>
+      <ArrowDown class="text-sm" />
     </a>
   </div>
 </section>

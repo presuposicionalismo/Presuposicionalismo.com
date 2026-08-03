@@ -4,9 +4,10 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import AuthorCard from "../components/AuthorCard.astro";
-import NewsletterCTA from "../components/NewsletterCTA.astro";
+// import NewsletterCTA from "../components/NewsletterCTA.astro"; // Oculto por ahora, no se usa
 import ArticleHeader from "../components/ArticleHeader.astro";
 import Outline from "../components/mdx/Outline.svelte";
+import ArrowLeft from "../components/icons/ArrowLeft.astro";
 import "../styles/global.css";
 
 type Props = CollectionEntry<"clases">["data"] & {
@@ -93,8 +94,8 @@ const ogImage = heroImage || "/Portada.png";
           <!-- Author Bio -->
           <AuthorCard />
 
-          <!-- Newsletter CTA -->
-          <NewsletterCTA />
+          <!-- Newsletter CTA — oculto por ahora, no se usa -->
+          <!-- <NewsletterCTA /> -->
 
           <!-- Back to Classes Link -->
           <div class="text-center">
@@ -102,8 +103,7 @@ const ogImage = heroImage || "/Portada.png";
               href="/clases"
               class="inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
             >
-              <span class="material-icons-outlined text-[18px]">arrow_back</span
-              >
+              <ArrowLeft class="text-[18px]" />
               Volver al programa
             </a>
           </div>

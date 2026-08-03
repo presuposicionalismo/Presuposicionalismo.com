@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "@components/FormattedDate.astro";
 import CoverBlog from "@components/CoverBlog.astro";
+import ArrowRight from "@components/icons/ArrowRight.astro";
 import { slugifyStr } from "@utils/slugify";
 
 interface Props {
@@ -31,7 +32,6 @@ const postUrl = `/blog/${slugifyStr(post.data.title)}/`;
       <div
         class="flex items-center gap-2 text-muted text-sm mb-4 uppercase tracking-widest font-medium"
       >
-        <span class="material-icons-outlined text-base">calendar_today</span>
         <FormattedDate date={post.data.pubDate} />
       </div>
       <h3
@@ -50,7 +50,7 @@ const postUrl = `/blog/${slugifyStr(post.data.title)}/`;
           class="inline-flex items-center gap-2 font-medium text-accent border-b border-accent/20 pb-1 hover:border-accent transition-all"
         >
           Leer artículo completo
-          <span class="material-icons-outlined text-sm">arrow_forward</span>
+          <ArrowRight class="text-sm" />
         </a>
       </div>
     </div>

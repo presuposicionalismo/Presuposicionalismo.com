@@ -1,4 +1,6 @@
 ---
+import User from "./icons/User.astro";
+
 interface Props {
   name?: string;
   bio?: string;
@@ -27,9 +29,7 @@ const {
         />
       ) : (
         <div class="w-20 h-20 rounded-full bg-muted/20 flex items-center justify-center ring-2 ring-border shadow-md">
-          <span class="material-icons-outlined text-4xl text-muted">
-            person
-          </span>
+          <User class="text-4xl text-muted" />
         </div>
       )
     }

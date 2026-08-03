@@ -1,0 +1,195 @@
+---
+import FormattedDate from "./FormattedDate.astro";
+import AuthorCard from "./AuthorCard.astro";
+import CalendarEvent from "./icons/CalendarEvent.astro";
+import FileText from "./icons/FileText.astro";
+import Language from "./icons/Language.astro";
+import LockOpen from "./icons/LockOpen.astro";
+
+interface Props {
+  description: string;
+  pubDate: Date;
+  format?: string;
+  language?: string;
+  access?: string;
+  authorName?: string;
+  authorBio?: string;
+  authorAvatarUrl?: string;
+  authorProfileUrl?: string;
+}
+
+const {
+  description,
+  pubDate,
+  format = "PDF Digital",
+  language = "Español",
+  access = "Gratuito",
+  authorName,
+  authorBio,
+  authorAvatarUrl,
+  authorProfileUrl,
+} = Astro.props;
+---
+
+<div data-book-tabs class="mb-10">
+  <div role="tablist" class="tab-list">
+    <button
+      type="button"
+      role="tab"
+      class="tab-trigger"
+      data-tab="descripcion"
+      aria-selected="true"
+    >
+      Descripción
+    </button>
+    <button
+      type="button"
+      role="tab"
+      class="tab-trigger"
+      data-tab="detalles"
+      aria-selected="false"
+    >
+      Detalles
+    </button>
+    <button
+      type="button"
+      role="tab"
+      class="tab-trigger"
+      data-tab="autor"
+      aria-selected="false"
+    >
+      Autor
+    </button>
+  </div>
+
+  <div role="tabpanel" data-panel="descripcion" class="tab-panel pt-6">
+    <div
+      class="prose prose-lg max-w-none text-foreground leading-relaxed prose-p:text-foreground prose-strong:text-accent prose-blockquote:border-accent prose-blockquote:text-muted prose-blockquote:italic"
+    >
+      <p>{description}</p>
+    </div>
+  </div>
+
+  <div role="tabpanel" data-panel="detalles" class="tab-panel pt-6 hidden">
+    <div class="grid grid-cols-2 gap-3">
+      <div class="detail-card">
+        <span class="detail-icon"><CalendarEvent /></span>
+        <div>
+          <p class="text-xs text-muted mb-0.5">Publicación</p>
+          <p class="font-semibold text-accent">
+            <FormattedDate date={pubDate} showIcon={false} />
+          </p>
+        </div>
+      </div>
+      <div class="detail-card">
+        <span class="detail-icon"><FileText /></span>
+        <div>
+          <p class="text-xs text-muted mb-0.5">Formato</p>
+          <p class="font-semibold text-accent">{format}</p>
+        </div>
+      </div>
+      <div class="detail-card">
+        <span class="detail-icon"><Language /></span>
+        <div>
+          <p class="text-xs text-muted mb-0.5">Idioma</p>
+          <p class="font-semibold text-accent">{language}</p>
+        </div>
+      </div>
+      <div class="detail-card">
+        <span class="detail-icon"><LockOpen /></span>
+        <div>
+          <p class="text-xs text-muted mb-0.5">Acceso</p>
+          <p class="font-semibold text-accent">{access}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div role="tabpanel" data-panel="autor" class="tab-panel pt-6 hidden">
+    <AuthorCard
+      name={authorName}
+      bio={authorBio}
+      avatarUrl={authorAvatarUrl}
+      profileUrl={authorProfileUrl}
+    />
+  </div>
+</div>
+
+<style>
+  .tab-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.3rem;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--color-muted) 14%, transparent);
+  }
+
+  .tab-trigger {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    color: var(--color-muted);
+    background: transparent;
+    transition:
+      color 0.2s,
+      background-color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .tab-trigger:hover {
+    color: var(--color-accent);
+  }
+
+  .tab-trigger[aria-selected="true"] {
+    color: var(--color-accent);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+  }
+
+  .detail-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+
+  .detail-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    font-size: 1.125rem;
+    color: var(--color-accent);
+    background: color-mix(in oklab, var(--color-accent) 12%, transparent);
+  }
+</style>
+
+<script>
+  document.querySelectorAll("[data-book-tabs]").forEach((block) => {
+    const triggers = block.querySelectorAll<HTMLButtonElement>(".tab-trigger");
+    const panels = block.querySelectorAll<HTMLElement>(".tab-panel");
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const target = trigger.dataset.tab;
+
+        triggers.forEach((t) =>
+          t.setAttribute("aria-selected", String(t === trigger)),
+        );
+        panels.forEach((panel) => {
+          panel.classList.toggle("hidden", panel.dataset.panel !== target);
+        });
+      });
+    });
+  });
+</script>

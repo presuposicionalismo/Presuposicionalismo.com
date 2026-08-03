@@ -6,13 +6,19 @@ import Footer from "../components/Footer.astro";
 import ShareSidebar from "../components/ShareSidebar.astro";
 import AuthorCard from "../components/AuthorCard.astro";
 import RelatedArticles from "../components/RelatedArticles.astro";
-import NewsletterCTA from "../components/NewsletterCTA.astro";
+// import NewsletterCTA from "../components/NewsletterCTA.astro"; // Oculto por ahora, no se usa
 import ArticleHeader from "../components/ArticleHeader.astro";
+import ArrowLeft from "../components/icons/ArrowLeft.astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 import "../styles/global.css";
 
-type Props = CollectionEntry<"blog">["data"] & { slug?: string };
+type Props = CollectionEntry<"blog">["data"] & {
+  slug?: string;
+  headings?: { depth: number; slug: string; text: string }[];
+};
 
-const { title, description, pubDate, heroImage, slug, tags } = Astro.props;
+const { title, description, pubDate, heroImage, slug, tags, headings } =
+  Astro.props;
 
 // Determine OG Image
 const ogImage = heroImage || "/Portada.png";
@@ -25,7 +31,8 @@ const ogImage = heroImage || "/Portada.png";
 
   <body>
     <!-- Scroll Progress Bar -->
-    <div class="fixed top-0 left-0 h-1 bg-accent z-50" id="progress-bar"></div>
+    <div class="fixed top-0 left-0 h-1 bg-accent z-[60]" id="progress-bar">
+    </div>
 
     <Header />
 
@@ -55,7 +62,7 @@ const ogImage = heroImage || "/Portada.png";
         <!-- Body Layout Wrapper -->
         <div class="relative w-full">
           <!-- Floating Sidebar (Desktop) -->
-          <ShareSidebar />
+          <ShareSidebar title={title} headings={headings} />
 
           <!-- Typography Content -->
           <div class="prose-content">
@@ -74,8 +81,8 @@ const ogImage = heroImage || "/Portada.png";
           <!-- Related Articles -->
           <RelatedArticles />
 
-          <!-- Newsletter CTA -->
-          <NewsletterCTA />
+          <!-- Newsletter CTA — oculto por ahora, no se usa -->
+          <!-- <NewsletterCTA /> -->
 
           <!-- Back to Blog Link -->
           <div class="text-center">
@@ -83,8 +90,7 @@ const ogImage = heroImage || "/Portada.png";
               href="/blog"
               class="inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
             >
-              <span class="material-icons-outlined text-[18px]">arrow_back</span
-              >
+              <ArrowLeft class="text-[18px]" />
               Volver al blog
             </a>
           </div>
@@ -93,6 +99,7 @@ const ogImage = heroImage || "/Portada.png";
     </main>
 
     <Footer />
+    <SpeedInsights />
 
     <!-- Scroll Progress Script -->
     <script is:inline>

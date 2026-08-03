@@ -2,47 +2,25 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
-import cloudflare from "@astrojs/cloudflare";
-
-// import fuse from "astro-fuse";
+import vercel from "@astrojs/vercel";
 
 import tailwindcss from "@tailwindcss/vite";
-
-// remarkPlugins: [remarkToc],
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://presuposicionalismo.com",
 
-  integrations: [
-    mdx({
-      gfm: true,
-    }),
-    svelte(),
-    sitemap(),
-    // fuse(["content"]),
-  ],
+  integrations: [mdx(), svelte(), sitemap()],
 
   markdown: {
     remarkPlugins: [],
-    gfm: true,
   },
 
   output: "server",
-  adapter: cloudflare({
-    imageService: "passthrough",
-    prerenderEnvironment: "node",
-  }),
-
-  webAnalytics: {
-    // enabled: true, // Requires configuration or separate plugin for Cloudflare
-  },
+  adapter: vercel(),
 
   vite: {
     plugins: [tailwindcss()],
-    ssr: {
-      noExternal: ["lucide-svelte"],
-    },
     server: {
       allowedHosts: true,
     },

@@ -3,7 +3,8 @@ import HeaderLink from "./HeaderLink.astro";
 import DarkToggle from "./DarkToggle.astro";
 import ThemeSwitcher from "../lib/components/ThemeSwitcher.svelte";
 import Logo from "./Logo.astro";
-import Search from "./Search.astro";
+import Menu2 from "./icons/Menu2.astro";
+import X from "./icons/X.astro";
 ---
 
 <header
@@ -16,9 +17,6 @@ import Search from "./Search.astro";
       </a>
     </div>
     <div class="hidden md:flex flex-1 justify-end items-center gap-6">
-      <div class="w-full max-w-sm">
-        <Search />
-      </div>
       <nav class="flex items-center gap-8">
         <HeaderLink
           href="/"
@@ -35,6 +33,11 @@ import Search from "./Search.astro";
           class="text-sm font-medium text-muted hover:text-accent transition-colors pb-1"
           >Libros</HeaderLink
         >
+        <HeaderLink
+          href="/tags"
+          class="text-sm font-medium text-muted hover:text-accent transition-colors pb-1"
+          >Etiquetas</HeaderLink
+        >
         <ThemeSwitcher client:load />
         <DarkToggle />
       </nav>
@@ -47,10 +50,10 @@ import Search from "./Search.astro";
 
     <button
       id="mobile-menu-btn"
-      class="md:hidden p-2 text-primary dark:text-white"
+      class="md:hidden p-2 text-foreground"
       aria-label="Menu"
     >
-      <span class="material-symbols-outlined text-2xl">menu</span>
+      <Menu2 class="text-2xl" />
     </button>
   </div>
 
@@ -65,39 +68,39 @@ import Search from "./Search.astro";
       </div>
       <button
         id="close-menu-btn"
-        class="p-2 text-primary dark:text-white"
+        class="p-2 text-foreground"
         aria-label="Cerrar menú"
       >
-        <span class="material-symbols-outlined text-2xl">close</span>
+        <X class="text-2xl" />
       </button>
     </div>
 
     <nav class="flex flex-col p-6 gap-6">
-      <div class="mb-2">
-        <Search />
-      </div>
       <a
         href="/"
-        class="text-2xl font-display font-medium text-primary dark:text-white hover:text-accent transition-colors"
+        class="text-2xl font-display font-medium text-foreground hover:text-accent transition-colors"
         >Inicio</a
       >
       <a
         href="/blog"
-        class="text-2xl font-display font-medium text-primary dark:text-white hover:text-accent transition-colors"
+        class="text-2xl font-display font-medium text-foreground hover:text-accent transition-colors"
         >Blog</a
       >
       <a
         href="/libros"
-        class="text-2xl font-display font-medium text-primary dark:text-white hover:text-accent transition-colors"
+        class="text-2xl font-display font-medium text-foreground hover:text-accent transition-colors"
         >Libros</a
+      >
+      <a
+        href="/tags"
+        class="text-2xl font-display font-medium text-foreground hover:text-accent transition-colors"
+        >Etiquetas</a
       >
 
       <div
         class="pt-6 border-t border-border flex items-center justify-between"
       >
-        <span class="text-lg font-medium text-secondary dark:text-gray-400"
-          >Apariencia</span
-        >
+        <span class="text-lg font-medium text-muted">Apariencia</span>
         <div class="flex items-center gap-4">
           <ThemeSwitcher client:load />
           <DarkToggle />

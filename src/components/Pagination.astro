@@ -1,4 +1,7 @@
 ---
+import ArrowLeft from "./icons/ArrowLeft.astro";
+import ArrowRight from "./icons/ArrowRight.astro";
+
 const { currentPage, totalPages, prevUrl, nextUrl } = Astro.props;
 
 /**
@@ -51,39 +54,41 @@ const getPaginationWithEllipsis = (
 const pages = getPaginationWithEllipsis(currentPage, totalPages);
 ---
 
-<nav class="flex items-center gap-6 justify-center mt-20">
+<nav class="flex items-center gap-3 justify-center mt-20">
   {
     prevUrl ? (
       <a
         href={prevUrl}
-        class="text-xs uppercase font-bold tracking-widest text-secondary hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors"
+        class="flex h-9 items-center gap-1.5 rounded-lg border border-border bg-surface pl-2.5 pr-3.5 text-xs font-semibold text-foreground shadow-sm transition-colors hover:border-accent/40 hover:text-accent"
       >
+        <ArrowLeft class="text-[16px]" />
         Anterior
       </a>
     ) : (
-      <span class="text-xs uppercase font-bold tracking-widest text-gray-300 dark:text-gray-600 cursor-not-allowed">
+      <span class="flex h-9 items-center gap-1.5 rounded-lg border border-border pl-2.5 pr-3.5 text-xs font-semibold text-muted/40 cursor-not-allowed">
+        <ArrowLeft class="text-[16px]" />
         Anterior
       </span>
     )
   }
 
-  <div class="flex gap-2">
+  <div class="flex gap-1.5">
     {
       pages.map((page) =>
         typeof page === "number" ? (
           <a
             href={page === 1 ? "/blog" : `/blog/page/${page}`}
-            class={`w-8 h-8 flex items-center justify-center text-xs font-bold transition-colors ${
+            class={`flex h-9 w-9 items-center justify-center rounded-lg text-xs font-semibold transition-colors ${
               currentPage === page
-                ? "border border-primary text-primary dark:border-white dark:text-white"
-                : "text-gray-400 hover:text-primary dark:hover:text-white"
+                ? "bg-accent text-background shadow-sm"
+                : "border border-border bg-surface text-muted hover:border-accent/40 hover:text-accent"
             }`}
             aria-current={currentPage === page ? "page" : undefined}
           >
             {page}
           </a>
         ) : (
-          <span class="w-8 h-8 flex items-center justify-center text-xs text-gray-400">
+          <span class="flex h-9 w-9 items-center justify-center text-xs text-muted">
             &hellip;
           </span>
         ),
@@ -95,13 +100,15 @@ const pages = getPaginationWithEllipsis(currentPage, totalPages);
     nextUrl ? (
       <a
         href={nextUrl}
-        class="text-xs uppercase font-bold tracking-widest text-primary hover:text-black dark:text-white transition-colors"
+        class="flex h-9 items-center gap-1.5 rounded-lg border border-border bg-surface pl-3.5 pr-2.5 text-xs font-semibold text-foreground shadow-sm transition-colors hover:border-accent/40 hover:text-accent"
       >
         Siguiente
+        <ArrowRight class="text-[16px]" />
       </a>
     ) : (
-      <span class="text-xs uppercase font-bold tracking-widest text-gray-300 dark:text-gray-600 cursor-not-allowed">
+      <span class="flex h-9 items-center gap-1.5 rounded-lg border border-border pl-3.5 pr-2.5 text-xs font-semibold text-muted/40 cursor-not-allowed">
         Siguiente
+        <ArrowRight class="text-[16px]" />
       </span>
     )
   }

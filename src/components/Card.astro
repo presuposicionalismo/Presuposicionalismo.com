@@ -10,12 +10,13 @@ const { title, description, pubDate, heroImage, slug } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/coverblog/*.{jpeg,jpg,png,gif,webp}",
 );
-const resolvedImg = heroImage && images[heroImage]
-  ? (await images[heroImage]()).default
-  : null;
+const resolvedImg =
+  heroImage && images[heroImage] ? (await images[heroImage]()).default : null;
 ---
 
-<article class="card group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-sm transition-shadow duration-300 hover:shadow-md md:flex-row">
+<article
+  class="card group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-sm transition-shadow duration-300 hover:shadow-md md:flex-row"
+>
   <!-- Image -->
   <a
     href={`/blog/${slugifyStr(slug)}/`}
@@ -23,37 +24,69 @@ const resolvedImg = heroImage && images[heroImage]
     tabindex="-1"
     aria-hidden="true"
   >
-    {resolvedImg ? (
-      <Image
-        src={resolvedImg}
-        alt={title}
-        class="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-full"
-        widths={[400, 600]}
-        sizes="(min-width: 768px) 18rem, 100vw"
-      />
-    ) : (
-      <div class="flex h-52 w-full items-center justify-center bg-muted/20 md:h-full">
-        <svg class="h-10 w-10 text-border" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
-          <path d="M3 16l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-    )}
-    <span class="absolute inset-0 bg-foreground/0 transition-colors duration-300 group-hover:bg-foreground/5"></span>
+    {
+      resolvedImg ? (
+        <Image
+          src={resolvedImg}
+          alt={title}
+          class="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-full"
+          widths={[400, 600]}
+          sizes="(min-width: 768px) 18rem, 100vw"
+        />
+      ) : (
+        <div class="flex h-52 w-full items-center justify-center bg-muted/20 md:h-full">
+          <svg
+            class="h-10 w-10 text-border"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="M3 16l5-5 4 4 3-3 6 6"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+      )
+    }
+    <span
+      class="absolute inset-0 bg-foreground/0 transition-colors duration-300 group-hover:bg-foreground/5"
+    ></span>
   </a>
 
   <!-- Content -->
   <div class="flex flex-1 flex-col justify-between gap-4 p-6 md:p-7">
     <div class="flex flex-col gap-2">
-      <span class="text-[11px] font-semibold tracking-widest text-muted uppercase">
+      <span
+        class="text-[11px] font-semibold tracking-widest text-muted uppercase"
+      >
         <FormattedDate date={pubDate} />
       </span>
-      <h2 class="serif-text text-xl font-semibold leading-snug text-foreground transition-colors duration-200 group-hover:text-accent md:text-2xl">
-        <a href={`/blog/${slugifyStr(slug)}/`} class="focus-visible:outline-none focus-visible:underline">
+      <h2
+        class="serif-text text-xl font-semibold leading-snug text-foreground transition-colors duration-200 group-hover:text-accent md:text-2xl"
+      >
+        <a
+          href={`/blog/${slugifyStr(slug)}/`}
+          class="focus-visible:outline-none focus-visible:underline"
+        >
           {title}
         </a>
       </h2>
-      <p class="line-clamp-3 text-sm leading-relaxed text-muted">{description}</p>
+      <p class="line-clamp-3 text-sm leading-relaxed text-muted">
+        {description}
+      </p>
     </div>
 
     <a
@@ -67,7 +100,12 @@ const resolvedImg = heroImage && images[heroImage]
         fill="none"
         aria-hidden="true"
       >
-        <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path
+          d="M1 7h12M8 2l5 5-5 5"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
       </svg>
     </a>
   </div>

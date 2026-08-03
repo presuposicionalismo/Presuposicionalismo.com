@@ -1,4 +1,6 @@
 ---
+import ArticleIcon from "./icons/Article.astro";
+
 interface Article {
   title: string;
   description: string;
@@ -64,7 +66,7 @@ const displayArticles =
               />
             ) : (
               <div class="w-full h-full flex items-center justify-center text-muted">
-                <span class="material-icons-outlined text-5xl">article</span>
+                <ArticleIcon class="text-5xl" />
               </div>
             )}
           </div>

@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
-  import { cn } from "../utils";
   import { slide } from "svelte/transition";
 
   type ThemeOption = {
@@ -12,20 +11,20 @@
 
   const themes: ThemeOption[] = [
     {
-      value: "theme-neutral-mono",
-      label: "Neutral Mono",
-      description: "Monocromatico claro/oscuro",
+      value: "theme-ledger",
+      label: "Ledger",
+      description: "Geométrico, monocromo, alto contraste",
       color: "bg-white border-black dark:bg-black dark:border-white",
     },
     {
-      value: "theme-neutral-soft",
-      label: "Neutral Soft",
-      description: "Neutro con acento sutil",
-      color: "bg-[#f3f2ee] border-[#6b7280]",
+      value: "theme-grabado",
+      label: "Grabado",
+      description: "Editorial, papel envejecido, rubricado",
+      color: "bg-[#f2e8d3] border-[#7a1f2b]",
     },
   ];
 
-  let currentTheme = "theme-neutral-mono";
+  let currentTheme = "theme-ledger";
   let isOpen = false;
   let rootEl: HTMLDivElement | null = null;
   const isKnownTheme = (value: string | null): value is string =>
@@ -91,7 +90,7 @@
 <div class="relative" bind:this={rootEl}>
   <button
     onclick={toggleOpen}
-    class="group flex items-center justify-center w-10 h-10 rounded-lg hover:bg-accent/10 text-muted-foreground hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
+    class="group flex items-center justify-center w-10 h-10 rounded-lg hover:bg-accent/10 text-muted hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent/40"
     aria-label="Change Theme"
     aria-expanded={isOpen}
   >
@@ -115,10 +114,10 @@
   {#if isOpen}
     <div
       transition:slide={{ duration: 180, axis: "y" }}
-      class="absolute right-0 top-full mt-3 w-72 bg-popover/95 backdrop-blur-xl border border-border/70 shadow-2xl rounded-2xl p-3 z-50 origin-top-right"
+      class="absolute right-0 top-full mt-3 w-72 bg-surface/95 backdrop-blur-xl border border-border shadow-2xl rounded-2xl p-3 z-50 origin-top-right"
     >
-      <div class="px-1 pb-2 border-b border-border/60">
-        <p class="text-[11px] uppercase tracking-[0.16em] font-semibold text-muted-foreground">
+      <div class="px-1 pb-2 border-b border-border">
+        <p class="text-[11px] uppercase tracking-[0.16em] font-semibold text-muted">
           Apariencia
         </p>
         <p class="text-xs mt-1 text-foreground/80">
@@ -133,25 +132,18 @@
               applyTheme(theme.value);
               isOpen = false;
             }}
-            class={cn(
-              "w-full flex items-center justify-between gap-3 rounded-xl border px-3 py-2.5 transition-all text-left focus:outline-none focus:ring-2 focus:ring-ring",
-              currentTheme === theme.value
-                ? "bg-muted/80 border-primary/30 shadow-sm"
-                : "bg-transparent border-transparent hover:bg-muted/45 hover:border-border/70",
-            )}
+            class="w-full flex items-center justify-between gap-3 rounded-xl border px-3 py-2.5 transition-all text-left focus:outline-none focus:ring-2 focus:ring-accent/40 {currentTheme ===
+            theme.value
+              ? 'bg-accent/10 border-accent/30 shadow-sm'
+              : 'bg-transparent border-transparent hover:bg-accent/5 hover:border-border'}"
             aria-label={`Set theme to ${theme.label}`}
             title={theme.label}
           >
             <div class="flex items-center gap-3 min-w-0">
-              <span
-                class={cn(
-                  "h-5 w-5 shrink-0 rounded-full border",
-                  theme.color,
-                )}
-              ></span>
+              <span class="h-5 w-5 shrink-0 rounded-full border {theme.color}"></span>
               <span class="min-w-0">
                 <span class="block text-sm font-medium leading-none truncate">{theme.label}</span>
-                <span class="block mt-1 text-[11px] leading-none text-muted-foreground/95 truncate">
+                <span class="block mt-1 text-[11px] leading-none text-muted/90 truncate">
                   {theme.description}
                 </span>
               </span>
@@ -159,7 +151,7 @@
 
             {#if currentTheme === theme.value}
               <svg
-                class="w-4 h-4 text-primary shrink-0"
+                class="w-4 h-4 text-accent shrink-0"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -188,12 +180,12 @@
   }
 
   .theme-switcher-scroll::-webkit-scrollbar-thumb {
-    background: color-mix(in oklab, var(--muted-foreground) 28%, transparent);
+    background: color-mix(in oklab, var(--color-muted) 28%, transparent);
     border-radius: 999px;
   }
 
   .theme-switcher-scroll {
-    scrollbar-color: color-mix(in oklab, var(--muted-foreground) 28%, transparent) transparent;
+    scrollbar-color: color-mix(in oklab, var(--color-muted) 28%, transparent) transparent;
     scrollbar-width: thin;
   }
 </style>

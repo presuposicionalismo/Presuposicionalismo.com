@@ -1,4 +1,9 @@
 /* Prose styles for content */
+.prose,
+.prose-content {
+  font-family: var(--font-body);
+}
+
 .prose-content {
   @apply prose prose-lg max-w-none dark:prose-invert;
 

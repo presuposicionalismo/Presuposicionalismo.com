@@ -1,5 +1,7 @@
 ---
 import FormattedDate from "./FormattedDate.astro";
+import Share from "./icons/Share.astro";
+import Bookmark from "./icons/Bookmark.astro";
 
 interface Props {
   title: string;
@@ -51,13 +53,13 @@ const { title, pubDate, tags, author = "Presuposicionalismo" } = Astro.props;
         aria-label="Compartir"
         onclick="navigator.share?.({ title: document.title, url: window.location.href })"
       >
-        <span class="material-icons-outlined text-[20px]">share</span>
+        <Share class="text-[20px]" />
       </button>
       <button
         class="p-2 hover:bg-surface rounded-full transition-colors"
         aria-label="Guardar"
       >
-        <span class="material-icons-outlined text-[20px]">bookmark</span>
+        <Bookmark class="text-[20px]" />
       </button>
     </div>
   </div>

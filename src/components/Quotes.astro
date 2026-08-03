@@ -32,10 +32,10 @@ const quotes = [
   <div class="mb-10">
     <div class="mb-3 flex items-center gap-3">
       <div class="h-px w-8 bg-accent/40"></div>
-      <p class="text-xs font-bold tracking-[0.25em] text-muted uppercase">Pensamiento</p>
+      <p class="text-xs font-bold tracking-[0.25em] text-muted uppercase">Citas</p>
     </div>
     <h2 class="serif-text text-3xl font-semibold text-foreground md:text-4xl">
-      Voces que Desafían
+      Pensamientos
     </h2>
   </div>
 
@@ -45,15 +45,18 @@ const quotes = [
       quotes.map((quote, i) => (
         <figure
           class:list={[
-            "group flex flex-col justify-between gap-6 rounded-2xl border border-border bg-surface p-7 transition-shadow duration-300 hover:shadow-md",
+            "group flex flex-col justify-between gap-6 rounded-2xl p-7 transition-shadow duration-300 hover:shadow-md",
+            quote.span,
             // Alternate accent background for variety
-            i === 0 ? "border-foreground/10 bg-foreground text-background" : "",
+            i === 0
+              ? "border border-foreground/10 bg-foreground text-background"
+              : "border border-border bg-surface",
           ]}
         >
           <!-- Opening quote mark -->
           <span
             class:list={[
-              "font-serif text-5xl leading-none select-none",
+              "serif-text text-5xl leading-none select-none",
               i === 0 ? "text-background/20" : "text-foreground/10",
             ]}
             aria-hidden="true"

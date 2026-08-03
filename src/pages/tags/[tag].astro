@@ -47,9 +47,9 @@ const tagCounts = allPosts.reduce(
   {} as Record<string, number>,
 );
 
-const sortedTags = Object.keys(tagCounts)
-  .sort((a, b) => tagCounts[b] - tagCounts[a])
-  .slice(0, 10);
+const sortedTags = Object.keys(tagCounts).sort(
+  (a, b) => tagCounts[b] - tagCounts[a],
+);
 ---
 
 <MainLayout
@@ -65,12 +65,12 @@ const sortedTags = Object.keys(tagCounts)
             >Explorar por Tema</span
           >
           <h1
-            class="text-4xl md:text-6xl font-display font-medium text-primary dark:text-white mb-6 leading-tight capitalize"
+            class="text-4xl md:text-6xl font-display font-medium text-foreground mb-6 leading-tight capitalize"
           >
             {tag}
           </h1>
           <p
-            class="text-lg md:text-xl text-secondary dark:text-gray-400 font-display italic leading-relaxed"
+            class="text-lg md:text-xl text-muted font-display italic leading-relaxed"
           >
             {posts.length}
             {

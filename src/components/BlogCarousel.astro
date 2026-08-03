@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import FormattedDate from "./FormattedDate.astro";
+import ArrowRight from "./icons/ArrowRight.astro";
 import { slugifyStr } from "@utils/slugify";
 
 const allPosts = (await getCollection("blog"))
@@ -43,9 +44,7 @@ const restImgs = await Promise.all(rest.map((p) => resolveImage(p.data.heroImage
       class="group hidden shrink-0 items-center gap-1.5 text-sm font-medium text-foreground underline decoration-border underline-offset-4 transition-all hover:text-accent hover:decoration-accent md:inline-flex"
     >
       Ver todas
-      <svg class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-        <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <ArrowRight class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
     </a>
   </div>
 
@@ -87,9 +86,7 @@ const restImgs = await Promise.all(rest.map((p) => resolveImage(p.data.heroImage
             class="group/link mt-1 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-accent"
           >
             Leer artículo
-            <svg class="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <ArrowRight class="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5" />
           </a>
         </div>
       </article>

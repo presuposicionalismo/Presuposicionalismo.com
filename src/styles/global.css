@@ -1,4 +1,8 @@
 @import "@fontsource-variable/urbanist";
+@import "@fontsource-variable/fraunces/standard.css";
+@import "@fontsource/eb-garamond/400.css";
+@import "@fontsource/eb-garamond/400-italic.css";
+@import "@fontsource/eb-garamond/600.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @variant dark (&:where(.dark, .dark *));
@@ -12,6 +16,8 @@
 @import "./themes/espresso.css";
 @import "./themes/helios.css";
 @import "./themes/neutral.css";
+@import "./themes/ledger.css";
+@import "./themes/grabado.css";
 
 /* Importing Utility Modules */
 @import "./prose.css";
@@ -50,7 +56,16 @@
     --color-muted: #666666;
     --color-border: #e5e5e5;
     --color-accent: #1a1a1a;
-    
+
+    /* Fuentes - Default (conmutables por tema) */
+    /* --font-sans es la fuente de UI (nav, botones, tabs, badges): se mantiene
+       igual en todos los temas, la lectura no debe heredarla. */
+    --font-sans: "Urbanist Variable", sans-serif;
+    /* --font-display es para títulos/encabezados (contenido, no UI). */
+    --font-display: "Urbanist Variable", sans-serif;
+    /* --font-body es para texto de lectura largo (prosa de artículos/libros). */
+    --font-body: "Urbanist Variable", sans-serif;
+
     /* Artistic Tokens - Default State */
     --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
     --border-width: 1px;
@@ -99,9 +114,9 @@
   --color-border: var(--color-border);
   --color-accent: var(--color-accent);
 
-  /* Fuentes */
-  --font-display: "Urbanist Variable", sans-serif;
-  --font-sans: "Urbanist Variable", sans-serif;
+  /* Fuentes (indirección para que cada tema pueda redefinirlas) */
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
 
   /* Radios */
   --radius-lg: var(--radius);

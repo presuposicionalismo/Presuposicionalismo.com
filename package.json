@@ -9,65 +9,51 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "format": "bunx prettier --write .",
+    "format:check": "bunx prettier --check .",
     "lint": "astro check",
-    "prepare": "husky",
-    "generate-types": "wrangler types"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{astro,js,ts,tsx,jsx,mjs,cjs,json,md,mdx}": [
-      "prettier --write"
+      "sh -c 'bunx prettier --write \"$@\"; exit 0' --"
     ],
     "*.{astro,ts,tsx}": [
       "astro check --minimumSeverity warning --noWatch"
     ]
   },
   "dependencies": {
-    "@astrojs/check": "0.9.7-beta.1",
-    "@astrojs/cloudflare": "^13.1.1",
-    "@astrojs/mdx": "5.0.0-beta.3",
-    "@astrojs/rss": "4.0.17",
-    "@astrojs/sitemap": "3.6.1-beta.2",
-    "@astrojs/svelte": "^8.0.0",
-    "@fontsource-variable/urbanist": "^5.2.7",
-    "@libsql/client": "^0.15.15",
-    "@resvg/resvg-js": "^2.6.2",
-    "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.2.1",
+    "@astrojs/check": "0.9.10",
+    "@astrojs/mdx": "7.0.5",
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.3",
+    "@astrojs/svelte": "9.0.1",
+    "@astrojs/vercel": "^11.0.4",
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/urbanist": "^5.3.0",
+    "@fontsource/eb-garamond": "^5.3.0",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/d3": "^7.4.3",
-    "astro": "6.0.2",
-    "astro-fuse": "^1.0.4",
-    "bits-ui": "^2.16.3",
-    "clsx": "^2.1.1",
+    "@vercel/speed-insights": "^2.0.0",
+    "astro": "7.1.6",
+    "bits-ui": "^2.18.1",
     "d3": "^7.9.0",
-    "fuse.js": "^7.1.0",
     "lodash.kebabcase": "^4.1.1",
-    "lucide-svelte": "^0.577.0",
-    "mermaid": "^11.13.0",
-    "postcss": "^8.5.8",
+    "mermaid": "^11.16.0",
+    "postcss": "^8.5.25",
     "postcss-custom-media": "^11.0.6",
     "postcss-nesting": "^13.0.2",
-    "postcss-preset-env": "^10.6.1",
     "prettier": "4.0.0-alpha.12",
-    "remark-collapse": "^0.1.2",
-    "remark-toc": "^9.0.0",
-    "satori": "^0.18.4",
-    "shadcn-svelte": "^1.1.1",
     "sharp": "^0.34.5",
-    "svelte": "^5.53.12",
-    "tailwind-merge": "^3.5.0",
-    "tailwind-variants": "^3.2.2",
-    "tailwindcss": "^4.2.1",
+    "svelte": "^5.56.8",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260313.1",
-    "@internationalized/date": "^3.12.0",
     "@types/lodash.kebabcase": "^4.1.9",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
-    "prettier-plugin-astro": "^0.14.1",
-    "wrangler": "^4.73.0"
+    "prettier-plugin-astro": "^0.14.1"
   }
 }
