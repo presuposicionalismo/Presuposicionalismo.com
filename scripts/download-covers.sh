@@ -14,8 +14,7 @@ curl -L "https://images.unsplash.com/photo-1572884267966-02340ebc90ac?fm=webp&w=
 # 3. Venciendo el Prejuicio Anti-Metafísica - star cluster night sky - Foto de Aron Visuals en Unsplash
 curl -L "https://images.unsplash.com/photo-1677926405168-fa86268b7295?fm=webp&w=1200&q=80" -o "star-cluster-night-sky.webp"
 
-# 4. Van Til y Plantinga Más Cerca de lo que Parece - concrete bridge landscape - Foto de Cody Hiscox en Unsplash
-curl -L "https://images.unsplash.com/photo-1522775559573-2f76d540932b?fm=webp&w=1200&q=80" -o "concrete-bridge-landscape.webp"
+# 4. Van Til y Plantinga Más Cerca de lo que Parece - ya cubierta con foto real (2020-11-08.webp, CVT y Plantinga), no requiere descarga
 
 # 5. Van Til contra Aristóteles - marble bust statue (generico, sin nombre) - Foto de Omair Parvez en Unsplash
 curl -L "https://images.unsplash.com/photo-1565170556450-bdfc81864ca1?fm=webp&w=1200&q=80" -o "marble-bust-statue.webp"
