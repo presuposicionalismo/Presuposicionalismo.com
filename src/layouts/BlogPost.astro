@@ -1,5 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import type { ImageMetadata } from "astro";
+import { Image, getImage } from "astro:assets";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -20,8 +22,23 @@ type Props = CollectionEntry<"blog">["data"] & {
 const { title, description, pubDate, heroImage, slug, tags, headings } =
   Astro.props;
 
-// Determine OG Image
-const ogImage = heroImage || "/Portada.png";
+// Resolve heroImage (a content-collection string path like
+// "/src/assets/coverblog/foo.webp") to an actual imported asset via
+// import.meta.glob. A raw <img src="/src/assets/..."> only works in the
+// dev server (Vite serves anything under src/ on request); the static
+// build never copies unimported src/ files into dist/, so it 404s there.
+const coverImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/coverblog/*.{jpeg,jpg,png,gif,webp}",
+);
+const resolvedHeroImage =
+  heroImage && coverImages[heroImage]
+    ? (await coverImages[heroImage]()).default
+    : null;
+
+// Determine OG Image — same resolution issue applies to the og:image URL
+const ogImage = resolvedHeroImage
+  ? (await getImage({ src: resolvedHeroImage })).src
+  : "/Portada.png";
 ---
 
 <html lang="es">
@@ -45,13 +62,15 @@ const ogImage = heroImage || "/Portada.png";
 
         <!-- Featured Image -->
         {
-          heroImage && (
+          resolvedHeroImage && (
             <figure class="w-full">
               <div class="w-full aspect-[21/9] bg-surface rounded-lg overflow-hidden relative">
-                <img
-                  src={heroImage}
+                <Image
+                  src={resolvedHeroImage}
                   alt={title}
                   class="w-full h-full object-cover"
+                  widths={[600, 900, 1200]}
+                  sizes="(min-width: 800px) 800px, 100vw"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
