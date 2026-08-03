@@ -1,112 +1,82 @@
 ---
-import Grid from "./GridBook.astro";
 import { getCollection } from "astro:content";
 import CoverBook from "./CoverBook.astro";
+import ArrowRight from "./icons/ArrowRight.astro";
 
-// Obtenemos todos los libros y los ordenamos por fecha de publicación descendente
 const allBooks = (await getCollection("libros")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-// Nos quedamos solo con los tres más recientes
-const featuredBooks = allBooks.slice(0, 3);
+const featuredBooks = allBooks.slice(0, 4);
 ---
 
-<section>
-  <h2 class="warp">Libros Destacados</h2>
-  <Grid>
+<section class="mx-auto max-w-6xl px-6 pb-20 md:pb-28">
+  <!-- Header -->
+  <div class="mb-10 flex items-end justify-between gap-4">
+    <div>
+      <div class="mb-3 flex items-center gap-3">
+        <div class="h-px w-8 bg-accent/40"></div>
+        <p class="text-xs font-bold tracking-[0.25em] text-muted uppercase">Biblioteca</p>
+      </div>
+      <h2 class="serif-text text-3xl font-semibold text-foreground md:text-4xl">
+        Libros Destacados
+      </h2>
+      <p class="mt-2 text-sm text-muted">
+        Recursos esenciales de apologética y teología reformada.
+      </p>
+    </div>
+    <a
+      href="/libros/"
+      class="group hidden shrink-0 items-center gap-1.5 text-sm font-medium text-foreground underline decoration-border underline-offset-4 transition-all hover:text-accent hover:decoration-accent md:inline-flex"
+    >
+      Ver todos
+      <ArrowRight class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+    </a>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid grid-cols-2 gap-5 sm:grid-cols-4">
     {
       featuredBooks.map((book) => (
-        <article class="card">
-          <CoverBook
-            imagePath={String(book.data.coverBook)}
-            altText={book.data.title}
-            transition:name={`coverbook ${book.data.title} image`}
-          />
-          <div class="content">
-            <a href={`/libros/${book.slug}/`}>
-              <h3>{book.data.title}</h3>
+        <article class="group flex flex-col gap-3">
+          <!-- Cover -->
+          <a
+            href={`/libros/${book.id}/`}
+            class="block aspect-[3/4] overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition-all duration-300 hover:shadow-md"
+          >
+            <CoverBook
+              imagePath={String(book.data.coverBook)}
+              altText={book.data.title}
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              transition:name={`coverbook ${book.data.title} image`}
+            />
+          </a>
+
+          <!-- Info -->
+          <div class="flex flex-col gap-1 px-0.5">
+            {book.data.author && (
+              <p class="text-[10px] font-semibold tracking-widest text-muted uppercase truncate">
+                {book.data.author}
+              </p>
+            )}
+            <a href={`/libros/${book.id}/`}>
+              <h3 class="serif-text line-clamp-2 text-sm leading-snug font-medium text-foreground transition-colors duration-200 group-hover:text-accent">
+                {book.data.title}
+              </h3>
             </a>
           </div>
         </article>
       ))
     }
-  </Grid>
+  </div>
+
+  <!-- Mobile "Ver todos" -->
+  <div class="mt-8 text-center md:hidden">
+    <a
+      href="/libros/"
+      class="text-sm font-medium text-foreground underline decoration-border underline-offset-4 hover:text-accent hover:decoration-accent"
+    >
+      Ver todos los libros
+    </a>
+  </div>
 </section>
-
-<style>
-  section {
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .warp {
-    display: flex;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding-block: var(--size-fluid-3);
-  }
-
-  .content {
-    position: absolute;
-    right: var(--size-fluid-1);
-    left: var(--size-fluid-1);
-    bottom: var(--size-fluid-1);
-    padding-top: var(--size-5);
-    padding-bottom: var(--size-5);
-    padding-left: var(--size-6);
-    padding-right: var(--size-6);
-    margin: var(--size-2);
-    border-radius: var(--size-2);
-    height: max-content;
-    background-color: var(--surface-1);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(100%);
-    transition:
-      opacity 0.5s,
-      transform 0.5s,
-      visibility 0s 0.5s;
-  }
-
-  .card {
-    position: relative;
-    box-shadow: var(--shadow-2);
-    background-color: var(--surface-2);
-    color: var(--text-2);
-    margin-inline: auto;
-    padding: var(--size-fluid-1);
-    border: var(--border-size-1) solid var(--surface-2);
-    border-radius: var(--radius-3);
-    overflow: hidden;
-    transition:
-      background-color 0.3s,
-      box-shadow 0.3s,
-      border-color 0.3s;
-  }
-
-  .card:hover {
-    border-color: var(--surface-3);
-    background-color: var(--surface-1);
-    box-shadow: var(--shadow-5);
-  }
-
-  .card:hover .content {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    transition:
-      opacity 0.5s,
-      transform 0.5s,
-      visibility 0s;
-    animation: var(--animation-slide-in-up);
-  }
-
-  h3 {
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-6);
-    padding-bottom: 8px;
-  }
-</style>

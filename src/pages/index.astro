@@ -1,15 +1,40 @@
 ---
-import MainLayout from "@layouts/BaseLayout.astro";
+import MainLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import BlogCarousel from "../components/BlogCarousel.astro";
 import FeaturedBooks from "../components/FeaturedBooks.astro";
+import Quotes from "../components/Quotes.astro";
+// import NewsletterCTA from "../components/NewsletterCTA.astro"; // Oculto por ahora, no se usa
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-// import Quotes from "../components/Quotes.astro";//
 ---
 
 <MainLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <!-- Hero -->
   <Hero />
+
+  <!-- Divider -->
+  <div class="mx-auto max-w-6xl px-6">
+    <hr class="border-border" />
+  </div>
+
+  <!-- Blog Carousel -->
   <BlogCarousel />
-  <FeaturedBooks />
-  <!-- <Quotes /> -->
+
+  <!-- Divider -->
+  <div class="mx-auto max-w-6xl px-6">
+    <hr class="border-border" />
+  </div>
+
+  <!-- Featured Books -->
+  <section class="pt-16 md:pt-20">
+    <FeaturedBooks />
+  </section>
+
+  <!-- Quotes / Thoughts section -->
+  <Quotes />
+
+  <!-- Newsletter CTA — oculto por ahora, no se usa -->
+  <!-- <section id="newsletter" class="mx-auto max-w-6xl px-6 pb-20 md:pb-28">
+    <NewsletterCTA />
+  </section> -->
 </MainLayout>

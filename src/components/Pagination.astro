@@ -1,52 +1,36 @@
 ---
-import ArrowLeft from "./ArrowLeft.astro";
-import ArrowRight from "./ArrowRight.astro";
+import ArrowLeft from "./icons/ArrowLeft.astro";
+import ArrowRight from "./icons/ArrowRight.astro";
 
 const { currentPage, totalPages, prevUrl, nextUrl } = Astro.props;
 
 /**
  * Genera un array de números de página con puntos suspensivos para la paginación.
- * @param {number} currentPage - La página actual.
- * @param {number} totalPages - El número total de páginas.
- * @param {number} siblings - Cuántos números mostrar a cada lado de la página actual.
- * @returns {(number | string)[]} - Un array de números de página y puntos suspensivos.
  */
 const getPaginationWithEllipsis = (
   currentPage: number,
   totalPages: number,
   siblings: number = 1,
 ) => {
-  // El número total de elementos a mostrar (ej: 1 ... 4 5 6 ... 10)
-  // Incluye la primera página, la última, la actual, los hermanos y los puntos suspensivos.
   const totalNumbersToShow = siblings * 2 + 5;
 
-  // Caso 1: Si el número total de páginas es menor o igual al que queremos mostrar,
-  // no necesitamos puntos suspensivos. Simplemente mostramos todas las páginas.
   if (totalPages <= totalNumbersToShow) {
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
 
-  // Calculamos los índices de los hermanos izquierdo y derecho.
   const leftSiblingIndex = Math.max(currentPage - siblings, 1);
   const rightSiblingIndex = Math.min(currentPage + siblings, totalPages);
-
-  // Decidimos si necesitamos mostrar los puntos suspensivos a la izquierda o derecha.
   const shouldShowLeftDots = leftSiblingIndex > 2;
   const shouldShowRightDots = rightSiblingIndex < totalPages - 2;
-
   const firstPageIndex = 1;
   const lastPageIndex = totalPages;
 
-  // Caso 2: No se necesitan puntos suspensivos a la izquierda, pero sí a la derecha.
-  // Ejemplo: 1 2 3 4 5 ... 10
   if (!shouldShowLeftDots && shouldShowRightDots) {
     const leftItemCount = 3 + 2 * siblings;
     const leftRange = Array.from({ length: leftItemCount }, (_, i) => i + 1);
     return [...leftRange, "...", totalPages];
   }
 
-  // Caso 3: Se necesitan puntos suspensivos a la izquierda, pero no a la derecha.
-  // Ejemplo: 1 ... 6 7 8 9 10
   if (shouldShowLeftDots && !shouldShowRightDots) {
     const rightItemCount = 3 + 2 * siblings;
     const rightRange = Array.from(
@@ -56,8 +40,6 @@ const getPaginationWithEllipsis = (
     return [firstPageIndex, "...", ...rightRange];
   }
 
-  // Caso 4: Se necesitan puntos suspensivos en ambos lados.
-  // Ejemplo: 1 ... 4 5 6 ... 10
   if (shouldShowLeftDots && shouldShowRightDots) {
     const middleRange = Array.from(
       { length: rightSiblingIndex - leftSiblingIndex + 1 },
@@ -66,127 +48,68 @@ const getPaginationWithEllipsis = (
     return [firstPageIndex, "...", ...middleRange, "...", lastPageIndex];
   }
 
-  // Fallback (no debería alcanzarse con la lógica actual)
   return Array.from({ length: totalPages }, (_, i) => i + 1);
 };
 
 const pages = getPaginationWithEllipsis(currentPage, totalPages);
 ---
 
-<nav aria-label="Paginación del blog" class="pagination">
-  <div class="pagination-container">
-    {
-      prevUrl && (
-        <a
-          href={prevUrl}
-          class="pagination-link prev ad-shadow"
-          aria-label="Página anterior"
-        >
-          <span class="pr icon-size-fluid">
-            <ArrowLeft />
-          </span>
-          Anterior
-        </a>
-      )
-    }
+<nav class="flex items-center gap-3 justify-center mt-20">
+  {
+    prevUrl ? (
+      <a
+        href={prevUrl}
+        class="flex h-9 items-center gap-1.5 rounded-lg border border-border bg-surface pl-2.5 pr-3.5 text-xs font-semibold text-foreground shadow-sm transition-colors hover:border-accent/40 hover:text-accent"
+      >
+        <ArrowLeft class="text-[16px]" />
+        Anterior
+      </a>
+    ) : (
+      <span class="flex h-9 items-center gap-1.5 rounded-lg border border-border pl-2.5 pr-3.5 text-xs font-semibold text-muted/40 cursor-not-allowed">
+        <ArrowLeft class="text-[16px]" />
+        Anterior
+      </span>
+    )
+  }
 
-    <div class="pagination-numbers">
-      {
-        pages.map((page) =>
-          typeof page === "number" ? (
-            <a
-              href={page === 1 ? "/blog" : `/blog/${page}`}
-              class={`pagination-link number ${currentPage === page ? "active" : ""}`}
-              aria-label={`Ir a la página ${page}`}
-              aria-current={currentPage === page ? "page" : undefined}
-            >
-              {page}
-            </a>
-          ) : (
-            <span class="pagination-ellipsis" aria-hidden="true">
-              &hellip;
-            </span>
-          ),
-        )
-      }
-    </div>
-
+  <div class="flex gap-1.5">
     {
-      nextUrl && (
-        <a
-          href={nextUrl}
-          class="pagination-link next rad-shadow"
-          aria-label="Página siguiente"
-        >
-          Siguiente{" "}
-          <span class="pl icon-size-fluid">
-            <ArrowRight />
+      pages.map((page) =>
+        typeof page === "number" ? (
+          <a
+            href={page === 1 ? "/blog" : `/blog/page/${page}`}
+            class={`flex h-9 w-9 items-center justify-center rounded-lg text-xs font-semibold transition-colors ${
+              currentPage === page
+                ? "bg-accent text-background shadow-sm"
+                : "border border-border bg-surface text-muted hover:border-accent/40 hover:text-accent"
+            }`}
+            aria-current={currentPage === page ? "page" : undefined}
+          >
+            {page}
+          </a>
+        ) : (
+          <span class="flex h-9 w-9 items-center justify-center text-xs text-muted">
+            &hellip;
           </span>
-        </a>
+        ),
       )
     }
   </div>
-</nav>
 
-<style>
-  .pagination {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+  {
+    nextUrl ? (
+      <a
+        href={nextUrl}
+        class="flex h-9 items-center gap-1.5 rounded-lg border border-border bg-surface pl-3.5 pr-2.5 text-xs font-semibold text-foreground shadow-sm transition-colors hover:border-accent/40 hover:text-accent"
+      >
+        Siguiente
+        <ArrowRight class="text-[16px]" />
+      </a>
+    ) : (
+      <span class="flex h-9 items-center gap-1.5 rounded-lg border border-border pl-3.5 pr-2.5 text-xs font-semibold text-muted/40 cursor-not-allowed">
+        Siguiente
+        <ArrowRight class="text-[16px]" />
+      </span>
+    )
   }
-  .pagination-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  .pagination-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-3);
-    text-decoration: none;
-    color: var(--link);
-    background-color: var(--surface-2);
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
-  }
-  .pagination-link:hover,
-  .pagination-link:focus {
-    background-color: var(--surface-3);
-    color: var(--text-1);
-  }
-  .pagination-link.active {
-    background-color: var(--link);
-    color: var(--surface-1);
-    font-weight: var(--font-weight-6);
-  }
-  .pagination-numbers {
-    display: flex;
-    gap: 0.25rem;
-    align-items: center;
-  }
-  .pagination-ellipsis {
-    padding: 0.5rem 0.25rem;
-    color: var(--text-2);
-    user-select: none;
-  }
-  .pagination-link.prev,
-  .pagination-link.next {
-    font-weight: var(--font-weight-5);
-  }
-  .icon-size-fluid {
-    font-size: var(
-      --font-size-lg
-    ); /* O el tamaño fluido que prefieras, ej. var(--font-size-md) */
-    display: flex; /* Asegura que el SVG herede el font-size correctamente */
-    align-items: center;
-  }
-  @media (max-width: 600px) {
-    .pagination-numbers {
-      display: none;
-    }
-  }
-</style>
+</nav>

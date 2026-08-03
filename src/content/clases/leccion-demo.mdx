@@ -1,0 +1,145 @@
+---
+title: "Clase Demo: Contenido Interactivo"
+pubDate: "2026-02-04"
+description: "Una demostración de cómo usar componentes interactivos como Quizzes y Spoilers en nuestros artículos para crear experiencias educativas más dinámicas."
+tags:
+  - "tutorial"
+  - "educacion"
+heroImage: "/src/assets/coverblog/2020-09-18.webp"
+order: 1
+---
+
+import Quiz from "../../components/mdx/Quiz.svelte";
+import Spoiler from "../../components/mdx/Spoiler.svelte";
+import Timeline from "../../components/mdx/Timeline.svelte";
+import ConceptMap from "../../components/mdx/ConceptMap.svelte";
+import Slides from "../../components/mdx/Slides.svelte";
+import Tooltip from "../../components/mdx/Tooltip.svelte";
+import Sidenote from "../../components/mdx/Sidenote.svelte";
+
+import Quote from "../../components/mdx/Quote.svelte";
+
+## Introducción a la Interactividad
+
+Este artículo demuestra las nuevas capacidades interactivas de nuestro blog. Ahora podemos incluir cuestionarios, contenido desplegable y otros elementos dinámicos directamente en nuestras lecciones.
+
+### 1. Cuestionarios (Quizzes)
+
+Podemos insertar preguntas de opción múltiple para verificar la comprensión del lector al instante.
+
+<Quiz
+  client:visible
+  question="¿Cuál es el propósito principal de la apologética presuposicional?"
+  options={[
+    "Probar la existencia de Dios solo con evidencias arqueológicas",
+    "Defender la fe mostrando que la revelación bíblica es el fundamento necesario para todo razonamiento",
+    "Ganar debates intelectuales sin usar la Biblia",
+  ]}
+  answer={1}
+/>
+
+### 2. Contenido Desplegable (Spoilers)
+
+Para evitar abrumar al lector con demasiada información o para ocultar respuestas de ejercicios, podemos usar secciones desplegables.
+
+<Spoiler client:visible title="Ver la solución del ejercicio">
+
+Aquí está la solución detallada.
+
+1.  Paso uno: Identificar las presuposiciones.
+2.  Paso dos: Analizar la consistencia interna.
+3.  Paso tres: Mostrar la necesidad de la revelación divina.
+
+</Spoiler>
+
+### 3. Líneas de Tiempo (Timelines)
+
+Ideales para historia de la iglesia o filosofía.
+
+<Timeline
+  events={[
+    {
+      title: "Concilio de Nicea",
+      date: "325 d.C.",
+      description: "Se afirma la deidad de Cristo contra el arrianismo.",
+    },
+    {
+      title: "La Reforma Protestante",
+      date: "1517",
+      description:
+        "Lutero clava las 95 tesis, iniciando el retorno a las Escrituras.",
+    },
+    {
+      title: "Cornelius Van Til",
+      date: "1895-1987",
+      description: "Desarrollo de la apologética presuposicional moderna.",
+    },
+  ]}
+/>
+
+### 4. Mapas Conceptuales
+
+Visualiza relaciones complejas.
+
+<ConceptMap
+  client:only="svelte"
+  chart={`
+    graph TD
+    A[Dios - La Verdad Absoluta] -->|Revela| B(Escritura)
+    B -->|Fundamenta| C{Razonamiento Humano}
+    C -->|Correcto| D[Conocimiento Verdadero]
+    C -->|Autónomo| E[Necedad / Irracionalidad]
+  `}
+/>
+
+### 5. Presentaciones y Notas
+
+Podemos usar diapositivas para explicar conceptos paso a paso.
+
+<Slides
+  client:visible
+  slides={[
+    "<h3>Paso 1: La Revelación</h3><p>Dios se revela a sí mismo en la naturaleza y en la Escritura.</p>",
+    "<h3>Paso 2: La Supresión</h3><p>El hombre pecador suprime esta verdad en injusticia (Romanos 1).</p>",
+    "<h3>Paso 3: El Conflicto</h3><p>La antítesis entre la sabiduría de Dios y la sabiduría del mundo.</p>",
+  ]}
+/>
+
+El uso de <Tooltip client:visible text="términos técnicos" tip="Palabras con significados específicos en teología o filosofía." /> ayuda a la claridad sin interrumpir el flujo. <Sidenote client:visible>Esta es una nota al margen. Son útiles para comentarios adicionales o referencias bibliográficas que no caben en el texto principal.</Sidenote>
+
+### 6. Citas y Poesía
+
+Las citas bíblicas se destacan visualmente para darles la importancia debida.
+
+<Quote type="bible" reference="Proverbios 1:7">
+  El principio de la sabiduría es el temor de Jehová; Los insensatos desprecian
+  la sabiduría y la enseñanza.
+</Quote>
+
+También podemos incluir poesía o himnos con un formato adecuado.
+
+<Quote type="poetry" author="Augusto Toplady, 1776">
+  Roca de la eternidad, Fuiste abierta para mí, Sé mi escondedero fiel, Solo
+  encuentro paz en ti.
+</Quote>
+
+Y por supuesto, citas estándar de autores o teólogos.
+
+<Quote author="Cornelius Van Til" reference="La Defensa de la Fe">
+  No hay hechos brutos. Todo hecho es un hecho interpretado por Dios.
+</Quote>
+
+### 7. Combinando Elementos
+
+Podemos combinar texto, código y componentes interactivos para una experiencia de aprendizaje completa.
+
+> "El temor del Señor es el principio de la sabiduría." - Proverbios 1:7
+
+<Quiz
+  client:visible
+  question="¿Quién escribió la frase anterior?"
+  options={["Salomón", "Pablo", "Moisés", "David"]}
+  answer={0}
+/>
+
+Esperamos que estas herramientas nos ayuden a crear contenido más didáctico y atractivo para profundizar en el estudio de la apologética.

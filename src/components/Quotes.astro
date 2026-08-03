@@ -1,65 +1,98 @@
 ---
-export interface Quotation {
-  name: string;
-  text: string;
-  className: string;
-  gridSize: string;
-  avatar?: string;
-  source: string;
-}
-
-const quotations: Quotation[] = [
-  { 
-    name: "Daniel Clifford", 
-    text: "I received a job offer mid-course, and the subjects I learned were current...", 
-    className: "bg-purple-700 text-white", 
-    gridSize: "col-span-2 row-span-1", 
-    avatar: "/avatars/daniel.jpg", 
-    source: "Clifford, D. (2023). Learning to Code: A Journey. Tech Press."
+const quotes = [
+  {
+    text: "El Cristianismo es verdadero en virtud de la imposibilidad de lo contrario.",
+    name: "Greg L. Bahnsen",
+    source: "Always Ready",
+    span: "col-span-2",
   },
-  { 
-    name: "Greg L. Bahnsen", 
-    text: "El Cristianismo es verdadero en virtud de la imposibilidad de lo contrario.", 
-    className: "bg-blue-900 text-white", 
-    gridSize: "col-span-1 row-span-1", 
-    avatar: "/avatars/jonathan.jpg", 
-    source: "Bahnsen, J. (1980). Always Ready: Directions for Defending the Faith. Covenant Media Foundation."
+  {
+    text: "Todo conocimiento humano presupone al Dios trino de las Escrituras.",
+    name: "Cornelius Van Til",
+    source: "A Survey of Christian Epistemology",
+    span: "col-span-1",
   },
-  { 
-    name: "Kira Whittle", 
-    text: "Such a life-changing experience. Highly recommended!", 
-    className: "bg-white text-black border border-gray-300", 
-    gridSize: "col-span-1 row-span-2", 
-    source: "Whittle, K. (2021). The Bootcamp Experience. Coding Times."
+  {
+    text: "El incrédulo suprime la verdad de Dios en injusticia; sin embargo, la necesita para pensar y vivir.",
+    name: "John M. Frame",
+    source: "Apologetics to the Glory of God",
+    span: "col-span-1",
   },
-  { 
-    name: "Jeanette Harmon", 
-    text: "An overall wonderful and rewarding experience.", 
-    className: "bg-gray-100 text-black", 
-    gridSize: "col-span-1 row-span-1", 
-    avatar: "/avatars/jeanette.jpg", 
-    source: "Harmon, J. (2020). Reflections on Learning. Education Weekly."
+  {
+    text: "La apologética no es un asunto periférico de la fe cristiana; es el corazón de ella.",
+    name: "Greg L. Bahnsen",
+    source: "Van Til's Apologetic",
+    span: "col-span-2",
   },
-  { 
-    name: "Patrick Abrams", 
-    text: "Awesome teaching support from TAs who did the bootcamp themselves.", 
-    className: "bg-gray-800 text-white", 
-    gridSize: "col-span-2 row-span-1", 
-    avatar: "/avatars/patrick.jpg", 
-    source: "Abrams, P. (2023). Mentorship in Tech. Developer Insights."
-  }
 ];
 ---
 
-<div class="grid grid-cols-4 grid-rows-2 gap-4 max-w-5xl mx-auto p-6">
-  {quotations.map((quote) => (
-    <div class={`p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 ${quote.className} ${quote.gridSize}`}>
-      <div class="flex items-center mb-4">
-        {quote.avatar && <img src={quote.avatar} alt={quote.name} class="w-10 h-10 rounded-full mr-3" />}
-        <h3 class="text-xl font-semibold">{quote.name}</h3>
-      </div>
-      <p class="text-font-size-base">"{quote.text}"</p>
-      <p class="text-font-size-sm">{quote.source}</p>
+<section class="mx-auto max-w-6xl px-6 pb-20 md:pb-28">
+  <!-- Header -->
+  <div class="mb-10">
+    <div class="mb-3 flex items-center gap-3">
+      <div class="h-px w-8 bg-accent/40"></div>
+      <p class="text-xs font-bold tracking-[0.25em] text-muted uppercase">Citas</p>
     </div>
-  ))}
-</div>
+    <h2 class="serif-text text-3xl font-semibold text-foreground md:text-4xl">
+      Pensamientos
+    </h2>
+  </div>
+
+  <!-- Bento grid -->
+  <div class="grid auto-rows-auto grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+    {
+      quotes.map((quote, i) => (
+        <figure
+          class:list={[
+            "group flex flex-col justify-between gap-6 rounded-2xl p-7 transition-shadow duration-300 hover:shadow-md",
+            quote.span,
+            // Alternate accent background for variety
+            i === 0
+              ? "border border-foreground/10 bg-foreground text-background"
+              : "border border-border bg-surface",
+          ]}
+        >
+          <!-- Opening quote mark -->
+          <span
+            class:list={[
+              "serif-text text-5xl leading-none select-none",
+              i === 0 ? "text-background/20" : "text-foreground/10",
+            ]}
+            aria-hidden="true"
+          >
+            &ldquo;
+          </span>
+
+          <blockquote
+            class:list={[
+              "serif-text flex-1 text-lg leading-relaxed font-medium",
+              i === 0 ? "text-background" : "text-foreground",
+            ]}
+          >
+            {quote.text}
+          </blockquote>
+
+          <figcaption class="flex flex-col gap-0.5">
+            <p
+              class:list={[
+                "text-sm font-semibold",
+                i === 0 ? "text-background/90" : "text-foreground",
+              ]}
+            >
+              {quote.name}
+            </p>
+            <p
+              class:list={[
+                "text-xs italic",
+                i === 0 ? "text-background/50" : "text-muted",
+              ]}
+            >
+              {quote.source}
+            </p>
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</section>

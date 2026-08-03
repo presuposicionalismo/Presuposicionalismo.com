@@ -24,6 +24,7 @@ Este repositorio contiene el código fuente de Presuposicionalismo.com, construi
 ## ✅ **Características Implementadas (MVP)**
 
 ### **Core Funcionalidad**
+
 - [x] **Página de inicio** - Presentación general del sitio
 - [x] **Blog completo** - 73+ artículos de apologética presuposicional
 - [x] **Biblioteca de libros** - Catálogo de 9+ libros con descargas
@@ -31,27 +32,30 @@ Este repositorio contiene el código fuente de Presuposicionalismo.com, construi
 - [x] **Sistema de búsqueda** - Búsqueda en tiempo real con Fuse.js
 
 ### **SEO y Performance**
+
 - [x] **SEO optimizado** - Meta tags, sitemap, RSS feed
 - [x] **Imágenes optimizadas** - Componente `<Image />` de Astro
 - [x] **Sitio estático** - Generación estática para máximo rendimiento
 
 ### **UX Básica**
+
 - [x] **Dark mode** - Toggle entre tema claro y oscuro
 - [x] **Footer rediseñado** - Información de contacto y enlaces
 - [x] **Paginación** - Navegación en listados de contenido
 
 ## 📊 **Contenido Actual**
 
-| Tipo | Cantidad | Estado |
-|------|----------|---------|
-| Artículos de blog | 73+ | ✅ Publicados |
-| Libros catalogados | 9+ | ✅ Disponibles |
-| Páginas principales | 3 | ✅ Funcionales |
-| Componentes Astro | 36+ | ✅ Implementados |
+| Tipo                | Cantidad | Estado           |
+| ------------------- | -------- | ---------------- |
+| Artículos de blog   | 73+      | ✅ Publicados    |
+| Libros catalogados  | 9+       | ✅ Disponibles   |
+| Páginas principales | 3        | ✅ Funcionales   |
+| Componentes Astro   | 36+      | ✅ Implementados |
 
 ## 🚧 **Roadmap - Próximas Características**
 
 ### **🎯 Prioridad Alta**
+
 - [ ] **Página de autores** - Perfiles y biografías de escritores presupuestos
   - [ ] Agregar collection `autores` en `/content/config.ts`
   - [ ] Crear componentes y páginas relacionadas
@@ -62,6 +66,7 @@ Este repositorio contiene el código fuente de Presuposicionalismo.com, construi
   - [ ] Implementar cache estratégico
 
 ### **🎨 Mejoras de UX**
+
 - [ ] **Scroll-driven animations** - Animaciones basadas en scroll
 - [ ] **Header rediseñado** - Navegación mejorada y más atractiva
 - [ ] **Secciones adicionales** en página de inicio
@@ -70,6 +75,7 @@ Este repositorio contiene el código fuente de Presuposicionalismo.com, construi
   - [ ] Testimonios
 
 ### **🔧 Tareas Técnicas**
+
 - [ ] **Refactorización de CSS** - Organizar y optimizar estilos
 - [ ] **Componentización** - Modularizar secciones reutilizables
 - [ ] **Testing** - Implementar pruebas automatizadas
@@ -79,10 +85,12 @@ Este repositorio contiene el código fuente de Presuposicionalismo.com, construi
 ## 🚀 **Instalación y Desarrollo**
 
 ### **Prerrequisitos**
-- Node.js 18+ 
+
+- Node.js 18+
 - Bun (recomendado) o npm
 
 ### **Configuración Local**
+
 ```bash
 # Clonar el repositorio
 git clone https://github.com/usuario/presuposicionalismo.com.git
@@ -102,8 +110,9 @@ bun run build
 ```
 
 ### **Scripts Disponibles**
+
 - `bun run dev` - Servidor de desarrollo
-- `bun run build` - Construcción para producción  
+- `bun run build` - Construcción para producción
 - `bun run preview` - Vista previa del build
 - `bun run check` - Verificación de tipos TypeScript
 

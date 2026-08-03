@@ -9,27 +9,21 @@ jobs:
   preview:
     name: Build and Preview
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          version: 10
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
+          bun-version: latest
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
 
       - name: Build for preview
-        run: pnpm build
+        run: bun run build
         env:
           NODE_ENV: production
 
@@ -44,9 +38,9 @@ jobs:
 
             - **Commit**: ${context.sha.substring(0, 7)}
             - **Branch**: \`${context.payload.pull_request.head.ref}\`
-            
+
             Vercel se encargará del deployment automático.`;
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

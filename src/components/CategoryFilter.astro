@@ -1,0 +1,14 @@
+---
+import TagCommandMenu from "../lib/components/TagCommandMenu.svelte";
+
+interface Props {
+  tags: string[];
+  activeTag?: string;
+}
+
+const { tags, activeTag } = Astro.props;
+---
+
+<div class="mb-12">
+  <TagCommandMenu client:load tags={tags} activeTag={activeTag} />
+</div>

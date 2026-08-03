@@ -6,9 +6,10 @@ interface Props {
   imagePath: string;
   altText: string;
   loading?: "lazy" | "eager";
+  class?: string;
 }
 
-const { imagePath, altText, loading = "lazy" } = Astro.props;
+const { imagePath, altText, loading = "lazy", class: className } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/coverbook/*.{jpeg,jpg,png,gif,webp}",
 );
@@ -18,21 +19,9 @@ if (!images[imagePath])
   );
 ---
 
-<div class="card">
-  <Image
-    src={images[imagePath]()}
-    alt={altText}
-    class="coverbook"
-    loading={loading}
-  />
-</div>
-
-<style>
-  .coverbook {
-    border-radius: var(--radius-2);
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-    aspect-ratio: 1 / 1.414;
-  }
-</style>
+<Image
+  src={images[imagePath]()}
+  alt={altText}
+  class={className}
+  loading={loading}
+/>

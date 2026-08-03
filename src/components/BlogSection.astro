@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BlogCarousel from "@components/BlogCarousel.astro";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+
+const { posts } = Astro.props;
+---
+
+<section id="blog" class="max-w-7xl mx-auto px-6 py-20 border-t border-border">
+  <h2 class="serif-text text-3xl font-medium text-accent mb-16">
+    Últimas entradas del Blog
+  </h2>
+
+  <BlogCarousel posts={posts} />
+</section>

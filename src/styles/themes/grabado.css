@@ -1,0 +1,72 @@
+/* --- THEME: GRABADO (editorial, siglo de las luces, papel + rubricado) --- */
+
+@layer base {
+  .theme-grabado {
+    --radius: 0.125rem;
+
+    --background: 41 54% 89%;
+    --foreground: 32 29% 13%;
+    --card: 41 67% 92%;
+    --card-foreground: 32 29% 13%;
+    --popover: 41 67% 92%;
+    --popover-foreground: 32 29% 13%;
+    --primary: 352 59% 30%;
+    --primary-foreground: 41 67% 96%;
+    --secondary: 41 44% 84%;
+    --secondary-foreground: 32 29% 16%;
+    --muted: 41 30% 87%;
+    --muted-foreground: 37 23% 40%;
+    --accent: 41 44% 80%;
+    --accent-foreground: 32 29% 16%;
+    --destructive: 0 64% 40%;
+    --destructive-foreground: 41 67% 96%;
+    --border: 41 44% 74%;
+    --input: 41 44% 74%;
+    --ring: 352 59% 30%;
+
+    --color-foreground: #2a2117;
+    --color-background: #f2e8d3;
+    --color-surface: #f8efdc;
+    --color-muted: #7c6a4e;
+    --color-border: #d9c69e;
+    --color-accent: #7a1f2b;
+
+    /* --font-sans (UI: nav, botones, tabs, badges) se deja en Urbanist a propósito */
+    --font-display: "Fraunces Variable", "Iowan Old Style", Georgia, serif;
+    --font-body: "EB Garamond", "Iowan Old Style", Georgia, serif;
+
+    --shadow-card: 0 1px 3px 0 rgb(42 33 23 / 0.12), 0 4px 10px -4px rgb(42 33 23 / 0.18);
+    --border-width: 1px;
+    --glow: none;
+  }
+
+  .dark.theme-grabado,
+  .dark .theme-grabado {
+    --background: 28 30% 8%;
+    --foreground: 41 48% 83%;
+    --card: 27 33% 11%;
+    --card-foreground: 41 48% 83%;
+    --popover: 27 33% 11%;
+    --popover-foreground: 41 48% 83%;
+    --primary: 7 56% 52%;
+    --primary-foreground: 28 30% 8%;
+    --secondary: 30 33% 18%;
+    --secondary-foreground: 41 48% 83%;
+    --muted: 30 33% 15%;
+    --muted-foreground: 38 25% 53%;
+    --accent: 30 33% 20%;
+    --accent-foreground: 41 48% 88%;
+    --destructive: 7 56% 45%;
+    --destructive-foreground: 41 48% 88%;
+    --border: 30 33% 18%;
+    --input: 30 33% 18%;
+    --ring: 7 56% 52%;
+
+    --color-foreground: #e9dcc0;
+    --color-background: #1c150f;
+    --color-surface: #241a12;
+    --color-muted: #a6906a;
+    --color-border: #3c2d1e;
+    --color-accent: #c9503f;
+  }
+}

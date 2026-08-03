@@ -1,42 +1,30 @@
 ---
-import DarkToogle from "./DarkToogle.astro";
-import Logo from "./Logo.astro";
 import SocialFooter from "./SocialFooter.astro";
+
+const today = new Date();
 ---
 
-<footer>
-  <a class="logo" aria-label="logo" href="/"><Logo /></a>
-
-  <nav>
-    <!-- <NavMenu />-->
-    <SocialFooter />
-
-    <DarkToogle />
-  </nav>
+<footer class="bg-background border-t border-border py-16 mt-20">
+  <div
+    class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8"
+  >
+    <div class="flex flex-col items-center md:items-start gap-4">
+      <span class="text-xl font-bold tracking-[0.2em] text-foreground uppercase"
+        >Presuposicionalismo</span
+      >
+      <p class="text-sm text-muted">
+        © {today.getFullYear()} Soli Deo Gloria. Todos los derechos reservados.
+      </p>
+    </div>
+    <div class="flex flex-col items-center md:items-end gap-4">
+      <SocialFooter />
+      <!-- Newsletter oculto por ahora — reactivar este link cuando vuelva la sección -->
+      <!-- <a
+        href="/#newsletter"
+        class="text-sm font-medium text-muted hover:text-accent transition-colors"
+      >
+        Suscribirse al newsletter
+      </a> -->
+    </div>
+  </div>
 </footer>
-
-<style>
-  .logo {
-    width: 150px;
-    min-width: 100px;
-  }
-
-  footer {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-    padding: var(--size-fluid-1);
-    padding-inline: 5vw;
-    background-color: var(--surface-2);
-    box-shadow: var(--shadow-3);
-    margin-top: var(--size-fluid-5);
-    bottom: 0px;
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-  }
-</style>

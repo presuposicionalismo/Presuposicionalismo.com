@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from "astro:content";
+import CoverBook from "./CoverBook.astro";
+
+interface Props {
+  book: CollectionEntry<"libros">;
+}
+
+const { book } = Astro.props;
+---
+
+<article class="group relative flex flex-col h-full">
+  <a
+    href={`/libros/${book.id}/`}
+    class="block flex-1 group-hover:-translate-y-1 transition-transform duration-300"
+  >
+    <div
+      class="relative aspect-[2/3] overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 mb-4 bg-surface-hover"
+    >
+      <CoverBook
+        imagePath={String(book.data.coverBook)}
+        altText={book.data.title}
+        transition:name={`coverbook ${book.data.title} image`}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+      <!-- Shine effect on hover -->
+      <div
+        class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/0 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+      >
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <h3
+        class="serif-text text-xl font-medium text-accent leading-tight mb-2 group-hover:text-primary transition-colors"
+      >
+        {book.data.title}
+      </h3>
+      <p class="text-sm text-muted font-medium uppercase tracking-wide">
+        {book.data.author}
+      </p>
+    </div>
+  </a>
+</article>

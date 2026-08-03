@@ -1,0 +1,68 @@
+/* --- THEME: LEDGER (vercel-like, geométrico, monocromo) --- */
+
+@layer base {
+  .theme-ledger {
+    --radius: 0.5rem;
+
+    --background: 0 0% 100%;
+    --foreground: 220 12% 5%;
+    --card: 0 0% 98%;
+    --card-foreground: 220 12% 5%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 220 12% 5%;
+    --primary: 220 12% 5%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 216 11% 94%;
+    --secondary-foreground: 220 12% 10%;
+    --muted: 216 11% 94%;
+    --muted-foreground: 218 5% 45%;
+    --accent: 216 11% 91%;
+    --accent-foreground: 220 12% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 216 11% 91%;
+    --input: 216 11% 91%;
+    --ring: 220 12% 5%;
+
+    --color-foreground: #0b0c0e;
+    --color-background: #ffffff;
+    --color-surface: #fafafa;
+    --color-muted: #6d7178;
+    --color-border: #e6e8eb;
+    --color-accent: #0b0c0e;
+
+    --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.04), 0 1px 3px 0 rgb(0 0 0 / 0.03);
+    --border-width: 1px;
+    --glow: none;
+  }
+
+  .dark.theme-ledger,
+  .dark .theme-ledger {
+    --background: 240 5% 4%;
+    --foreground: 220 14% 96%;
+    --card: 225 10% 8%;
+    --card-foreground: 220 14% 96%;
+    --popover: 225 10% 8%;
+    --popover-foreground: 220 14% 96%;
+    --primary: 220 14% 96%;
+    --primary-foreground: 240 5% 4%;
+    --secondary: 223 8% 16%;
+    --secondary-foreground: 220 14% 90%;
+    --muted: 223 8% 16%;
+    --muted-foreground: 219 6% 57%;
+    --accent: 223 8% 18%;
+    --accent-foreground: 220 14% 96%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 223 8% 16%;
+    --input: 223 8% 16%;
+    --ring: 219 6% 70%;
+
+    --color-foreground: #f3f4f6;
+    --color-background: #0a0a0b;
+    --color-surface: #131417;
+    --color-muted: #8a8f98;
+    --color-border: #26282d;
+    --color-accent: #f3f4f6;
+  }
+}

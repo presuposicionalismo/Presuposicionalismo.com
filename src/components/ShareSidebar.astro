@@ -1,0 +1,308 @@
+---
+import Link from "./icons/Link.astro";
+import Check from "./icons/Check.astro";
+import BrandX from "./icons/BrandX.astro";
+import BrandWhatsapp from "./icons/BrandWhatsapp.astro";
+import BrandFacebook from "./icons/BrandFacebook.astro";
+import Bookmark from "./icons/Bookmark.astro";
+import BookmarkFilled from "./icons/BookmarkFilled.astro";
+import List from "./icons/List.astro";
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  headings?: Heading[];
+}
+
+const { title, headings = [] } = Astro.props;
+const toc = headings.filter((h) => h.depth <= 3);
+
+const pageUrl = Astro.url.href;
+const pagePath = Astro.url.pathname;
+const xShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(title)}`;
+const waShareUrl = `https://wa.me/?text=${encodeURIComponent(`${title} ${pageUrl}`)}`;
+const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+---
+
+<aside
+  data-share-sidebar
+  data-path={pagePath}
+  data-title={title}
+  class="hidden lg:flex flex-col gap-6 absolute -left-24 top-0 h-full w-12 items-center"
+>
+  <div class="sticky top-32 flex flex-col gap-4">
+    {
+      toc.length > 0 && (
+        <>
+          <div class="relative" data-toc-wrapper>
+            <button
+              type="button"
+              data-toc-toggle
+              aria-expanded="false"
+              aria-label="Índice del artículo"
+              class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent data-[open=true]:border-accent data-[open=true]:text-accent"
+            >
+              <List class="text-[20px]" />
+            </button>
+            <nav
+              data-toc-panel
+              class="hidden absolute right-full top-0 mr-3 w-64 max-h-[60vh] overflow-y-auto rounded-lg border border-border bg-surface shadow-lg p-4"
+              aria-label="Índice del artículo"
+            >
+              <p class="text-[10px] text-muted uppercase tracking-widest mb-3">
+                En este artículo
+              </p>
+              <ul class="flex flex-col gap-2.5">
+                {toc.map((heading) => (
+                  <li>
+                    <a
+                      href={`#${heading.slug}`}
+                      data-toc-link
+                      data-target={heading.slug}
+                      class:list={[
+                        "toc-link block text-sm text-muted hover:text-accent transition-colors leading-snug",
+                        heading.depth > 2 && "pl-3",
+                      ]}
+                    >
+                      {heading.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+          <div class="w-8 h-px bg-border my-2 mx-auto" />
+        </>
+      )
+    }
+    <p
+      class="text-[10px] text-muted uppercase tracking-widest text-center mb-1"
+    >
+      Compartir
+    </p>
+    <button
+      type="button"
+      data-copy-link
+      class="group relative flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent hover:-translate-y-1"
+      aria-label="Copiar enlace"
+    >
+      <Link class="text-[20px] copy-icon" data-copy-icon-default />
+      <Check
+        class="text-[20px] copy-icon hidden text-accent"
+        data-copy-icon-done
+      />
+    </button>
+    <a
+      href={xShareUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent hover:-translate-y-1"
+      aria-label="Compartir en X"
+    >
+      <BrandX class="text-[20px]" />
+    </a>
+    <a
+      href={waShareUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent hover:-translate-y-1"
+      aria-label="Compartir por WhatsApp"
+    >
+      <BrandWhatsapp class="text-[20px]" />
+    </a>
+    <a
+      href={fbShareUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent hover:-translate-y-1"
+      aria-label="Compartir en Facebook"
+    >
+      <BrandFacebook class="text-[20px]" />
+    </a>
+    <div class="w-8 h-px bg-border my-2 mx-auto"></div>
+    <button
+      type="button"
+      data-bookmark-toggle
+      aria-pressed="false"
+      class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:bg-accent/10"
+      aria-label="Guardar artículo"
+    >
+      <Bookmark class="text-[20px] bookmark-icon" data-bookmark-icon-off />
+      <BookmarkFilled
+        class="text-[20px] bookmark-icon hidden text-accent"
+        data-bookmark-icon-on
+      />
+    </button>
+  </div>
+</aside>
+
+<style>
+  .toc-link[data-active="true"] {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  const BOOKMARKS_KEY = "presuposicionalismo:bookmarks";
+
+  function readBookmarks(): Record<string, { title: string; savedAt: number }> {
+    try {
+      return JSON.parse(localStorage.getItem(BOOKMARKS_KEY) ?? "{}");
+    } catch {
+      return {};
+    }
+  }
+
+  function writeBookmarks(
+    data: Record<string, { title: string; savedAt: number }>,
+  ) {
+    localStorage.setItem(BOOKMARKS_KEY, JSON.stringify(data));
+  }
+
+  document
+    .querySelectorAll<HTMLElement>("[data-share-sidebar]")
+    .forEach((sidebar) => {
+      const path = sidebar.dataset.path ?? "";
+      const title = sidebar.dataset.title ?? "";
+
+      // --- Copiar enlace ---
+      const copyBtn =
+        sidebar.querySelector<HTMLButtonElement>("[data-copy-link]");
+      const copyDefaultIcon = sidebar.querySelector("[data-copy-icon-default]");
+      const copyDoneIcon = sidebar.querySelector("[data-copy-icon-done]");
+      let copyTimeout: ReturnType<typeof setTimeout> | undefined;
+
+      copyBtn?.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+        } catch {
+          return;
+        }
+
+        copyDefaultIcon?.classList.add("hidden");
+        copyDoneIcon?.classList.remove("hidden");
+        copyBtn.setAttribute("aria-label", "¡Enlace copiado!");
+
+        clearTimeout(copyTimeout);
+        copyTimeout = setTimeout(() => {
+          copyDefaultIcon?.classList.remove("hidden");
+          copyDoneIcon?.classList.add("hidden");
+          copyBtn.setAttribute("aria-label", "Copiar enlace");
+        }, 1800);
+      });
+
+      // --- Guardar artículo ---
+      const bookmarkBtn = sidebar.querySelector<HTMLButtonElement>(
+        "[data-bookmark-toggle]",
+      );
+      const bookmarkOffIcon = sidebar.querySelector("[data-bookmark-icon-off]");
+      const bookmarkOnIcon = sidebar.querySelector("[data-bookmark-icon-on]");
+
+      function renderBookmarkState(saved: boolean) {
+        bookmarkBtn?.setAttribute("aria-pressed", String(saved));
+        bookmarkBtn?.setAttribute(
+          "aria-label",
+          saved ? "Quitar de guardados" : "Guardar artículo",
+        );
+        bookmarkOffIcon?.classList.toggle("hidden", saved);
+        bookmarkOnIcon?.classList.toggle("hidden", !saved);
+      }
+
+      renderBookmarkState(Boolean(readBookmarks()[path]));
+
+      bookmarkBtn?.addEventListener("click", () => {
+        const bookmarks = readBookmarks();
+        const isSaved = Boolean(bookmarks[path]);
+
+        if (isSaved) {
+          delete bookmarks[path];
+        } else {
+          bookmarks[path] = { title, savedAt: Date.now() };
+        }
+
+        writeBookmarks(bookmarks);
+        renderBookmarkState(!isSaved);
+      });
+
+      // --- Índice del artículo (TOC) ---
+      const tocWrapper =
+        sidebar.querySelector<HTMLElement>("[data-toc-wrapper]");
+      const tocToggle =
+        sidebar.querySelector<HTMLButtonElement>("[data-toc-toggle]");
+      const tocPanel = sidebar.querySelector<HTMLElement>("[data-toc-panel]");
+      const tocLinks = Array.from(
+        sidebar.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"),
+      );
+
+      function closeToc() {
+        tocPanel?.classList.add("hidden");
+        tocToggle?.setAttribute("aria-expanded", "false");
+        tocToggle && (tocToggle.dataset.open = "false");
+      }
+
+      function openToc() {
+        tocPanel?.classList.remove("hidden");
+        tocToggle?.setAttribute("aria-expanded", "true");
+        tocToggle && (tocToggle.dataset.open = "true");
+      }
+
+      tocToggle?.addEventListener("click", () => {
+        const isOpen = tocToggle.getAttribute("aria-expanded") === "true";
+        isOpen ? closeToc() : openToc();
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!tocWrapper || !tocWrapper.contains(event.target as Node)) {
+          closeToc();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeToc();
+      });
+
+      tocLinks.forEach((link) => {
+        link.addEventListener("click", () => closeToc());
+      });
+
+      if (tocLinks.length > 0) {
+        const headingEls = tocLinks
+          .map((link) => document.getElementById(link.dataset.target ?? ""))
+          .filter((el): el is HTMLElement => Boolean(el));
+
+        const setActive = (slug: string) => {
+          tocLinks.forEach((link) => {
+            link.toggleAttribute("data-active", link.dataset.target === slug);
+            if (link.dataset.target === slug) {
+              link.setAttribute("data-active", "true");
+            } else {
+              link.removeAttribute("data-active");
+            }
+          });
+        };
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const visible = entries
+              .filter((entry) => entry.isIntersecting)
+              .sort(
+                (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+              );
+
+            if (visible.length > 0) {
+              setActive(visible[0].target.id);
+            }
+          },
+          { rootMargin: "-20% 0px -70% 0px" },
+        );
+
+        headingEls.forEach((el) => observer.observe(el));
+      }
+    });
+</script>

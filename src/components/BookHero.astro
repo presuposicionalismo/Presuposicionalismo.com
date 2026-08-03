@@ -4,72 +4,42 @@ const { title, description, pubDate, coverBook, author } = Astro.props;
 import CoverBook from "./CoverBook.astro";
 ---
 
-<section class="container">
-  <article class="card">
-    <div class="card__image">
-      <CoverBook imagePath={coverBook} altText={title} />
-      <!-- <img src={coverBook} alt="Imagen" /> -->
+<section class="max-w-7xl mx-auto px-6 py-12">
+  <div class="grid md:grid-cols-2 gap-12 items-start">
+    <div class="sticky top-24">
+      <div
+        class="aspect-[3/4] rounded-lg overflow-hidden shadow-xl border border-border"
+      >
+        <CoverBook
+          imagePath={coverBook}
+          altText={title}
+          class="w-full h-full object-cover"
+        />
+      </div>
     </div>
 
-    <div>
-      <span><FormattedDate date={pubDate} /></span>
-      <h1 class="card__title">{title}</h1>
-      <p class="card__text">{author}</p>
-      <p class="card__text">{description}</p>
+    <div class="space-y-6">
+      <div
+        class="flex items-center gap-2 text-sm text-muted uppercase tracking-wide"
+      >
+        <FormattedDate date={pubDate} />
+      </div>
+
+      <h1
+        class="serif-text text-4xl md:text-5xl font-medium text-accent leading-tight"
+      >
+        {title}
+      </h1>
+
+      <p class="text-lg text-muted font-medium">
+        {author}
+      </p>
+
+      <p class="text-lg text-foreground leading-relaxed">
+        {description}
+      </p>
     </div>
-  </article><hr />
+  </div>
 </section>
 
-<style>
-  h1 {
-    max-inline-size: var(--size-header-3);
-    font-size: var(--font-size-xl);
-    display: inline-flex;
-    align-items: center;
-    gap: var(--size-3);
-    text-wrap: balance;
-    padding-bottom: var(--size-fluid-1);
-  }
-  .card {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 80vw;
-    padding-top: var(--size-fluid-3);
-    padding-bottom: var(--size-fluid-3);
-    display: grid;
-    grid-template-columns: 1fr; /* Cambiar a una sola columna en pantallas pequeñas */
-    place-content: center;
-    grid-gap: 20px;
-    border-radius: 8px;
-  }
-
-  .card__image {
-    margin-left: auto;
-    margin-right: auto;
-    display: grid;
-    grid-column: 1;
-    grid-gap: 20px;
-    width: 65vw;
-    img {
-      max-width: 100%; /* Asegurarse de que la imagen se ajuste al ancho de la columna */
-      height: auto; /* Evitar que la imagen se estire */
-      object-fit: cover;
-      border-radius: var(--radius-3);
-      aspect-ratio: 1 / 1.414;
-    }
-  }
-
-  @media (min-width: 601px) {
-    /* Restaurar la cuadrícula de dos columnas en pantallas más grandes */
-    .card {
-      grid-template-columns: 5fr 8fr;
-    }
-
-    .card__image {
-      display: grid;
-      grid-column: 1;
-      grid-gap: 20px;
-      width: 25vw;
-    }
-  }
-</style>
+<hr class="border-border max-w-7xl mx-auto" />

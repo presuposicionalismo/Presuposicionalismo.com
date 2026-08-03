@@ -1,319 +1,206 @@
-@import "open-props/normalize";
-@import "open-props/media";
-/* @import 'open-props/buttons'; */
-@import "./tokens.css";
-@import "./bg.css";
-@import "tailwindcss";
 @import "@fontsource-variable/urbanist";
+@import "@fontsource-variable/fraunces/standard.css";
+@import "@fontsource/eb-garamond/400.css";
+@import "@fontsource/eb-garamond/400-italic.css";
+@import "@fontsource/eb-garamond/600.css";
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@variant dark (&:where(.dark, .dark *));
+
+/* Importing Theme Modules */
+@import "./themes/swiss.css";
+@import "./themes/neo.css";
+@import "./themes/cyber.css";
+@import "./themes/metal.css";
+@import "./themes/danqing.css";
+@import "./themes/espresso.css";
+@import "./themes/helios.css";
+@import "./themes/neutral.css";
+@import "./themes/ledger.css";
+@import "./themes/grabado.css";
+
+/* Importing Utility Modules */
+@import "./prose.css";
+
+/* Base Theme (Default implementation - maps to Shadcn original) */
+@layer base {
+  :root {
+    /* Default Radius */
+    --radius: 0.5rem;
+
+    /* Light Mode Default */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+
+    /* Custom Colors Default */
+    --color-foreground: #1a1a1a;
+    --color-background: #fcfcfc;
+    --color-surface: #ffffff;
+    --color-muted: #666666;
+    --color-border: #e5e5e5;
+    --color-accent: #1a1a1a;
+
+    /* Fuentes - Default (conmutables por tema) */
+    /* --font-sans es la fuente de UI (nav, botones, tabs, badges): se mantiene
+       igual en todos los temas, la lectura no debe heredarla. */
+    --font-sans: "Urbanist Variable", sans-serif;
+    /* --font-display es para títulos/encabezados (contenido, no UI). */
+    --font-display: "Urbanist Variable", sans-serif;
+    /* --font-body es para texto de lectura largo (prosa de artículos/libros). */
+    --font-body: "Urbanist Variable", sans-serif;
+
+    /* Artistic Tokens - Default State */
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --border-width: 1px;
+    --glow: none;
+  }
+
+  /* Dark Mode Overrides (Applied when .dark class is present) */
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    /* ... (rest of dark vars) ... */
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    /* Custom Colors Dark */
+    --color-foreground: #f5f5f5;
+    --color-background: #121212;
+    --color-surface: #1a1a1a;
+    --color-muted: #a0a0a0;
+    --color-border: #2a2a2a;
+    --color-accent: #ffffff;
+  }
+}
 
 @theme {
-  --font-size-xs: clamp(0.7rem, 0.17vw + 0.6rem, 0.85rem);
-  --font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
-  --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
-  --font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
-  --font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
-  --font-size-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
-  --font-size-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
-  --font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+  /* Colores semánticos - Light mode (default) */
+  --color-foreground: var(--color-foreground);
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-accent: var(--color-accent);
+
+  /* Fuentes (indirección para que cada tema pueda redefinirlas) */
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+
+  /* Radios */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: var(--radius); /* Card uses rounded-xl, maps here */
+
+  /* Shadcn Variables Map */
+  --radius: var(--radius);
+
+  /* Artistic Overrides */
+  --shadow-sm: var(--shadow-card);
+  --shadow-md: var(--shadow-card);
+  --shadow-lg: var(--shadow-card);
+  --shadow-xl: var(--shadow-card);
 }
 
-html {
-  --font-size-xs: clamp(0.7rem, 0.17vw + 0.6rem, 0.85rem);
-  --font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
-  --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
-  --font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
-  --font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
-  --font-size-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
-  --font-size-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
-  --font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
-}
-
-:root {
-  --brand: var(--orange-7);
-  --accent: var(--indigo-7);
-  --link: var(--indigo-7);
-  --link-hsl: var(--indigo-7-hsl);
-  --link-hover: var(--indigo-9);
-  --link-visited: var(--pink-7);
-  --text-1: var(--gray-9);
-  --text-2: var(--gray-7);
-  --input-color: var(--gray-12);
-  --surface-1: var(--stone-0);
-  --surface-2: var(--gray-1);
-  --surface-3: var(--gray-2);
-  --surface-4: var(--gray-3);
-  --surface-1-hsl: var(--stone-0-hsl);
-  --surface-2-hsl: var(--stone-1-hsl);
-  --surface-3-hsl: var(--gray-2-hsl);
-  --surface-4-hsl: var(--gray-3-hsl);
-  --scrollthumb-color: var(--gray-7);
-  --shadow-strength: 1% !important;
-
-  @media (--OSdark) {
-    --brand: var(--orange-3);
-    --accent: var(--indigo-3);
-    --link: var(--indigo-3);
-    --link-hsl: var(--indigo-3-hsl);
-    --link-hover: var(--indigo-1);
-    --link-visited: var(--pink-3);
-    --text-1: var(--stone-0);
-    --text-2: var(--stone-2);
-    --input-color: var(--gray-12);
-    --surface-1: var(--gray-9);
-    --surface-2: var(--gray-8);
-    --surface-3: var(--gray-7);
-    --surface-4: var(--gray-6);
-    --surface-1-hsl: var(--gray-9-hsl);
-    --surface-2-hsl: var(--gray-8-hsl);
-    --surface-3-hsl: var(--gray-7-hsl);
-    --surface-4-hsl: var(--gray-6-hsl);
-    --scrollthumb-color: var(--gray-8);
-    --shadow-strength: 10%;
-    --shadow-color: 220 40% 2%;
-    color-scheme: dark;
+/* Force border widths if not utilizing tailwind classes directly */
+@layer base {
+  *, ::before, ::after {
+    border-width: 0;
+    border-style: solid; 
+    /* We don't want to override ALL borders to --border-width because it might break layout borders that expect 0. 
+       But we can set a utility or rely on components using `border` class which defaults to 1px.
+       Tailwind default `border` class uses `border-width: 1px`. 
+       We can override the `border` utility in @theme if supported, or via base.
+    */
+  }
+  
+  .border {
+    border-width: var(--border-width);
   }
 }
 
-[data-theme="light"] {
-  --brand: var(--indigo-7);
-  --accent: var(--indigo-7);
-  --link: var(--indigo-7);
-  --link-hsl: var(--indigo-7-hsl);
-  --link-hover: var(--indigo-9);
-  --link-visited: var(--indigo-8);
-  --text-1: var(--gray-9);
-  --text-2: var(--gray-7);
-  --input-color: var(--surface-2);
-  --surface-1: var(--stone-0);
-  --surface-2: var(--gray-1);
-  --surface-3: var(--gray-2);
-  --surface-4: var(--gray-3);
-  --surface-1-hsl: var(--gray-2-hsl);
-  --surface-2-hsl: var(--gray-1-hsl);
-  --surface-3-hsl: var(--gray-3-hsl);
-  --surface-4-hsl: var(--gray-4-hsl);
-  --scrollthumb-color: var(--gray-8);
-  --shadow-strength: 1% !important;
+@layer utilities {
+  .serif-text {
+    font-family: var(--font-display);
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-in-view {
+    animation: fade-in-up 0.6s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
 }
 
-[data-theme="dark"] {
-  --brand: var(--orange-3);
-  --accent: var(--indigo-3);
-  --link: var(--orange-3);
-  --link-hsl: var(--orange-3-hsl);
-  --link-hover: var(--orange-1);
-  --link-visited: var(--pink-3);
-  --text-1: var(--gray-1);
-  --text-2: var(--gray-3);
-  --input-color: var(--gray-12);
-  --surface-1: var(--gray-9);
-  --surface-2: var(--gray-8);
-  --surface-3: var(--gray-7);
-  --surface-4: var(--gray-6);
-  --surface-1-hsl: var(--gray-9-hsl);
-  --surface-2-hsl: var(--gray-8-hsl);
-  --surface-3-hsl: var(--gray-7-hsl);
-  --surface-4-hsl: var(--gray-6-hsl);
-  --scrollthumb-color: var(--gray-8);
-  color-scheme: dark;
-}
-
-* {
-  box-sizing: border-box;
-  /* margin: 0; */
-}
-
+/* Base styles */
 body {
-  min-block-size: 100%;
-  font-family: "Urbanist Variable", sans-serif;
+  font-family: var(--font-sans);
+  @apply bg-background text-foreground antialiased selection:bg-accent selection:text-background transition-colors duration-300;
 }
 
-section {
-  display: grid;
-  gap: var(--size-6);
-}
-.pl {
-  padding-left: var(--size-fluid-1);
-}
-.pr {
-  padding-right: var(--size-fluid-1);
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-.px {
-  padding-left: var(--size-fluid-2);
-  padding-right: var(--size-fluid-2);
-}
-.px-2 {
-  padding-left: var(--size-fluid-4);
-  padding-right: var(--size-fluid-4);
-}
-
-.text-center {
-  text-align: center;
+/* Drop cap style for blog posts */
+.drop-cap::first-letter {
+  float: left;
+  font-size: 4.5rem;
+  line-height: 0.85;
+  font-weight: 600;
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+  color: var(--color-accent);
 }
 
-.py {
-  padding-top: var(--size-fluid-2);
-  padding-bottom: var(--size-fluid-2);
-}
-.py-2 {
-  padding-top: var(--size-fluid-4);
-  padding-bottom: var(--size-fluid-4);
+#mobile-menu {
+  background-color: #ffffff !important;
 }
 
-.mx {
-  margin-left: var(--size-fluid-2);
-  margin-right: var(--size-fluid-2);
-}
-
-.mx-2 {
-  margin-left: var(--size-fluid-4);
-  margin-right: var(--size-fluid-4);
-}
-.mx-3 {
-  margin-left: var(--size-fluid-6);
-  margin-right: var(--size-fluid-6);
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.my {
-  margin-top: var(--size-fluid-2);
-  margin-bottom: var(--size-fluid-2);
-}
-.my-2 {
-  margin-top: var(--size-fluid-4);
-  margin-bottom: var(--size-fluid-4);
-}
-
-.my-3 {
-  margin-top: var(--size-fluid-6);
-  margin-bottom: var(--size-fluid-6);
-}
-
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-.warp-fluid {
-  display: flex;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  padding-block: var(--size-fluid-3);
-}
-
-.warp {
-  display: flex;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.container {
-  display: grid;
-  place-items: center;
-}
-
-article {
-  padding-left: var(--size-fluid-2);
-  padding-right: var(--size-fluid-2);
-}
-
-.rad-shadow {
-  border: 1px solid hsl(var(--brand-hue) 10% 50% / 15%);
-  box-shadow: 0 1rem 0.5rem -0.5rem;
-  box-shadow:
-    0 2.8px 2.2px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 3%)),
-    0 6.7px 5.3px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 1%)),
-    0 12.5px 10px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 2%)),
-    0 22.3px 17.9px
-      hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 2%)),
-    0 41.8px 33.4px
-      hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 3%)),
-    0 100px 80px hsl(var(--surface-shadow) / var(--shadow-strength));
-}
-
-.dropdown {
-  @media (--md-n-above) {
-    display: none;
-  }
-}
-
-a {
-  --link: var(--text-1);
-  --link-hsl: var(--text-1);
-  --link-hover: var(--text-1);
-}
-
-.socialicons {
-  @media (--md-n-below) {
-    display: none;
-  }
-}
-
-/* Theme-Toggle */
-
-/* Navmenu */
-.navmenu {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  @media (--md-n-below) {
-    display: none;
-  }
-  /* Mostrar solo en MD y mayores */
-  /*@custom-media --md-n-above (min-width: 768px);
-
-  @media (--md-n-above) {
-    visibility: visible;
-  }
-
-   Ocultar en el resto
-  @media not (--md-n-above) {
-    visibility: none;
-  }*/
-}
-
-/* Dropdown */
-.dropbtn {
-  border-radius: var(--radius-2);
-  background-color: var(--surface-3);
-  width: 28px;
-  padding: 6px;
-}
-
-.dropdown-content {
-  top: var(--size-fluid-5);
-  transform: translateX(-60%);
-  display: none;
-  position: absolute;
-  padding: var(--size-fluid-1);
-  margin: var(--size-0);
-  min-width: var(--size-fluid-7);
-  box-shadow: var(--shadow-3);
-  background-color: var(--surface-2);
-  color: var(--text-2);
-  accent-color: var(--brand);
-  border-radius: var(--radius-3);
-}
-
-.dropdown:hover .dropdown-content {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-inline: auto; */
-  display: grid;
-  place-items: center;
-}
-
-.md-hidden {
-  @media (--md-n-below) {
-    display: none;
-  }
+.dark #mobile-menu {
+  background-color: #000000 !important;
 }

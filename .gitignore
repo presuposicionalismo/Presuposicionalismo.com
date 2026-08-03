@@ -1,6 +1,9 @@
 # build output
 dist/
-# .vercel
+.vercel/
+
+# Claude Code local config
+.claude/
 
 # generated types
 .astro/
@@ -26,3 +29,6 @@ pnpm-debug.log*
 
 # Open Graph Cache
 .og-cache/
+
+# Cloudflare Wrangler local artifacts
+.wrangler/

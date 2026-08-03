@@ -1,32 +1,82 @@
-<section class="container my mx-auto">
-  <h1>
-    ¿Estás preparado para algo intelectualmente estimulante y conmovedor para el
-    alma?
-  </h1>
-  <p>
-    Este sitio está dedicado a promover literatura que suscribe una filosofía
-    distintivamente cristiana y principalmente a la metodología apologética del
-    “padre del presuposicionalismo”, el fallecido (1987) Dr. Cornelius Van Til,
-    y sus estudiantes, el fallecido (1995) Dr. Greg L. Bahnsen, y el Dr. John M.
-    Frame. Otros “vantilianos” de interés incluyen pero no se limitan a: James
-    Anderson, William Edgar, Scott Oliphint, James White, y Richard Pratt. De
-    cualquier manera, ¡que Dios lo bendiga ricamente a través de este pequeño
-    sitio que existe para promover la gloria de Dios solamente!
-  </p>
-</section>
+---
+import ArrowRight from "./icons/ArrowRight.astro";
 
-<style>
-  h1 {
-    max-inline-size: 70vw;
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-7);
-    margin-top: var(--size-fluid-3);
-    line-height: var(--font-lineheight-1);
-    text-align: center;
-  }
-  p {
-    text-align: center;
-    max-inline-size: 80vw;
-    font-size: var(--font-size-base);
-  }
-</style>
+const figures = [
+  {
+    name: "Cornelius Van Til",
+    years: "1895–1987",
+    role: "Padre del presuposicionalismo",
+  },
+  {
+    name: "Greg L. Bahnsen",
+    years: "1948–1995",
+    role: "Apologista y filósofo",
+  },
+  { name: "John M. Frame", years: "1939–", role: "Teólogo y epistemólogo" },
+];
+---
+
+<section class="mx-auto max-w-6xl px-6 pt-16 pb-12 md:pt-28 md:pb-20">
+  <!-- Eyebrow -->
+  <div class="mb-6 flex items-center gap-3">
+    <div class="h-px w-8 bg-accent/40"></div>
+    <p class="text-xs font-bold tracking-[0.25em] text-muted uppercase">
+      Apologética Presuposicional
+    </p>
+  </div>
+
+  <!-- Headline: saltos de línea deliberados, sin depender del reflow automático -->
+  <h1
+    class="serif-text max-w-4xl text-4xl leading-[1.15] font-semibold tracking-tight text-foreground md:text-6xl lg:text-7xl"
+  >
+    <span class="block">¿Estás preparado para algo</span>
+    <span class="block italic text-accent/80">intelectualmente estimulante</span
+    >
+    <span class="block">y conmovedor para el alma?</span>
+  </h1>
+
+  <!-- Description -->
+  <p class="mt-7 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+    Este sitio está dedicado a promover literatura que suscribe una filosofía
+    distintivamente cristiana, enfocada en la metodología apologética del Dr.
+    Cornelius Van Til y sus estudiantes.
+  </p>
+
+  <!-- CTAs -->
+  <div class="mt-9 flex flex-wrap items-center gap-4">
+    <a
+      href="/blog/"
+      class="inline-flex items-center gap-2 rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition-opacity duration-200 hover:opacity-85"
+    >
+      Explorar artículos
+      <ArrowRight class="h-4 w-4" />
+    </a>
+    <a
+      href="/libros/"
+      class="inline-flex items-center gap-2 rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors duration-200 hover:border-foreground/40 hover:bg-surface"
+    >
+      Ver biblioteca
+    </a>
+  </div>
+
+  <!-- Key figures strip -->
+  <div
+    class="mt-12 flex flex-wrap gap-px overflow-hidden rounded-xl border border-border bg-border md:flex-nowrap"
+  >
+    {
+      figures.map((figure, i) => (
+        <div
+          class={`flex flex-1 flex-col gap-0.5 bg-surface px-5 py-4 min-w-[200px] ${i === 0 ? "rounded-l-xl" : ""} ${i === figures.length - 1 ? "rounded-r-xl" : ""}`}
+        >
+          <p class="text-xs font-medium tracking-widest text-muted uppercase">
+            {figure.years}
+          </p>
+          <p class="serif-text text-base font-semibold text-foreground">
+            {figure.name}
+          </p>
+          <p class="text-xs text-muted">{figure.role}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,184 +1,139 @@
 ---
 import { getCollection } from "astro:content";
-import Card from "./Card.astro";
-import ArrowLeft from "./ArrowLeft.astro";
-import ArrowRight from "./ArrowRight.astro";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import FormattedDate from "./FormattedDate.astro";
+import ArrowRight from "./icons/ArrowRight.astro";
+import { slugifyStr } from "@utils/slugify";
 
-const posts = (await getCollection("blog"))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 5);
+const allPosts = (await getCollection("blog"))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const featured = allPosts[0];
+const rest = allPosts.slice(1, 5);
+
+// Resolve images safely — never throws
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/coverblog/*.{jpeg,jpg,png,gif,webp}",
+);
+
+async function resolveImage(path: string | undefined) {
+  if (!path || !images[path]) return null;
+  return (await images[path]()).default;
+}
+
+const featuredImg = featured ? await resolveImage(featured.data.heroImage) : null;
+const restImgs = await Promise.all(rest.map((p) => resolveImage(p.data.heroImage)));
 ---
 
-<section class="blog-carousel">
-  <h2>Últimas entradas del Blog</h2>
-  <div class="carousel-wrapper">
-    <div class="carousel-viewport">
-      <div class="carousel-container">
-        {
-          posts.map((post) => (
-            <div class="carousel-item">
-              <Card
-                title={post.data.title}
-                description={post.data.description}
-                pubDate={post.data.pubDate}
-                heroImage={post.data.heroImage}
-                slug={post.slug}
-              />
+<section class="mx-auto max-w-6xl px-6 py-16 md:py-24">
+  <!-- Header -->
+  <div class="mb-10 flex items-end justify-between gap-4">
+    <div>
+      <div class="mb-3 flex items-center gap-3">
+        <div class="h-px w-8 bg-accent/40"></div>
+        <p class="text-xs font-bold tracking-[0.25em] text-muted uppercase">Blog</p>
+      </div>
+      <h2 class="serif-text text-3xl font-semibold text-foreground md:text-4xl">
+        Últimas entradas
+      </h2>
+    </div>
+    <a
+      href="/blog/"
+      class="group hidden shrink-0 items-center gap-1.5 text-sm font-medium text-foreground underline decoration-border underline-offset-4 transition-all hover:text-accent hover:decoration-accent md:inline-flex"
+    >
+      Ver todas
+      <ArrowRight class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+    </a>
+  </div>
+
+  <!-- Main grid -->
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-5 lg:grid-rows-1">
+
+    <!-- Featured post (large, 3 cols) -->
+    {featured && (
+      <article class="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface lg:col-span-3">
+        <!-- Image -->
+        <a href={`/blog/${slugifyStr(featured.data.title)}/`} class="relative block aspect-[16/9] overflow-hidden lg:aspect-auto lg:flex-1" tabindex="-1" aria-hidden="true">
+          {featuredImg ? (
+            <Image
+              src={featuredImg}
+              alt={featured.data.title}
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              widths={[800, 1200]}
+              sizes="(min-width: 1024px) 60vw, 100vw"
+            />
+          ) : (
+            <div class="flex h-full min-h-52 w-full items-center justify-center bg-muted/30">
+              <svg class="h-12 w-12 text-border" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 16l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-          ))
-        }
+          )}
+          <span class="absolute inset-0 bg-foreground/0 transition-colors duration-300 group-hover:bg-foreground/5"></span>
+        </a>
+
+        <!-- Content -->
+        <div class="flex flex-col gap-3 p-6 md:p-7">
+          <span class="text-[11px] font-semibold tracking-widest text-muted uppercase">
+            <FormattedDate date={featured.data.pubDate} />
+          </span>
+          <h3 class="serif-text text-xl font-semibold leading-snug text-foreground transition-colors duration-200 group-hover:text-accent md:text-2xl">
+            <a href={`/blog/${slugifyStr(featured.data.title)}/`}>{featured.data.title}</a>
+          </h3>
+          <p class="line-clamp-2 text-sm leading-relaxed text-muted">{featured.data.description}</p>
+          <a
+            href={`/blog/${slugifyStr(featured.data.title)}/`}
+            class="group/link mt-1 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-accent"
+          >
+            Leer artículo
+            <ArrowRight class="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5" />
+          </a>
+        </div>
+      </article>
+    )}
+
+    <!-- Secondary posts (2 cols, stacked) -->
+    <div class="flex flex-col gap-4 lg:col-span-2">
+      {rest.map((post, i) => (
+        <article class="group flex gap-4 overflow-hidden rounded-xl border border-border bg-surface p-4 transition-shadow duration-300 hover:shadow-sm">
+          <!-- Thumbnail -->
+          {restImgs[i] ? (
+            <a href={`/blog/${slugifyStr(post.data.title)}/`} class="relative block h-20 w-20 shrink-0 overflow-hidden rounded-lg" tabindex="-1" aria-hidden="true">
+              <Image
+                src={restImgs[i]!}
+                alt={post.data.title}
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                width={80}
+                height={80}
+              />
+            </a>
+          ) : (
+            <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg bg-muted/20">
+              <svg class="h-6 w-6 text-border" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          )}
+
+          <!-- Text -->
+          <div class="flex min-w-0 flex-col justify-center gap-1.5">
+            <span class="text-[10px] font-semibold tracking-widest text-muted uppercase">
+              <FormattedDate date={post.data.pubDate} />
+            </span>
+            <h3 class="serif-text line-clamp-2 text-sm font-semibold leading-snug text-foreground transition-colors duration-200 group-hover:text-accent">
+              <a href={`/blog/${slugifyStr(post.data.title)}/`}>{post.data.title}</a>
+            </h3>
+          </div>
+        </article>
+      ))}
+
+      <!-- Mobile "Ver todas" -->
+      <div class="mt-2 md:hidden">
+        <a
+          href="/blog/"
+          class="text-sm font-medium text-foreground underline decoration-border underline-offset-4 hover:text-accent hover:decoration-accent"
+        >
+          Ver todas las entradas →
+        </a>
       </div>
     </div>
-    <button class="carousel-button prev" aria-label="Anterior entrada del blog">
-      <ArrowLeft />
-    </button>
-    <button
-      class="carousel-button next"
-      aria-label="Siguiente entrada del blog"
-    >
-      <ArrowRight />
-    </button>
-  </div>
-  <div class="more-link">
-    <a href="/blog">Ver todas las entradas</a>
   </div>
 </section>
-
-<style>
-  .blog-carousel {
-    padding-top: var(--size-fluid-3);
-    padding-bottom: var(--size-fluid-3);
-  }
-
-  .blog-carousel h2 {
-    text-align: center;
-    margin-bottom: var(--size-fluid-3);
-    max-width: var(--size-header-3); /* Añadir un ancho máximo */
-    margin-left: auto; /* Centrar el bloque */
-    margin-right: auto; /* Centrar el bloque */
-  }
-
-  .carousel-wrapper {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .carousel-viewport {
-    overflow: hidden;
-  }
-
-  .carousel-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-
-  .carousel-item {
-    flex: 0 0 100%;
-    box-sizing: border-box;
-  }
-
-  .carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: hsl(var(--brand-hue) 10% 50% / 15%);
-    border: 1px solid var(--surface-3);
-    color: var(--text-1);
-    font-size: var(--font-size-lg); /* Usar tamaño fluido para el icono */
-    cursor: pointer;
-    border-radius: 40%;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s ease;
-  }
-
-  .carousel-button:hover {
-    background-color: var(--surface-3);
-  }
-
-  .carousel-button.prev {
-    left: -20px;
-  }
-
-  .carousel-button.next {
-    right: -20px;
-  }
-
-  @media (max-width: 940px) {
-    .carousel-container {
-      display: flex;
-      width: 90vw;
-      transition: transform 0.5s ease-in-out;
-    }
-    .carousel-button.prev {
-      left: 5px;
-    }
-    .carousel-button.next {
-      right: 5px;
-    }
-  }
-
-  .more-link {
-    text-align: center;
-    margin-top: var(--size-fluid-3);
-  }
-
-  .more-link a {
-    color: var(--text-1);
-    text-decoration: none;
-    font-weight: 500;
-    border-bottom: 2px solid var(--brand);
-    padding-bottom: var(--size-1);
-    transition:
-      color 0.2s ease-in-out,
-      border-color 0.2s ease-in-out;
-  }
-
-  .more-link a:hover {
-    color: var(--brand);
-  }
-</style>
-
-<script>
-  const carouselWrapper = document.querySelector(".carousel-wrapper");
-
-  if (carouselWrapper) {
-    const carouselContainer = carouselWrapper.querySelector(
-      ".carousel-container",
-    );
-    const prevButton = carouselWrapper.querySelector(".carousel-button.prev");
-    const nextButton = carouselWrapper.querySelector(".carousel-button.next");
-
-    if (carouselContainer && prevButton && nextButton) {
-      const items = carouselContainer.querySelectorAll(".carousel-item");
-      const totalItems = items.length;
-      let currentIndex = 0;
-
-      function updateCarousel() {
-        if (carouselContainer instanceof HTMLElement) {
-          carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-      }
-
-      prevButton.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-        updateCarousel();
-      });
-
-      nextButton.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % totalItems;
-        updateCarousel();
-      });
-
-      if (totalItems <= 1) {
-        if (prevButton instanceof HTMLElement)
-          prevButton.style.display = "none";
-        if (nextButton instanceof HTMLElement)
-          nextButton.style.display = "none";
-      }
-    }
-  }
-</script>

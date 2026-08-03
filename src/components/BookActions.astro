@@ -1,0 +1,20 @@
+---
+import Download from "./icons/Download.astro";
+
+interface Props {
+  downloadBook: string;
+}
+
+const { downloadBook } = Astro.props;
+---
+
+<div class="flex flex-col gap-4 max-w-[400px] mx-auto w-full">
+  <a
+    href={downloadBook}
+    target="_blank"
+    class="flex items-center justify-center gap-3 w-full h-12 bg-accent text-background rounded-lg shadow-md transition-all hover:opacity-90 active:scale-[0.98]"
+  >
+    <Download class="text-[20px]" />
+    <span class="text-base font-bold tracking-wide">Descargar libro</span>
+  </a>
+</div>
