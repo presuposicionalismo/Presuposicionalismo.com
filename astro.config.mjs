@@ -14,6 +14,10 @@ export default defineConfig({
 
   markdown: {
     remarkPlugins: [],
+    remarkRehype: {
+      footnoteLabel: "Notas",
+      footnoteBackLabel: "Volver a la referencia",
+    },
   },
 
   output: "server",

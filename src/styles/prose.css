@@ -46,4 +46,18 @@
 
   /* HR */
   @apply prose-hr:border-border;
+
+  /* Footnotes (GFM [^n] syntax) */
+  & :where(.footnotes) {
+    @apply mt-16 border-t border-border pt-8;
+  }
+  & :where(.footnotes) :where(ol) {
+    @apply text-sm text-muted;
+  }
+  & :where(.footnotes) :where(li) {
+    @apply leading-relaxed;
+  }
+  & :where(.footnotes) :where(a[data-footnote-backref]) {
+    @apply text-accent no-underline;
+  }
 }
