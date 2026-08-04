@@ -12,6 +12,7 @@ import ArticleHeader from "../components/ArticleHeader.astro";
 import ArrowLeft from "../components/icons/ArrowLeft.astro";
 import { resolveAuthors, formatAuthorNames } from "../utils/authors";
 import postFilter from "../utils/postFilter";
+import { getSeoDescription } from "../utils/seo";
 
 type Props = CollectionEntry<"blog">["data"] & {
   slug?: string;
@@ -21,6 +22,7 @@ type Props = CollectionEntry<"blog">["data"] & {
 const {
   title,
   description,
+  seoDescription,
   pubDate,
   updatedDate,
   heroImage,
@@ -29,6 +31,13 @@ const {
   headings,
   authors,
 } = Astro.props;
+
+// `description` es el resumen de contenido tal cual lo escribiste --
+// no se toca, sigue siendo lo que se muestra en el carrusel/destacados
+// del sitio. `metaDescription` es exclusivamente para el buscador/redes
+// (meta tag, Open Graph, JSON-LD): usa tu `seoDescription` manual si la
+// definiste, o un recorte automático si `description` es muy larga.
+const metaDescription = getSeoDescription(description, seoDescription);
 
 // Si el post tiene `authors` (traducción o extracto atribuible a alguien
 // real de /autores), resolvemos y mostramos su bio en vez de la voz
@@ -85,7 +94,7 @@ const blogPostingSchema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: title,
-  description,
+  description: metaDescription,
   image: [new URL(ogImage, Astro.site).toString()],
   datePublished: pubDate.toISOString(),
   dateModified: (updatedDate ?? pubDate).toISOString(),
@@ -141,7 +150,7 @@ const breadcrumbSchema = {
 
 <BaseLayout
   title={title}
-  description={description}
+  description={metaDescription}
   image={ogImage}
   type="article"
   structuredData={[blogPostingSchema, breadcrumbSchema]}

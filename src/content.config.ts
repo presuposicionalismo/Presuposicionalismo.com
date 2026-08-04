@@ -6,7 +6,16 @@ const blog = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
   schema: z.object({
     title: z.string(),
+    // Resumen del post: se muestra en el sitio (carrusel, destacados) y
+    // por defecto también alimenta la meta description/OG/JSON-LD. No
+    // hay límite de longitud a propósito -- es un resumen de contenido,
+    // no texto optimizado para el snippet de un buscador.
     description: z.string(),
+    // Opcional: versión corta (~150-160 caracteres) pensada específicamente
+    // para el snippet de Google/redes sociales. Si no se define, se usa
+    // un recorte automático de `description` (ver src/utils/seo.ts) en vez
+    // de dejar que el buscador la trunque donde quiera.
+    seoDescription: z.string().optional(),
     // Transform string to Date object
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
@@ -27,6 +36,10 @@ const libros = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    // Ver nota equivalente en la colección blog: opcional, ~150-160
+    // caracteres, para meta description/OG/JSON-LD. Sin esto, se recorta
+    // `description` automáticamente (src/utils/seo.ts).
+    seoDescription: z.string().optional(),
     // Slugs que referencian src/content/autores/*.mdx. Un libro puede
     // tener uno o varios autores/compiladores.
     authors: z.array(z.string()),

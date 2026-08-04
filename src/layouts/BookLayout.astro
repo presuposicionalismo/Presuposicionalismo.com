@@ -6,11 +6,20 @@ import BookActions from "../components/BookActions.astro";
 import BookDetails from "../components/BookDetails.astro";
 import BookInfoTabs from "../components/BookInfoTabs.astro";
 import { resolveAuthors, formatAuthorNames } from "@utils/authors";
+import { getSeoDescription } from "@utils/seo";
 
 type Props = CollectionEntry<"libros">["data"] & { slug?: string };
 
-const { title, description, pubDate, coverBook, downloadBook, slug, authors } =
-  Astro.props;
+const {
+  title,
+  description,
+  seoDescription,
+  pubDate,
+  coverBook,
+  downloadBook,
+  slug,
+  authors,
+} = Astro.props;
 
 const resolvedAuthors = await resolveAuthors(authors);
 const authorNames = formatAuthorNames(resolvedAuthors);
@@ -18,13 +27,17 @@ const authorNames = formatAuthorNames(resolvedAuthors);
 // Determine OG Image
 const ogImage = coverBook || "/Portada.png";
 
+// `description` completa se sigue mostrando tal cual en BookInfoTabs
+// ("Sobre el libro"); `metaDescription` es solo para meta tag/OG/JSON-LD.
+const metaDescription = getSeoDescription(description, seoDescription);
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const bookSchema = {
   "@context": "https://schema.org",
   "@type": "Book",
   name: title,
-  description,
+  description: metaDescription,
   url: canonicalURL.toString(),
   image: new URL(ogImage, Astro.site).toString(),
   author: resolvedAuthors.map((author) => ({
@@ -62,7 +75,7 @@ const breadcrumbSchema = {
 
 <BaseLayout
   title={title}
-  description={description}
+  description={metaDescription}
   image={ogImage}
   structuredData={[bookSchema, breadcrumbSchema]}
 >
