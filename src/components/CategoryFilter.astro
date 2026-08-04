@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import TagCommandMenu from "../lib/components/TagCommandMenu.svelte";
 
 interface Props {
@@ -7,8 +8,16 @@ interface Props {
 }
 
 const { tags, activeTag } = Astro.props;
+
+// Autores para la segunda sección del buscador ⌘K. Se calcula acá (en vez
+// de recibirlo como prop) porque es la misma lista site-wide sin importar
+// desde qué página (/blog, /blog/page/N o /tags/[tag]) se use este filtro.
+const allAuthors = await getCollection("autores");
+const authors = allAuthors
+  .map((author) => ({ name: author.data.name, slug: author.id }))
+  .sort((a, b) => a.name.localeCompare(b.name, "es"));
 ---
 
 <div class="mb-12">
-  <TagCommandMenu client:load tags={tags} activeTag={activeTag} />
+  <TagCommandMenu client:load tags={tags} activeTag={activeTag} authors={authors} />
 </div>

@@ -3,12 +3,18 @@
   import { Dialog, Command, ScrollArea } from "bits-ui";
   import { slugifyStr } from "@utils/slugify";
 
+  interface Author {
+    name: string;
+    slug: string;
+  }
+
   interface Props {
     tags: string[];
     activeTag?: string;
+    authors?: Author[];
   }
 
-  let { tags, activeTag }: Props = $props();
+  let { tags, activeTag, authors = [] }: Props = $props();
 
   let open = $state(false);
 
@@ -51,7 +57,7 @@
     <path d="M21 21l-6 -6" />
   </svg>
   <span class="flex-1 truncate text-left">
-    {activeTag ? `Etiqueta: ${activeTag}` : "Filtrar por etiqueta..."}
+    {activeTag ? `Etiqueta: ${activeTag}` : "Filtrar por etiqueta o autor..."}
   </span>
   <kbd
     class="hidden shrink-0 items-center gap-0.5 rounded border border-border bg-background px-1.5 py-0.5 text-[10px] font-medium text-muted sm:inline-flex"
@@ -66,9 +72,9 @@
     <Dialog.Content
       class="fixed left-1/2 top-24 z-[101] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 overflow-hidden rounded-xl border border-border bg-surface shadow-2xl"
     >
-      <Dialog.Title class="sr-only">Filtrar artículos por etiqueta</Dialog.Title>
+      <Dialog.Title class="sr-only">Filtrar artículos por etiqueta o autor</Dialog.Title>
       <Dialog.Description class="sr-only">
-        Buscá una etiqueta y presioná Enter para ver los artículos relacionados.
+        Buscá una etiqueta o un autor y presioná Enter para ir ahí.
       </Dialog.Description>
 
       <Command.Root class="flex flex-col">
@@ -89,7 +95,7 @@
             <path d="M21 21l-6 -6" />
           </svg>
           <Command.Input
-            placeholder="Buscar etiqueta..."
+            placeholder="Buscar etiqueta o autor..."
             class="w-full bg-transparent py-3.5 text-sm text-foreground placeholder:text-muted focus:outline-none"
           />
         </div>
@@ -98,10 +104,15 @@
           <ScrollArea.Root type="auto">
             <ScrollArea.Viewport class="max-h-80 p-2">
               <Command.Empty class="py-8 text-center text-sm text-muted">
-                No se encontró esa etiqueta.
+                No se encontró nada.
               </Command.Empty>
 
               <Command.Group>
+                <Command.GroupHeading
+                  class="px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-wider text-muted"
+                >
+                  Etiquetas
+                </Command.GroupHeading>
                 {#if activeTag}
                   <Command.LinkItem
                     href="/blog"
@@ -160,6 +171,41 @@
                   </Command.LinkItem>
                 {/each}
               </Command.Group>
+
+              {#if authors.length > 0}
+                <Command.Group>
+                  <Command.GroupHeading
+                    class="px-3 pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-muted"
+                  >
+                    Autores
+                  </Command.GroupHeading>
+                  {#each authors as author (author.slug)}
+                    <Command.LinkItem
+                      href={`/autores/${author.slug}`}
+                      onSelect={() => goTo(`/autores/${author.slug}`)}
+                      value={author.name}
+                      class="flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2.5 text-sm text-foreground data-[selected]:bg-accent/10 data-[selected]:text-accent"
+                    >
+                      <svg
+                        class="shrink-0 text-muted"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                      </svg>
+                      {author.name}
+                    </Command.LinkItem>
+                  {/each}
+                </Command.Group>
+              {/if}
             </ScrollArea.Viewport>
             <ScrollArea.Scrollbar
               orientation="vertical"
