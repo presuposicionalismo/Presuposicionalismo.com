@@ -11,6 +11,8 @@ Un archivo por categoría:
 
 Si aparece una categoría nueva (por ejemplo, algo de SEO, o de infraestructura de despliegue), se agrega su propio archivo aquí y se referencia en esta lista.
 
+Nota: además de esta carpeta de pendientes, `docs/libros/politica-de-contenido.md` documenta un estándar editorial (no una lista de pendientes) — el vocabulario fijo de módulos para el body de `/libros/[slug]` y sus reglas estructurales.
+
 ## Convención de cada entrada
 
 Cada pendiente debe indicar:

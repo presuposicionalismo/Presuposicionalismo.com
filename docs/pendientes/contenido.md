@@ -33,6 +33,27 @@ En `src/assets/coverblog/` quedan 4 imágenes reales (no placeholder) sin asigna
 
 **Detectado:** 2026-08-03
 
+## `description` incorrecta en "La apologética de Justino" (body vacío, sin fuente)
+
+`src/content/libros/La apologetica de Justino.mdx` tiene el body completamente
+vacío. Al aplicar la política de contenido de libros
+([`docs/libros/politica-de-contenido.md`](../libros/politica-de-contenido.md))
+se descubrió que su `description` del frontmatter es casi idéntica,
+palabra por palabra, a la de `Siempre Listos.mdx` ("Este libro es una
+compilación de varias de las obras publicadas por el Dr. Bahnsen sobre
+apologética cristiana..."), pero el autor real de este libro es
+"K. Oliphint & Edgar William", no Greg Bahnsen — es evidente que la
+`description` se copió por error del otro archivo y describe un libro
+distinto. No se usó como fuente para generar un `## Sobre el libro` de
+relleno (se prefiere un hueco documentado a un dato erróneo publicado).
+
+**Qué se necesita:** confirmar con el usuario de qué trata realmente el
+libro (título sugiere que es sobre la apologética de Justino Mártir),
+corregir la `description` del frontmatter, y luego sí completar el
+`## Sobre el libro`.
+
+**Detectado:** 2026-08-04
+
 ## Página de autores (planeada para la próxima iteración)
 
 El usuario mencionó que en la próxima iteración del sitio quiere dedicar una página a autores, con su propio campo en el frontmatter (`src/content.config.ts`, colección `blog`). Hoy no existe ese campo ni la página.

@@ -1,7 +1,12 @@
 <script>
-  export let type = "default"; // default, bible, poetry
+  export let type = "default"; // default, bible, poetry, testimonio
   export let author = "";
   export let reference = "";
+
+  // Computed (not literal template whitespace) so the build's HTML
+  // compressor can't trim it away like it does with a bare ", " sitting
+  // between two conditional blocks.
+  $: authorSeparator = author && reference ? ", " : "";
 </script>
 
 <div class="my-8 not-prose">
@@ -38,6 +43,37 @@
         </div>
       {/if}
     </div>
+  {:else if type === "testimonio"}
+    <!-- Testimonial card: endorsements / recommendations from third parties -->
+    <figure
+      class="relative rounded-2xl border border-border bg-surface p-8 shadow-sm md:p-10"
+    >
+      <span
+        aria-hidden="true"
+        class="serif-text absolute -top-3 left-6 text-7xl leading-none text-accent/25 select-none"
+        >&ldquo;</span
+      >
+      <blockquote class="relative">
+        <div
+          class="serif-text text-xl italic leading-relaxed text-foreground md:text-2xl"
+        >
+          <slot />
+        </div>
+      </blockquote>
+      {#if author || reference}
+        <figcaption
+          class="mt-6 flex items-start gap-3 border-t border-border pt-4 text-sm text-muted"
+        >
+          <span class="text-accent" aria-hidden="true">—</span>
+          <span class="not-italic">
+            {#if author}<span class="font-medium text-foreground"
+                >{author}</span
+              >{/if}{authorSeparator}{#if reference}<span>{reference}</span
+            >{/if}
+          </span>
+        </figcaption>
+      {/if}
+    </figure>
   {:else}
     <!-- Default Quote -->
     <blockquote
