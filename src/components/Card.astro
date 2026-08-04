@@ -32,6 +32,7 @@ const resolvedImg =
           class="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-full"
           widths={[400, 600]}
           sizes="(min-width: 768px) 18rem, 100vw"
+          transition:name={`coverblog ${title} image`}
         />
       ) : (
         <div class="flex h-52 w-full items-center justify-center bg-muted/20 md:h-full">

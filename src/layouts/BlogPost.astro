@@ -2,17 +2,13 @@
 import type { CollectionEntry } from "astro:content";
 import type { ImageMetadata } from "astro";
 import { Image, getImage } from "astro:assets";
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "./BaseLayout.astro";
 import ShareSidebar from "../components/ShareSidebar.astro";
 import AuthorCard from "../components/AuthorCard.astro";
 import RelatedArticles from "../components/RelatedArticles.astro";
 // import NewsletterCTA from "../components/NewsletterCTA.astro"; // Oculto por ahora, no se usa
 import ArticleHeader from "../components/ArticleHeader.astro";
 import ArrowLeft from "../components/icons/ArrowLeft.astro";
-import SpeedInsights from "@vercel/speed-insights/astro";
-import "../styles/global.css";
 
 type Props = CollectionEntry<"blog">["data"] & {
   slug?: string;
@@ -41,99 +37,89 @@ const ogImage = resolvedHeroImage
   : "/Portada.png";
 ---
 
-<html lang="es">
-  <head>
-    <BaseHead title={title} description={description} image={ogImage} />
-  </head>
+<BaseLayout title={title} description={description} image={ogImage}>
+  <!-- Scroll Progress Bar -->
+  <div class="fixed top-0 left-0 h-1 bg-accent z-[60]" id="progress-bar">
+  </div>
 
-  <body>
-    <!-- Scroll Progress Bar -->
-    <div class="fixed top-0 left-0 h-1 bg-accent z-[60]" id="progress-bar">
-    </div>
+  <!-- Main Content Area -->
+  <div class="flex flex-col items-center w-full pt-12 pb-24">
+    <!-- Article Container -->
+    <article class="w-full max-w-[800px] px-5 md:px-0 flex flex-col gap-10">
+      <!-- Article Header -->
+      <ArticleHeader title={title} pubDate={pubDate} tags={tags} />
 
-    <Header />
+      <!-- Featured Image -->
+      {
+        resolvedHeroImage && (
+          <figure class="w-full">
+            <div class="w-full aspect-[21/9] bg-surface rounded-lg overflow-hidden relative">
+              <Image
+                src={resolvedHeroImage}
+                alt={title}
+                class="w-full h-full object-cover"
+                widths={[600, 900, 1200]}
+                sizes="(min-width: 800px) 800px, 100vw"
+                transition:name={`coverblog ${title} image`}
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+          </figure>
+        )
+      }
 
-    <!-- Main Content Area -->
-    <main class="flex flex-col items-center w-full pt-12 pb-24">
-      <!-- Article Container -->
-      <article class="w-full max-w-[800px] px-5 md:px-0 flex flex-col gap-10">
-        <!-- Article Header -->
-        <ArticleHeader title={title} pubDate={pubDate} tags={tags} />
+      <!-- Body Layout Wrapper -->
+      <div class="relative w-full">
+        <!-- Floating Sidebar (Desktop) -->
+        <ShareSidebar title={title} headings={headings} />
 
-        <!-- Featured Image -->
-        {
-          resolvedHeroImage && (
-            <figure class="w-full">
-              <div class="w-full aspect-[21/9] bg-surface rounded-lg overflow-hidden relative">
-                <Image
-                  src={resolvedHeroImage}
-                  alt={title}
-                  class="w-full h-full object-cover"
-                  widths={[600, 900, 1200]}
-                  sizes="(min-width: 800px) 800px, 100vw"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-              </div>
-            </figure>
-          )
-        }
-
-        <!-- Body Layout Wrapper -->
-        <div class="relative w-full">
-          <!-- Floating Sidebar (Desktop) -->
-          <ShareSidebar title={title} headings={headings} />
-
-          <!-- Typography Content -->
-          <div class="prose-content">
-            <slot />
-          </div>
+        <!-- Typography Content -->
+        <div class="prose-content">
+          <slot />
         </div>
+      </div>
 
-        <!-- Footer Section of Article -->
-        <footer class="mt-16 flex flex-col gap-16">
-          <!-- Divider -->
-          <div class="w-full h-px bg-border"></div>
+      <!-- Footer Section of Article -->
+      <footer class="mt-16 flex flex-col gap-16">
+        <!-- Divider -->
+        <div class="w-full h-px bg-border"></div>
 
-          <!-- Author Bio -->
-          <AuthorCard />
+        <!-- Author Bio -->
+        <AuthorCard />
 
-          <!-- Related Articles -->
-          <RelatedArticles />
+        <!-- Related Articles -->
+        <RelatedArticles />
 
-          <!-- Newsletter CTA — oculto por ahora, no se usa -->
-          <!-- <NewsletterCTA /> -->
+        <!-- Newsletter CTA — oculto por ahora, no se usa -->
+        <!-- <NewsletterCTA /> -->
 
-          <!-- Back to Blog Link -->
-          <div class="text-center">
-            <a
-              href="/blog"
-              class="inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
-            >
-              <ArrowLeft class="text-[18px]" />
-              Volver al blog
-            </a>
-          </div>
-        </footer>
-      </article>
-    </main>
+        <!-- Back to Blog Link -->
+        <div class="text-center">
+          <a
+            href="/blog"
+            class="inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
+          >
+            <ArrowLeft class="text-[18px]" />
+            Volver al blog
+          </a>
+        </div>
+      </footer>
+    </article>
+  </div>
 
-    <Footer />
-    <SpeedInsights />
-
-    <!-- Scroll Progress Script -->
-    <script is:inline>
-      window.addEventListener("scroll", function () {
-        let winScroll =
-          document.body.scrollTop || document.documentElement.scrollTop;
-        let height =
-          document.documentElement.scrollHeight -
-          document.documentElement.clientHeight;
-        let scrolled = (winScroll / height) * 100;
-        const progressBar = document.getElementById("progress-bar");
-        if (progressBar) {
-          progressBar.style.width = scrolled + "%";
-        }
-      });
-    </script>
-  </body>
-</html>
+  <!-- Scroll Progress Script -->
+  <script is:inline>
+    window.addEventListener("scroll", function () {
+      let winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      let height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      let scrolled = (winScroll / height) * 100;
+      const progressBar = document.getElementById("progress-bar");
+      if (progressBar) {
+        progressBar.style.width = scrolled + "%";
+      }
+    });
+  </script>
+</BaseLayout>

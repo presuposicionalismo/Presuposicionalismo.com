@@ -23,6 +23,7 @@ const postUrl = `/blog/${slugifyStr(post.data.title)}/`;
         imagePath={String(post.data.heroImage)}
         altText={post.data.title}
         class="w-full h-full object-cover grayscale opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+        transitionName={`coverblog ${post.data.title} image`}
       />
     </a>
   </div>
