@@ -1,12 +1,14 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import CoverBook from "./CoverBook.astro";
+import { resolveAuthors, formatAuthorNames } from "@utils/authors";
 
 interface Props {
   book: CollectionEntry<"libros">;
 }
 
 const { book } = Astro.props;
+const authors = await resolveAuthors(book.data.authors);
 ---
 
 <article class="group relative flex flex-col h-full">
@@ -37,7 +39,7 @@ const { book } = Astro.props;
         {book.data.title}
       </h3>
       <p class="text-sm text-muted font-medium uppercase tracking-wide">
-        {book.data.author}
+        {formatAuthorNames(authors)}
       </p>
     </div>
   </a>

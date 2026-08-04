@@ -41,11 +41,13 @@ vacío. Al aplicar la política de contenido de libros
 se descubrió que su `description` del frontmatter es casi idéntica,
 palabra por palabra, a la de `Siempre Listos.mdx` ("Este libro es una
 compilación de varias de las obras publicadas por el Dr. Bahnsen sobre
-apologética cristiana..."), pero el autor real de este libro es
-"K. Oliphint & Edgar William", no Greg Bahnsen — es evidente que la
-`description` se copió por error del otro archivo y describe un libro
-distinto. No se usó como fuente para generar un `## Sobre el libro` de
-relleno (se prefiere un hueco documentado a un dato erróneo publicado).
+apologética cristiana..."), pero los autores reales de este libro son
+K. Scott Oliphint y William Edgar (ya migrados a `authors:
+["k-scott-oliphint", "william-edgar"]` y con perfil propio en
+`/autores/`), no Greg Bahnsen — es evidente que la `description` se
+copió por error del otro archivo y describe un libro distinto. No se
+usó como fuente para generar un `## Sobre el libro` de relleno (se
+prefiere un hueco documentado a un dato erróneo publicado).
 
 **Qué se necesita:** confirmar con el usuario de qué trata realmente el
 libro (título sugiere que es sobre la apologética de Justino Mártir),
@@ -54,10 +56,18 @@ corregir la `description` del frontmatter, y luego sí completar el
 
 **Detectado:** 2026-08-04
 
-## Página de autores (planeada para la próxima iteración)
+## Biografía de José Ángel Ramírez sin verificar
 
-El usuario mencionó que en la próxima iteración del sitio quiere dedicar una página a autores, con su propio campo en el frontmatter (`src/content.config.ts`, colección `blog`). Hoy no existe ese campo ni la página.
+`src/content/autores/jose-angel-ramirez.mdx` quedó con una bio mínima: no
+se encontró ninguna fuente pública (biografía, perfil institucional,
+entrevista) sobre esta persona al investigar el resto del roster de
+autores vía WebSearch. Todo lo que dice la página son datos que ya
+teníamos por nuestra propia biblioteca (coautor de "Un Glosario de Van
+Til", autor de "Revelación, Teología Natural...").
 
-**Qué se necesita:** diseñar el campo de frontmatter (¿string simple? ¿referencia a una colección `autores`?) y la página en sí. Sin acción por ahora — queda anotado para cuando se retome.
+**Qué se necesita:** el usuario probablemente lo conoce directamente
+(o tiene acceso a una bio que el propio autor haya provisto) — pedirle
+nacionalidad, formación, rol/afiliación institucional para completar el
+perfil.
 
-**Detectado:** 2026-08-03
+**Detectado:** 2026-08-04

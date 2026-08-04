@@ -1,0 +1,113 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import MainLayout from "@layouts/BaseLayout.astro";
+import BookCard from "@components/BookCard.astro";
+import PostGridItem from "@components/PostGridItem.astro";
+import User from "@components/icons/User.astro";
+import postFilter from "@utils/postFilter";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const authors = await getCollection("autores");
+  return authors.map((author) => ({
+    params: { slug: author.id },
+  }));
+}
+
+const { slug } = Astro.params;
+const author = await getEntry("autores", slug!);
+
+if (!author) {
+  return Astro.redirect("/autores", 404);
+}
+
+const { Content } = await render(author);
+
+const allBooks = await getCollection("libros");
+const books = allBooks.filter((book) => book.data.authors.includes(slug!));
+
+const relatedPosts = author.data.tag
+  ? (await getCollection("blog", postFilter))
+      .filter((post) => post.data.tags?.includes(author.data.tag!))
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  : [];
+---
+
+<MainLayout title={author.data.name} description={author.data.role}>
+  <main class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+    <!-- Header -->
+    <div class="mb-4">
+      <a
+        href="/autores"
+        class="text-sm font-medium text-muted hover:text-accent transition-colors"
+        >← Autores</a
+      >
+    </div>
+    <section
+      class="mb-16 flex flex-col items-start gap-6 sm:flex-row sm:items-center"
+    >
+      {
+        author.data.photo ? (
+          <img
+            src={author.data.photo}
+            alt={author.data.name}
+            class="h-24 w-24 shrink-0 rounded-full object-cover ring-2 ring-border shadow-md"
+          />
+        ) : (
+          <div class="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-muted/20 ring-2 ring-border shadow-md">
+            <User class="text-5xl text-muted" />
+          </div>
+        )
+      }
+      <div>
+        <h1
+          class="serif-text text-4xl md:text-5xl font-medium text-accent leading-tight"
+        >
+          {author.data.name}
+        </h1>
+        <p class="mt-2 text-lg text-muted">
+          {author.data.role}
+          {author.data.dates && ` · ${author.data.dates}`}
+        </p>
+      </div>
+    </section>
+
+    <!-- Bio -->
+    <article class="prose-content max-w-none mb-16">
+      <Content />
+    </article>
+
+    <!-- Libros de este autor -->
+    {
+      books.length > 0 && (
+        <section class="mb-16">
+          <h2 class="serif-text text-2xl font-semibold text-foreground mb-6">
+            Libros en la biblioteca
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {books.map((book) => (
+              <BookCard book={book} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Posts del blog relacionados -->
+    {
+      relatedPosts.length > 0 && (
+        <section>
+          <h2 class="serif-text text-2xl font-semibold text-foreground mb-6">
+            Artículos relacionados en el blog
+          </h2>
+          <div class="grid md:grid-cols-2 gap-x-8 gap-y-12">
+            {relatedPosts.map((post) => (
+              <PostGridItem post={post} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </main>
+</MainLayout>

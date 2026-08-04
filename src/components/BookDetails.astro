@@ -1,11 +1,12 @@
 ---
 interface Props {
   title: string;
-  author: string;
+  authorNames: string;
   category?: string;
 }
 
-const { title, author, category = "Apologética Reformada" } = Astro.props;
+const { title, authorNames, category = "Apologética Reformada" } =
+  Astro.props;
 ---
 
 <div class="flex flex-col">
@@ -39,8 +40,12 @@ const { title, author, category = "Apologética Reformada" } = Astro.props;
   >
     {title}
   </h1>
-  <div class="mb-2 flex items-center gap-2">
-    <span class="text-muted italic">por</span>
-    <span class="text-xl text-accent font-medium">{author}</span>
-  </div>
+  {
+    authorNames && (
+      <div class="mb-2 flex items-center gap-2">
+        <span class="text-muted italic">por</span>
+        <span class="text-xl text-accent font-medium">{authorNames}</span>
+      </div>
+    )
+  }
 </div>

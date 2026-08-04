@@ -2,12 +2,18 @@
 import { getCollection } from "astro:content";
 import CoverBook from "./CoverBook.astro";
 import ArrowRight from "./icons/ArrowRight.astro";
+import { resolveAuthors, formatAuthorNames } from "@utils/authors";
 
 const allBooks = (await getCollection("libros")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-const featuredBooks = allBooks.slice(0, 4);
+const featuredBooks = await Promise.all(
+  allBooks.slice(0, 4).map(async (book) => ({
+    book,
+    authorNames: formatAuthorNames(await resolveAuthors(book.data.authors)),
+  })),
+);
 ---
 
 <section class="mx-auto max-w-6xl px-6 pb-20 md:pb-28">
@@ -37,7 +43,7 @@ const featuredBooks = allBooks.slice(0, 4);
   <!-- Grid -->
   <div class="grid grid-cols-2 gap-5 sm:grid-cols-4">
     {
-      featuredBooks.map((book) => (
+      featuredBooks.map(({ book, authorNames }) => (
         <article class="group flex flex-col gap-3">
           <!-- Cover -->
           <a
@@ -54,9 +60,9 @@ const featuredBooks = allBooks.slice(0, 4);
 
           <!-- Info -->
           <div class="flex flex-col gap-1 px-0.5">
-            {book.data.author && (
+            {authorNames && (
               <p class="text-[10px] font-semibold tracking-widest text-muted uppercase truncate">
-                {book.data.author}
+                {authorNames}
               </p>
             )}
             <a href={`/libros/${book.id}/`}>

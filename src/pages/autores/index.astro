@@ -1,0 +1,68 @@
+---
+import MainLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import User from "@components/icons/User.astro";
+
+export const prerender = true;
+
+const authors = (await getCollection("autores")).sort((a, b) =>
+  a.data.name.localeCompare(b.data.name, "es"),
+);
+---
+
+<MainLayout
+  title="Autores"
+  description="Los teólogos, filósofos y apologistas cuyas obras y pensamiento nutren este sitio."
+>
+  <main class="max-w-7xl mx-auto px-6 py-20">
+    <section class="text-center mb-20">
+      <h1
+        class="serif-text text-5xl md:text-6xl font-medium text-accent mb-6 leading-tight"
+      >
+        Autores
+      </h1>
+      <p class="text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+        Los teólogos, filósofos y apologistas cuyas obras y pensamiento
+        nutren este sitio.
+      </p>
+    </section>
+
+    <section
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+    >
+      {
+        authors.map((author) => (
+          <a
+            href={`/autores/${author.id}/`}
+            class="group flex flex-col gap-4 rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md"
+          >
+            <div class="flex items-center gap-4">
+              {author.data.photo ? (
+                <img
+                  src={author.data.photo}
+                  alt={author.data.name}
+                  class="h-14 w-14 shrink-0 rounded-full object-cover ring-2 ring-border"
+                />
+              ) : (
+                <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-muted/20 ring-2 ring-border">
+                  <User class="text-2xl text-muted" />
+                </div>
+              )}
+              <div class="min-w-0">
+                <h2 class="serif-text text-lg font-semibold leading-tight text-accent transition-colors group-hover:text-primary">
+                  {author.data.name}
+                </h2>
+                {author.data.dates && (
+                  <p class="text-xs text-muted">{author.data.dates}</p>
+                )}
+              </div>
+            </div>
+            <p class="text-sm leading-relaxed text-muted line-clamp-3">
+              {author.data.role}
+            </p>
+          </a>
+        ))
+      }
+    </section>
+  </main>
+</MainLayout>

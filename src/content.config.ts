@@ -22,12 +22,31 @@ const libros = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    author: z.string(),
+    // Slugs que referencian src/content/autores/*.mdx. Un libro puede
+    // tener uno o varios autores/compiladores.
+    authors: z.array(z.string()),
     // Transform string to Date object
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     coverBook: z.string().optional(),
     downloadBook: z.string(),
+  }),
+});
+
+const autores = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/autores" }),
+  schema: z.object({
+    name: z.string(),
+    // Frase corta: rol/aporte principal (ej. "Teólogo reformado, padre
+    // del apologética presuposicional").
+    role: z.string(),
+    // Ej. "1895–1987". Texto libre porque a veces solo se conoce el año.
+    dates: z.string().optional(),
+    // Slug de un tag ya existente en src/content/blog (ver taxonomía de
+    // etiquetas) para poder listar posts del blog relacionados con este
+    // autor sin tener que anotar cada post individualmente.
+    tag: z.string().optional(),
+    photo: z.string().optional(),
   }),
 });
 
@@ -49,4 +68,5 @@ export const collections = {
   blog: blog,
   libros: libros,
   clases: clases,
+  autores: autores,
 };
