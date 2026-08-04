@@ -31,25 +31,28 @@ const ogImage = new URL(image, Astro.url);
     return "light";
   })();
 
-  if (theme === "light") {
-    document.documentElement.classList.remove("dark");
-    document.documentElement.setAttribute("data-theme", "light");
-  } else {
-    document.documentElement.classList.add("dark");
-    document.documentElement.setAttribute("data-theme", "dark");
+  function applyTheme(doc, value) {
+    if (value === "light") {
+      doc.documentElement.classList.remove("dark");
+      doc.documentElement.setAttribute("data-theme", "light");
+    } else {
+      doc.documentElement.classList.add("dark");
+      doc.documentElement.setAttribute("data-theme", "dark");
+    }
   }
+
+  applyTheme(document, theme);
   window.localStorage.setItem("theme", theme);
 
-  // Preserve theme during View Transitions
-  document.addEventListener("astro:after-swap", () => {
+  // Preserve theme across View Transitions WITHOUT a flash: apply it to
+  // the incoming document during astro:before-swap, which runs while the
+  // browser is still showing a snapshot of the old page. Fixing the theme
+  // up afterwards (astro:after-swap / astro:page-load) is too late --
+  // the browser already paints the new document with its default (light)
+  // theme for a frame first, which is the flash we were seeing.
+  document.addEventListener("astro:before-swap", (event) => {
     const savedTheme = localStorage.getItem("theme") || "light";
-    if (savedTheme === "dark") {
-      document.documentElement.classList.add("dark");
-      document.documentElement.setAttribute("data-theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.setAttribute("data-theme", "light");
-    }
+    applyTheme(event.newDocument, savedTheme);
   });
 </script>
 <!-- Global Metadata -->
