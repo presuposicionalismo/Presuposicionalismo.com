@@ -60,7 +60,7 @@ const restImgs = await Promise.all(rest.map((p) => resolveImage(p.data.heroImage
             <Image
               src={featuredImg}
               alt={featured.data.title}
-              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              class="h-full w-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-105"
               widths={[800, 1200]}
               sizes="(min-width: 1024px) 60vw, 100vw"
               transition:name={`coverblog ${featured.data.title} image`}
@@ -103,7 +103,7 @@ const restImgs = await Promise.all(rest.map((p) => resolveImage(p.data.heroImage
               <Image
                 src={restImgs[i]!}
                 alt={post.data.title}
-                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                class="h-full w-full object-cover rounded-lg transition-transform duration-500 group-hover:scale-105"
                 width={80}
                 height={80}
                 transition:name={`coverblog ${post.data.title} image`}

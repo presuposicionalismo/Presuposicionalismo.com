@@ -47,8 +47,8 @@ const featuredBooks = allBooks.slice(0, 4);
             <CoverBook
               imagePath={String(book.data.coverBook)}
               altText={book.data.title}
-              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              transition:name={`coverbook ${book.data.title} image`}
+              class="h-full w-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
+              transitionName={`coverbook ${book.data.title} image`}
             />
           </a>
 
