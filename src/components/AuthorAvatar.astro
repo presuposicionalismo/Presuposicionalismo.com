@@ -1,4 +1,6 @@
 ---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 import { getInitials } from "@utils/authors";
 
 interface Props {
@@ -15,13 +17,30 @@ const sizeClasses = {
   md: "h-20 w-20 text-xl",
   lg: "h-28 w-28 text-3xl",
 }[size];
+
+// Matches the pixel size behind each Tailwind size class above, so the
+// optimized image is requested at (roughly) its real display size.
+const pixelSize = { sm: 96, md: 160, lg: 224 }[size];
+
+// Same resolution pattern as CoverBlog.astro / CoverBook.astro: a raw
+// <img src="/src/assets/..."> only works in the dev server (Vite serves
+// anything under src/ on request) -- the static build never copies
+// unimported src/ files into dist/, so it 404s there. import.meta.glob
+// + astro:assets Image resolves and optimizes it correctly at build time.
+const photos = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/autores/*.{jpeg,jpg,png,webp}",
+);
+const resolvedPhoto =
+  photo && photos[photo] ? (await photos[photo]()).default : null;
 ---
 
 {
-  photo ? (
-    <img
-      src={photo}
+  resolvedPhoto ? (
+    <Image
+      src={resolvedPhoto}
       alt={name}
+      width={pixelSize}
+      height={pixelSize}
       class={`${sizeClasses} shrink-0 rounded-full object-cover ring-2 ring-border shadow-md ${className}`}
     />
   ) : (
