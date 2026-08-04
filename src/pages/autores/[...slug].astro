@@ -32,9 +32,48 @@ const relatedPosts = author.data.tag
       .filter((post) => post.data.tags?.includes(author.data.tag!))
       .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   : [];
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: author.data.name,
+  description: author.data.role,
+  url: canonicalURL.toString(),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Inicio",
+      item: new URL("/", Astro.site).toString(),
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Autores",
+      item: new URL("/autores", Astro.site).toString(),
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: author.data.name,
+      item: canonicalURL.toString(),
+    },
+  ],
+};
 ---
 
-<MainLayout title={author.data.name} description={author.data.role}>
+<MainLayout
+  title={author.data.name}
+  description={author.data.role}
+  structuredData={[personSchema, breadcrumbSchema]}
+>
   <main class="max-w-5xl mx-auto px-6 py-16 md:py-20">
     <!-- Header -->
     <div class="mb-4">

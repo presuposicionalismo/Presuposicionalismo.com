@@ -7,6 +7,7 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  type?: "website" | "article";
 }
 
 //  <ViewTransitions >
@@ -14,7 +15,12 @@ import { ClientRouter } from "astro:transitions";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = "/Portada.png" } = Astro.props;
+const {
+  title,
+  description,
+  image = "/Portada.png",
+  type = "website",
+} = Astro.props;
 const ogImage = new URL(image, Astro.url);
 ---
 
@@ -74,8 +80,8 @@ const ogImage = new URL(image, Astro.url);
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
-<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- <ViewTransitions > -->
@@ -90,8 +96,8 @@ const ogImage = new URL(image, Astro.url);
 <meta name="description" content={description} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
