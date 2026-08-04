@@ -4,9 +4,10 @@ import CoverBook from "./CoverBook.astro";
 interface Props {
   coverBook: string;
   title: string;
+  transitionName?: string;
 }
 
-const { coverBook, title } = Astro.props;
+const { coverBook, title, transitionName } = Astro.props;
 ---
 
 <div
@@ -20,6 +21,7 @@ const { coverBook, title } = Astro.props;
       imagePath={String(coverBook)}
       altText={title}
       class="w-full h-full object-cover rounded-r-md"
+      transitionName={transitionName}
     />
     <!-- Spine effect -->
     <div

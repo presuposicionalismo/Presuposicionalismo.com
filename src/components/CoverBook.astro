@@ -7,9 +7,16 @@ interface Props {
   altText: string;
   loading?: "lazy" | "eager";
   class?: string;
+  transitionName?: string;
 }
 
-const { imagePath, altText, loading = "lazy", class: className } = Astro.props;
+const {
+  imagePath,
+  altText,
+  loading = "lazy",
+  class: className,
+  transitionName,
+} = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/coverbook/*.{jpeg,jpg,png,gif,webp}",
 );
@@ -24,4 +31,5 @@ if (!images[imagePath])
   alt={altText}
   class={className}
   loading={loading}
+  transition:name={transitionName}
 />
