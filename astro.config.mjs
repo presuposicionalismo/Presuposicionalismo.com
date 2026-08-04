@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import { unified } from "@astrojs/markdown-remark";
+import { satteri } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
@@ -14,10 +14,14 @@ export default defineConfig({
   integrations: [mdx(), svelte(), sitemap()],
 
   markdown: {
-    processor: unified({
-      remarkRehype: {
-        footnoteLabel: "Notas",
-        footnoteBackLabel: "Volver a la referencia",
+    processor: satteri({
+      features: {
+        gfm: {
+          footnotes: {
+            label: "Notas",
+            backLabel: "Volver a la referencia",
+          },
+        },
       },
     }),
   },
