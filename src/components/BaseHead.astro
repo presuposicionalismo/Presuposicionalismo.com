@@ -53,6 +53,22 @@ const ogImage = new URL(image, Astro.url);
   document.addEventListener("astro:before-swap", (event) => {
     const savedTheme = localStorage.getItem("theme") || "light";
     applyTheme(event.newDocument, savedTheme);
+
+    // Same flash, different culprit: the "design-system" skin (theme-ledger,
+    // theme-grabado...) is applied to <body> only by ThemeSwitcher.svelte's
+    // onMount, which runs after the swap has already painted the new page
+    // with no skin class for a frame. That's invisible for theme-ledger
+    // (close to the default look) but very visible for theme-grabado
+    // (aged-paper palette, high contrast with the default). Reapply it here
+    // too, before the swap paints, exactly like the dark/light fix above.
+    const savedDesign = localStorage.getItem("design-system");
+    if (savedDesign) {
+      const newBody = event.newDocument.body;
+      Array.from(newBody.classList).forEach((c) => {
+        if (c.startsWith("theme-")) newBody.classList.remove(c);
+      });
+      newBody.classList.add(savedDesign);
+    }
   });
 </script>
 <!-- Global Metadata -->
