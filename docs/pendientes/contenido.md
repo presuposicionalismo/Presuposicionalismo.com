@@ -56,18 +56,65 @@ corregir la `description` del frontmatter, y luego sí completar el
 
 **Detectado:** 2026-08-04
 
-## Biografía de José Ángel Ramírez sin verificar
+## Biografía de José Ángel Ramírez — resuelta
 
-`src/content/autores/jose-angel-ramirez.mdx` quedó con una bio mínima: no
-se encontró ninguna fuente pública (biografía, perfil institucional,
-entrevista) sobre esta persona al investigar el resto del roster de
-autores vía WebSearch. Todo lo que dice la página son datos que ya
-teníamos por nuestra propia biblioteca (coautor de "Un Glosario de Van
-Til", autor de "Revelación, Teología Natural...").
+~~Bio mínima, sin fuente pública verificable.~~ Al investigar la
+atribución de autoría real del blog se encontró que dos posts
+("La Creación Bajo Ataque" y "Charles Hodge: Un Proto-Presuposicionalista")
+incluyen una bio en primera persona del propio Ramírez ("Lic. en estudios
+teológicos del Miami International Seminary. Presbítero gobernante para
+la Iglesia Betania de la Reforma..."). Se incorporó a
+`src/content/autores/jose-angel-ramirez.mdx`.
 
-**Qué se necesita:** el usuario probablemente lo conoce directamente
-(o tiene acceso a una bio que el propio autor haya provisto) — pedirle
-nacionalidad, formación, rol/afiliación institucional para completar el
-perfil.
+**Detectado:** 2026-08-04 · **Resuelto:** 2026-08-04
+
+## Atribución de autoría real en el blog (traducciones)
+
+Se agregó el campo opcional `authors` (slugs de `/autores`) al schema del
+blog y se enlazó `BlogPost.astro`/`AuthorCard` para mostrar la bio real
+del autor cuando el post lo tiene, en vez de la voz genérica del equipo.
+Se confirmaron y marcaron 28 posts que citan explícitamente a su autor
+(un "Por: ..." o "Sobre el autor" al inicio o cierre del cuerpo) y que
+ya tienen perfil en `/autores`: la mayoría de la serie "respuesta a Dr.
+Fesko" y varios ensayos sueltos de James N. Anderson, varios extractos
+de Greg Bahnsen, Cornelius Van Til, John Frame, K. Scott Oliphint,
+William Edgar y José Ángel Ramírez.
+
+Al hacer ese barrido completo del blog se encontraron **otros posts con
+un "Por: ..." igual de explícito, pero de autores que todavía no
+existen en `/autores`**. Se dejaron con la voz editorial genérica
+porque agregar su perfil implica investigar y redactar su bio (una
+decisión de contenido más grande que esta tarea):
+
+- **Vern S. Poythress** — 4 posts: "Los Milagros de Cristo", "Acercándose
+  a los «Problemas» Bíblicos", "La Biblia y la Ciencia", "Instrucción
+  Divina versus Autonomía". Ya existe el tag `poythress` (7 posts), así
+  que sería un autor con perfil propio bien justificado.
+- **José Grau** — "Las actitudes Liberales y Neo-Ortodoxa frente a la
+  Revelación".
+- **John B. King Jr.** — "Una Metafísica Trinitaria de la Predestinación
+  y Libertad Humana".
+- **Mike Robinson** — "Greg Bahnsen: Epistemología y Ontología".
+- **Stephen C. Perks** — "La Base Epistemológica de la Fe Cristiana".
+- **Rev. P. Andrew Sandlin** — "La soberanía de Dios y la apologética".
+- **Rev. Brian M. Abshire** — "Razón Evidencia y Apologética
+  Presuposicional".
+- **Joseph P. Braswell** — "La Filosofía de Gordon Clark".
+- **Dr. Gary Demar** — "¿Debe Pedir Disculpas el Apologista por lo que
+  Cree?".
+- **Eric Svendsen** — "¿30.000 denominaciones protestantes?".
+
+También quedó sin atribuir, por prudencia, **"La Controversia Gordon
+Clark y Cornelius Van Til"**: cita a "Jared Moore" a media página en un
+post largo y compuesto de varias fuentes, así que no está claro que sea
+autoría única de todo el post (a diferencia de los 28 casos ya
+atribuidos, donde el "Por:" aparece al inicio/cierre del cuerpo como
+firma de la pieza completa).
+
+**Qué se necesita:** decidir si se amplía el roster de `/autores` con
+alguno de estos nombres (Poythress es el candidato más claro dado el
+volumen de contenido suyo ya en el sitio) y, si es así, investigar y
+redactar su bio siguiendo el mismo proceso usado para los 12 autores
+actuales.
 
 **Detectado:** 2026-08-04

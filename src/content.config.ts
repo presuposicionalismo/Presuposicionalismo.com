@@ -14,6 +14,11 @@ const blog = defineCollection({
     draft: z.boolean().optional(),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).optional(),
+    // Slugs que referencian src/content/autores/*.mdx, para posts que son
+    // traducciones o extractos atribuibles a un autor real específico (a
+    // diferencia de un post genuinamente redactado por el equipo del
+    // sitio, que no lleva este campo y usa la voz editorial genérica).
+    authors: z.array(z.string()).optional(),
   }),
 });
 
