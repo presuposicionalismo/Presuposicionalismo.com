@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
@@ -13,11 +14,12 @@ export default defineConfig({
   integrations: [mdx(), svelte(), sitemap()],
 
   markdown: {
-    remarkPlugins: [],
-    remarkRehype: {
-      footnoteLabel: "Notas",
-      footnoteBackLabel: "Volver a la referencia",
-    },
+    processor: unified({
+      remarkRehype: {
+        footnoteLabel: "Notas",
+        footnoteBackLabel: "Volver a la referencia",
+      },
+    }),
   },
 
   output: "server",
