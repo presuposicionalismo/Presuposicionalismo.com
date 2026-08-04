@@ -1,7 +1,7 @@
 ---
 import MainLayout from "@layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import User from "@components/icons/User.astro";
+import AuthorAvatar from "@components/AuthorAvatar.astro";
 
 export const prerender = true;
 
@@ -34,20 +34,15 @@ const authors = (await getCollection("autores")).sort((a, b) =>
         authors.map((author) => (
           <a
             href={`/autores/${author.id}/`}
-            class="group flex flex-col gap-4 rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md"
+            class="group flex flex-col gap-4 rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
           >
             <div class="flex items-center gap-4">
-              {author.data.photo ? (
-                <img
-                  src={author.data.photo}
-                  alt={author.data.name}
-                  class="h-14 w-14 shrink-0 rounded-full object-cover ring-2 ring-border"
-                />
-              ) : (
-                <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-muted/20 ring-2 ring-border">
-                  <User class="text-2xl text-muted" />
-                </div>
-              )}
+              <AuthorAvatar
+                name={author.data.name}
+                photo={author.data.photo}
+                size="sm"
+                class="transition-transform duration-300 group-hover:scale-105"
+              />
               <div class="min-w-0">
                 <h2 class="serif-text text-lg font-semibold leading-tight text-accent transition-colors group-hover:text-primary">
                   {author.data.name}

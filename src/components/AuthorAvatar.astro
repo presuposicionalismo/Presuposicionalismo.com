@@ -1,0 +1,37 @@
+---
+import { getInitials } from "@utils/authors";
+
+interface Props {
+  name: string;
+  photo?: string;
+  size?: "sm" | "md" | "lg";
+  class?: string;
+}
+
+const { name, photo, size = "md", class: className = "" } = Astro.props;
+
+const sizeClasses = {
+  sm: "h-12 w-12 text-sm",
+  md: "h-20 w-20 text-xl",
+  lg: "h-28 w-28 text-3xl",
+}[size];
+---
+
+{
+  photo ? (
+    <img
+      src={photo}
+      alt={name}
+      class={`${sizeClasses} shrink-0 rounded-full object-cover ring-2 ring-border shadow-md ${className}`}
+    />
+  ) : (
+    <div
+      class={`${sizeClasses} ${className} shrink-0 rounded-full ring-2 ring-border shadow-md flex items-center justify-center bg-gradient-to-br from-accent/15 to-accent/5`}
+      aria-hidden="true"
+    >
+      <span class="serif-text font-semibold text-accent">
+        {getInitials(name)}
+      </span>
+    </div>
+  )
+}
