@@ -1,22 +1,16 @@
 ---
 import { getCollection } from "astro:content";
-import CoverBook from "./CoverBook.astro";
+import BookCard from "./BookCard.astro";
 import ArrowRight from "./icons/ArrowRight.astro";
-import { resolveAuthors, formatAuthorNames } from "@utils/authors";
 
 const allBooks = (await getCollection("libros")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-const featuredBooks = await Promise.all(
-  allBooks.slice(0, 4).map(async (book) => ({
-    book,
-    authorNames: formatAuthorNames(await resolveAuthors(book.data.authors)),
-  })),
-);
+const featuredBooks = allBooks.slice(0, 4);
 ---
 
-<section class="mx-auto max-w-6xl px-6 pb-20 md:pb-28">
+<section class="mx-auto max-w-6xl px-6 py-16 md:py-24">
   <!-- Header -->
   <div class="mb-10 flex items-end justify-between gap-4">
     <div>
@@ -41,39 +35,8 @@ const featuredBooks = await Promise.all(
   </div>
 
   <!-- Grid -->
-  <div class="grid grid-cols-2 gap-5 sm:grid-cols-4">
-    {
-      featuredBooks.map(({ book, authorNames }) => (
-        <article class="group flex flex-col gap-3">
-          <!-- Cover -->
-          <a
-            href={`/libros/${book.id}/`}
-            class="block aspect-[3/4] overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition-all duration-300 hover:shadow-md"
-          >
-            <CoverBook
-              imagePath={String(book.data.coverBook)}
-              altText={book.data.title}
-              class="h-full w-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
-              transitionName={`coverbook ${book.data.title} image`}
-            />
-          </a>
-
-          <!-- Info -->
-          <div class="flex flex-col gap-1 px-0.5">
-            {authorNames && (
-              <p class="text-[10px] font-semibold tracking-widest text-muted uppercase truncate">
-                {authorNames}
-              </p>
-            )}
-            <a href={`/libros/${book.id}/`}>
-              <h3 class="serif-text line-clamp-2 text-sm leading-snug font-medium text-foreground transition-colors duration-200 group-hover:text-accent">
-                {book.data.title}
-              </h3>
-            </a>
-          </div>
-        </article>
-      ))
-    }
+  <div class="grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 md:grid-cols-4">
+    {featuredBooks.map((book) => <BookCard book={book} />)}
   </div>
 
   <!-- Mobile "Ver todos" -->

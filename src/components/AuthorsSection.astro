@@ -1,0 +1,78 @@
+---
+import { getCollection } from "astro:content";
+import ArrowRight from "./icons/ArrowRight.astro";
+
+// Orden cronológico por año de nacimiento (campo `dates`, ej. "1895–1987");
+// los que no lo tienen van al final, por nombre.
+const birthYear = (dates?: string) => {
+  const match = dates?.match(/\d{4}/);
+  return match ? Number(match[0]) : Infinity;
+};
+
+const authors = (await getCollection("autores")).sort(
+  (a, b) =>
+    birthYear(a.data.dates) - birthYear(b.data.dates) ||
+    a.data.name.localeCompare(b.data.name, "es"),
+);
+---
+
+<section class="mx-auto max-w-6xl px-6 py-16 md:py-24">
+  <div class="mb-10 flex items-end justify-between gap-4">
+    <div>
+      <div class="mb-3 flex items-center gap-3">
+        <div class="h-px w-8 bg-accent/40"></div>
+        <p class="text-xs font-bold tracking-[0.25em] text-muted uppercase">
+          Autores
+        </p>
+      </div>
+      <h2 class="serif-text text-3xl font-semibold text-foreground md:text-4xl">
+        Voces de la tradición
+      </h2>
+    </div>
+    <a
+      href="/autores/"
+      class="group hidden shrink-0 items-center gap-1.5 text-sm font-medium text-foreground underline decoration-border underline-offset-4 transition-all hover:text-accent hover:decoration-accent md:inline-flex"
+    >
+      Ver todos
+      <ArrowRight class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+    </a>
+  </div>
+
+  <!-- En móvil se muestran 6; el resto queda en "Ver todos los autores". -->
+  <ul class="grid border-t border-border sm:grid-cols-2 lg:grid-cols-3">
+    {
+      authors.map((author) => (
+        <li class="border-b border-border max-sm:[&:nth-child(n+7)]:hidden">
+          <a
+            href={`/autores/${author.id}/`}
+            class="group flex h-full items-start justify-between gap-4 py-5 pr-4"
+          >
+            <div class="min-w-0">
+              <p class="serif-text text-lg leading-tight font-semibold text-foreground transition-colors group-hover:text-accent">
+                {author.data.name}
+                {author.data.dates && (
+                  <span class="ml-1.5 font-sans text-xs font-medium text-muted">
+                    {author.data.dates}
+                  </span>
+                )}
+              </p>
+              <p class="mt-1.5 line-clamp-2 text-sm leading-relaxed text-muted">
+                {author.data.role}
+              </p>
+            </div>
+            <ArrowRight class="mt-1 h-4 w-4 shrink-0 text-muted opacity-0 transition-all group-hover:translate-x-0.5 group-hover:text-accent group-hover:opacity-100" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="mt-8 md:hidden">
+    <a
+      href="/autores/"
+      class="text-sm font-medium text-foreground underline decoration-border underline-offset-4 hover:text-accent hover:decoration-accent"
+    >
+      Ver todos los autores →
+    </a>
+  </div>
+</section>

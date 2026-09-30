@@ -1,0 +1,27 @@
+---
+import { SITE_DESCRIPTION } from "../consts";
+
+// El lema del sitio (2 Co 10:5) vive en SITE_DESCRIPTION en minúscula
+// porque también es la meta description; aquí se muestra como epígrafe.
+const motto = SITE_DESCRIPTION.charAt(0).toUpperCase() + SITE_DESCRIPTION.slice(1);
+---
+
+<section class="border-y border-border bg-surface">
+  <figure class="mx-auto max-w-4xl px-6 py-16 text-center md:py-20">
+    <span
+      aria-hidden="true"
+      class="serif-text block text-6xl leading-none text-accent/30 select-none"
+      >&ldquo;</span
+    >
+    <blockquote
+      class="serif-text mt-2 text-2xl leading-snug font-medium text-foreground italic md:text-3xl"
+    >
+      {motto}.
+    </blockquote>
+    <figcaption
+      class="mt-6 text-xs font-bold tracking-[0.25em] text-muted uppercase"
+    >
+      2 Corintios 10:5
+    </figcaption>
+  </figure>
+</section>

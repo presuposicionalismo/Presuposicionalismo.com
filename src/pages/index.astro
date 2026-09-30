@@ -1,34 +1,34 @@
 ---
 import MainLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
+import MottoBand from "../components/MottoBand.astro";
 import BlogCarousel from "../components/BlogCarousel.astro";
 import FeaturedBooks from "../components/FeaturedBooks.astro";
+import AuthorsSection from "../components/AuthorsSection.astro";
 import Quotes from "../components/Quotes.astro";
 // import NewsletterCTA from "../components/NewsletterCTA.astro"; // Oculto por ahora, no se usa
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 ---
 
 <MainLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <!-- Hero -->
   <Hero />
 
-  <!-- Divider -->
-  <div class="mx-auto max-w-6xl px-6">
-    <hr class="border-border" />
-  </div>
+  <!-- Lema del sitio (2 Co 10:5) -->
+  <MottoBand />
 
-  <!-- Blog Carousel -->
   <BlogCarousel />
 
-  <!-- Divider -->
   <div class="mx-auto max-w-6xl px-6">
     <hr class="border-border" />
   </div>
 
-  <!-- Featured Books -->
-  <section class="pt-16 md:pt-20">
-    <FeaturedBooks />
-  </section>
+  <FeaturedBooks />
+
+  <div class="mx-auto max-w-6xl px-6">
+    <hr class="border-border" />
+  </div>
+
+  <AuthorsSection />
 
   <!-- Quotes / Thoughts section -->
   <Quotes />
