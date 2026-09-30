@@ -5,6 +5,15 @@ import ThemeSwitcher from "../lib/components/ThemeSwitcher.svelte";
 import Logo from "./Logo.astro";
 import Menu2 from "./icons/Menu2.astro";
 import X from "./icons/X.astro";
+
+const links = [
+  { href: "/", label: "Inicio" },
+  { href: "/blog", label: "Blog" },
+  { href: "/libros", label: "Libros" },
+  { href: "/autores", label: "Autores" },
+  { href: "/tags", label: "Etiquetas" },
+  { href: "/grafo", label: "Mapa" },
+];
 ---
 
 <header
@@ -18,36 +27,16 @@ import X from "./icons/X.astro";
     </div>
     <div class="hidden md:flex flex-1 justify-end items-center gap-6">
       <nav class="flex items-center gap-8">
-        <HeaderLink
-          href="/"
-          class="text-sm font-medium hover:text-accent transition-colors pb-1"
-          >Inicio</HeaderLink
-        >
-        <HeaderLink
-          href="/blog"
-          class="text-sm font-medium text-muted hover:text-accent transition-colors pb-1"
-          >Blog</HeaderLink
-        >
-        <HeaderLink
-          href="/libros"
-          class="text-sm font-medium text-muted hover:text-accent transition-colors pb-1"
-          >Libros</HeaderLink
-        >
-        <HeaderLink
-          href="/autores"
-          class="text-sm font-medium text-muted hover:text-accent transition-colors pb-1"
-          >Autores</HeaderLink
-        >
-        <HeaderLink
-          href="/tags"
-          class="text-sm font-medium text-muted hover:text-accent transition-colors pb-1"
-          >Etiquetas</HeaderLink
-        >
-        <HeaderLink
-          href="/grafo"
-          class="text-sm font-medium text-muted hover:text-accent transition-colors pb-1"
-          >Mapa</HeaderLink
-        >
+        {
+          links.map((link) => (
+            <HeaderLink
+              href={link.href}
+              class="border-b-2 border-transparent pb-1 text-sm font-medium text-muted transition-colors hover:text-accent aria-[current=page]:border-accent aria-[current=page]:text-foreground"
+            >
+              {link.label}
+            </HeaderLink>
+          ))
+        }
         <ThemeSwitcher client:load />
         <DarkToggle />
       </nav>
@@ -86,36 +75,16 @@ import X from "./icons/X.astro";
     </div>
 
     <nav class="flex flex-col p-6 gap-6">
-      <a
-        href="/"
-        class="text-2xl font-display font-medium text-foreground hover:text-accent transition-colors"
-        >Inicio</a
-      >
-      <a
-        href="/blog"
-        class="text-2xl font-display font-medium text-foreground hover:text-accent transition-colors"
-        >Blog</a
-      >
-      <a
-        href="/libros"
-        class="text-2xl font-display font-medium text-foreground hover:text-accent transition-colors"
-        >Libros</a
-      >
-      <a
-        href="/autores"
-        class="text-2xl font-display font-medium text-foreground hover:text-accent transition-colors"
-        >Autores</a
-      >
-      <a
-        href="/tags"
-        class="text-2xl font-display font-medium text-foreground hover:text-accent transition-colors"
-        >Etiquetas</a
-      >
-      <a
-        href="/grafo"
-        class="text-2xl font-display font-medium text-foreground hover:text-accent transition-colors"
-        >Mapa</a
-      >
+      {
+        links.map((link) => (
+          <HeaderLink
+            href={link.href}
+            class="text-2xl font-display font-medium text-foreground decoration-accent decoration-2 underline-offset-8 transition-colors hover:text-accent aria-[current=page]:text-accent aria-[current=page]:underline"
+          >
+            {link.label}
+          </HeaderLink>
+        ))
+      }
 
       <div
         class="pt-6 border-t border-border flex items-center justify-between"

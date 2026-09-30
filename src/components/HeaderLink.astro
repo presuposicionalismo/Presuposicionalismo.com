@@ -5,10 +5,13 @@ type Props = HTMLAttributes<"a">;
 
 const { href, class: className, ...props } = Astro.props;
 
-const { pathname } = Astro.url;
-const isActive = href === pathname || href === pathname.replace(/\/$/, "");
+// Activo en su página y en las que cuelgan de ella (un artículo marca
+// "Blog", /tags/x marca "Etiquetas"); el inicio solo en "/".
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const target = String(href).replace(/\/$/, "") || "/";
+const isActive = target === "/" ? pathname === "/" : pathname === target || pathname.startsWith(`${target}/`);
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
+<a href={href} class={className} aria-current={isActive ? "page" : undefined} {...props}>
   <slot />
 </a>
