@@ -24,6 +24,9 @@ const { date, showIcon = true } = Astro.props;
           year: "numeric",
           month: "short",
           day: "numeric",
+          // Las fechas del frontmatter ("2023-01-01") se parsean como
+          // medianoche UTC; sin esto se muestran un día antes en Colombia.
+          timeZone: "UTC",
         })
       }
     </time>

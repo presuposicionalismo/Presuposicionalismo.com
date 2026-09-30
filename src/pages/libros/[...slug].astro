@@ -15,8 +15,25 @@ type Props = CollectionEntry<"libros">;
 
 const book = Astro.props;
 const { Content } = await render(book);
+
+// Si el body no trae su propio módulo "Sobre el libro", el layout lo
+// arma con la `description` (regla de piso de docs/libros/politica-de-contenido.md).
+const hasAbout = /^##\s+Sobre el libro\s*$/m.test(book.body ?? "");
+
+// "Más libros": primero los que comparten autor, luego los más recientes.
+const others = (await getCollection("libros"))
+  .filter((other) => other.id !== book.id)
+  .sort((a, b) => {
+    const shared = (entry: CollectionEntry<"libros">) =>
+      entry.data.authors.some((author) => book.data.authors.includes(author));
+    return (
+      Number(shared(b)) - Number(shared(a)) ||
+      b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+    );
+  })
+  .slice(0, 4);
 ---
 
-<BookLayout {...book.data} slug={book.id}>
+<BookLayout {...book.data} slug={book.id} hasAbout={hasAbout} related={others}>
   <Content />
 </BookLayout>

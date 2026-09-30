@@ -16,13 +16,10 @@ const MAX_LENGTH = 155;
  *
  * Importante: esto NO reemplaza `description` en ningún lugar donde se
  * muestra como resumen de contenido en el propio sitio (BlogCarousel,
- * FeaturedPost, BookInfoTabs) -- esos siguen usando la description
+ * FeaturedPost, "Sobre el libro" en BookLayout) -- esos siguen usando la description
  * completa tal cual la escribiste, sin recorte.
  */
-export function getSeoDescription(
-  description: string,
-  seoDescription?: string,
-): string {
+export function getSeoDescription(description: string, seoDescription?: string): string {
   if (seoDescription) return seoDescription;
   if (description.length <= MAX_LENGTH) return description;
 

@@ -14,6 +14,11 @@
   @apply prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4;
   @apply prose-h4:text-xl prose-h4:mt-8 prose-h4:mb-3;
 
+  /* Un encabezado que abre el contenido no necesita margen superior. */
+  & > :is(h2, h3):first-child {
+    margin-top: 0;
+  }
+
   /* Paragraphs */
   @apply prose-p:text-foreground prose-p:leading-relaxed prose-p:text-lg;
 
