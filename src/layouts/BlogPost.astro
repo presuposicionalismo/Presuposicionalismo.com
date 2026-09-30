@@ -190,8 +190,8 @@ const breadcrumbSchema = {
         <!-- Floating Sidebar (Desktop) -->
         <ShareSidebar title={title} headings={headings} />
 
-        <!-- Typography Content -->
-        <div class="prose-content">
+        <!-- Typography Content (lo único que indexa Pagefind, ver search:index) -->
+        <div class="prose-content" data-pagefind-body>
           <slot />
         </div>
       </div>

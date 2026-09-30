@@ -6,7 +6,11 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build && pagefind --site .vercel/output/static",
+    "search:index": "pagefind --site .vercel/output/static --output-path public/pagefind",
+    "knowledge:prepare": "bun scripts/knowledge/prepare.ts",
+    "knowledge:merge": "bun scripts/knowledge/merge.ts",
+    "knowledge:check": "bun scripts/knowledge/check.ts",
     "preview": "astro preview",
     "astro": "astro",
     "format": "bunx oxfmt .",
@@ -47,7 +51,8 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "oxfmt": "^0.52.0",
-    "oxlint": "^1.69.0"
+    "oxlint": "^1.69.0",
+    "pagefind": "^1.5.2"
   },
   "lint-staged": {
     "*.{js,ts,tsx,jsx,mjs,cjs,json,md,mdx}": [

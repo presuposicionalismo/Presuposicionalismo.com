@@ -1,6 +1,10 @@
 # build output
 dist/
 .vercel/
+# índice de Pagefind para `astro dev` (bun run search:index)
+public/pagefind/
+# lotes temporales del índice de conocimiento (scripts/knowledge)
+scripts/knowledge/.work/
 
 # Claude Code local config
 .claude/

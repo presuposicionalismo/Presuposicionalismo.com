@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import TagCommandMenu from "../lib/components/TagCommandMenu.svelte";
+import postFilter from "@utils/postFilter";
 
 interface Props {
   tags: string[];
@@ -14,10 +15,22 @@ const { tags, activeTag } = Astro.props;
 // desde qué página (/blog, /blog/page/N o /tags/[tag]) se use este filtro.
 const allAuthors = await getCollection("autores");
 const authors = allAuthors
-  .map((author) => ({ name: author.data.name, slug: author.id }))
+  .map((author) => ({ name: author.data.name, slug: author.id, role: author.data.role }))
   .sort((a, b) => a.name.localeCompare(b.name, "es"));
+
+// Artículos publicados por etiqueta, para mostrarlo junto a cada una.
+const tagCounts: Record<string, number> = {};
+for (const post of await getCollection("blog", postFilter)) {
+  for (const tag of post.data.tags ?? []) tagCounts[tag] = (tagCounts[tag] ?? 0) + 1;
+}
 ---
 
 <div class="mb-12">
-  <TagCommandMenu client:load tags={tags} activeTag={activeTag} authors={authors} />
+  <TagCommandMenu
+    client:load
+    tags={tags}
+    activeTag={activeTag}
+    authors={authors}
+    tagCounts={tagCounts}
+  />
 </div>
