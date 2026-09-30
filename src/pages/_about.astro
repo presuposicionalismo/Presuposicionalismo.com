@@ -1,5 +1,6 @@
 ---
 import MainLayout from "@layouts/BaseLayout.astro";
+import { SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "@components/FormattedDate.astro";
 import CoverBlog from "@components/CoverBlog.astro";
@@ -30,7 +31,7 @@ type Props = {
 const { page } = Astro.props;
 ---
 
-<MainLayout title="Blog">
+<MainLayout title="Blog" description={SITE_DESCRIPTION}>
   <section>
     <h1>Blog</h1>
     <article>
