@@ -1,159 +1,128 @@
 # **Presuposicionalismo.com**
 
-Un sitio web dedicado a promover la literatura y filosofía cristiana presuposicional, enfocándose en la metodología apologética del Dr. Cornelius Van Til y sus estudiantes. Destaca el trabajo de importantes "vantilianos" como James Anderson y Scott Oliphint.
-
-**🚀 Estado actual: MVP (Minimum Viable Product)**
-
-## 📖 **Acerca del Proyecto**
-
-Este repositorio contiene el código fuente de Presuposicionalismo.com, construido con tecnologías web modernas para ofrecer una experiencia de lectura optimizada y accesible.
+Un sitio web dedicado a promover la literatura y filosofía cristiana presuposicional, enfocándose en la metodología apologética del Dr. Cornelius Van Til y sus estudiantes. Destaca el trabajo de importantes "vantilianos" como Greg Bahnsen, John Frame, James Anderson y Scott Oliphint.
 
 **Objetivo**: Bendecir a los visitantes y promover la gloria de Dios a través de contenido apologético de calidad.
 
-## 🛠️ **Stack Tecnológico**
+- **Producción**: https://presuposicionalismo.com
 
-- **Framework**: [Astro](https://astro.build/) 5.3.0
-- **UI Components**: [Svelte](https://svelte.dev/) 5.20.0
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) 4.0.6 + [Open Props](https://open-props.style/)
-- **Content**: Markdown/MDX con validación de schema
-- **Search**: Fuse.js
-- **Database**: Turso (libSQL)
-- **Deploy**: Vercel
-- **Package Manager**: Bun
+## 🛠️ **Stack**
 
-## ✅ **Características Implementadas (MVP)**
+- **Framework**: [Astro](https://astro.build/) 7, con `output: "server"` y las páginas de contenido prerenderizadas
+- **Componentes interactivos**: [Svelte](https://svelte.dev/) 5 y [bits-ui](https://bits-ui.com/)
+- **Estilos**: [Tailwind CSS](https://tailwindcss.com/) 4 sobre tokens propios (`src/styles/tokens.css`)
+- **Contenido**: MDX en colecciones de contenido con esquema (`src/content.config.ts`)
+- **Búsqueda**: [Pagefind](https://pagefind.app/) + búsquedas precalculadas (`src/data/knowledge.json`)
+- **Grafo**: [d3](https://d3js.org/) (disposición calculada en el build)
+- **Deploy**: Vercel (`@astrojs/vercel`, Speed Insights)
+- **Gestor de paquetes**: Bun
 
-### **Core Funcionalidad**
+## ✅ **Qué hay en el sitio**
 
-- [x] **Página de inicio** - Presentación general del sitio
-- [x] **Blog completo** - 73+ artículos de apologética presuposicional
-- [x] **Biblioteca de libros** - Catálogo de 9+ libros con descargas
-- [x] **Navegación responsive** - Compatible con todos los dispositivos
-- [x] **Sistema de búsqueda** - Búsqueda en tiempo real con Fuse.js
+| Sección   | Ruta       | Contenido                                                          |
+| --------- | ---------- | ------------------------------------------------------------------ |
+| Portada   | `/`        | Últimas entradas, libros destacados y autores                      |
+| Blog      | `/blog`    | 70 artículos publicados, paginados (3 más en borrador)             |
+| Libros    | `/libros`  | 11 libros con ficha y descarga                                     |
+| Autores   | `/autores` | 12 autores con biografía, sus libros y los artículos relacionados  |
+| Etiquetas | `/tags`    | Artículos por etiqueta                                             |
+| Mapa      | `/grafo`   | Grafo de conceptos, artículos, autores y libros con sus relaciones |
+| RSS       | `/rss.xml` | Feed del blog                                                      |
 
-### **SEO y Performance**
+Además:
 
-- [x] **SEO optimizado** - Meta tags, sitemap, RSS feed
-- [x] **Imágenes optimizadas** - Componente `<Image />` de Astro
-- [x] **Sitio estático** - Generación estática para máximo rendimiento
+- **Buscador ⌘K / Ctrl+K** en el blog y las etiquetas: combina respuestas precalculadas (la pregunta, los artículos que la responden y el fragmento exacto) con búsqueda de texto completo, y filtra por etiqueta o autor.
+- **Dos pieles, cada una en modo claro y oscuro**: _Ledger_ (geométrica, monocroma) y _Grabado_ (editorial, papel envejecido). Ver la cabecera de `src/styles/tokens.css`.
+- **SEO**: meta tags, Open Graph, datos estructurados (JSON-LD), sitemap y descripciones cortas por artículo (`seoDescription`).
+- **Transiciones entre páginas** con `ClientRouter` de Astro.
 
-### **UX Básica**
+Las rutas con guion bajo (`src/pages/_clases`, `src/pages/_about.astro`) están desactivadas.
 
-- [x] **Dark mode** - Toggle entre tema claro y oscuro
-- [x] **Footer rediseñado** - Información de contacto y enlaces
-- [x] **Paginación** - Navegación en listados de contenido
+## 🧠 **Índice de conocimiento**
 
-## 📊 **Contenido Actual**
+`src/data/knowledge.json` (esquema en `src/data/knowledge.schema.ts`) describe los 70 artículos publicados:
 
-| Tipo                | Cantidad | Estado           |
-| ------------------- | -------- | ---------------- |
-| Artículos de blog   | 73+      | ✅ Publicados    |
-| Libros catalogados  | 9+       | ✅ Disponibles   |
-| Páginas principales | 3        | ✅ Funcionales   |
-| Componentes Astro   | 36+      | ✅ Implementados |
+- **Conceptos**: 49, con alias y descripción.
+- **Relaciones tipadas**: 523. Un artículo _trata_ un concepto; puede _desarrollar_, _responder a_ o _criticar_ otro artículo, o _citar_ a un autor o libro.
+- **Búsquedas precalculadas**: 104, cada una con sus resultados y el fragmento literal que responde.
 
-## 🚧 **Roadmap - Próximas Características**
+De ahí salen el buscador ⌘K (vía `/search-presets.json`) y `/grafo`. El índice se genera del lado del desarrollador (un LLM lee los artículos) y se valida contra el contenido real: todo fragmento debe ser literal y todo anchor debe existir en el HTML. El flujo está en [`scripts/knowledge/README.md`](./scripts/knowledge/README.md). Cuando se publica o se edita un artículo, `bun run knowledge:check` avisa de lo que falta actualizar.
 
-### **🎯 Prioridad Alta**
-
-- [ ] **Página de autores** - Perfiles y biografías de escritores presupuestos
-  - [ ] Agregar collection `autores` en `/content/config.ts`
-  - [ ] Crear componentes y páginas relacionadas
-- [ ] **View Transition API** - Transiciones suaves entre páginas
-- [ ] **Optimización de performance**
-  - [ ] Lazy loading de imágenes
-  - [ ] Compresión de assets
-  - [ ] Implementar cache estratégico
-
-### **🎨 Mejoras de UX**
-
-- [ ] **Scroll-driven animations** - Animaciones basadas en scroll
-- [ ] **Header rediseñado** - Navegación mejorada y más atractiva
-- [ ] **Secciones adicionales** en página de inicio
-  - [ ] Autores destacados
-  - [ ] Libros recientes
-  - [ ] Testimonios
-
-### **🔧 Tareas Técnicas**
-
-- [ ] **Refactorización de CSS** - Organizar y optimizar estilos
-- [ ] **Componentización** - Modularizar secciones reutilizables
-- [ ] **Testing** - Implementar pruebas automatizadas
-- [ ] **Accesibilidad** - Cumplir estándares WCAG
-- [ ] **PWA** - Funcionalidad offline básica
-
-## 🚀 **Instalación y Desarrollo**
+## 🚀 **Desarrollo**
 
 ### **Prerrequisitos**
 
-- Node.js 18+
-- Bun (recomendado) o npm
+- [Bun](https://bun.sh/) (el repositorio usa `bun.lock`)
 
-### **Configuración Local**
+### **Configuración local**
 
 ```bash
-# Clonar el repositorio
-git clone https://github.com/usuario/presuposicionalismo.com.git
-cd presuposicionalismo.com
-
-# Instalar dependencias
+git clone https://github.com/presuposicionalismo/Presuposicionalismo.com.git
+cd Presuposicionalismo.com
 bun install
-# o npm install
-
-# Ejecutar en desarrollo
 bun run dev
-# o npm run dev
-
-# Construir para producción
-bun run build
-# o npm run build
 ```
 
-### **Scripts Disponibles**
+La búsqueda de texto completo necesita el índice de Pagefind, que sale del build. Para tenerla en `dev`:
 
-- `bun run dev` - Servidor de desarrollo
-- `bun run build` - Construcción para producción
-- `bun run preview` - Vista previa del build
-- `bun run check` - Verificación de tipos TypeScript
+```bash
+bun run build          # genera el sitio y el índice
+bun run search:index   # copia el índice a public/pagefind (ignorado por git)
+```
 
-## 🌐 **Deploy**
+Sin ese índice el buscador sigue funcionando con las búsquedas precalculadas.
 
-El sitio se despliega automáticamente en [Vercel](https://vercel.com) desde la rama `main`.
+### **Scripts**
 
-- **Producción**: https://presuposicionalismo.com
-- **Vista previa**: Ramas automáticamente desplegadas
+| Script                      | Qué hace                                                                    |
+| --------------------------- | --------------------------------------------------------------------------- |
+| `bun run dev`               | Servidor de desarrollo                                                      |
+| `bun run build`             | `astro check` + build + índice de Pagefind en `.vercel/output/static`       |
+| `bun run check`             | Verificación de tipos (`astro check`)                                       |
+| `bun run lint`              | oxlint                                                                      |
+| `bun run format`            | oxfmt                                                                       |
+| `bun run search:index`      | Índice de Pagefind en `public/pagefind` para `dev`                          |
+| `bun run knowledge:prepare` | Reparte en lotes los artículos nuevos o modificados que faltan en el índice |
+| `bun run knowledge:merge`   | Une los lotes con `knowledge.json` (simula; `--write` para escribir)        |
+| `bun run knowledge:check`   | Valida `knowledge.json` contra el contenido                                 |
 
-## 📁 **Estructura del Proyecto**
+`astro preview` no funciona con el adapter de Vercel (ver `docs/pendientes/tecnico.md`).
+
+Un hook de pre-commit (husky + lint-staged) formatea, pasa oxlint y corre `astro check` sobre los archivos modificados.
+
+## 📁 **Estructura**
 
 ```
 src/
-├── components/     # Componentes Astro y Svelte
-├── content/        # Contenido en Markdown
-│   ├── blog/       # Artículos del blog
-│   └── libros/     # Catálogo de libros
-├── layouts/        # Plantillas de página
-├── pages/          # Rutas del sitio
-├── styles/         # Estilos CSS
-└── utils/          # Utilidades y helpers
+├── components/        # Componentes Astro (y GraphView.svelte)
+├── content/           # Colecciones: blog, libros, autores, clases
+├── data/              # Índice de conocimiento y su esquema
+├── layouts/           # Plantillas de página
+├── lib/components/    # Componentes Svelte (menú ⌘K, selector de piel)
+├── pages/             # Rutas
+├── styles/            # Tokens de tema, estilos globales y de prosa
+└── utils/             # Búsqueda, datos del grafo, SEO, filtros de posts…
+scripts/knowledge/     # Generación y validación del índice de conocimiento
+docs/
+├── citas/             # Banco de citas y textos para redes
+├── libros/            # Política de contenido de las fichas de libros
+└── pendientes/        # Deuda técnica y fe de erratas de contenido
 ```
+
+## 🚧 **Pendientes**
+
+Lo que falta por hacer está en [`docs/pendientes/`](./docs/pendientes/README.md):
+
+- **Técnico**: deprecaciones de Astro, limitaciones del adapter.
+- **Contenido**: notas al pie incompletas en los 3 borradores, autorías y descripciones por revisar, errores de traducción detectados al generar el índice.
+
+## 🌐 **Deploy**
+
+Vercel despliega automáticamente desde `main`, y las demás ramas generan vistas previas.
 
 ## 🤝 **Contribuir**
 
-Las contribuciones son bienvenidas. Por favor:
-
-1. Fork del repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -m 'Agregar nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Abre un Pull Request
-
-## 📧 **Contacto**
-
-Para sugerencias de contenido o reportar problemas, por favor abre un issue en este repositorio.
-
-## 📄 **Licencia**
-
-Este proyecto está bajo la licencia MIT. Ver `LICENSE` para más detalles.
+Las contribuciones son bienvenidas: abre un issue con sugerencias de contenido o problemas, o un Pull Request desde una rama propia.
 
 ---
 
