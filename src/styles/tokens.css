@@ -1,0 +1,124 @@
+/* =====================================================================
+   Arquitectura de temas
+   ---------------------------------------------------------------------
+   Dos ejes independientes, ambos como atributos de <html>:
+     data-theme="light|dark"        modo  (BaseHead.astro / DarkToggle)
+     data-design="ledger|grabado"   piel  (BaseHead.astro / ThemeSwitcher)
+
+   1. Los atributos se traducen a custom properties (--mode, --design).
+   2. Cada combinación se escribe como un bloque @container style(...),
+      sin repetir selectores del tipo `.dark .theme-x, .theme-x.dark`.
+   3. Las pieles SOLO asignan variables privadas (--_x). La API pública
+      que consumen Tailwind y los componentes (--color-*, --font-*,
+      --radius, --shadow-card, --border-width) se declara una sola vez
+      en <body> como var(--_x, <valor base>): lo que una piel no define
+      cae al diseño base, Ledger claro.
+
+   Una style query no puede estilizar el mismo elemento que define la
+   variable consultada; por eso --mode/--design viven en <html> y los
+   tokens en <body> (todo el contenido visible está dentro de <body>).
+
+   Soporte: style queries con custom properties son Baseline desde
+   mayo de 2026 (Firefox 151). Un navegador sin soporte ve Ledger claro.
+
+   Para agregar una piel: un bloque `style(--design: x)` con sus
+   privadas de modo claro, otro `style(--design: x) and style(--mode:
+   dark)` con las de oscuro, y la opción en ThemeSwitcher.svelte.
+   ===================================================================== */
+
+@layer base {
+  /* --- 1. Ejes ------------------------------------------------------ */
+  html {
+    --mode: light;
+    --design: ledger;
+    color-scheme: light;
+  }
+
+  /* Sin JS (o antes de que corra) respeta la preferencia del sistema. */
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme]) {
+      --mode: dark;
+      color-scheme: dark;
+    }
+  }
+
+  html[data-theme="dark"] {
+    --mode: dark;
+    color-scheme: dark;
+  }
+
+  html[data-design="grabado"] {
+    --design: grabado;
+  }
+
+  /* --- 2. API pública (valores base = Ledger claro) ------------------- */
+  body {
+    --color-foreground: var(--_foreground, #0b0c0e);
+    --color-background: var(--_background, #ffffff);
+    --color-surface: var(--_surface, #fafafa);
+    --color-muted: var(--_muted, #6d7178);
+    --color-border: var(--_border, #e6e8eb);
+    --color-accent: var(--_accent, #0b0c0e);
+
+    /* --font-sans es la fuente de UI (nav, botones, tabs, badges): igual
+       en todas las pieles, a propósito no es tematizable. */
+    --font-sans: "Urbanist Variable", sans-serif;
+    /* Títulos/encabezados de contenido. */
+    --font-display: var(--_font-display, "Urbanist Variable", sans-serif);
+    /* Texto de lectura largo (prosa de artículos/libros). */
+    --font-body: var(--_font-body, "Urbanist Variable", sans-serif);
+
+    --radius: var(--_radius, 0.5rem);
+    --shadow-card: var(
+      --_shadow-card,
+      0 1px 2px 0 rgb(0 0 0 / 0.04),
+      0 1px 3px 0 rgb(0 0 0 / 0.03)
+    );
+    --border-width: var(--_border-width, 1px);
+  }
+
+  /* --- 3. Pieles ------------------------------------------------------ */
+
+  /* Ledger (base): geométrico, monocromo. El claro son los valores base. */
+  @container style(--mode: dark) {
+    body {
+      --_foreground: #f3f4f6;
+      --_background: #0a0a0b;
+      --_surface: #131417;
+      --_muted: #8a8f98;
+      --_border: #26282d;
+      --_accent: #f3f4f6;
+    }
+  }
+
+  /* Grabado: editorial, papel envejecido, rubricado. Va después del
+     bloque de Ledger oscuro para ganarle en la cascada. */
+  @container style(--design: grabado) {
+    body {
+      --_foreground: #2a2117;
+      --_background: #f2e8d3;
+      --_surface: #f8efdc;
+      --_muted: #7c6a4e;
+      --_border: #d9c69e;
+      --_accent: #7a1f2b;
+
+      --_font-display: "Fraunces Variable", "Iowan Old Style", Georgia, serif;
+      --_font-body: "EB Garamond", "Iowan Old Style", Georgia, serif;
+
+      --_radius: 0.125rem;
+      --_shadow-card:
+        0 1px 3px 0 rgb(42 33 23 / 0.12), 0 4px 10px -4px rgb(42 33 23 / 0.18);
+    }
+  }
+
+  @container style(--design: grabado) and style(--mode: dark) {
+    body {
+      --_foreground: #e9dcc0;
+      --_background: #1c150f;
+      --_surface: #241a12;
+      --_muted: #a6906a;
+      --_border: #3c2d1e;
+      --_accent: #c9503f;
+    }
+  }
+}

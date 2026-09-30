@@ -47,7 +47,23 @@ const ogImage = new URL(image, Astro.url);
     }
   }
 
+  // Piel de diseño (data-design en <html>, ver src/styles/tokens.css).
+  // Se aplica aquí, antes del primer pintado, para que Grabado no
+  // parpadee al cargar. Acepta el formato viejo "theme-grabado".
+  function getDesign() {
+    const saved = (localStorage.getItem("design-system") || "").replace(
+      /^theme-/,
+      "",
+    );
+    return saved === "grabado" ? saved : "ledger";
+  }
+
+  function applyDesign(doc, design) {
+    doc.documentElement.setAttribute("data-design", design);
+  }
+
   applyTheme(document, theme);
+  applyDesign(document, getDesign());
   window.localStorage.setItem("theme", theme);
 
   // Preserve theme across View Transitions WITHOUT a flash: apply it to
@@ -60,21 +76,9 @@ const ogImage = new URL(image, Astro.url);
     const savedTheme = localStorage.getItem("theme") || "light";
     applyTheme(event.newDocument, savedTheme);
 
-    // Same flash, different culprit: the "design-system" skin (theme-ledger,
-    // theme-grabado...) is applied to <body> only by ThemeSwitcher.svelte's
-    // onMount, which runs after the swap has already painted the new page
-    // with no skin class for a frame. That's invisible for theme-ledger
-    // (close to the default look) but very visible for theme-grabado
-    // (aged-paper palette, high contrast with the default). Reapply it here
-    // too, before the swap paints, exactly like the dark/light fix above.
-    const savedDesign = localStorage.getItem("design-system");
-    if (savedDesign) {
-      const newBody = event.newDocument.body;
-      Array.from(newBody.classList).forEach((c) => {
-        if (c.startsWith("theme-")) newBody.classList.remove(c);
-      });
-      newBody.classList.add(savedDesign);
-    }
+    // Mismo arreglo para la piel: el documento entrante trae <html> sin
+    // data-design, así que se la ponemos antes de que pinte.
+    applyDesign(event.newDocument, getDesign());
   });
 </script>
 <!-- Global Metadata -->

@@ -7,106 +7,16 @@
 @plugin "@tailwindcss/typography";
 @variant dark (&:where(.dark, .dark *));
 
-/* Importing Theme Modules */
-@import "./themes/swiss.css";
-@import "./themes/neo.css";
-@import "./themes/cyber.css";
-@import "./themes/metal.css";
-@import "./themes/danqing.css";
-@import "./themes/espresso.css";
-@import "./themes/helios.css";
-@import "./themes/neutral.css";
-@import "./themes/ledger.css";
-@import "./themes/grabado.css";
+/* Temas: ejes, API pública de tokens y pieles (ver comentario del archivo) */
+@import "./tokens.css";
 
 /* Importing Utility Modules */
 @import "./prose.css";
 
-/* Base Theme (Default implementation - maps to Shadcn original) */
-@layer base {
-  :root {
-    /* Default Radius */
-    --radius: 0.5rem;
-
-    /* Light Mode Default */
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-
-    /* Custom Colors Default */
-    --color-foreground: #1a1a1a;
-    --color-background: #fcfcfc;
-    --color-surface: #ffffff;
-    --color-muted: #666666;
-    --color-border: #e5e5e5;
-    --color-accent: #1a1a1a;
-
-    /* Fuentes - Default (conmutables por tema) */
-    /* --font-sans es la fuente de UI (nav, botones, tabs, badges): se mantiene
-       igual en todos los temas, la lectura no debe heredarla. */
-    --font-sans: "Urbanist Variable", sans-serif;
-    /* --font-display es para títulos/encabezados (contenido, no UI). */
-    --font-display: "Urbanist Variable", sans-serif;
-    /* --font-body es para texto de lectura largo (prosa de artículos/libros). */
-    --font-body: "Urbanist Variable", sans-serif;
-
-    /* Artistic Tokens - Default State */
-    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --border-width: 1px;
-    --glow: none;
-  }
-
-  /* Dark Mode Overrides (Applied when .dark class is present) */
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    /* ... (rest of dark vars) ... */
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-
-    /* Custom Colors Dark */
-    --color-foreground: #f5f5f5;
-    --color-background: #121212;
-    --color-surface: #1a1a1a;
-    --color-muted: #a0a0a0;
-    --color-border: #2a2a2a;
-    --color-accent: #ffffff;
-  }
-}
-
-@theme {
-  /* Colores semánticos - Light mode (default) */
+/* `inline`: las utilidades usan el valor (var(--color-accent), var(--radius)...)
+   resuelto en cada elemento, no una copia calculada en :root. Sin esto, lo que
+   una piel cambia en <body> (radio, sombra) no llega a las utilidades rounded-* ni shadow-*. */
+@theme inline {
   --color-foreground: var(--color-foreground);
   --color-background: var(--color-background);
   --color-surface: var(--color-surface);
@@ -114,20 +24,14 @@
   --color-border: var(--color-border);
   --color-accent: var(--color-accent);
 
-  /* Fuentes (indirección para que cada tema pueda redefinirlas) */
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
 
-  /* Radios */
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-xl: var(--radius); /* Card uses rounded-xl, maps here */
 
-  /* Shadcn Variables Map */
-  --radius: var(--radius);
-
-  /* Artistic Overrides */
   --shadow-sm: var(--shadow-card);
   --shadow-md: var(--shadow-card);
   --shadow-lg: var(--shadow-card);

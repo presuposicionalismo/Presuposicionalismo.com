@@ -11,20 +11,20 @@
 
   const themes: ThemeOption[] = [
     {
-      value: "theme-ledger",
+      value: "ledger",
       label: "Ledger",
       description: "Geométrico, monocromo, alto contraste",
       color: "bg-white border-black dark:bg-black dark:border-white",
     },
     {
-      value: "theme-grabado",
+      value: "grabado",
       label: "Grabado",
       description: "Editorial, papel envejecido, rubricado",
       color: "bg-[#f2e8d3] border-[#7a1f2b]",
     },
   ];
 
-  let currentTheme = "theme-ledger";
+  let currentTheme = "ledger";
   let isOpen = false;
   let rootEl: HTMLDivElement | null = null;
   const isKnownTheme = (value: string | null): value is string =>
@@ -35,7 +35,8 @@
 
   onMount(() => {
     // Check for saved theme (branding) - Key: "design-system"
-    const saved = localStorage.getItem("design-system");
+    // Acepta el formato viejo ("theme-grabado") guardado antes de data-design.
+    const saved = (localStorage.getItem("design-system") ?? "").replace(/^theme-/, "");
     if (isKnownTheme(saved)) {
       currentTheme = saved;
       applyTheme(saved);
@@ -76,14 +77,8 @@
     currentTheme = theme;
     localStorage.setItem("design-system", theme);
 
-    const body = document.body;
-    Array.from(body.classList).forEach((className) => {
-      if (className.startsWith("theme-")) {
-        body.classList.remove(className);
-      }
-    });
-
-    body.classList.add(theme);
+    // La piel vive en <html data-design>; ver src/styles/tokens.css.
+    document.documentElement.dataset.design = theme;
   }
 </script>
 
