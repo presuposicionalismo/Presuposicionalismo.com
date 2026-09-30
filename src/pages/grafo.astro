@@ -1,39 +1,30 @@
 ---
-// @ts-nocheck
 import BaseLayout from "../layouts/BaseLayout.astro";
 import GraphView from "../components/GraphView.svelte";
 import { getGraphData } from "../utils/graphData";
 
-const { nodes, links } = await getGraphData();
+export const prerender = true;
+
+const data = await getGraphData();
+const count = (kind: string) => data.nodes.filter((n) => n.kind === kind).length;
 ---
 
 <BaseLayout
-  title="Grafo de Conocimiento | Presuposicionalismo.com"
-  description="Explora las conexiones temáticas entre nuestros artículos y lecciones."
+  title="Mapa de conocimiento"
+  description="Explora cómo se conectan los conceptos, artículos y autores del sitio: qué temas trata cada artículo, cuáles se desarrollan o critican entre sí y a quién citan."
 >
-  <div class="container mx-auto px-4 py-8">
-    <header class="text-center mb-10">
-      <h1 class="text-3xl md:text-5xl font-bold mb-4 text-accent font-urbanist">
-        Mapa de Conocimiento
+  <div class="mx-auto max-w-7xl px-6 py-16 md:py-20">
+    <section class="mb-10 text-center md:mb-12">
+      <h1 class="serif-text mb-5 text-5xl font-medium leading-tight text-accent md:text-6xl">
+        Mapa de conocimiento
       </h1>
-      <p class="text-muted max-w-2xl mx-auto">
-        Visualiza cómo se interconectan los conceptos, autores y temas en
-        nuestro contenido. Usa el buscador para filtrar temas específicos.
+      <p class="mx-auto max-w-2xl text-lg leading-relaxed text-muted">
+        {count("concepto")} conceptos, {count("articulo")} artículos y {
+          count("autor") + count("libro")
+        } autores y libros, unidos por lo que cada texto trata, desarrolla, critica o cita.
       </p>
-    </header>
+    </section>
 
-    <div class="max-w-6xl mx-auto">
-      <GraphView
-        client:load
-        nodes={nodes}
-        links={links}
-        on:nodeClick={(e) => {
-          const { node } = e.detail;
-          if (node.group === "post" && node.slug) {
-            window.location.href = `/blog/${node.slug}`;
-          }
-        }}
-      />
-    </div>
+    <GraphView client:load data={data} />
   </div>
 </BaseLayout>
