@@ -22,7 +22,7 @@ const postUrl = `/blog/${slugifyStr(post.data.title)}/`;
         <CoverBlog
           imagePath={String(post.data.heroImage)}
           altText={post.data.title}
-          class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+          class="w-full h-full object-cover transition-all duration-700 scale-105 group-hover:scale-100"
           loading="eager"
         />
       </div>
