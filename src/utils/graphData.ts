@@ -89,7 +89,7 @@ export async function getGraphData(): Promise<GraphData> {
       kind: "concepto",
       label: concept.label,
       description: concept.description,
-      url: concept.tag ? `/tags/${slugifyStr(concept.tag)}` : undefined,
+      url: `/conceptos/${concept.id}`,
     });
   }
   for (const author of authors) {

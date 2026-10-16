@@ -35,7 +35,7 @@
   };
   const ACTION_LABEL: Record<GraphNodeKind, string> = {
     articulo: "Leer el artículo",
-    concepto: "Ver la etiqueta",
+    concepto: "Ver el concepto",
     autor: "Ver el autor",
     libro: "Ver el libro",
   };

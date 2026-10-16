@@ -1,0 +1,54 @@
+---
+import MainLayout from "@layouts/BaseLayout.astro";
+import { getConcepts } from "@utils/concepts";
+
+export const prerender = true;
+
+const concepts = (await getConcepts()).sort(
+  (a, b) => b.articles.length - a.articles.length || a.label.localeCompare(b.label, "es"),
+);
+---
+
+<MainLayout
+  title="Conceptos"
+  description="Los conceptos centrales del presuposicionalismo: qué significa cada uno, en qué artículos se trata y cómo se relaciona con los demás."
+>
+  <div class="mx-auto max-w-5xl px-6 py-16 md:py-20">
+    <section class="mb-12 text-center">
+      <span class="mb-4 block text-xs font-bold uppercase tracking-[0.2em] text-accent">Temas</span>
+      <h1 class="serif-text mb-5 text-5xl font-medium leading-tight text-foreground md:text-6xl">
+        Conceptos
+      </h1>
+      <p class="mx-auto max-w-2xl text-lg leading-relaxed text-muted">
+        {concepts.length} ideas que recorren los artículos del sitio. Cada una reúne los pasajes donde
+        se trata y los conceptos que la acompañan. Para verlos conectados, abre el <a
+          href="/grafo"
+          class="text-accent underline-offset-4 hover:underline">mapa</a
+        >.
+      </p>
+    </section>
+
+    <ul class="grid gap-x-10 gap-y-2 md:grid-cols-2">
+      {
+        concepts.map((concept) => (
+          <li>
+            <a
+              href={`/conceptos/${concept.id}`}
+              class="group block border-b border-border py-5 transition-colors"
+            >
+              <div class="flex items-baseline justify-between gap-4">
+                <h2 class="serif-text text-xl font-medium text-foreground transition-colors group-hover:text-accent">
+                  {concept.label}
+                </h2>
+                <span class="shrink-0 text-xs tabular-nums text-muted">
+                  {concept.articles.length} {concept.articles.length === 1 ? "artículo" : "artículos"}
+                </span>
+              </div>
+              <p class="mt-2 text-sm leading-relaxed text-muted">{concept.description}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</MainLayout>

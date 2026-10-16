@@ -1,0 +1,115 @@
+---
+import MainLayout from "@layouts/BaseLayout.astro";
+import FormattedDate from "@components/FormattedDate.astro";
+import { getConcepts } from "@utils/concepts";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const concepts = await getConcepts();
+  return concepts.map((concept) => ({ params: { id: concept.id }, props: { concept } }));
+}
+
+const { concept } = Astro.props;
+const { articles, questions, related } = concept;
+---
+
+<MainLayout title={concept.label} description={concept.description}>
+  <div class="mx-auto max-w-3xl px-6 py-16 md:py-20">
+    <a href="/conceptos" class="text-sm text-muted transition-colors hover:text-accent">
+      ← Todos los conceptos
+    </a>
+
+    <header class="mb-12 mt-8">
+      <span class="mb-4 block text-xs font-bold uppercase tracking-[0.2em] text-accent">Concepto</span>
+      <h1 class="serif-text mb-5 text-4xl font-medium leading-tight text-foreground md:text-5xl">
+        {concept.label}
+      </h1>
+      <p class="text-lg leading-relaxed text-muted">{concept.description}</p>
+      {
+        concept.aliases.length > 0 && (
+          <p class="mt-4 text-sm text-muted">
+            También: <span class="italic">{concept.aliases.join(" · ")}</span>
+          </p>
+        )
+      }
+      <a
+        href={`/grafo#n=${encodeURIComponent(`concepto:${concept.id}`)}`}
+        class="mt-5 inline-flex text-sm font-semibold text-accent hover:underline"
+      >
+        Ver en el mapa →
+      </a>
+    </header>
+
+    {
+      questions.length > 0 && (
+        <section class="mb-12">
+          <h2 class="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-muted">Preguntas</h2>
+          <ul class="flex flex-col gap-4">
+            {questions.map((q) => (
+              <li>
+                <a href={q.url} class="group block">
+                  <span class="serif-text text-lg font-medium text-foreground transition-colors group-hover:text-accent">
+                    {q.text} →
+                  </span>
+                  <span class="mt-1 block text-sm leading-relaxed text-muted">{q.snippet}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <section class="mb-12">
+      <h2 class="mb-4 flex justify-between text-xs font-bold uppercase tracking-[0.25em] text-muted">
+        <span>Dónde se trata</span>
+        <span class="tracking-normal tabular-nums">{articles.length}</span>
+      </h2>
+      <ul class="flex flex-col">
+        {
+          articles.map((article) => (
+            <li class="border-b border-border py-5">
+              <a href={article.url} class="group block">
+                <span class="serif-text text-xl font-medium text-accent transition-colors group-hover:text-primary">
+                  {article.title}
+                </span>
+                <span class="ml-2 text-xs uppercase tracking-tighter text-muted">
+                  <FormattedDate date={article.pubDate} />
+                </span>
+              </a>
+              {article.evidence && (
+                <blockquote class="mt-2 border-l-2 border-border pl-4 text-sm italic leading-relaxed text-muted">
+                  {article.evidence}
+                </blockquote>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    {
+      related.length > 0 && (
+        <section>
+          <h2 class="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-muted">
+            Conceptos cercanos
+          </h2>
+          <ul class="flex flex-wrap gap-3">
+            {related.map((r) => (
+              <li>
+                <a
+                  href={`/conceptos/${r.id}`}
+                  class="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
+                >
+                  {r.label}
+                  <span class="text-xs tabular-nums text-muted">{r.shared}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </div>
+</MainLayout>
