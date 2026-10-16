@@ -97,9 +97,31 @@ const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComp
               </button>
               <div
                 data-graph-panel
-                class="hidden absolute left-full top-0 ml-3 z-10 w-64 rounded-lg border border-border bg-surface shadow-lg p-4"
+                role="dialog"
+                aria-label="Conexiones de este artículo"
+                class="hidden fixed z-50 w-64 rounded-lg border border-border bg-surface shadow-xl"
               >
-                <ArticleMiniGraph postId={postId} graph={graph} />
+                <div
+                  data-graph-handle
+                  tabindex="0"
+                  title="Arrastra para mover (o usa las flechas)"
+                  class="flex cursor-grab touch-none select-none items-center justify-between rounded-t-lg border-b border-border px-4 py-2 active:cursor-grabbing"
+                >
+                  <span class="text-[10px] uppercase tracking-widest text-muted">
+                    ⠿ Conexiones de este artículo
+                  </span>
+                  <button
+                    type="button"
+                    data-graph-close
+                    aria-label="Cerrar"
+                    class="-mr-1 rounded p-1 text-muted hover:text-foreground"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div class="p-4">
+                  <ArticleMiniGraph postId={postId} graph={graph} />
+                </div>
               </div>
             </div>
           )}
@@ -257,24 +279,96 @@ const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComp
         renderBookmarkState(!isSaved);
       });
 
-      // --- Minigrafo de conexiones ---
-      const graphWrapper = sidebar.querySelector<HTMLElement>("[data-graph-wrapper]");
+      // --- Minigrafo de conexiones: ventana flotante y arrastrable ---
       const graphToggle = sidebar.querySelector<HTMLButtonElement>("[data-graph-toggle]");
       const graphPanel = sidebar.querySelector<HTMLElement>("[data-graph-panel]");
+      const graphHandle = sidebar.querySelector<HTMLElement>("[data-graph-handle]");
+      const graphClose = sidebar.querySelector<HTMLElement>("[data-graph-close]");
+      const POS_KEY = "presuposicionalismo:minigraph-pos";
+
+      function placeGraph(x: number, y: number) {
+        if (!graphPanel) return;
+        // El encabezado fijo del sitio tapa la barra de título: no pasar de él.
+        const minY = (document.querySelector("header")?.getBoundingClientRect().bottom ?? 0) + 8;
+        const maxX = window.innerWidth - graphPanel.offsetWidth - 8;
+        const maxY = window.innerHeight - graphPanel.offsetHeight - 8;
+        graphPanel.style.left = `${Math.min(Math.max(8, x), Math.max(8, maxX))}px`;
+        graphPanel.style.top = `${Math.min(Math.max(minY, y), Math.max(minY, maxY))}px`;
+      }
+
+      function saveGraphPos() {
+        if (!graphPanel) return;
+        try {
+          localStorage.setItem(
+            POS_KEY,
+            JSON.stringify({ x: graphPanel.offsetLeft, y: graphPanel.offsetTop }),
+          );
+        } catch {}
+      }
 
       function setGraphOpen(open: boolean) {
-        graphPanel?.classList.toggle("hidden", !open);
-        graphToggle?.setAttribute("aria-expanded", String(open));
-        if (graphToggle) graphToggle.dataset.open = String(open);
+        if (!graphPanel || !graphToggle) return;
+        graphPanel.classList.toggle("hidden", !open);
+        graphToggle.setAttribute("aria-expanded", String(open));
+        graphToggle.dataset.open = String(open);
+        if (!open) return;
+        // Última posición guardada; si no hay, junto al botón.
+        let pos: { x: number; y: number } | null = null;
+        try {
+          pos = JSON.parse(localStorage.getItem(POS_KEY) ?? "null");
+        } catch {}
+        const rect = graphToggle.getBoundingClientRect();
+        placeGraph(pos?.x ?? rect.right + 12, pos?.y ?? rect.top);
       }
 
       graphToggle?.addEventListener("click", () => {
         setGraphOpen(graphToggle.getAttribute("aria-expanded") !== "true");
       });
+      graphClose?.addEventListener("click", () => {
+        setGraphOpen(false);
+        graphToggle?.focus();
+      });
 
-      document.addEventListener("pointerdown", (event) => {
-        if (!graphWrapper || !graphWrapper.contains(event.target as Node)) {
-          setGraphOpen(false);
+      let drag: { dx: number; dy: number } | null = null;
+      graphHandle?.addEventListener("pointerdown", (event) => {
+        if (!graphPanel || (event.target as HTMLElement).closest("[data-graph-close]")) return;
+        drag = {
+          dx: event.clientX - graphPanel.offsetLeft,
+          dy: event.clientY - graphPanel.offsetTop,
+        };
+        graphHandle.setPointerCapture(event.pointerId);
+      });
+      graphHandle?.addEventListener("pointermove", (event) => {
+        if (drag) placeGraph(event.clientX - drag.dx, event.clientY - drag.dy);
+      });
+      const endDrag = () => {
+        if (!drag) return;
+        drag = null;
+        saveGraphPos();
+      };
+      graphHandle?.addEventListener("pointerup", endDrag);
+      graphHandle?.addEventListener("pointercancel", endDrag);
+
+      // Teclado: flechas sobre la barra de título.
+      graphHandle?.addEventListener("keydown", (event) => {
+        if (!graphPanel || event.target !== graphHandle) return;
+        const step = event.shiftKey ? 48 : 16;
+        const move: Record<string, [number, number]> = {
+          ArrowLeft: [-step, 0],
+          ArrowRight: [step, 0],
+          ArrowUp: [0, -step],
+          ArrowDown: [0, step],
+        };
+        const delta = move[event.key];
+        if (!delta) return;
+        event.preventDefault();
+        placeGraph(graphPanel.offsetLeft + delta[0], graphPanel.offsetTop + delta[1]);
+        saveGraphPos();
+      });
+
+      window.addEventListener("resize", () => {
+        if (graphPanel && !graphPanel.classList.contains("hidden")) {
+          placeGraph(graphPanel.offsetLeft, graphPanel.offsetTop);
         }
       });
 
