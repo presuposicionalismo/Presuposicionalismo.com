@@ -7,6 +7,9 @@ import BrandFacebook from "./icons/BrandFacebook.astro";
 import Bookmark from "./icons/Bookmark.astro";
 import BookmarkFilled from "./icons/BookmarkFilled.astro";
 import List from "./icons/List.astro";
+import Graph from "./icons/Graph.astro";
+import ArticleMiniGraph from "./ArticleMiniGraph.astro";
+import { getEgoGraph } from "@utils/egoGraph";
 
 interface Heading {
   depth: number;
@@ -17,10 +20,13 @@ interface Heading {
 interface Props {
   title: string;
   headings?: Heading[];
+  // Id del post en la colección "blog", para el minigrafo de conexiones.
+  postId?: string;
 }
 
-const { title, headings = [] } = Astro.props;
+const { title, headings = [], postId } = Astro.props;
 const toc = headings.filter((h) => h.depth <= 3);
+const graph = postId ? await getEgoGraph(postId) : null;
 
 const pageUrl = Astro.url.href;
 const pagePath = Astro.url.pathname;
@@ -37,8 +43,9 @@ const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComp
 >
   <div class="sticky top-32 flex flex-col gap-4">
     {
-      toc.length > 0 && (
+      (toc.length > 0 || graph) && (
         <>
+          {toc.length > 0 && (
           <div class="relative" data-toc-wrapper>
             <button
               type="button"
@@ -76,6 +83,26 @@ const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComp
               </ul>
             </nav>
           </div>
+          )}
+          {graph && postId && (
+            <div class="relative" data-graph-wrapper>
+              <button
+                type="button"
+                data-graph-toggle
+                aria-expanded="false"
+                aria-label="Conexiones del artículo"
+                class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent data-[open=true]:border-accent data-[open=true]:text-accent"
+              >
+                <Graph class="text-[20px]" />
+              </button>
+              <div
+                data-graph-panel
+                class="hidden absolute left-full top-0 ml-3 z-10 w-64 rounded-lg border border-border bg-surface shadow-lg p-4"
+              >
+                <ArticleMiniGraph postId={postId} graph={graph} />
+              </div>
+            </div>
+          )}
           <div class="w-8 h-px bg-border my-2 mx-auto" />
         </>
       )
@@ -230,6 +257,31 @@ const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComp
         renderBookmarkState(!isSaved);
       });
 
+      // --- Minigrafo de conexiones ---
+      const graphWrapper = sidebar.querySelector<HTMLElement>("[data-graph-wrapper]");
+      const graphToggle = sidebar.querySelector<HTMLButtonElement>("[data-graph-toggle]");
+      const graphPanel = sidebar.querySelector<HTMLElement>("[data-graph-panel]");
+
+      function setGraphOpen(open: boolean) {
+        graphPanel?.classList.toggle("hidden", !open);
+        graphToggle?.setAttribute("aria-expanded", String(open));
+        if (graphToggle) graphToggle.dataset.open = String(open);
+      }
+
+      graphToggle?.addEventListener("click", () => {
+        setGraphOpen(graphToggle.getAttribute("aria-expanded") !== "true");
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!graphWrapper || !graphWrapper.contains(event.target as Node)) {
+          setGraphOpen(false);
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setGraphOpen(false);
+      });
+
       // --- Índice del artículo (TOC) ---
       const tocWrapper =
         sidebar.querySelector<HTMLElement>("[data-toc-wrapper]");
@@ -243,18 +295,19 @@ const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComp
       function closeToc() {
         tocPanel?.classList.add("hidden");
         tocToggle?.setAttribute("aria-expanded", "false");
-        tocToggle && (tocToggle.dataset.open = "false");
+        if (tocToggle) tocToggle.dataset.open = "false";
       }
 
       function openToc() {
         tocPanel?.classList.remove("hidden");
         tocToggle?.setAttribute("aria-expanded", "true");
-        tocToggle && (tocToggle.dataset.open = "true");
+        if (tocToggle) tocToggle.dataset.open = "true";
       }
 
       tocToggle?.addEventListener("click", () => {
         const isOpen = tocToggle.getAttribute("aria-expanded") === "true";
-        isOpen ? closeToc() : openToc();
+        if (isOpen) closeToc();
+        else openToc();
       });
 
       document.addEventListener("pointerdown", (event) => {

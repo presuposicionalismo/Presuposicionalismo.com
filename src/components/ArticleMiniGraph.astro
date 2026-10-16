@@ -1,14 +1,14 @@
 ---
-import { getEgoGraph } from "@utils/egoGraph";
+import type { EgoGraph } from "@utils/egoGraph";
 
 interface Props {
   // Id del post en la colección "blog".
   postId: string;
+  graph: EgoGraph;
 }
 
-const { postId } = Astro.props;
-const graph = await getEgoGraph(postId);
-const byId = new Map(graph?.nodes.map((n) => [n.id, n]));
+const { postId, graph } = Astro.props;
+const byId = new Map(graph.nodes.map((n) => [n.id, n]));
 const KIND_LABEL = {
   actual: "Este artículo",
   concepto: "Concepto",
@@ -18,16 +18,8 @@ const KIND_LABEL = {
 } as const;
 ---
 
-{
-  graph && (
-    <aside
-      data-minigraph
-      class="absolute left-full top-0 hidden h-full w-48 xl:block"
-      style="margin-left: 2rem"
-      aria-label="Conexiones de este artículo"
-    >
-      <div class="sticky top-32">
-        <p class="mb-2 text-[10px] uppercase tracking-widest text-muted">Conexiones</p>
+<div data-minigraph>
+  <p class="mb-3 text-[10px] uppercase tracking-widest text-muted">Conexiones de este artículo</p>
         <svg
           viewBox={`0 0 ${graph.width} ${graph.height}`}
           class="w-full rounded-lg border border-border bg-surface"
@@ -89,7 +81,7 @@ const KIND_LABEL = {
         </svg>
         <p
           data-minigraph-caption
-          class="mt-2 min-h-[3.5rem] text-xs leading-snug text-muted"
+          class="mt-2 min-h-[2.5rem] text-xs leading-snug text-muted"
           aria-live="polite"
         >
           Pasa el cursor sobre un punto.
@@ -100,10 +92,7 @@ const KIND_LABEL = {
         >
           Abrir en el mapa →
         </a>
-      </div>
-    </aside>
-  )
-}
+</div>
 
 <style>
   .edge {
