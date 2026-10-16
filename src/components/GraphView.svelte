@@ -218,8 +218,14 @@
     history.replaceState(null, "", url);
   }
 
+  // Artículos, autores y libros abren su página; un concepto no tiene página
+  // propia, así que se muestra en el grafo.
   function pickMatch(node: GraphNode) {
     query = "";
+    if (node.kind !== "concepto" && node.url) {
+      window.location.assign(node.url);
+      return;
+    }
     selectNode(node.id);
     graphEl?.scrollIntoView({ block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
   }
@@ -305,7 +311,9 @@
               >
                 {@render kindDot(match.kind)}
                 <span class="flex-1 truncate">{match.label}</span>
-                <span class="text-xs text-muted">{KIND_LABEL[match.kind]}</span>
+                <span class="text-xs text-muted">
+                  {match.kind === "concepto" ? KIND_LABEL[match.kind] : `${KIND_LABEL[match.kind]} ↗`}
+                </span>
               </button>
             </li>
           {/each}
@@ -464,7 +472,7 @@
           {#if selected.url}
             <a
               href={selected.url}
-              class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline"
+              class="mt-3 inline-flex items-center gap-1 rounded-lg border border-accent bg-accent/10 px-3 py-1.5 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-background"
             >
               {ACTION_LABEL[selected.kind]} →
             </a>

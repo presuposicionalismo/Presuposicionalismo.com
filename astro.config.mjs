@@ -26,6 +26,11 @@ export default defineConfig({
     }),
   },
 
+  redirects: {
+    "/mapa": "/grafo",
+    "/tags": "/blog",
+  },
+
   output: "server",
   adapter: vercel(),
 

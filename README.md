@@ -19,15 +19,15 @@ Un sitio web dedicado a promover la literatura y filosofía cristiana presuposic
 
 ## ✅ **Qué hay en el sitio**
 
-| Sección   | Ruta       | Contenido                                                          |
-| --------- | ---------- | ------------------------------------------------------------------ |
-| Portada   | `/`        | Últimas entradas, libros destacados y autores                      |
-| Blog      | `/blog`    | 70 artículos publicados, paginados (3 más en borrador)             |
-| Libros    | `/libros`  | 11 libros con ficha y descarga                                     |
-| Autores   | `/autores` | 12 autores con biografía, sus libros y los artículos relacionados  |
-| Etiquetas | `/tags`    | Artículos por etiqueta                                             |
-| Mapa      | `/grafo`   | Grafo de conceptos, artículos, autores y libros con sus relaciones |
-| RSS       | `/rss.xml` | Feed del blog                                                      |
+| Sección  | Ruta       | Contenido                                                          |
+| -------- | ---------- | ------------------------------------------------------------------ |
+| Portada  | `/`        | Últimas entradas, libros destacados y autores                      |
+| Blog     | `/blog`    | 70 artículos publicados, paginados (3 más en borrador)             |
+| Libros   | `/libros`  | 11 libros con ficha y descarga                                     |
+| Autores  | `/autores` | 12 autores con biografía, sus libros y los artículos relacionados  |
+| Etiqueta | `/tags/x`  | Artículos de una etiqueta (`/tags` redirige a `/blog`)             |
+| Mapa     | `/grafo`   | Grafo de conceptos, artículos, autores y libros con sus relaciones |
+| RSS      | `/rss.xml` | Feed del blog                                                      |
 
 Además:
 
