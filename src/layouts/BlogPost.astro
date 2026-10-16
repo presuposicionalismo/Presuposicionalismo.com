@@ -8,6 +8,7 @@ import ShareSidebar from "../components/ShareSidebar.astro";
 import AuthorCard from "../components/AuthorCard.astro";
 import RelatedArticles from "../components/RelatedArticles.astro";
 import ArticleConcepts from "../components/ArticleConcepts.astro";
+import ArticleMiniGraph from "../components/ArticleMiniGraph.astro";
 // import NewsletterCTA from "../components/NewsletterCTA.astro"; // Oculto por ahora, no se usa
 import ArticleHeader from "../components/ArticleHeader.astro";
 import ArrowLeft from "../components/icons/ArrowLeft.astro";
@@ -190,6 +191,9 @@ const breadcrumbSchema = {
       <div class="relative w-full">
         <!-- Floating Sidebar (Desktop) -->
         <ShareSidebar title={title} headings={headings} />
+
+        <!-- Minigrafo de conexiones (Desktop ancho) -->
+        {slug && <ArticleMiniGraph postId={slug} />}
 
         <!-- Typography Content (lo único que indexa Pagefind, ver search:index) -->
         <div class="prose-content" data-pagefind-body>

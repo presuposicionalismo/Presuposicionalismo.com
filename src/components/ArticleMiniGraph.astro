@@ -1,0 +1,181 @@
+---
+import { getEgoGraph } from "@utils/egoGraph";
+
+interface Props {
+  // Id del post en la colección "blog".
+  postId: string;
+}
+
+const { postId } = Astro.props;
+const graph = await getEgoGraph(postId);
+const byId = new Map(graph?.nodes.map((n) => [n.id, n]));
+const KIND_LABEL = {
+  actual: "Este artículo",
+  concepto: "Concepto",
+  articulo: "Artículo",
+  autor: "Autor",
+  libro: "Libro",
+} as const;
+---
+
+{
+  graph && (
+    <aside
+      data-minigraph
+      class="absolute left-full top-0 hidden h-full w-48 xl:block"
+      style="margin-left: 2rem"
+      aria-label="Conexiones de este artículo"
+    >
+      <div class="sticky top-32">
+        <p class="mb-2 text-[10px] uppercase tracking-widest text-muted">Conexiones</p>
+        <svg
+          viewBox={`0 0 ${graph.width} ${graph.height}`}
+          class="w-full rounded-lg border border-border bg-surface"
+          role="group"
+          aria-label="Minigrafo del artículo"
+        >
+          {graph.edges.map((edge) => {
+            const a = byId.get(edge.source)!;
+            const b = byId.get(edge.target)!;
+            return (
+              <line
+                x1={a.x}
+                y1={a.y}
+                x2={b.x}
+                y2={b.y}
+                class={`edge edge-${edge.type}`}
+                vector-effect="non-scaling-stroke"
+              />
+            );
+          })}
+          {graph.nodes.map((node) => {
+            const shape =
+              node.kind === "libro" ? (
+                <rect
+                  x={-node.r}
+                  y={-node.r}
+                  width={node.r * 2}
+                  height={node.r * 2}
+                  transform="rotate(45)"
+                  class="shape shape-libro"
+                />
+              ) : (
+                <circle r={node.r} class={`shape shape-${node.kind}`} />
+              );
+            const body = (
+              <>
+                <circle r={node.r + 5} fill="transparent" />
+                {node.kind === "actual" && <circle r={node.r + 4} class="ring" />}
+                {shape}
+              </>
+            );
+            return (
+              <g
+                class:list={["node", node.url && "node-link"]}
+                transform={`translate(${node.x},${node.y})`}
+                data-label={node.label}
+                data-kind={KIND_LABEL[node.kind]}
+              >
+                {node.url ? (
+                  <a href={node.url} aria-label={`${KIND_LABEL[node.kind]}: ${node.label}`}>
+                    {body}
+                  </a>
+                ) : (
+                  body
+                )}
+              </g>
+            );
+          })}
+        </svg>
+        <p
+          data-minigraph-caption
+          class="mt-2 min-h-[3.5rem] text-xs leading-snug text-muted"
+          aria-live="polite"
+        >
+          Pasa el cursor sobre un punto.
+        </p>
+        <a
+          href={`/grafo#n=${encodeURIComponent(`blog:${postId}`)}`}
+          class="text-xs font-semibold text-accent hover:underline"
+        >
+          Abrir en el mapa →
+        </a>
+      </div>
+    </aside>
+  )
+}
+
+<style>
+  .edge {
+    stroke: var(--color-muted);
+    stroke-opacity: 0.35;
+    stroke-width: 1;
+  }
+  .edge-relacionado {
+    stroke-dasharray: 3 3;
+  }
+  .edge-critica {
+    stroke: var(--color-accent);
+    stroke-opacity: 0.7;
+  }
+  .node-link {
+    cursor: pointer;
+  }
+  .shape-actual,
+  .shape-concepto {
+    fill: var(--color-accent);
+  }
+  .shape-articulo {
+    fill: var(--color-muted);
+    fill-opacity: 0.75;
+  }
+  .shape-autor {
+    fill: var(--color-surface);
+    stroke: var(--color-accent);
+    stroke-width: 1.5;
+  }
+  .shape-libro {
+    fill: var(--color-surface);
+    stroke: var(--color-foreground);
+    stroke-opacity: 0.7;
+    stroke-width: 1.5;
+  }
+  .ring {
+    fill: none;
+    stroke: var(--color-accent);
+    stroke-width: 1.5;
+  }
+  .node:hover .shape,
+  .node:focus-within .shape {
+    stroke: var(--color-accent);
+    stroke-width: 2;
+  }
+</style>
+
+<script>
+  // Muestra bajo el grafo el nombre del punto señalado.
+  document.querySelectorAll<HTMLElement>("[data-minigraph]").forEach((root) => {
+    const caption = root.querySelector<HTMLElement>("[data-minigraph-caption]");
+    if (!caption) return;
+    const initial = caption.textContent;
+    const show = (node: Element | null) => {
+      const el = node?.closest<SVGElement>(".node");
+      if (!el) {
+        caption.textContent = initial;
+        return;
+      }
+      caption.replaceChildren();
+      const kind = document.createElement("span");
+      kind.className = "block text-[10px] font-bold uppercase tracking-widest";
+      kind.textContent = el.dataset.kind ?? "";
+      const label = document.createElement("span");
+      label.className = "text-foreground";
+      label.textContent = el.dataset.label ?? "";
+      caption.append(kind, label);
+    };
+    root.addEventListener("pointerover", (e) => show(e.target as Element));
+    root.addEventListener("pointerleave", () => show(null));
+    root.addEventListener("focusin", (e) => show(e.target as Element));
+    root.addEventListener("focusout", () => show(null));
+  });
+</script>
