@@ -1,0 +1,36 @@
+---
+interface Props {
+  // Identifica el panel y su botón (data-float-toggle) y la posición guardada.
+  name: string;
+  label: string;
+}
+
+const { name, label } = Astro.props;
+---
+
+<div
+  data-float-panel={name}
+  role="dialog"
+  aria-label={label}
+  class="hidden fixed z-50 w-64 rounded-lg border border-border bg-surface shadow-xl"
+>
+  <div
+    data-float-handle
+    tabindex="0"
+    title="Arrastra para mover (o usa las flechas)"
+    class="flex cursor-grab touch-none select-none items-center justify-between rounded-t-lg border-b border-border px-4 py-2 active:cursor-grabbing"
+  >
+    <span class="text-[10px] uppercase tracking-widest text-muted">⠿ {label}</span>
+    <button
+      type="button"
+      data-float-close
+      aria-label="Cerrar"
+      class="-mr-1 rounded p-1 text-muted hover:text-foreground"
+    >
+      ✕
+    </button>
+  </div>
+  <div class="max-h-[60vh] overflow-y-auto p-4">
+    <slot />
+  </div>
+</div>

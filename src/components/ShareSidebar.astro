@@ -9,6 +9,7 @@ import BookmarkFilled from "./icons/BookmarkFilled.astro";
 import List from "./icons/List.astro";
 import Graph from "./icons/Graph.astro";
 import ArticleMiniGraph from "./ArticleMiniGraph.astro";
+import FloatingPanel from "./FloatingPanel.astro";
 import { getEgoGraph } from "@utils/egoGraph";
 
 interface Heading {
@@ -46,83 +47,53 @@ const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComp
       (toc.length > 0 || graph) && (
         <>
           {toc.length > 0 && (
-          <div class="relative" data-toc-wrapper>
-            <button
-              type="button"
-              data-toc-toggle
-              aria-expanded="false"
-              aria-label="Índice del artículo"
-              class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent data-[open=true]:border-accent data-[open=true]:text-accent"
-            >
-              <List class="text-[20px]" />
-            </button>
-            <nav
-              data-toc-panel
-              class="hidden absolute right-full top-0 mr-3 w-64 max-h-[60vh] overflow-y-auto rounded-lg border border-border bg-surface shadow-lg p-4"
-              aria-label="Índice del artículo"
-            >
-              <p class="text-[10px] text-muted uppercase tracking-widest mb-3">
-                En este artículo
-              </p>
-              <ul class="flex flex-col gap-2.5">
-                {toc.map((heading) => (
-                  <li>
-                    <a
-                      href={`#${heading.slug}`}
-                      data-toc-link
-                      data-target={heading.slug}
-                      class:list={[
-                        "toc-link block text-sm text-muted hover:text-accent transition-colors leading-snug",
-                        heading.depth > 2 && "pl-3",
-                      ]}
-                    >
-                      {heading.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-          )}
-          {graph && postId && (
-            <div class="relative" data-graph-wrapper>
+            <div class="relative">
               <button
                 type="button"
-                data-graph-toggle
+                data-float-toggle="toc"
+                aria-expanded="false"
+                aria-label="Índice del artículo"
+                class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent data-[open=true]:border-accent data-[open=true]:text-accent"
+              >
+                <List class="text-[20px]" />
+              </button>
+              <FloatingPanel name="toc" label="En este artículo">
+                <nav aria-label="Índice del artículo">
+                  <ul class="flex flex-col gap-2.5">
+                    {toc.map((heading) => (
+                      <li>
+                        <a
+                          href={`#${heading.slug}`}
+                          data-toc-link
+                          data-target={heading.slug}
+                          class:list={[
+                            "toc-link block text-sm text-muted hover:text-accent transition-colors leading-snug",
+                            heading.depth > 2 && "pl-3",
+                          ]}
+                        >
+                          {heading.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </FloatingPanel>
+            </div>
+          )}
+          {graph && postId && (
+            <div class="relative">
+              <button
+                type="button"
+                data-float-toggle="graph"
                 aria-expanded="false"
                 aria-label="Conexiones del artículo"
                 class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface border border-border text-muted shadow-sm transition-all hover:border-accent hover:text-accent data-[open=true]:border-accent data-[open=true]:text-accent"
               >
                 <Graph class="text-[20px]" />
               </button>
-              <div
-                data-graph-panel
-                role="dialog"
-                aria-label="Conexiones de este artículo"
-                class="hidden fixed z-50 w-64 rounded-lg border border-border bg-surface shadow-xl"
-              >
-                <div
-                  data-graph-handle
-                  tabindex="0"
-                  title="Arrastra para mover (o usa las flechas)"
-                  class="flex cursor-grab touch-none select-none items-center justify-between rounded-t-lg border-b border-border px-4 py-2 active:cursor-grabbing"
-                >
-                  <span class="text-[10px] uppercase tracking-widest text-muted">
-                    ⠿ Conexiones de este artículo
-                  </span>
-                  <button
-                    type="button"
-                    data-graph-close
-                    aria-label="Cerrar"
-                    class="-mr-1 rounded p-1 text-muted hover:text-foreground"
-                  >
-                    ✕
-                  </button>
-                </div>
-                <div class="p-4">
-                  <ArticleMiniGraph postId={postId} graph={graph} />
-                </div>
-              </div>
+              <FloatingPanel name="graph" label="Conexiones de este artículo">
+                <ArticleMiniGraph postId={postId} graph={graph} />
+              </FloatingPanel>
             </div>
           )}
           <div class="w-8 h-px bg-border my-2 mx-auto" />
@@ -279,144 +250,103 @@ const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComp
         renderBookmarkState(!isSaved);
       });
 
-      // --- Minigrafo de conexiones: ventana flotante y arrastrable ---
-      const graphToggle = sidebar.querySelector<HTMLButtonElement>("[data-graph-toggle]");
-      const graphPanel = sidebar.querySelector<HTMLElement>("[data-graph-panel]");
-      const graphHandle = sidebar.querySelector<HTMLElement>("[data-graph-handle]");
-      const graphClose = sidebar.querySelector<HTMLElement>("[data-graph-close]");
-      const POS_KEY = "presuposicionalismo:minigraph-pos";
+      // --- Índice y conexiones: ventanas flotantes y arrastrables ---
+      const HEADER_GAP = 8;
 
-      function placeGraph(x: number, y: number) {
-        if (!graphPanel) return;
-        // El encabezado fijo del sitio tapa la barra de título: no pasar de él.
-        const minY = (document.querySelector("header")?.getBoundingClientRect().bottom ?? 0) + 8;
-        const maxX = window.innerWidth - graphPanel.offsetWidth - 8;
-        const maxY = window.innerHeight - graphPanel.offsetHeight - 8;
-        graphPanel.style.left = `${Math.min(Math.max(8, x), Math.max(8, maxX))}px`;
-        graphPanel.style.top = `${Math.min(Math.max(minY, y), Math.max(minY, maxY))}px`;
-      }
+      function initFloating(name: string) {
+        const toggle = sidebar.querySelector<HTMLButtonElement>(`[data-float-toggle="${name}"]`);
+        const panel = sidebar.querySelector<HTMLElement>(`[data-float-panel="${name}"]`);
+        const handle = panel?.querySelector<HTMLElement>("[data-float-handle]");
+        const close = panel?.querySelector<HTMLElement>("[data-float-close]");
+        if (!toggle || !panel || !handle) return;
+        const posKey = `presuposicionalismo:float-${name}`;
 
-      function saveGraphPos() {
-        if (!graphPanel) return;
-        try {
-          localStorage.setItem(
-            POS_KEY,
-            JSON.stringify({ x: graphPanel.offsetLeft, y: graphPanel.offsetTop }),
-          );
-        } catch {}
-      }
-
-      function setGraphOpen(open: boolean) {
-        if (!graphPanel || !graphToggle) return;
-        graphPanel.classList.toggle("hidden", !open);
-        graphToggle.setAttribute("aria-expanded", String(open));
-        graphToggle.dataset.open = String(open);
-        if (!open) return;
-        // Última posición guardada; si no hay, junto al botón.
-        let pos: { x: number; y: number } | null = null;
-        try {
-          pos = JSON.parse(localStorage.getItem(POS_KEY) ?? "null");
-        } catch {}
-        const rect = graphToggle.getBoundingClientRect();
-        placeGraph(pos?.x ?? rect.right + 12, pos?.y ?? rect.top);
-      }
-
-      graphToggle?.addEventListener("click", () => {
-        setGraphOpen(graphToggle.getAttribute("aria-expanded") !== "true");
-      });
-      graphClose?.addEventListener("click", () => {
-        setGraphOpen(false);
-        graphToggle?.focus();
-      });
-
-      let drag: { dx: number; dy: number } | null = null;
-      graphHandle?.addEventListener("pointerdown", (event) => {
-        if (!graphPanel || (event.target as HTMLElement).closest("[data-graph-close]")) return;
-        drag = {
-          dx: event.clientX - graphPanel.offsetLeft,
-          dy: event.clientY - graphPanel.offsetTop,
+        const place = (x: number, y: number) => {
+          // El encabezado fijo del sitio tapa la barra de título: no pasar de él.
+          const minY = (document.querySelector("header")?.getBoundingClientRect().bottom ?? 0) + HEADER_GAP;
+          const maxX = window.innerWidth - panel.offsetWidth - HEADER_GAP;
+          const maxY = window.innerHeight - panel.offsetHeight - HEADER_GAP;
+          panel.style.left = `${Math.min(Math.max(HEADER_GAP, x), Math.max(HEADER_GAP, maxX))}px`;
+          panel.style.top = `${Math.min(Math.max(minY, y), Math.max(minY, maxY))}px`;
         };
-        graphHandle.setPointerCapture(event.pointerId);
-      });
-      graphHandle?.addEventListener("pointermove", (event) => {
-        if (drag) placeGraph(event.clientX - drag.dx, event.clientY - drag.dy);
-      });
-      const endDrag = () => {
-        if (!drag) return;
-        drag = null;
-        saveGraphPos();
-      };
-      graphHandle?.addEventListener("pointerup", endDrag);
-      graphHandle?.addEventListener("pointercancel", endDrag);
 
-      // Teclado: flechas sobre la barra de título.
-      graphHandle?.addEventListener("keydown", (event) => {
-        if (!graphPanel || event.target !== graphHandle) return;
-        const step = event.shiftKey ? 48 : 16;
-        const move: Record<string, [number, number]> = {
-          ArrowLeft: [-step, 0],
-          ArrowRight: [step, 0],
-          ArrowUp: [0, -step],
-          ArrowDown: [0, step],
+        const savePos = () => {
+          try {
+            localStorage.setItem(posKey, JSON.stringify({ x: panel.offsetLeft, y: panel.offsetTop }));
+          } catch {}
         };
-        const delta = move[event.key];
-        if (!delta) return;
-        event.preventDefault();
-        placeGraph(graphPanel.offsetLeft + delta[0], graphPanel.offsetTop + delta[1]);
-        saveGraphPos();
-      });
 
-      window.addEventListener("resize", () => {
-        if (graphPanel && !graphPanel.classList.contains("hidden")) {
-          placeGraph(graphPanel.offsetLeft, graphPanel.offsetTop);
-        }
-      });
+        const setOpen = (open: boolean) => {
+          panel.classList.toggle("hidden", !open);
+          toggle.setAttribute("aria-expanded", String(open));
+          toggle.dataset.open = String(open);
+          if (!open) return;
+          // Última posición guardada; si no hay, junto al botón.
+          let pos: { x: number; y: number } | null = null;
+          try {
+            pos = JSON.parse(localStorage.getItem(posKey) ?? "null");
+          } catch {}
+          const rect = toggle.getBoundingClientRect();
+          place(pos?.x ?? rect.right + 12, pos?.y ?? rect.top);
+        };
 
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") setGraphOpen(false);
-      });
+        toggle.addEventListener("click", () => {
+          setOpen(toggle.getAttribute("aria-expanded") !== "true");
+        });
+        close?.addEventListener("click", () => {
+          setOpen(false);
+          toggle.focus();
+        });
 
-      // --- Índice del artículo (TOC) ---
-      const tocWrapper =
-        sidebar.querySelector<HTMLElement>("[data-toc-wrapper]");
-      const tocToggle =
-        sidebar.querySelector<HTMLButtonElement>("[data-toc-toggle]");
-      const tocPanel = sidebar.querySelector<HTMLElement>("[data-toc-panel]");
+        let drag: { dx: number; dy: number } | null = null;
+        handle.addEventListener("pointerdown", (event) => {
+          if ((event.target as HTMLElement).closest("[data-float-close]")) return;
+          drag = { dx: event.clientX - panel.offsetLeft, dy: event.clientY - panel.offsetTop };
+          handle.setPointerCapture(event.pointerId);
+        });
+        handle.addEventListener("pointermove", (event) => {
+          if (drag) place(event.clientX - drag.dx, event.clientY - drag.dy);
+        });
+        const endDrag = () => {
+          if (!drag) return;
+          drag = null;
+          savePos();
+        };
+        handle.addEventListener("pointerup", endDrag);
+        handle.addEventListener("pointercancel", endDrag);
+
+        // Teclado: flechas sobre la barra de título.
+        handle.addEventListener("keydown", (event) => {
+          if (event.target !== handle) return;
+          const step = event.shiftKey ? 48 : 16;
+          const move: Record<string, [number, number]> = {
+            ArrowLeft: [-step, 0],
+            ArrowRight: [step, 0],
+            ArrowUp: [0, -step],
+            ArrowDown: [0, step],
+          };
+          const delta = move[event.key];
+          if (!delta) return;
+          event.preventDefault();
+          place(panel.offsetLeft + delta[0], panel.offsetTop + delta[1]);
+          savePos();
+        });
+
+        window.addEventListener("resize", () => {
+          if (!panel.classList.contains("hidden")) place(panel.offsetLeft, panel.offsetTop);
+        });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") setOpen(false);
+        });
+      }
+
+      initFloating("toc");
+      initFloating("graph");
+
+      // --- Índice del artículo: resaltado de la sección actual ---
       const tocLinks = Array.from(
         sidebar.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"),
       );
-
-      function closeToc() {
-        tocPanel?.classList.add("hidden");
-        tocToggle?.setAttribute("aria-expanded", "false");
-        if (tocToggle) tocToggle.dataset.open = "false";
-      }
-
-      function openToc() {
-        tocPanel?.classList.remove("hidden");
-        tocToggle?.setAttribute("aria-expanded", "true");
-        if (tocToggle) tocToggle.dataset.open = "true";
-      }
-
-      tocToggle?.addEventListener("click", () => {
-        const isOpen = tocToggle.getAttribute("aria-expanded") === "true";
-        if (isOpen) closeToc();
-        else openToc();
-      });
-
-      document.addEventListener("pointerdown", (event) => {
-        if (!tocWrapper || !tocWrapper.contains(event.target as Node)) {
-          closeToc();
-        }
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") closeToc();
-      });
-
-      tocLinks.forEach((link) => {
-        link.addEventListener("click", () => closeToc());
-      });
 
       if (tocLinks.length > 0) {
         const headingEls = tocLinks
