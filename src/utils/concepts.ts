@@ -8,6 +8,7 @@ import { slugifyStr } from "./slugify";
 // publicados. Una arista o pregunta que apunta a un borrador se descarta.
 
 export interface ConceptArticle {
+  id: string;
   title: string;
   url: string;
   pubDate: Date;
@@ -29,12 +30,30 @@ export interface ConceptPage extends KnowledgeConcept {
   related: { id: string; label: string; shared: number }[];
 }
 
-export async function getConcepts(): Promise<ConceptPage[]> {
+let cache: Promise<ConceptPage[]> | undefined;
+
+// Se calcula una vez por build: cada artículo y cada ficha lo consultan.
+export function getConcepts(): Promise<ConceptPage[]> {
+  return (cache ??= loadConcepts());
+}
+
+// Conceptos que trata un artículo (id de la colección), los más centrales
+// primero.
+export async function getConceptsForPost(postId: string) {
+  const found = (await getConcepts()).flatMap((concept) => {
+    const article = concept.articles.find((a) => a.id === postId);
+    return article ? [{ concept, weight: article.weight }] : [];
+  });
+  return found.sort((a, b) => b.weight - a.weight).map((f) => f.concept);
+}
+
+async function loadConcepts(): Promise<ConceptPage[]> {
   const knowledge = knowledgeSchema.parse(knowledgeJson);
   const posts = new Map(
     (await getCollection("blog", postFilter)).map((post) => [
       `blog:${post.id}`,
       {
+        id: post.id,
         title: post.data.title,
         url: `/blog/${slugifyStr(post.data.title)}/`,
         pubDate: post.data.pubDate,

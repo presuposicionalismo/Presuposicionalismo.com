@@ -7,6 +7,7 @@ import BaseLayout from "./BaseLayout.astro";
 import ShareSidebar from "../components/ShareSidebar.astro";
 import AuthorCard from "../components/AuthorCard.astro";
 import RelatedArticles from "../components/RelatedArticles.astro";
+import ArticleConcepts from "../components/ArticleConcepts.astro";
 // import NewsletterCTA from "../components/NewsletterCTA.astro"; // Oculto por ahora, no se usa
 import ArticleHeader from "../components/ArticleHeader.astro";
 import ArrowLeft from "../components/icons/ArrowLeft.astro";
@@ -214,6 +215,9 @@ const breadcrumbSchema = {
             <AuthorCard />
           )
         }
+
+        <!-- Conceptos que trata el artículo -->
+        {slug && <ArticleConcepts postId={slug} />}
 
         <!-- Related Articles -->
         <RelatedArticles posts={relatedPosts} />
