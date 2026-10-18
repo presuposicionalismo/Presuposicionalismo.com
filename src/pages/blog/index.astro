@@ -2,7 +2,7 @@
 import MainLayout from "@layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import Pagination from "@components/Pagination.astro";
-import FeaturedPost from "@components/FeaturedPost.astro";
+import FeaturedPosts from "@components/FeaturedPosts.astro";
 import PostGridItem from "@components/PostGridItem.astro";
 import CategoryFilter from "@components/CategoryFilter.astro";
 import { SITE_DESCRIPTION } from "../../consts";
@@ -13,13 +13,11 @@ const sortedPosts = allPosts.sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-// Paginate manually for first page
-const pageSize = 7; // 1 Featured + 6 Grid
-const currentPagePosts = sortedPosts.slice(0, pageSize);
+// Primera página a mano; mismo tamaño que blog/page/[page].astro
+// (6 = dos filas completas de la cuadrícula de 3).
+const pageSize = 6;
+const gridPosts = sortedPosts.slice(0, pageSize);
 const totalPages = Math.ceil(sortedPosts.length / pageSize);
-
-const featuredPost = currentPagePosts[0];
-const gridPosts = currentPagePosts.slice(1);
 
 // Data for Sidebar (kept for Tags logic which is passed to CategoryFilter)
 const tagCounts = allPosts.reduce(
@@ -64,10 +62,14 @@ const sortedTags = Object.keys(tagCounts).sort(
         <CategoryFilter tags={sortedTags} />
 
         <div class="space-y-16">
-          {/* Featured Post */}
-          {featuredPost && <FeaturedPost post={featuredPost} />}
+          <FeaturedPosts bare />
 
-          {/* Grid Layout */}
+          <h2
+            class="serif-text border-t border-border pt-10 text-3xl leading-tight font-semibold tracking-tight text-foreground md:pt-12"
+          >
+            Todos los artículos
+          </h2>
+
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
             {gridPosts.map((post) => <PostGridItem post={post} />)}
           </div>

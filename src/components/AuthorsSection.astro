@@ -1,78 +1,118 @@
 ---
-import { getCollection } from "astro:content";
-import ArrowRight from "./icons/ArrowRight.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import Section from "./Section.astro";
 
-// Orden cronológico por año de nacimiento (campo `dates`, ej. "1895–1987");
-// los que no lo tienen van al final, por nombre.
-const birthYear = (dates?: string) => {
-  const match = dates?.match(/\d{4}/);
-  return match ? Number(match[0]) : Infinity;
+// Línea de vida de la tradición: cada autor con fechas (campo `dates`,
+// "1895–1987" o "n. 1939") es una barra sobre un eje de años común; los
+// vivos llegan hasta hoy y se desvanecen. Los autores sin fechas son las
+// voces actuales y se nombran en la frase de abajo.
+type Author = CollectionEntry<"autores">;
+
+const parseLife = (dates?: string) => {
+  const years = dates?.match(/\d{4}/g)?.map(Number);
+  if (!years?.length) return null;
+  const alive = dates!.trim().startsWith("n.");
+  return { born: years[0], died: alive ? null : (years[1] ?? null) };
 };
 
-const authors = (await getCollection("autores")).sort(
-  (a, b) =>
-    birthYear(a.data.dates) - birthYear(b.data.dates) ||
-    a.data.name.localeCompare(b.data.name, "es"),
-);
+const authors = await getCollection("autores");
+const thisYear = new Date().getFullYear();
+
+const lives = authors
+  .map((author) => ({ author, life: parseLife(author.data.dates) }))
+  .filter(
+    (entry): entry is { author: Author; life: { born: number; died: number | null } } =>
+      entry.life !== null,
+  )
+  .sort((a, b) => a.life.born - b.life.born);
+
+const contemporaries = authors
+  .filter((author) => !parseLife(author.data.dates))
+  .sort((a, b) => a.data.name.localeCompare(b.data.name, "es"));
+
+// Eje: desde la década anterior al primer nacimiento hasta este año, con
+// marcas cada 25 años.
+const start = Math.floor((lives[0]?.life.born ?? 1900) / 10) * 10 - 5;
+const end = thisYear;
+const pct = (year: number) => ((year - start) / (end - start)) * 100;
+const ticks: number[] = [];
+for (let y = Math.ceil(start / 25) * 25; y <= end; y += 25) ticks.push(y);
+
+const rowGrid = "grid gap-x-6 md:grid-cols-[17rem_1fr] md:items-center";
 ---
 
-<section class="mx-auto max-w-6xl px-6 py-16 md:py-24">
-  <div class="mb-10 flex items-end justify-between gap-4">
-    <div>
-      <div class="mb-3 flex items-center gap-3">
-        <div class="h-px w-8 bg-accent/40"></div>
-        <p class="text-xs font-bold tracking-[0.25em] text-muted uppercase">
-          Autores
-        </p>
+<Section
+  title="Voces de la tradición"
+  intro="Un siglo de apologética reformada, de Van Til a hoy."
+  link={{ href: "/autores/", label: `Los ${authors.length} autores` }}
+  id="voces"
+>
+  <div>
+    <div aria-hidden="true" class={rowGrid}>
+      <span class="hidden md:block"></span>
+      <div class="relative h-6 text-xs text-muted tabular-nums">
+        {
+          ticks.map((year) => (
+            <span class="absolute top-0 -translate-x-1/2" style={`left: ${pct(year)}%`}>
+              {year}
+            </span>
+          ))
+        }
       </div>
-      <h2 class="serif-text text-3xl font-semibold text-foreground md:text-4xl">
-        Voces de la tradición
-      </h2>
     </div>
-    <a
-      href="/autores/"
-      class="group hidden shrink-0 items-center gap-1.5 text-sm font-medium text-foreground underline decoration-border underline-offset-4 transition-all hover:text-accent hover:decoration-accent md:inline-flex"
-    >
-      Ver todos
-      <ArrowRight class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-    </a>
-  </div>
 
-  <!-- En móvil se muestran 6; el resto queda en "Ver todos los autores". -->
-  <ul class="grid border-t border-border sm:grid-cols-2 lg:grid-cols-3">
-    {
-      authors.map((author) => (
-        <li class="border-b border-border max-sm:[&:nth-child(n+7)]:hidden">
-          <a
-            href={`/autores/${author.id}/`}
-            class="group flex h-full items-start justify-between gap-4 py-5 pr-4"
-          >
-            <div class="min-w-0">
-              <p class="serif-text text-lg leading-tight font-semibold text-foreground transition-colors group-hover:text-accent">
-                {author.data.name}
-                {author.data.dates && (
-                  <span class="ml-1.5 font-sans text-xs font-medium text-muted">
+    <ul class="border-t border-border">
+      {
+        lives.map(({ author, life }) => (
+          <li class="border-b border-border">
+            <a href={`/autores/${author.id}/`} class:list={["group py-4", rowGrid]}>
+              <div class="min-w-0">
+                <p class="serif-text text-lg leading-tight font-semibold text-foreground decoration-accent decoration-2 underline-offset-4 group-hover:underline">
+                  {author.data.name}
+                  <span class="ml-1 font-sans text-sm font-medium whitespace-nowrap text-muted tabular-nums">
                     {author.data.dates}
                   </span>
-                )}
-              </p>
-              <p class="mt-1.5 line-clamp-2 text-sm leading-relaxed text-muted">
-                {author.data.role}
-              </p>
-            </div>
-            <ArrowRight class="mt-1 h-4 w-4 shrink-0 text-muted opacity-0 transition-all group-hover:translate-x-0.5 group-hover:text-accent group-hover:opacity-100" />
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+                </p>
+                <p class="mt-1 line-clamp-2 text-sm leading-snug text-muted">{author.data.role}</p>
+              </div>
 
-  <div class="mt-8 md:hidden">
-    <a
-      href="/autores/"
-      class="text-sm font-medium text-foreground underline decoration-border underline-offset-4 hover:text-accent hover:decoration-accent"
-    >
-      Ver todos los autores →
-    </a>
+              <div aria-hidden="true" class="relative mt-3 h-5 md:mt-0">
+                {ticks.map((year) => (
+                  <span class="absolute inset-y-0 w-px bg-border" style={`left: ${pct(year)}%`} />
+                ))}
+                <span
+                  class:list={[
+                    "absolute top-1/2 h-1.5 -translate-y-1/2 rounded-full",
+                    life.died
+                      ? "bg-accent"
+                      : "bg-gradient-to-r from-accent from-60% to-transparent",
+                  ]}
+                  style={`left: ${pct(life.born)}%; width: ${pct(life.died ?? end) - pct(life.born)}%`}
+                />
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    {
+      contemporaries.length > 0 && (
+        <p class="mt-8 max-w-2xl text-base leading-relaxed text-muted">
+          La conversación sigue con&#32;
+          {contemporaries.map((author, i) => (
+            <>
+              <a
+                href={`/autores/${author.id}/`}
+                class="font-semibold text-foreground underline decoration-border decoration-2 underline-offset-4 transition-colors hover:decoration-accent"
+              >
+                {author.data.name}
+              </a>
+              {i < contemporaries.length - 2 ? ", " : i === contemporaries.length - 2 ? " y " : "."}
+            </>
+          ))}
+        </p>
+      )
+    }
   </div>
-</section>
+</Section>

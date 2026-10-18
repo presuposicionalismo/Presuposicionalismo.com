@@ -1,51 +1,57 @@
 ---
 import { getCollection } from "astro:content";
-import BookCard from "./BookCard.astro";
-import ArrowRight from "./icons/ArrowRight.astro";
+import Section from "./Section.astro";
+import CoverBook from "./CoverBook.astro";
+import { resolveAuthors, formatAuthorNames } from "@utils/authors";
 
+// Los cuatro libros más recientes, de pie sobre un estante. Cada libro
+// trae su tramo de estante (sin hueco entre columnas), así la repisa
+// sale continua en cada fila: una en escritorio, dos en móvil.
 const allBooks = (await getCollection("libros")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-const featuredBooks = allBooks.slice(0, 4);
+const books = await Promise.all(
+  allBooks.slice(0, 4).map(async (book) => ({
+    book,
+    authors: formatAuthorNames(await resolveAuthors(book.data.authors)),
+  })),
+);
 ---
 
-<section class="mx-auto max-w-6xl px-6 py-16 md:py-24">
-  <!-- Header -->
-  <div class="mb-10 flex items-end justify-between gap-4">
-    <div>
-      <div class="mb-3 flex items-center gap-3">
-        <div class="h-px w-8 bg-accent/40"></div>
-        <p class="text-xs font-bold tracking-[0.25em] text-muted uppercase">Biblioteca</p>
-      </div>
-      <h2 class="serif-text text-3xl font-semibold text-foreground md:text-4xl">
-        Libros Destacados
-      </h2>
-      <p class="mt-2 text-sm text-muted">
-        Recursos esenciales de apologética y teología reformada.
-      </p>
-    </div>
-    <a
-      href="/libros/"
-      class="group hidden shrink-0 items-center gap-1.5 text-sm font-medium text-foreground underline decoration-border underline-offset-4 transition-all hover:text-accent hover:decoration-accent md:inline-flex"
-    >
-      Ver todos
-      <ArrowRight class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-    </a>
-  </div>
-
-  <!-- Grid -->
-  <div class="grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 md:grid-cols-4">
-    {featuredBooks.map((book) => <BookCard book={book} />)}
-  </div>
-
-  <!-- Mobile "Ver todos" -->
-  <div class="mt-8 text-center md:hidden">
-    <a
-      href="/libros/"
-      class="text-sm font-medium text-foreground underline decoration-border underline-offset-4 hover:text-accent hover:decoration-accent"
-    >
-      Ver todos los libros
-    </a>
-  </div>
-</section>
+<Section
+  title="Libros destacados"
+  intro="Traducciones y ensayos completos, gratis en PDF."
+  link={{ href: "/libros/", label: `Los ${allBooks.length} libros` }}
+  id="libros"
+>
+  <ul class="grid grid-cols-2 gap-y-12 md:grid-cols-4">
+    {
+      books.map(({ book, authors }) => (
+        <li class="group relative flex flex-col">
+          <div class="border-b-[10px] border-border px-[14%] pt-4 shadow-[0_10px_12px_-10px_rgb(0_0_0/0.35)]">
+            <div class="relative rounded-r-sm shadow-[8px_10px_18px_-8px_rgb(0_0_0/0.45)] transition-transform duration-300 group-hover:-translate-y-2">
+              <CoverBook
+                imagePath={String(book.data.coverBook)}
+                altText=""
+                widths={[240, 480]}
+                sizes="(min-width: 1024px) 170px, (min-width: 768px) 18vw, 36vw"
+                class="aspect-[2/3] w-full rounded-r-sm object-cover"
+                transitionName={`coverbook ${book.data.title} image`}
+              />
+              <div class="pointer-events-none absolute inset-y-0 left-0 w-2 bg-gradient-to-r from-black/25 via-white/10 to-transparent" />
+            </div>
+          </div>
+          <div class="px-3 pt-5 md:px-4">
+            <h3 class="serif-text text-lg leading-snug font-semibold text-foreground decoration-accent decoration-2 underline-offset-4 group-hover:underline">
+              <a href={`/libros/${book.id}/`} class="after:absolute after:inset-0">
+                {book.data.title}
+              </a>
+            </h3>
+            {authors && <p class="mt-1.5 text-sm text-muted">{authors}</p>}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</Section>

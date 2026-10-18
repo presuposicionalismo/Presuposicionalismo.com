@@ -8,6 +8,9 @@ interface Props {
   loading?: "lazy" | "eager";
   class?: string;
   transitionName?: string;
+  // Sin ellos se sirve la portada original (hasta ~2000px de ancho).
+  widths?: number[];
+  sizes?: string;
 }
 
 const {
@@ -16,6 +19,8 @@ const {
   loading = "lazy",
   class: className,
   transitionName,
+  widths,
+  sizes,
 } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/coverbook/*.{jpeg,jpg,png,gif,webp}",
@@ -31,5 +36,7 @@ if (!images[imagePath])
   alt={altText}
   class={className}
   loading={loading}
+  widths={widths}
+  sizes={sizes}
   transition:name={transitionName}
 />

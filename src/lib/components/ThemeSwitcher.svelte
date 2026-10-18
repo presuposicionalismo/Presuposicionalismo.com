@@ -9,16 +9,18 @@
     color: string;
   };
 
+  // `value` es el id interno (data-design y localStorage); `label` es el
+  // nombre que ve el lector.
   const themes: ThemeOption[] = [
     {
       value: "ledger",
-      label: "Ledger",
+      label: "Moderno",
       description: "Geométrico, monocromo, alto contraste",
       color: "bg-white border-black dark:bg-black dark:border-white",
     },
     {
       value: "grabado",
-      label: "Grabado",
+      label: "Clásico",
       description: "Editorial, papel envejecido, rubricado",
       color: "bg-[#f2e8d3] border-[#7a1f2b]",
     },
@@ -86,7 +88,7 @@
   <button
     onclick={toggleOpen}
     class="group flex items-center justify-center w-10 h-10 rounded-lg hover:bg-accent/10 text-muted hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent/40"
-    aria-label="Change Theme"
+    aria-label="Elegir estilo visual"
     aria-expanded={isOpen}
   >
     <svg
@@ -131,7 +133,8 @@
             theme.value
               ? 'bg-accent/10 border-accent/30 shadow-sm'
               : 'bg-transparent border-transparent hover:bg-accent/5 hover:border-border'}"
-            aria-label={`Set theme to ${theme.label}`}
+            aria-label={`Usar el estilo ${theme.label}`}
+            aria-pressed={currentTheme === theme.value}
             title={theme.label}
           >
             <div class="flex items-center gap-3 min-w-0">

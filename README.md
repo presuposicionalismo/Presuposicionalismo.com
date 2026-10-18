@@ -32,7 +32,7 @@ Un sitio web dedicado a promover la literatura y filosofía cristiana presuposic
 Además:
 
 - **Buscador ⌘K / Ctrl+K** en el blog y las etiquetas: combina respuestas precalculadas (la pregunta, los artículos que la responden y el fragmento exacto) con búsqueda de texto completo, y filtra por etiqueta o autor.
-- **Dos pieles, cada una en modo claro y oscuro**: _Ledger_ (geométrica, monocroma) y _Grabado_ (editorial, papel envejecido). Ver la cabecera de `src/styles/tokens.css`.
+- **Dos pieles, cada una en modo claro y oscuro**: _Moderno_ (`ledger`: geométrica, monocroma) y _Clásico_ (`grabado`: editorial, papel envejecido). Ver la cabecera de `src/styles/tokens.css`.
 - **SEO**: meta tags, Open Graph, datos estructurados (JSON-LD), sitemap y descripciones cortas por artículo (`seoDescription`).
 - **Transiciones entre páginas** con `ClientRouter` de Astro.
 

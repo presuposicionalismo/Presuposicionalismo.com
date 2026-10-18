@@ -1,0 +1,67 @@
+---
+import { SITE_DESCRIPTION } from "../consts";
+
+// El lema del sitio (2 Co 10:5) como epígrafe y, debajo, las citas de la
+// tradición que lo desarrollan. El lema vive en SITE_DESCRIPTION en
+// minúscula porque también es meta description de otras páginas.
+const motto = SITE_DESCRIPTION.charAt(0).toUpperCase() + SITE_DESCRIPTION.slice(1);
+
+const quotes = [
+  {
+    text: "El antiteísmo presupone el teísmo.",
+    name: "Cornelius Van Til",
+    source: "Defense of the Faith",
+  },
+  {
+    text: "El cristianismo es razonable en virtud de la imposibilidad de lo contrario.",
+    name: "Greg L. Bahnsen",
+    source: "Presuppositional Apologetics: Stated and Defended",
+  },
+  {
+    text: "Porque el Dios de la Biblia está ahí, existe una moral real. Dentro de este marco puedo decir que una acción es correcta y otra incorrecta, sin hablar sin sentido.",
+    name: "Francis A. Schaeffer",
+    source: "The God Who Is There",
+  },
+  {
+    text: "El secreto incómodo de la apologética cristiana es este: no existe ningún argumento humano que garantice vencer la incredulidad.",
+    name: "John M. Frame",
+    source: "Christianity Considered",
+  },
+];
+---
+
+<section aria-labelledby="pensamientos-titulo" class="border-y border-border bg-surface">
+  <div class="mx-auto max-w-6xl px-6 py-16 md:py-24">
+    <h2 id="pensamientos-titulo" class="sr-only">Pensamientos</h2>
+
+    <figure class="grid gap-6 lg:grid-cols-12 lg:gap-12">
+      <blockquote
+        class="serif-text relative text-[1.75rem] leading-[1.2] font-medium tracking-tight text-balance text-foreground md:text-5xl md:leading-[1.12] lg:col-span-9 lg:col-start-4"
+      >
+        <span aria-hidden="true" class="absolute -left-[0.5em] text-accent">&ldquo;</span>{motto}.&rdquo;
+      </blockquote>
+      <figcaption
+        class="text-sm font-semibold text-muted lg:col-span-3 lg:row-start-1 lg:pt-4"
+      >
+        2 Corintios 10:5
+      </figcaption>
+    </figure>
+
+    <div class="mt-16 md:mt-20 lg:grid lg:grid-cols-12 lg:gap-12">
+      <div class="grid gap-x-10 gap-y-10 md:grid-cols-2 lg:col-span-9 lg:col-start-4">
+      {
+        quotes.map((quote) => (
+          <figure class="border-t border-border pt-5">
+            <blockquote class="serif-text text-xl leading-snug text-foreground">
+              {quote.text}
+            </blockquote>
+            <figcaption class="mt-4 text-sm leading-relaxed text-muted">
+              <span class="font-semibold text-foreground">{quote.name}</span>,&#32;<cite>{quote.source}</cite>
+            </figcaption>
+          </figure>
+        ))
+      }
+      </div>
+    </div>
+  </div>
+</section>

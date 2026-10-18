@@ -1,37 +1,31 @@
 ---
 import MainLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import MottoBand from "../components/MottoBand.astro";
-import BlogCarousel from "../components/BlogCarousel.astro";
+import FeaturedPosts from "../components/FeaturedPosts.astro";
+import Epigraph from "../components/Epigraph.astro";
 import FeaturedBooks from "../components/FeaturedBooks.astro";
 import AuthorsSection from "../components/AuthorsSection.astro";
-import Quotes from "../components/Quotes.astro";
 // import NewsletterCTA from "../components/NewsletterCTA.astro"; // Oculto por ahora, no se usa
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { SITE_TITLE } from "../consts";
+
+// El lema (SITE_DESCRIPTION) se muestra en Epigraph; para buscadores y
+// redes la portada necesita decir qué es el sitio.
+const title = `${SITE_TITLE} · Apologética presuposicional en español`;
+const description =
+  "Artículos, libros gratuitos y un mapa de conceptos sobre la apologética presuposicional de Cornelius Van Til, Greg Bahnsen, John Frame y sus estudiantes.";
 ---
 
-<MainLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<MainLayout title={title} description={description}>
   <Hero />
 
-  <!-- Lema del sitio (2 Co 10:5) -->
-  <MottoBand />
+  <FeaturedPosts link={{ href: "/blog/", label: "Todos los artículos" }} />
 
-  <BlogCarousel />
-
-  <div class="mx-auto max-w-6xl px-6">
-    <hr class="border-border" />
-  </div>
+  <!-- Lema del sitio (2 Co 10:5) y citas de la tradición -->
+  <Epigraph />
 
   <FeaturedBooks />
 
-  <div class="mx-auto max-w-6xl px-6">
-    <hr class="border-border" />
-  </div>
-
   <AuthorsSection />
-
-  <!-- Quotes / Thoughts section -->
-  <Quotes />
 
   <!-- Newsletter CTA — oculto por ahora, no se usa -->
   <!-- <section id="newsletter" class="mx-auto max-w-6xl px-6 pb-20 md:pb-28">

@@ -15,8 +15,8 @@ const MAX_LENGTH = 155;
  *    de dónde decida truncar el buscador.
  *
  * Importante: esto NO reemplaza `description` en ningún lugar donde se
- * muestra como resumen de contenido en el propio sitio (BlogCarousel,
- * FeaturedPost, "Sobre el libro" en BookLayout) -- esos siguen usando la description
+ * muestra como resumen de contenido en el propio sitio (FeaturedPosts,
+ * "Sobre el libro" en BookLayout) -- esos siguen usando la description
  * completa tal cual la escribiste, sin recorte.
  */
 export function getSeoDescription(description: string, seoDescription?: string): string {

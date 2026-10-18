@@ -1,0 +1,61 @@
+---
+// Sección de la portada con "columna de margen": título, una frase y el
+// enlace a la página completa a la izquierda, contenido a la derecha. En
+// móvil se apila. `bare` quita el contenedor y el filete superior para
+// usarla dentro de una página que ya los tiene (ej. /blog).
+interface Props {
+  title: string;
+  intro?: string;
+  link?: { href: string; label: string };
+  id?: string;
+  bare?: boolean;
+}
+
+const { title, intro, link, id, bare = false } = Astro.props;
+const headingId = id ? `${id}-titulo` : undefined;
+---
+
+<section
+  id={id}
+  aria-labelledby={headingId}
+  class:list={[!bare && "mx-auto max-w-6xl px-6 py-12 md:py-16"]}
+>
+  <div
+    class:list={[
+      "grid gap-10 lg:grid-cols-12 lg:gap-12",
+      !bare && "border-t border-border pt-10 md:pt-12",
+    ]}
+  >
+    <header class="lg:col-span-3">
+      <div class="lg:sticky lg:top-24">
+        <h2
+          id={headingId}
+          class="serif-text text-3xl leading-tight font-semibold tracking-tight text-foreground md:text-4xl lg:text-3xl"
+        >
+          {title}
+        </h2>
+        {
+          intro && (
+            <p class="mt-3 max-w-sm text-base leading-relaxed text-muted">
+              {intro}
+            </p>
+          )
+        }
+        {
+          link && (
+            <a
+              href={link.href}
+              class="mt-5 inline-block text-sm font-semibold text-foreground underline decoration-border decoration-2 underline-offset-4 transition-colors hover:decoration-accent"
+            >
+              {link.label}
+            </a>
+          )
+        }
+      </div>
+    </header>
+
+    <div class="min-w-0 lg:col-span-9">
+      <slot />
+    </div>
+  </div>
+</section>

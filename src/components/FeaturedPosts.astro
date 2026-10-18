@@ -1,0 +1,120 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import Section from "./Section.astro";
+import { slugifyStr } from "@utils/slugify";
+import postFilter from "@utils/postFilter";
+
+// Lecturas destacadas: las marcadas con `featured` en el frontmatter (un
+// número fija el orden de lectura), completadas con las más recientes si
+// faltan. La primera va grande con su imagen; el resto como un índice.
+// Se usa en la portada y en /blog.
+interface Props {
+  title?: string;
+  intro?: string;
+  link?: { href: string; label: string };
+  limit?: number;
+  id?: string;
+  bare?: boolean;
+}
+
+const {
+  title = "Para empezar",
+  intro = "Cinco lecturas, en este orden, para entender el método.",
+  link,
+  limit = 5,
+  id = "para-empezar",
+  bare = false,
+} = Astro.props;
+
+const allPosts = (await getCollection("blog", postFilter)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const featuredRank = (value: boolean | number | undefined) =>
+  typeof value === "number" ? value : Infinity;
+const picked = allPosts
+  .filter((p) => p.data.featured)
+  .sort((a, b) => featuredRank(a.data.featured) - featuredRank(b.data.featured));
+const [lead, ...rest] = [
+  ...picked,
+  ...allPosts.filter((p) => !p.data.featured),
+].slice(0, limit);
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/coverblog/*.{jpeg,jpg,png,gif,webp}",
+);
+const leadImage =
+  lead?.data.heroImage && images[lead.data.heroImage]
+    ? (await images[lead.data.heroImage]()).default
+    : null;
+
+const url = (post: CollectionEntry<"blog">) =>
+  `/blog/${slugifyStr(post.data.title)}/`;
+---
+
+{
+  lead && (
+    <Section title={title} intro={intro} link={link} id={id} bare={bare}>
+      <ol class="grid list-none gap-x-10 md:grid-cols-2">
+        <li class="group relative grid gap-6 border-b border-border pb-10 md:col-span-2 md:grid-cols-9 md:gap-8">
+          <div class="aspect-[3/2] overflow-hidden rounded-lg bg-surface md:col-span-5">
+            {leadImage && (
+              <Image
+                src={leadImage}
+                alt=""
+                widths={[560, 880, 1200]}
+                sizes="(min-width: 1024px) 480px, (min-width: 768px) 55vw, 100vw"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                transition:name={`coverblog ${lead.data.title} image`}
+              />
+            )}
+          </div>
+          <div class="flex flex-col justify-center md:col-span-4">
+            <span
+              aria-hidden="true"
+              class="serif-text text-2xl leading-none text-muted tabular-nums"
+            >
+              1
+            </span>
+            <h3 class="serif-text mt-3 text-2xl leading-snug font-semibold text-foreground md:text-3xl">
+              <a
+                href={url(lead)}
+                class="decoration-accent decoration-2 underline-offset-4 group-hover:underline after:absolute after:inset-0"
+              >
+                {lead.data.title}
+              </a>
+            </h3>
+            <p class="mt-3 line-clamp-4 text-base leading-relaxed text-muted">
+              {lead.data.description}
+            </p>
+          </div>
+        </li>
+
+        {rest.map((post, i) => (
+          <li class="group relative flex gap-5 border-b border-border py-6">
+            <span
+              aria-hidden="true"
+              class="serif-text w-6 shrink-0 text-2xl leading-none text-muted tabular-nums"
+            >
+              {i + 2}
+            </span>
+            <div class="min-w-0">
+              <h3 class="serif-text text-lg leading-snug font-semibold text-foreground">
+                <a
+                  href={url(post)}
+                  class="decoration-accent decoration-2 underline-offset-4 group-hover:underline after:absolute after:inset-0"
+                >
+                  {post.data.title}
+                </a>
+              </h3>
+              <p class="mt-1.5 line-clamp-2 text-sm leading-relaxed text-muted">
+                {post.data.description}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </Section>
+  )
+}
