@@ -165,7 +165,13 @@ const breadcrumbSchema = {
     <!-- Article Container -->
     <article class="w-full max-w-[800px] px-5 md:px-0 flex flex-col gap-10">
       <!-- Article Header -->
-      <ArticleHeader title={title} pubDate={pubDate} tags={tags} />
+      <ArticleHeader
+        title={title}
+        pubDate={pubDate}
+        tags={tags}
+        author={primaryAuthor ? formatAuthorNames(postAuthors) : undefined}
+        authorUrl={primaryAuthor ? `/autores/${primaryAuthor.id}/` : undefined}
+      />
 
       <!-- Featured Image -->
       {

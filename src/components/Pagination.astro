@@ -54,7 +54,10 @@ const getPaginationWithEllipsis = (
 const pages = getPaginationWithEllipsis(currentPage, totalPages);
 ---
 
-<nav class="flex items-center gap-3 justify-center mt-20">
+<nav
+  class="mt-20 flex flex-wrap items-center justify-center gap-3"
+  aria-label="Paginación"
+>
   {
     prevUrl ? (
       <a
@@ -72,7 +75,8 @@ const pages = getPaginationWithEllipsis(currentPage, totalPages);
     )
   }
 
-  <div class="flex gap-1.5">
+  <!-- En móvil los números van en su propia fila, encima de Anterior/Siguiente. -->
+  <div class="flex gap-1.5 max-sm:order-first max-sm:w-full max-sm:justify-center">
     {
       pages.map((page) =>
         typeof page === "number" ? (

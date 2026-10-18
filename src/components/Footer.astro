@@ -2,6 +2,15 @@
 import SocialFooter from "./SocialFooter.astro";
 
 const today = new Date();
+
+const links = [
+  { href: "/blog/", label: "Blog" },
+  { href: "/libros/", label: "Libros" },
+  { href: "/autores/", label: "Autores" },
+  { href: "/conceptos/", label: "Conceptos" },
+  { href: "/grafo", label: "Mapa" },
+  { href: "/rss.xml", label: "RSS" },
+];
 ---
 
 <footer class="bg-background border-t border-border py-16 mt-20">
@@ -16,7 +25,20 @@ const today = new Date();
         © {today.getFullYear()} Soli Deo Gloria. Todos los derechos reservados.
       </p>
     </div>
-    <div class="flex flex-col items-center md:items-end gap-4">
+    <div class="flex flex-col items-center md:items-end gap-5">
+      <nav aria-label="Secciones">
+        <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium text-muted">
+          {
+            links.map((link) => (
+              <li>
+                <a href={link.href} class="transition-colors hover:text-foreground">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
       <SocialFooter />
       <!-- Newsletter oculto por ahora — reactivar este link cuando vuelva la sección -->
       <!-- <a

@@ -8,9 +8,16 @@ interface Props {
   pubDate: Date;
   tags?: string[];
   author?: string;
+  authorUrl?: string;
 }
 
-const { title, pubDate, tags, author = "Presuposicionalismo" } = Astro.props;
+const {
+  title,
+  pubDate,
+  tags,
+  author = "Presuposicionalismo",
+  authorUrl,
+} = Astro.props;
 ---
 
 <header class="flex flex-col gap-6">
@@ -38,9 +45,20 @@ const { title, pubDate, tags, author = "Presuposicionalismo" } = Astro.props;
   >
     <div class="flex items-center gap-4">
       <div class="flex flex-col">
-        <span class="text-base font-bold text-accent leading-tight">
-          {author}
-        </span>
+        {
+          authorUrl ? (
+            <a
+              href={authorUrl}
+              class="text-base font-bold text-accent leading-tight hover:underline underline-offset-4"
+            >
+              {author}
+            </a>
+          ) : (
+            <span class="text-base font-bold text-accent leading-tight">
+              {author}
+            </span>
+          )
+        }
         <span class="text-sm text-muted">
           <FormattedDate date={pubDate} />
         </span>

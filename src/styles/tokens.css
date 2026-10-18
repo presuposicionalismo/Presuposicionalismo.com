@@ -4,6 +4,7 @@
    Dos ejes independientes, ambos como atributos de <html>:
      data-theme="light|dark"        modo  (BaseHead.astro / DarkToggle)
      data-design="ledger|grabado"   piel  (BaseHead.astro / ThemeSwitcher)
+                                   En el selector se llaman Moderno y Clásico.
 
    1. Los atributos se traducen a custom properties (--mode, --design).
    2. Cada combinación se escribe como un bloque @container style(...),
@@ -98,7 +99,7 @@
       --_foreground: #2a2117;
       --_background: #f2e8d3;
       --_surface: #f8efdc;
-      --_muted: #7c6a4e;
+      --_muted: #735f44;
       --_border: #d9c69e;
       --_accent: #7a1f2b;
 
@@ -118,7 +119,7 @@
       --_surface: #241a12;
       --_muted: #a6906a;
       --_border: #3c2d1e;
-      --_accent: #c9503f;
+      --_accent: #d96552;
     }
   }
 }

@@ -21,7 +21,7 @@ const links = [
 >
   <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
     <div class="flex items-center gap-4">
-      <a class="flex items-center gap-2 group" href="/">
+      <a class="flex items-center gap-2 group" href="/" aria-label="Presuposicionalismo, inicio">
         <Logo />
       </a>
     </div>
@@ -50,7 +50,9 @@ const links = [
     <button
       id="mobile-menu-btn"
       class="md:hidden p-2 text-foreground"
-      aria-label="Menu"
+      aria-label="Abrir menú"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
     >
       <Menu2 class="text-2xl" />
     </button>
@@ -59,7 +61,11 @@ const links = [
   <!-- Mobile Menu Overlay -->
   <div
     id="mobile-menu"
-    class="fixed inset-0 z-[100] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menú"
+    inert
+    class="fixed inset-0 z-[100] bg-background transform translate-x-full transition-transform duration-300 md:hidden flex flex-col"
   >
     <div class="flex items-center justify-between p-6 border-b border-border">
       <div class="flex items-center gap-2">
@@ -100,28 +106,40 @@ const links = [
 </header>
 
 <script>
-  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-  const closeMenuBtn = document.getElementById("close-menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
+  // Con ClientRouter los scripts de módulo corren una sola vez, pero cada
+  // navegación trae un <header> nuevo: el menú se enlaza en cada page-load.
+  function setupMobileMenu() {
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const closeMenuBtn = document.getElementById("close-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    if (!mobileMenuBtn || !mobileMenu) return;
 
-  // Move menu to body to avoid stacking context issues
-  if (mobileMenu && document.body) {
+    // Move menu to body to avoid stacking context issues
     document.body.appendChild(mobileMenu);
-  }
 
-  function toggleMenu() {
-    mobileMenu?.classList.toggle("translate-x-full");
-    const isOpen = !mobileMenu?.classList.contains("translate-x-full");
-    document.body.style.overflow = isOpen ? "hidden" : "";
-  }
+    function toggleMenu() {
+      mobileMenu?.classList.toggle("translate-x-full");
+      const isOpen = !mobileMenu?.classList.contains("translate-x-full");
+      document.body.style.overflow = isOpen ? "hidden" : "";
+      // Cerrado queda fuera de pantalla: `inert` lo saca del orden de tabulación.
+      mobileMenu?.toggleAttribute("inert", !isOpen);
+      mobileMenuBtn?.setAttribute("aria-expanded", String(isOpen));
+      (isOpen ? closeMenuBtn : mobileMenuBtn)?.focus();
+    }
 
-  mobileMenuBtn?.addEventListener("click", toggleMenu);
-  closeMenuBtn?.addEventListener("click", toggleMenu);
-
-  // Close menu when clicking links (delegation since we moved the menu)
-  mobileMenu?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      toggleMenu();
+    mobileMenuBtn.addEventListener("click", toggleMenu);
+    closeMenuBtn?.addEventListener("click", toggleMenu);
+    mobileMenu.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") toggleMenu();
     });
-  });
+
+    // Close menu when clicking links (delegation since we moved the menu)
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        toggleMenu();
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", setupMobileMenu);
 </script>

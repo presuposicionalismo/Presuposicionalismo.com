@@ -83,10 +83,12 @@
   }
 
   @supports (animation-timeline: view()) {
-    .animate-in-view {
-      animation: fade-in-up 0.6s ease-out both;
-      animation-timeline: view();
-      animation-range: entry 10% cover 30%;
+    @media (prefers-reduced-motion: no-preference) {
+      .animate-in-view {
+        animation: fade-in-up 0.6s ease-out both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 30%;
+      }
     }
   }
 }
@@ -102,6 +104,22 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Movimiento reducido: sin desplazamiento suave ni hovers que escalan o
+   desplazan (portadas, tarjetas, flechas). */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Drop cap style for blog posts */
 .drop-cap::first-letter {
   float: left;
@@ -111,12 +129,4 @@ html {
   margin-right: 0.75rem;
   margin-top: 0.25rem;
   color: var(--color-accent);
-}
-
-#mobile-menu {
-  background-color: #ffffff !important;
-}
-
-.dark #mobile-menu {
-  background-color: #000000 !important;
 }

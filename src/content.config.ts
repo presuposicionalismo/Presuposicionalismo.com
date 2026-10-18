@@ -19,7 +19,9 @@ const blog = defineCollection({
     // Transform string to Date object
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    featured: z.boolean().optional(),
+    // Lecturas de "Para empezar" en la portada: un número fija el orden
+    // (1 = la principal); `true` las pone detrás de las numeradas.
+    featured: z.union([z.boolean(), z.number()]).optional(),
     draft: z.boolean().optional(),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).optional(),

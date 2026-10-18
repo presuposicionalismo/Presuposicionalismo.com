@@ -5401,8 +5401,7 @@
         {
           "ref": "blog:la-incoherencia-de-los-lgbt",
           "snippet": "O bien (1) \"hombre\" y \"mujer\" están atados a la forma física, en cuyo caso el concepto de orientación sexual (LGB) es inteligible pero la ideología del transexualismo (T) es indefendible",
-          "origin": "llm",
-          "anchor": "la-incoherencia-de-los-lgbt"
+          "origin": "llm"
         },
         {
           "ref": "blog:la-incoherencia-de-los-lgbt---parte-2",
@@ -5435,8 +5434,7 @@
         {
           "ref": "blog:la-incoherencia-de-los-lgbt",
           "snippet": "Nada de lo anterior implica que la disforia de género no sea una condición real que afecte a algunas personas.",
-          "origin": "llm",
-          "anchor": "la-incoherencia-de-los-lgbt"
+          "origin": "llm"
         }
       ]
     },
@@ -7162,8 +7160,7 @@
         {
           "ref": "blog:la-apologética-clásica-es-inútil-frente-a-los-irracionalismos-orientales",
           "snippet": "Si los santos y los pecadores son igualmente Dios, entonces el Mal es tan divino como el Bien y la Individualidad es irreal.",
-          "origin": "llm",
-          "anchor": "van-til-y-vivekananda---un-encuentro-políticamente-incorrecto"
+          "origin": "llm"
         }
       ]
     },
@@ -7198,8 +7195,7 @@
         {
           "ref": "blog:la-apologética-clásica-es-inútil-frente-a-los-irracionalismos-orientales",
           "snippet": "Vivekananda ganó muchos seguidores porque al rechazar la revelación divina, los intelectuales occidentales perdieron la fuente de la confianza única de Occidente en que la mente humana puede conocer la verdad",
-          "origin": "llm",
-          "anchor": "van-til-y-vivekananda---un-encuentro-políticamente-incorrecto"
+          "origin": "llm"
         }
       ]
     },
@@ -7223,8 +7219,7 @@
         {
           "ref": "blog:el-presuposicionalismo-confunde-la-ontología-con-la-epistemología",
           "snippet": "Van Til no confunde ontología y epistemología, precisamente porque su argumento central para el teísmo bíblico depende de una distinción entre ambas.",
-          "origin": "llm",
-          "anchor": "el-presuposicionalismo-confunde-la-ontología-con-la-epistemología"
+          "origin": "llm"
         },
         {
           "ref": "blog:venciendo-el-prejuicio-anti-metafísica",
@@ -7315,7 +7310,7 @@
       "processedAt": "2026-09-30"
     },
     "blog:la-incoherencia-de-los-lgbt---parte-2": {
-      "hash": "3454638cedc20381",
+      "hash": "f19a669d1ae46922",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
@@ -7325,7 +7320,7 @@
       "processedAt": "2026-09-30"
     },
     "blog:qué-es-una-presuposición": {
-      "hash": "b609a1f529b9b3c2",
+      "hash": "a65c900e65085ec2",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
@@ -7350,7 +7345,7 @@
       "processedAt": "2026-09-30"
     },
     "blog:sobre-las-suposiciones-mixtas": {
-      "hash": "cfc936cc48801daf",
+      "hash": "79c5e8c5cd4772fd",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
@@ -7360,7 +7355,7 @@
       "processedAt": "2026-09-30"
     },
     "blog:pruebas-teístas": {
-      "hash": "d02c2634ed634112",
+      "hash": "d5e1b52abd1e1b6d",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
@@ -7385,17 +7380,17 @@
       "processedAt": "2026-09-30"
     },
     "blog:razonando-en-círculos": {
-      "hash": "b90c51e5536f75e4",
+      "hash": "d73c1144d3641aca",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
     "blog:la-incoherencia-de-los-lgbt": {
-      "hash": "10d38b6c1820f056",
+      "hash": "ef95612b75b084d3",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
     "blog:el-problema-del-lenguaje-religioso": {
-      "hash": "f989a6f5fb59f1cc",
+      "hash": "3a8b9cdfdc865c95",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
@@ -7405,7 +7400,7 @@
       "processedAt": "2026-09-30"
     },
     "blog:el-presuposicionalismo-confunde-la-ontología-con-la-epistemología": {
-      "hash": "3dfa03d21a2e493a",
+      "hash": "2359bd9b456eb514",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
@@ -7455,7 +7450,7 @@
       "processedAt": "2026-09-30"
     },
     "blog:la-apologética-clásica-es-inútil-frente-a-los-irracionalismos-orientales": {
-      "hash": "66e2316c095cde57",
+      "hash": "a2713765af898f47",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
@@ -7470,7 +7465,7 @@
       "processedAt": "2026-09-30"
     },
     "blog:el-problema-del-mal": {
-      "hash": "ec3c928aaa43e566",
+      "hash": "863a3511f62fa4f8",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
@@ -7525,7 +7520,7 @@
       "processedAt": "2026-09-30"
     },
     "blog:como-reducir-las-presuposiciones-cristianas-al-absurdo": {
-      "hash": "ef1b09d9bfc3e2de",
+      "hash": "eb95f9a19fd4b47c",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
@@ -7555,12 +7550,12 @@
       "processedAt": "2026-09-30"
     },
     "blog:el-robo-de-la-neutralidad": {
-      "hash": "0ea7671bcc1a079f",
+      "hash": "45774125c9c94c6e",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
     "blog:ganar-el-mundo-con-esperanza": {
-      "hash": "fd8d616bdd6046ad",
+      "hash": "368aa02492b2236a",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
@@ -7580,7 +7575,7 @@
       "processedAt": "2026-09-30"
     },
     "blog:30000-denominaciones-protestantes": {
-      "hash": "63aece54b55f4af2",
+      "hash": "069017cd66b2ca96",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
@@ -7605,7 +7600,7 @@
       "processedAt": "2026-09-30"
     },
     "blog:lógica": {
-      "hash": "31725ed0ade1ea96",
+      "hash": "2b90347351aa51f3",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
@@ -7620,12 +7615,12 @@
       "processedAt": "2026-09-30"
     },
     "blog:van-til-dijo-que-los-incrédulos-no-saben-nada": {
-      "hash": "6d3ed0e1a51f104e",
+      "hash": "0cc4abad8d6a6138",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
     "blog:qué-es-el-método-transcendental": {
-      "hash": "3b2b416eaef01605",
+      "hash": "074e2a2fb738dbf9",
       "model": "claude-opus-5-5",
       "processedAt": "2026-09-30"
     },
