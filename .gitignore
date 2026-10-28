@@ -36,3 +36,8 @@ pnpm-debug.log*
 
 # Cloudflare Wrangler local artifacts
 .wrangler/
+
+# Skills de agentes y herramientas locales
+.agents/
+.impeccable/
+skills-lock.json
