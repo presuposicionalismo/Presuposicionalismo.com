@@ -4,9 +4,9 @@ import Section from "./Section.astro";
 import CoverBook from "./CoverBook.astro";
 import { resolveAuthors, formatAuthorNames } from "@utils/authors";
 
-// Los cuatro libros más recientes, de pie sobre un estante. Cada libro
-// trae su tramo de estante (sin hueco entre columnas), así la repisa
-// sale continua en cada fila: una en escritorio, dos en móvil.
+// Los cuatro libros más recientes, de pie. Sin repisa dibujada: una barra
+// bajo las portadas se leía como un filete que separa portada y título.
+// La sombra de contacto en la base basta para que el libro se vea apoyado.
 const allBooks = (await getCollection("libros")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
@@ -29,8 +29,12 @@ const books = await Promise.all(
     {
       books.map(({ book, authors }) => (
         <li class="group relative flex flex-col">
-          <div class="border-b-[10px] border-border px-[14%] pt-4 shadow-[0_10px_12px_-10px_rgb(0_0_0/0.35)]">
-            <div class="relative rounded-r-sm shadow-[8px_10px_18px_-8px_rgb(0_0_0/0.45)] transition-transform duration-300 group-hover:-translate-y-2">
+          <div class="relative px-[14%] pt-4">
+            <span
+              aria-hidden="true"
+              class="absolute inset-x-[10%] -bottom-1.5 h-3 rounded-[50%] bg-black/30 blur-md transition-opacity duration-300 group-hover:opacity-50"
+            />
+            <div class="relative rounded-r-sm shadow-[6px_-2px_14px_-6px_rgb(0_0_0/0.4)] transition-transform duration-300 group-hover:-translate-y-2">
               <CoverBook
                 imagePath={String(book.data.coverBook)}
                 altText=""
@@ -55,3 +59,4 @@ const books = await Promise.all(
     }
   </ul>
 </Section>
+
