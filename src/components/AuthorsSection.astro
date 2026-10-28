@@ -5,8 +5,27 @@ import Section from "./Section.astro";
 // Línea de vida de la tradición: cada autor con fechas (campo `dates`,
 // "1895–1987" o "n. 1939") es una barra sobre un eje de años común; los
 // vivos llegan hasta hoy y se desvanecen. Los autores sin fechas son las
-// voces actuales y se nombran en la frase de abajo.
+// voces actuales y se nombran en la frase de abajo. Machen y los dos hitos
+// institucionales no son autores del sitio: van aquí como contexto, sin
+// enlace, porque sin ellos no se entiende de dónde sale Van Til.
 type Author = CollectionEntry<"autores">;
+
+type Row = { name: string; dates: string; role: string; href?: string };
+
+const context: Row[] = [
+  {
+    name: "J. Gresham Machen",
+    dates: "1881–1937",
+    role: "Fundador del Seminario Westminster y de la OPC; mentor de Van Til",
+  },
+];
+
+// `side`: hacia dónde cuelga la etiqueta desde su línea, para que dos
+// hitos cercanos no se pisen. `short` es la etiqueta en móvil.
+const events = [
+  { year: 1929, label: "Seminario Westminster", short: "Westminster", side: "left" },
+  { year: 1936, label: "OPC", short: "OPC", side: "right" },
+] as const;
 
 const parseLife = (dates?: string) => {
   const years = dates?.match(/\d{4}/g)?.map(Number);
@@ -18,10 +37,20 @@ const parseLife = (dates?: string) => {
 const authors = await getCollection("autores");
 const thisYear = new Date().getFullYear();
 
-const lives = authors
-  .map((author) => ({ author, life: parseLife(author.data.dates) }))
+const rows: Row[] = [
+  ...authors.map((author: Author) => ({
+    name: author.data.name,
+    dates: author.data.dates ?? "",
+    role: author.data.role,
+    href: `/autores/${author.id}/`,
+  })),
+  ...context,
+];
+
+const lives = rows
+  .map((row) => ({ row, life: parseLife(row.dates) }))
   .filter(
-    (entry): entry is { author: Author; life: { born: number; died: number | null } } =>
+    (entry): entry is { row: Row; life: { born: number; died: number | null } } =>
       entry.life !== null,
   )
   .sort((a, b) => a.life.born - b.life.born);
@@ -48,6 +77,26 @@ const rowGrid = "grid gap-x-6 md:grid-cols-[17rem_1fr] md:items-center";
   id="voces"
 >
   <div>
+    <div class={rowGrid}>
+      <span class="hidden md:block"></span>
+      <ul class="relative h-6 text-xs font-semibold text-accent">
+        {
+          events.map((event) => (
+            <li
+              class:list={[
+                "absolute top-0 border-accent/60 whitespace-nowrap",
+                event.side === "left" ? "-translate-x-full border-r pr-1.5" : "border-l pl-1.5",
+              ]}
+              style={`left: ${pct(event.year)}%`}
+            >
+              <span class="sm:hidden">{event.short}</span>
+              <span class="hidden sm:inline">{event.label}</span> <span class="font-normal text-muted tabular-nums">{event.year}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
     <div aria-hidden="true" class={rowGrid}>
       <span class="hidden md:block"></span>
       <div class="relative h-6 text-xs text-muted tabular-nums">
@@ -63,22 +112,32 @@ const rowGrid = "grid gap-x-6 md:grid-cols-[17rem_1fr] md:items-center";
 
     <ul class="border-t border-border">
       {
-        lives.map(({ author, life }) => (
+        lives.map(({ row, life }) => {
+          const Tag = row.href ? "a" : "div";
+          return (
           <li class="border-b border-border">
-            <a href={`/autores/${author.id}/`} class:list={["group py-4", rowGrid]}>
+            <Tag href={row.href} class:list={["group py-4", rowGrid]}>
               <div class="min-w-0">
-                <p class="serif-text text-lg leading-tight font-semibold text-foreground decoration-accent decoration-2 underline-offset-4 group-hover:underline">
-                  {author.data.name}
+                <p
+                  class:list={[
+                    "serif-text text-lg leading-tight font-semibold text-foreground",
+                    row.href && "decoration-accent decoration-2 underline-offset-4 group-hover:underline",
+                  ]}
+                >
+                  {row.name}
                   <span class="ml-1 font-sans text-sm font-medium whitespace-nowrap text-muted tabular-nums">
-                    {author.data.dates}
+                    {row.dates}
                   </span>
                 </p>
-                <p class="mt-1 line-clamp-2 text-sm leading-snug text-muted">{author.data.role}</p>
+                <p class="mt-1 line-clamp-2 text-sm leading-snug text-muted">{row.role}</p>
               </div>
 
               <div aria-hidden="true" class="relative mt-3 h-5 md:mt-0">
                 {ticks.map((year) => (
                   <span class="absolute inset-y-0 w-px bg-border" style={`left: ${pct(year)}%`} />
+                ))}
+                {events.map((event) => (
+                  <span class="absolute -inset-y-4 w-px bg-accent/30" style={`left: ${pct(event.year)}%`} />
                 ))}
                 <span
                   class:list={[
@@ -90,9 +149,10 @@ const rowGrid = "grid gap-x-6 md:grid-cols-[17rem_1fr] md:items-center";
                   style={`left: ${pct(life.born)}%; width: ${pct(life.died ?? end) - pct(life.born)}%`}
                 />
               </div>
-            </a>
+            </Tag>
           </li>
-        ))
+          );
+        })
       }
     </ul>
 
