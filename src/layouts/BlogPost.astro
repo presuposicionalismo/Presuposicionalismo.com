@@ -14,6 +14,8 @@ import ArrowLeft from "../components/icons/ArrowLeft.astro";
 import { resolveAuthors, formatAuthorNames } from "../utils/authors";
 import postFilter from "../utils/postFilter";
 import { getSeoDescription } from "../utils/seo";
+import { typstAvailable } from "../utils/generateOg";
+import { slugifyStr } from "../utils/slugify";
 
 type Props = CollectionEntry<"blog">["data"] & {
   slug?: string;
@@ -79,10 +81,14 @@ const resolvedHeroImage =
     ? (await coverImages[heroImage]()).default
     : null;
 
-// Determine OG Image — same resolution issue applies to the og:image URL
-const ogImage = resolvedHeroImage
-  ? (await getImage({ src: resolvedHeroImage })).src
-  : "/Portada.png";
+// Imagen OG: la tarjeta generada con Typst (src/pages/og/blog), con el
+// mismo slug que la URL del artículo. Sin typst, la imagen de cabecera
+// (same resolution issue applies to the og:image URL).
+const ogImage = (await typstAvailable())
+  ? `/og/blog/${slugifyStr(title)}.png`
+  : resolvedHeroImage
+    ? (await getImage({ src: resolvedHeroImage })).src
+    : "/Portada.png";
 
 // Datos estructurados (schema.org) para rich results: BlogPosting +
 // BreadcrumbList. Usamos Astro.url.pathname (la ruta real que Astro ya

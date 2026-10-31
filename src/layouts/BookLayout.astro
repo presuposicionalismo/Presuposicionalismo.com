@@ -1,5 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import type { ImageMetadata } from "astro";
+import { getImage } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
 import CoverBook from "../components/CoverBook.astro";
 import BookCard from "../components/BookCard.astro";
@@ -10,6 +12,7 @@ import ArrowRight from "../components/icons/ArrowRight.astro";
 import Download from "../components/icons/Download.astro";
 import { resolveAuthors } from "@utils/authors";
 import { getSeoDescription } from "@utils/seo";
+import { typstAvailable } from "@utils/generateOg";
 
 type Props = CollectionEntry<"libros">["data"] & {
   slug?: string;
@@ -26,14 +29,25 @@ const {
   coverBook,
   downloadBook,
   authors,
+  slug,
   hasAbout = true,
   related = [],
 } = Astro.props;
 
 const resolvedAuthors = await resolveAuthors(authors);
 
-// Determine OG Image
-const ogImage = coverBook || "/Portada.png";
+// Imagen OG: la tarjeta generada con Typst (src/pages/og/libros). Sin
+// typst, la portada; hay que pasarla por getImage porque la ruta del
+// frontmatter ("/src/assets/...") solo existe en dev.
+const coverImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/coverbook/*.{jpeg,jpg,png,gif,webp}",
+);
+const ogImage =
+  slug && (await typstAvailable())
+    ? `/og/libros/${slug}.png`
+    : coverBook && coverImages[coverBook]
+      ? (await getImage({ src: (await coverImages[coverBook]()).default, format: "jpg" })).src
+      : "/Portada.png";
 
 // `description` completa se muestra como "Sobre el libro" cuando el body
 // no trae ese módulo; `metaDescription` es solo para meta tag/OG/JSON-LD.
