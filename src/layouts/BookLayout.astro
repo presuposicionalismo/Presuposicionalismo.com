@@ -10,9 +10,11 @@ import FormattedDate from "../components/FormattedDate.astro";
 import ArrowLeft from "../components/icons/ArrowLeft.astro";
 import ArrowRight from "../components/icons/ArrowRight.astro";
 import Download from "../components/icons/Download.astro";
+import BrandGithub from "../components/icons/BrandGithub.astro";
 import { resolveAuthors } from "@utils/authors";
 import { getSeoDescription } from "@utils/seo";
 import { typstAvailable } from "@utils/generateOg";
+import { isRepository } from "@utils/download";
 
 type Props = CollectionEntry<"libros">["data"] & {
   slug?: string;
@@ -97,8 +99,10 @@ const breadcrumbSchema = {
   ],
 };
 
+const fromRepository = isRepository(downloadBook);
+
 const details = [
-  { label: "Formato", value: "PDF digital" },
+  { label: "Formato", value: fromRepository ? "PDF y fuentes en GitHub" : "PDF digital" },
   { label: "Idioma", value: "Español" },
   { label: "Acceso", value: "Gratuito" },
 ];
@@ -142,14 +146,14 @@ const details = [
               <span class="italic">por</span>{" "}
               {resolvedAuthors.map((author, i) => (
                 <>
-                  <a
-                    href={`/autores/${author.id}`}
-                    class="font-medium text-accent underline decoration-border underline-offset-4 transition-colors hover:decoration-accent"
-                  >
-                    {author.data.name}
-                  </a>
-                  {i < resolvedAuthors.length - 2 && ", "}
-                  {i === resolvedAuthors.length - 2 && " y "}
+                    <a
+                      href={`/autores/${author.id}`}
+                      class="font-medium text-accent underline decoration-border underline-offset-4 transition-colors hover:decoration-accent"
+                    >
+                      {author.data.name}
+                    </a>
+                    {i < resolvedAuthors.length - 2 && ", "}
+                    {i === resolvedAuthors.length - 2 && " y "}
                 </>
               ))}
             </p>
@@ -185,8 +189,17 @@ const details = [
             rel="noopener"
             class="flex h-12 w-full items-center justify-center gap-3 rounded-lg bg-accent text-background shadow-md transition-all hover:opacity-90 active:scale-[0.98]"
           >
-            <Download class="text-[20px]" />
-            <span class="text-base font-bold tracking-wide">Descargar PDF gratis</span>
+            {fromRepository ? (
+              <>
+                <BrandGithub class="text-[20px]" />
+                <span class="text-base font-bold tracking-wide">Ver en GitHub</span>
+              </>
+            ) : (
+              <>
+                <Download class="text-[20px]" />
+                <span class="text-base font-bold tracking-wide">Descargar PDF gratis</span>
+              </>
+            )}
           </a>
 
           <dl class="divide-y divide-border rounded-xl border border-border text-sm">
@@ -215,8 +228,8 @@ const details = [
           {
             !hasAbout && (
               <>
-                <h2>Sobre el libro</h2>
-                <p>{description}</p>
+                  <h2>Sobre el libro</h2>
+                  <p>{description}</p>
               </>
             )
           }

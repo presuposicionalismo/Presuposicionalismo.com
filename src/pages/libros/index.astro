@@ -5,8 +5,10 @@ import BookCard from "@components/BookCard.astro";
 import CoverBook from "@components/CoverBook.astro";
 import ArrowRight from "@components/icons/ArrowRight.astro";
 import Download from "@components/icons/Download.astro";
+import BrandGithub from "@components/icons/BrandGithub.astro";
 import { resolveAuthors, formatAuthorNames } from "@utils/authors";
 import { getSeoDescription } from "@utils/seo";
+import { isRepository } from "@utils/download";
 import bookFilter from "@utils/bookFilter";
 
 const books = (await getCollection("libros", bookFilter)).sort(
@@ -121,8 +123,17 @@ const description =
             rel="noopener"
             class="inline-flex h-11 items-center gap-2 rounded-lg border border-border px-5 text-sm font-bold text-accent transition-colors hover:border-accent"
           >
-            <Download class="h-4 w-4" />
-            Descargar PDF
+            {isRepository(featured.data.downloadBook) ? (
+              <>
+                <BrandGithub class="h-4 w-4" />
+                Ver en GitHub
+              </>
+            ) : (
+              <>
+                <Download class="h-4 w-4" />
+                Descargar PDF
+              </>
+            )}
           </a>
         </div>
       </div>
