@@ -1,101 +1,49 @@
+// Tarjeta OG de un libro: texto a la izquierda, portada a la derecha.
+#import "og_base.typ": *
+
+// Sombra suave a capas (Typst no tiene desenfoque), como la de las
+// portadas en el sitio.
+#let con-sombra(body, w, h) = {
+  for i in range(1, 13) {
+    let d = 2pt * i
+    place(dx: d / 3, dy: d, rect(width: w, height: h, radius: d, fill: tinta.transparentize(98.4%)))
+  }
+  body
+}
 
 #let og-book-template(
-  title: "Título del Libro",
-  description: "Descripción del libro...",
-  author: "Autor del Libro",
-  cover-image: none, // Expects path or none
-  site-title: "Presuposicionalismo.com",
-) = {
-  // Configuración de página
-  set page(
-    width: 1200pt,
-    height: 630pt,
-    margin: 0pt,
+  title: "",
+  description: "",
+  author: "",
+  cover-image: none,
+) = pagina({
+  let panel = 440pt
+  place(
+    right + top,
+    rect(width: panel, height: H, fill: superficie, stroke: (left: 1pt + filete)),
   )
-
-  // Colores (Light Theme)
-  let bg-color = rgb("#fafafa")
-  let surface-color = rgb("#ffffff")
-  let accent-color = rgb("#4f46e5")
-  let text-color = rgb("#18181b")
-  let dim-text-color = rgb("#52525b")
-
-  // Fuentes
-  let body-font = "Urbanist"
-
-  rect(
-    width: 100%,
-    height: 100%,
-    fill: bg-color,
-  )[
-    #place(
-      center + horizon,
-      block(
-        width: 90%,
-        height: 85%,
-        radius: 32pt,
-        fill: surface-color,
-        stroke: (thickness: 4pt, paint: accent-color),
-        inset: 0pt, // Reset inset for grid layout control
-        clip: true,
-      )[
-        #grid(
-          columns: (1.4fr, 1fr),
-          rows: 100%,
-          gutter: 0pt,
-
-          // Columna Izquierda: Info
-          block(
-            width: 100%,
-            height: 100%,
-            inset: (left: 60pt, top: 60pt, bottom: 60pt, right: 30pt),
-          )[
-            #set text(font: body-font, fill: text-color)
-
-            // Header
-            #stack(dir: ltr, spacing: 20pt)[
-              #polygon(
-                fill: accent-color,
-                (0pt, 0pt),
-                (20pt, 30pt),
-                (40pt, 0pt),
-              )
-              #text(size: 24pt, weight: "bold", tracking: 2pt, fill: accent-color)[#upper(site-title)]
-            ]
-
-            #v(1fr)
-
-            #par(leading: 0.9em)[
-              #text(size: 64pt, weight: "extrabold", title)
-            ]
-
-            #v(20pt)
-
-            #text(size: 32pt, weight: "bold", fill: accent-color, author)
-
-
-
-            #v(1fr)
-
-            #text(size: 24pt, weight: "bold", fill: accent-color)[presuposicionalismo.com]
-          ],
-
-          // Columna Derecha: Imagen
-          block(
-            width: 100%,
-            height: 100%,
-            fill: rgb("#f4f4f5"), // Placeholder background
-          )[
-            #if cover-image != none {
-              // We use 'fit: "cover"' equivalent logic if possible, or just place it center
-              // Typst images are simple.
-              align(center + horizon, image(cover-image, width: 80%))
-            } else {
-              align(center + horizon, text(size: 40pt, fill: dim-text-color)[Sin Portada])
-            }
-          ],
-        )
-      ],
+  if cover-image != none {
+    let h = 470pt
+    let w = h * 0.707
+    place(
+      right + horizon,
+      dx: -(panel - w) / 2,
+      box(width: w, height: h, con-sombra(image(cover-image, width: w, height: h, fit: "cover"), w, h)),
     )
-  ]
-}
+  }
+  block(width: W - panel, height: 100%, inset: margen, {
+    logo()
+    v(1fr)
+    antetitulo[Libro gratuito]
+    v(22pt)
+    titulo(title, ancho: W - panel - 2 * margen)
+    if author != "" {
+      v(18pt)
+      text(size: 26pt, fill: gris, style: "italic")[por]
+      h(6pt)
+      text(size: 26pt, weight: 600, author)
+    }
+    v(1fr)
+    pie(derecha: [PDF gratis])
+  })
+})

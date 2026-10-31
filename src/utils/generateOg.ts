@@ -51,7 +51,9 @@ interface OgInput {
 /** Compila la tarjeta OG (1200×630 px) con la plantilla Typst de src/assets. */
 export async function generateOgImage(type: "blog" | "book", input: OgInput): Promise<Response> {
   const driver = join(ROOT, `src/assets/og_driver_${type}.typ`);
-  const template = await readFile(join(ROOT, `src/assets/og_${type}.typ`), "utf-8");
+  const template =
+    (await readFile(join(ROOT, `src/assets/og_${type}.typ`), "utf-8")) +
+    (await readFile(join(ROOT, "src/assets/og_base.typ"), "utf-8"));
 
   const data = JSON.stringify({
     title: input.title,
