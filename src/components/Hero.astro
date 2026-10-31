@@ -3,10 +3,11 @@ import { getCollection } from "astro:content";
 import CoverBook from "./CoverBook.astro";
 import ArrowRight from "./icons/ArrowRight.astro";
 import postFilter from "@utils/postFilter";
+import bookFilter from "@utils/bookFilter";
 
 const [posts, books, authors] = await Promise.all([
   getCollection("blog", postFilter),
-  getCollection("libros"),
+  getCollection("libros", bookFilter),
   getCollection("autores"),
 ]);
 

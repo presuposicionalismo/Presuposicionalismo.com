@@ -3,11 +3,12 @@ import { getCollection } from "astro:content";
 import Section from "./Section.astro";
 import CoverBook from "./CoverBook.astro";
 import { resolveAuthors, formatAuthorNames } from "@utils/authors";
+import bookFilter from "@utils/bookFilter";
 
 // Los cuatro libros más recientes, de pie. Sin repisa dibujada: una barra
 // bajo las portadas se leía como un filete que separa portada y título.
 // La sombra de contacto en la base basta para que el libro se vea apoyado.
-const allBooks = (await getCollection("libros")).sort(
+const allBooks = (await getCollection("libros", bookFilter)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 

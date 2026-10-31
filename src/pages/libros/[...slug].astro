@@ -1,11 +1,12 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import BookLayout from "../../layouts/BookLayout.astro";
+import bookFilter from "@utils/bookFilter";
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const books = await getCollection("libros");
+  const books = await getCollection("libros", bookFilter);
   return books.map((book) => ({
     params: { slug: book.id },
     props: book,
@@ -21,7 +22,7 @@ const { Content } = await render(book);
 const hasAbout = /^##\s+Sobre el libro\s*$/m.test(book.body ?? "");
 
 // "Más libros": primero los que comparten autor, luego los más recientes.
-const others = (await getCollection("libros"))
+const others = (await getCollection("libros", bookFilter))
   .filter((other) => other.id !== book.id)
   .sort((a, b) => {
     const shared = (entry: CollectionEntry<"libros">) =>

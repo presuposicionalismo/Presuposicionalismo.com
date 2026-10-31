@@ -50,6 +50,9 @@ const libros = defineCollection({
     updatedDate: z.coerce.date().optional(),
     coverBook: z.string().optional(),
     downloadBook: z.string(),
+    // Fuera del sitio en producción (ver src/utils/bookFilter.ts); en dev
+    // se muestra para poder revisar la ficha antes de publicarla.
+    draft: z.boolean().optional(),
   }),
 });
 

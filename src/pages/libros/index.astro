@@ -7,8 +7,9 @@ import ArrowRight from "@components/icons/ArrowRight.astro";
 import Download from "@components/icons/Download.astro";
 import { resolveAuthors, formatAuthorNames } from "@utils/authors";
 import { getSeoDescription } from "@utils/seo";
+import bookFilter from "@utils/bookFilter";
 
-const books = (await getCollection("libros")).sort(
+const books = (await getCollection("libros", bookFilter)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 

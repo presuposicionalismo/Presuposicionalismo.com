@@ -5,6 +5,7 @@ import BookCard from "@components/BookCard.astro";
 import PostGridItem from "@components/PostGridItem.astro";
 import AuthorAvatar from "@components/AuthorAvatar.astro";
 import postFilter from "@utils/postFilter";
+import bookFilter from "@utils/bookFilter";
 
 export const prerender = true;
 
@@ -24,7 +25,7 @@ if (!author) {
 
 const { Content } = await render(author);
 
-const allBooks = await getCollection("libros");
+const allBooks = await getCollection("libros", bookFilter);
 const books = allBooks.filter((book) => book.data.authors.includes(slug!));
 
 const relatedPosts = author.data.tag

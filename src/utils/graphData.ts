@@ -13,6 +13,7 @@ import knowledgeJson from "../data/knowledge.json";
 import { knowledgeSchema, type KnowledgeEdge } from "../data/knowledge.schema";
 import postFilter from "./postFilter";
 import { slugifyStr } from "./slugify";
+import bookFilter from "./bookFilter";
 
 // Datos de /grafo: el índice de conocimiento (src/data/knowledge.json)
 // resuelto contra las colecciones, con la disposición ya calculada. La
@@ -70,7 +71,7 @@ export async function getGraphData(): Promise<GraphData> {
   const [posts, authors, books] = await Promise.all([
     getCollection("blog", postFilter),
     getCollection("autores"),
-    getCollection("libros"),
+    getCollection("libros", bookFilter),
   ]);
 
   const nodes = new Map<string, Omit<GraphNode, "degree" | "r" | "x" | "y">>();

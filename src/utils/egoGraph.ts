@@ -13,6 +13,7 @@ import knowledgeJson from "../data/knowledge.json";
 import { knowledgeSchema, type KnowledgeEdge } from "../data/knowledge.schema";
 import postFilter from "./postFilter";
 import { slugifyStr } from "./slugify";
+import bookFilter from "./bookFilter";
 
 // Minigrafo de un artículo: él al centro con sus conceptos, los artículos
 // con los que se relaciona y los autores o libros que cita. Se calcula en
@@ -59,7 +60,7 @@ export async function getEgoGraph(postId: string): Promise<EgoGraph | null> {
   const [posts, authors, books] = await Promise.all([
     getCollection("blog", postFilter),
     getCollection("autores"),
-    getCollection("libros"),
+    getCollection("libros", bookFilter),
   ]);
   const info = new Map<string, Pick<EgoNode, "kind" | "label" | "url">>();
   for (const p of posts) {
