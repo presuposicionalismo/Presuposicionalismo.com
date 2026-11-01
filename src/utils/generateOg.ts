@@ -46,6 +46,8 @@ interface OgInput {
   // Ruta tal como está en el frontmatter: "/src/assets/coverbook/x.webp".
   // Typst la resuelve contra --root, que es la raíz del proyecto.
   coverBook?: string;
+  // Etiqueta del pie en la tarjeta de libro ("PDF gratis", "En GitHub").
+  label?: string;
 }
 
 /** Compila la tarjeta OG (1200×630 px) con la plantilla Typst de src/assets. */
@@ -60,6 +62,7 @@ export async function generateOgImage(type: "blog" | "book", input: OgInput): Pr
     description: input.description,
     author: input.author ?? "",
     ...(input.coverBook && { coverBookPath: input.coverBook }),
+    ...(input.label && { label: input.label }),
   });
 
   // La portada entra al hash por contenido: si se reemplaza la imagen

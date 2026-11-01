@@ -16,6 +16,7 @@
   description: "",
   author: "",
   cover-image: none,
+  label: "PDF gratis",
 ) = pagina({
   let panel = 440pt
   place(
@@ -44,6 +45,6 @@
       text(size: 26pt, weight: 600, author)
     }
     v(1fr)
-    pie(derecha: [PDF gratis])
+    pie(derecha: label)
   })
 })

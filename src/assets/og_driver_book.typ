@@ -16,4 +16,5 @@
   description: data.description,
   author: data.author,
   cover-image: cover,
+  label: data.at("label", default: "PDF gratis"),
 )
